@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { awwwards } from "@/public";
+
 import { BackgroundVideo } from "@/components";
 
 export default function Hero() {
@@ -35,13 +35,6 @@ export default function Hero() {
                     }}
                     className="leading-[130px]"
                   >
-                    {/* <Image
-                      width={120}
-                      height={50}
-                      src={ochiside}
-                      alt="img"
-                      className="w-auto h-[95px] lg:w-auto lg:h-auto md:w-[100px] md:h-[63px] sm:w-[74px] sm:h-[45px] xm:w-[64px] xm:h-[40px] object-cover xl:mt-[15px] mt-[10px] rounded-[10px]"
-                    /> */}
                     <video
                       src="/heroVideo4.mp4"
                       width={120}
@@ -107,8 +100,30 @@ export default function Hero() {
                 </motion.h1>
               </h1>
             </div>
-            <div className="flex-shrink-0">
-              <Image src={awwwards} alt="awwwards" width={60} height={60} className="xm:hidden sm:hidden" />
+            <div className="relative flex-shrink-0 xm:hidden sm:hidden" aria-label="WayberTech rotating circle">
+              <div className="w-[120px] h-[120px] mr-[-30px] overflow-visible">
+                <Image
+                  src="/circle2.svg"
+                  alt="decorative rotating circle"
+                  width={120}
+                  height={120}
+                  className="rotate-slow"
+                  priority
+                />
+              </div>
+              <style jsx>{`
+                @keyframes wayber-rotate-slow {
+                  from {
+                    transform: rotate(0deg);
+                  }
+                  to {
+                    transform: rotate(360deg);
+                  }
+                }
+                :global(.rotate-slow) {
+                  animation: wayber-rotate-slow 10s linear infinite;
+                }
+              `}</style>
             </div>
           </div>
 
