@@ -22,7 +22,7 @@ export default function Hero() {
           {/* Header section with title and awards */}
           <div className="w-full flex justify-between gap-[20px] pl-[50px] md:pl-[30px] sm:pl-[20px] xm:pl-[20px] mb-8">
             <div className="flex-1">
-              <h1 className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase">
+              <div className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase">
                 think big, <br />
                 <div className="flex items-center gap-[5px]">
                   <motion.span
@@ -98,7 +98,7 @@ export default function Hero() {
                     </span>
                   </span>
                 </motion.h1>
-              </h1>
+              </div>
             </div>
             <div className="relative flex-shrink-0 xm:hidden sm:hidden" aria-label="WayberTech rotating circle">
               <div className="w-[120px] h-[120px] mr-[-30px] overflow-visible">
