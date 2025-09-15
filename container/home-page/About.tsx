@@ -67,7 +67,7 @@ export default function About() {
             onMouseLeave={() => setHovered(false)}
           >
             <RoundButton
-              href="/wayber-team"
+              href="/ochi-team"
               title="read more"
               bgcolor="#000"
               className="bg-white text-black"

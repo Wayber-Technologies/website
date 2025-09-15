@@ -54,7 +54,7 @@ export const navbarItems = [
   {
     id: 3,
     title: "About us",
-    href: "/Wayber-team",
+    href: "/ochi-team",
   },
   {
     id: 4,
@@ -112,7 +112,7 @@ export const footernavbarItems = [
   {
     id: 4,
     title: "About us",
-    href: "Wayber-team",
+    href: "ochi-team",
   },
   {
     id: 5,
@@ -385,7 +385,7 @@ export const clientsItem = [
 export const projectItem = [
   {
     id: 1,
-    title: "fyde",
+    title: "MALLLAM-X",
     href: "/case/",
     src: project1,
     links: [
@@ -413,7 +413,7 @@ export const projectItem = [
   },
   {
     id: 2,
-    title: "vise",
+    title: "RFTF",
     href: "/case/",
     src: project2,
     links: [
@@ -431,7 +431,7 @@ export const projectItem = [
   },
   {
     id: 3,
-    title: "trawa",
+    title: "COMERCIO",
     href: "/case/",
     src: project3,
     links: [
@@ -454,7 +454,7 @@ export const projectItem = [
   },
   {
     id: 4,
-    title: "premiumblend",
+    title: "SISE",
     href: "/case/",
     src: project4,
     links: [

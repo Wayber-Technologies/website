@@ -45,7 +45,7 @@ export default function Curve({ children, backgroundColor }) {
   }, []);
 
   // Skip curve animation for home route since PreLoad handles it
-  const isHomeRoute = router.route === "/";
+  const isHomeRoute = router.pathname === "/";
 
   return (
     <div style={{ backgroundColor }}>
@@ -60,7 +60,7 @@ export default function Curve({ children, backgroundColor }) {
             className="absolute left-1/2 top-[40%] text-white text-[50px] z-[60] -translate-x-1/2 text-center"
             {...anim(text)}
           >
-            {routes[router.route]}
+            {routes[router.pathname]}
           </motion.p>
           {dimensions.width != null && <SVG {...dimensions} />}
         </>
