@@ -104,6 +104,17 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Full-bleed oversized word using Tailwind only */}
+      <div
+        className="w-screen relative bottom-0 left-1/2 -translate-x-1/2 overflow-hidden select-none"
+        aria-hidden="true"
+        role="presentation"
+      >
+        <span className="block w-full text-center text-white uppercase -mb-2 lg:-mb-4 font-FoundersGrotesk font-extrabold tracking-[0.045em] leading-[0.8] text-[38vw] lg:text-[38vw] md:text-[38vw] sm:text-[38vw] xm:text-[38vw] translate-y-[4vw] sm:translate-y-[4vw] xm:translate-y-[4vw]">
+          WAYBER
+        </span>
+      </div>
     </footer>
   );
 }
