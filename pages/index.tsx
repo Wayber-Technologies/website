@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { Curve, Marquee, Ready, PreLoad } from "@/components";
 import { About, Clients, Hero, Projects, VideoHome } from "@/container";
+import Whatwedo from "@/container/home-page/whatwedo";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,9 +41,10 @@ export default function Home() {
         <div className="w-full bg-marquee z-10 relative rounded-t-[20px] py-[60px] lg:py-[50px] md:py-[40px] sm:py-[30px] xm:py-[20px]">
           <Marquee
             title="we are wayber"
-            className="pb-[30px] lg:pb-[25px] md:pb-[20px] sm:pb-[20px] xm:pb-[15px] text-[400px] leading-[280px] lg:text-[320px] lg:leading-[200px] md:text-[300px] md:leading-[160px] sm:text-[230px] sm:leading-[140px] xm:text-[130px] xm:leading-[80px]"
+            className="pb-[30px] lg:pb-[25px] md:pb-[20px] sm:pb-[20px] xm:pb-[15px] text-[280px] leading-[200px] lg:text-[200px] lg:leading-[140px] md:text-[120px] md:leading-[80px] sm:text-[90px] sm:leading-[60px] xm:text-[60px] xm:leading-[40px]"
           />
         </div>
+        <Whatwedo />
         <About />
         <VideoHome />
         <Projects />
