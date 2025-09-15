@@ -54,7 +54,7 @@ export const navbarItems = [
   {
     id: 3,
     title: "About us",
-    href: "/Wayber-team",
+    href: "/ochi-team",
   },
   {
     id: 4,
@@ -112,7 +112,7 @@ export const footernavbarItems = [
   {
     id: 4,
     title: "About us",
-    href: "Wayber-team",
+    href: "ochi-team",
   },
   {
     id: 5,
