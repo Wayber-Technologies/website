@@ -1,136 +1,109 @@
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { whiteCircle } from "@/public";
-import { useTranslations } from "next-intl";
-import { TextHover, Marquee } from "@/components";
+import { logoWhite } from "@/public";
+import { LinkHover, TextMask } from "@/animation";
+import { footerItems, footernavbarItems } from "@/constants";
 
 export default function Footer() {
-  const t = useTranslations("footerContent");
+  const phrase = ["Eye-", "opening"];
+  const phrase1 = ["PRESENTATIONS"];
   return (
-    <>
-      <div id="get-in-touch" className="w-full h-screen flex flex-col items-center padding-x justify-between pt-5">
-        <Marquee titile1="Get in touch" titile2="Get in touch" className="text-[#ffeb69]" />
-        <div className="w-[80%] flex flex-col gap-10 xm:w-full sm:w-full">
+    <footer className="w-full min-h-screen padding-x z-30 relative pt-[40px] bg-wayberBlue flex flex-col justify-between rounded-t-[20px] mt-[-20px]">
+      <div className="w-full flex justify-between sm:flex-col xm:flex-col">
+        <div className="flex flex-col justify-between sm:w-full xm:w-full w-1/2">
+          <h1 className="text-[150px] leading-[115px] lg:text-[130px] lg:leading-[98px] md:text-[100px] md:leading-[75px] sm:text-[74px] sm:leading-[68px] xm:text-[64px] xm:leading-[48px] font-semibold font-FoundersGrotesk text-white uppercase">
+            <TextMask>{phrase}</TextMask>
+          </h1>
+        </div>
+        <div className="h-full flex flex-col justify-between sm:w-full xm:w-full w-1/2">
           <div>
-            <h1 className="text-[60px] xm:text-[40px] sm:text-[40px] xm:leading-[40px] sm:leading-[40px] text-[#ffeb69] font-bold leading-[62px] tracking-tight text-center xm:text-left sm:text-left">
-              {t("footerHeading1")}
+            <h1 className="text-[150px] leading-[115px] lg:text-[130px] lg:leading-[98px] md:text-[100px] md:leading-[75px] sm:text-[74px] sm:leading-[68px] xm:text-[64px] xm:leading-[48px] font-semibold font-FoundersGrotesk text-white uppercase">
+              <TextMask>{phrase1}</TextMask>
             </h1>
-          </div>
-          <div>
-            <p className="text-[25px] text-[#ffeb69] leading-normal tracking-tight text-center xm:text-left sm:text-left">
-              {t("footerHeading2")}
-            </p>
-          </div>
-          <div className="flex items-center justify-center">
-            <button className="group flex gap-2 items-center text-[17px] font-semibold capitalize text-[#260A2F] bg-secondary rounded-full leading-tight tracking-tight px-4 py-3">
-              <Image
-                src={whiteCircle}
-                alt="blackCircle"
-                width={30}
-                height={30}
-                className="group-hover:rotate-[60deg] transition-all duration-300 ease-linear"
+            <div className="pt-[50px]">
+              <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">S:</h1>
+              {footerItems.map((item) => (
+                <LinkHover
+                  title={item.title}
+                  href={item.href}
+                  key={item.id}
+                  className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                />
+              ))}
+            </div>
+            <div className="flex justify-between">
+              <div className="pt-[50px]">
+                <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">L:</h1>
+                <div className="flex flex-col gap-y-[10px]">
+                  <LinkHover
+                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                    title={`202-1965 W 4th Awe`}
+                    href="/"
+                  />
+                  <LinkHover
+                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                    title={`Vancouver, Canada`}
+                    href="/"
+                  />
+                  <LinkHover
+                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                    title="30 Chukarina"
+                    href="/"
+                  />
+                  <LinkHover
+                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                    title="St Lviv, Ukraine"
+                    href="/"
+                  />
+                </div>
+              </div>
+              <div className="pt-[50px]">
+                <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">M:</h1>
+                {footernavbarItems.map((item) => (
+                  <LinkHover
+                    key={item.id}
+                    title={item.title}
+                    href={item.href}
+                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="pt-[50px] flex gap-x-[20px]">
+              <h1 className="paragraph font-medium font-NeueMontreal text-white">E:</h1>
+              <LinkHover
+                title="hello@wayber.tech"
+                href="/"
+                className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white paragraph font-medium text-white before:bottom-[-3px] after:bottom-[-3px]"
               />
-              <TextHover titile1={t("footerBtn")} titile2={t("footerBtn")} />
-            </button>
-          </div>
-        </div>
-        <div className="w-full flex justify-between gap-5 py-10 xm:flex-col sm:flex-col">
-          <div className="w-1/2 xm:w-full sm:w-full flex gap-5 justify-between xm:flex-col sm:flex-col">
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col">
-                <p className="text-[16px] text-[#9FE870] leading-tight tracking-tight">Phone</p>
-                <Link
-                  className="text-[30px] font-semibold text-[#9FE870] leading-tight tracking-tight"
-                  href="tell:+31 53 234 0188"
-                >
-                  +234 806 138 2122
-                </Link>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-[16px] text-[#9FE870] leading-tight tracking-tight">linkedin</p>
-                <Link className="text-[30px] font-semibold text-[#9FE870] leading-tight tracking-tight" href="/">
-                  @WayberTech
-                </Link>
-              </div>
             </div>
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col">
-                <p className="text-[16px] text-[#9FE870] leading-tight tracking-tight">E-mail</p>
-                <Link
-                  className="text-[30px] font-semibold text-[#9FE870] leading-tight tracking-tight"
-                  href="mailTo:hello@supadupa.nl"
-                >
-                  waybertech@gmail.com
-                </Link>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-[16px] text-[#9FE870] leading-tight tracking-tight">Instagram</p>
-                <Link className="text-[30px] font-semibold text-[#9FE870] leading-tight tracking-tight" href="/">
-                  @WayberTech
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="w-[30%] xm:w-full sm:w-full">
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col">
-                <p className="text-[16px] text-[#9FE870] leading-tight tracking-tight">39b Ondo Street</p>
-                <Link className="text-[30px] font-semibold text-[#9FE870] leading-tight tracking-tight" href="/">
-                  Ebutte Metta, <br /> Lagos
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full flex flex-col">
-          <motion.div
-            initial={{ borderTopWidth: 0, width: "0%" }}
-            viewport={{ once: true }}
-            whileInView={{
-              borderTopWidth: 1,
-              width: "100%",
-              borderColor: "#9FE870",
-              origin: "left",
-            }}
-            transition={{
-              duration: 1,
-              ease: "easeInOut",
-            }}
-          />
-          <div className="w-full flex items-center justify-between py-4">
-            <motion.h2
-              initial={{ y: "100%" }}
-              viewport={{ once: true }}
-              whileInView={{
-                y: 0,
-              }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-              }}
-              className="text-[#9FE870] text-sm overflow-hidden"
-            >
-              Wayber Technologies 2025
-            </motion.h2>
-            <motion.h2
-              initial={{ y: "100%" }}
-              viewport={{ once: true }}
-              whileInView={{
-                y: 0,
-              }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-              }}
-              className="text-[#9FE870] text-sm overflow-hidden"
-            >
-              Privacy Statement
-            </motion.h2>
           </div>
         </div>
       </div>
-    </>
+      <div className="w-full pt-[40px] pb-[30px] flex justify-between sm:flex-col xm:flex-col sm:gap-[20px] xm:gap-[20px]">
+        <div className="w-1/2 sm:w-full xm:w-full">
+          <Link href={"/"}>
+            <Image src={logoWhite} alt="wayber logo" width={50} height={50} />
+          </Link>
+        </div>
+        <div className="w-1/2 h-full flex gap-[10px] justify-between items-end sm:w-full xm:w-full sm:flex-col xm:flex-col sm:items-start xm:items-start">
+          <div className="flex sm:flex-col xm:flex-col gap-[10px]">
+            <h1 className="paragraph font-medium font-NeueMontreal text-white opacity-40">© wayber tech 2025.</h1>
+            <LinkHover
+              title="Legal Terms"
+              href="/"
+              className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white paragraph font-medium text-white opacity-40 before:bottom-[-3px] after:bottom-[-3px]"
+            />
+          </div>
+          <div>
+            <LinkHover
+              title="Website by Vinyl"
+              href="https://vinyldavyl.xyz"
+              className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white paragraph font-medium text-white opacity-40 before:bottom-[-3px] after:bottom-[-3px]"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }

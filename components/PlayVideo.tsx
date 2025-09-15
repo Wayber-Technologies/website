@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import eyes from "@/public/eyes.svg";
+import { eyes } from "@/public";
 import { useEffect, useRef, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 
@@ -32,6 +32,23 @@ export default function PlayVideo({ videosrc }: { videosrc: string }) {
       setRotate(angle - 180);
     });
   }, []);
+
+  // Set preview frame when video loads
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const setPreviewFrame = () => {
+        video.currentTime = 5; // Set to 5 seconds
+      };
+
+      video.addEventListener("loadedmetadata", setPreviewFrame);
+
+      return () => {
+        video.removeEventListener("loadedmetadata", setPreviewFrame);
+      };
+    }
+  }, [videosrc]);
+
   const container = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -40,10 +57,11 @@ export default function PlayVideo({ videosrc }: { videosrc: string }) {
   });
 
   const mq = useTransform(scrollYProgress, [0, 1], [0, -400]);
+
   return (
-        <div className="w-full h-screen relative overflow-hidden cursor-pointer" ref={container} onClick={togglePlay}>
-      <div className="w-full h-full" data-scroll data-scroll-speed="-.8" data-scroll-section>
-        <video className="w-full h-full" loop ref={videoRef} src={videosrc} />
+    <div className="w-full relative overflow-hidden cursor-pointer" ref={container} onClick={togglePlay}>
+      <div className="w-full h-full">
+        <video className="w-full h-full" loop ref={videoRef} src={videosrc} preload="metadata" />
         <motion.div
           className={`w-full absolute top-[50%] transform translate-y-[-50%] gap-[30px] flex items-center justify-center ${
             isPlaying && "hidden"
@@ -63,7 +81,7 @@ export default function PlayVideo({ videosrc }: { videosrc: string }) {
                 alt="img"
                 className="w-full h-full object-cover"
               />
-              <p className="absolute top-1/2 left-1/2 paragraph uppercase text-white font-NeueMontreal font-medium transform translate-x-[-50%] translate-y-[-50%]">
+              <p className="absolute top-1/2 left-1/2 paragraph uppercase text-white font-Bricolage font-medium transform translate-x-[-50%] translate-y-[-50%]">
                 {isPlaying ? "Pause" : "Play"}
               </p>
             </div>
@@ -81,7 +99,7 @@ export default function PlayVideo({ videosrc }: { videosrc: string }) {
                 alt="img"
                 className="w-full h-full object-cover"
               />
-              <p className="absolute top-1/2 left-1/2 paragraph uppercase text-white font-NeueMontreal font-medium transform translate-x-[-50%] translate-y-[-50%]">
+              <p className="absolute top-1/2 left-1/2 paragraph uppercase text-white font-Bricolage font-medium transform translate-x-[-50%] translate-y-[-50%]">
                 {isPlaying ? "Pause" : "Play"}
               </p>
             </div>
@@ -93,7 +111,7 @@ export default function PlayVideo({ videosrc }: { videosrc: string }) {
             !isPlaying && "hidden"
           }`}
         >
-          <button className="text-white text-[18px] bg-black px-[10px]  leading-none font-normal py-[5px] font-NeueMontreal rounded-[20px]">
+          <button className="text-white text-[18px] bg-black px-[10px] leading-none font-normal py-[5px] font-Bricolage rounded-[20px]">
             pause
           </button>
         </div>

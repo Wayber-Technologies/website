@@ -5,17 +5,28 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./animation/**/*.{js,ts,jsx,tsx,mdx}",
+    "./container/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "#163300",
-        secondary: "#FFC091",
-        "dark-subtle": "rgba(255, 255, 255, 0.5)",
-        "light-subtle": "rgba(39, 39, 39, 0.5)",
-        "highlight-dark": "#ffc220",
-        "highlight-light": "#ffc220",
-      }
+        background: "#BFFDFF",
+        secondry: "#212121",
+        marquee: "#000000",
+        about: "#cdea68",
+        wayberBlue: "#1462FF",
+        wayberDarkBlue: "#09182F",
+        wayberLightBlue: "#BFFDFF",
+        wayberYellow: "#EFD54D",
+        white: "#FFFFFF",
+        black: "#000000",
+      },
+    },
+    fontFamily: {
+      FoundersGrotesk: ["FoundersGrotesk", "sans-serif"],
+      NeueMontreal: ["NeueMontreal", "sans-serif"],
+      Bricolage: ["Bricolage", "sans-serif"],
     },
     screens: {
       xm: { max: "400px" },
@@ -23,7 +34,7 @@ const config: Config = {
       md: { min: "769px", max: "1024px" },
       lg: { min: "1025px", max: "1490px" },
       xl: { min: "1491px" },
-    }
+    },
   },
   plugins: [],
 };
