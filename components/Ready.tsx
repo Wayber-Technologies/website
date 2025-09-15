@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRef } from "react";
-import TextMask from "@/components/TextMask";
+import { TextMask } from "@/animation";
 import { ArrowUpRight } from "lucide-react";
 import { Eyes, RoundButton, Rounded } from "@/components";
 import { useScroll, useTransform, motion } from "framer-motion";
@@ -18,12 +18,12 @@ export default function Ready() {
 
   return (
     <section
-      className="w-full bg-[#EFD54D] relative z-30 min-h-screen sm:h-screen xm:h-screen padding-y rounded-t-[20px]"
+      className="w-full relative z-30 min-h-screen sm:h-screen xm:h-screen bg-wayberYellow padding-y rounded-t-[20px] mt-[-20px]"
       ref={container}
     >
-      <div className="w-full h-full flex justify-center gap-[50px] items-center flex-col pt-36">
+      <div className="w-full h-full flex justify-center gap-[50px] items-center flex-col">
         <div className="flex flex-col gap-[10px]">
-          <h1 className="text-[250px] leading-[200px] lg:text-[190px] lg:leading-[150px] md:text-[150px] md:leading-[110px] sm:text-[100px] sm:leading-[80px] xm:text-[70px] xm:leading-[55px] tracking-[-2.5px] text-center font-bold  text-secondry uppercase pointer-events-none">
+          <h1 className="text-[290px] leading-[230px] lg:text-[220px] lg:leading-[170px] md:text-[180px] md:leading-[140px] sm:text-[120px] sm:leading-[90px] xm:text-[80px] xm:leading-[60px] tracking-[-2.5px] text-center font-bold font-FoundersGrotesk text-secondry uppercase pointer-events-none">
             <TextMask>{phrase}</TextMask>
           </h1>
         </div>
@@ -44,9 +44,7 @@ export default function Ready() {
               href="/contact"
             >
               <Rounded className="py-[6px]" backgroundColor="#212121">
-                <p className="z-10 px-[10px] ml-[15px] py-[6px] group-hover:text-white text-black">
-                  hello@waybertechnologies.com
-                </p>
+                <p className="z-10 px-[10px] ml-[15px] py-[6px] group-hover:text-white text-black">hello@wayber.tech</p>
                 <div className="bg-black group-hover:bg-white text-black p-[10px] rounded-full scale-[0.3] mr-[10px] group-hover:scale-[0.9] transition-all z-10 transform duration-[0.3s] ease-[.215,.61,.355,1]">
                   <ArrowUpRight strokeWidth={1.5} size={30} className="scale-[0] group-hover:scale-[1]" />
                 </div>
@@ -56,7 +54,7 @@ export default function Ready() {
         </div>
       </div>
       <motion.div
-        className="w-full absolute top-[50%] transform translate-y-[-50%] gap-[30px] flex items-center justify-center pt-36"
+        className="w-full absolute top-[50%] transform translate-y-[-50%] gap-[30px] flex items-center justify-center"
         style={{ y: mq }}
       >
         <Eyes className="w-[200px] h-[200px] md:w-[170px] md:h-[170px] sm:w-[150px] sm:h-[150px] xm:w-[150px] xm:h-[150px] sm:flex-col xm:flex-col" />
