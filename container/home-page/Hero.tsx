@@ -22,7 +22,7 @@ export default function Hero() {
           {/* Header section with title and awards */}
           <div className="w-full flex justify-between gap-[20px] pl-[50px] md:pl-[30px] sm:pl-[20px] xm:pl-[20px] mb-8">
             <div className="flex-1">
-              <div className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase">
+              <div className="heading tracking-[-1.3px] text-black font-semibold font-Aloevera uppercase">
                 think big, <br />
                 <div className="flex items-center gap-[5px]">
                   <motion.span
@@ -78,7 +78,7 @@ export default function Hero() {
                       }
                     `}</style>
                   </motion.span>
-                  <h1 className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase">
+                  <h1 className="heading tracking-[-1.3px] text-black font-semibold font-Aloevera uppercase">
                     build broad
                   </h1>
                 </div>
@@ -86,7 +86,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-                  className="heading tracking-[-1.3px] text-black font-semibold font-FoundersGrotesk uppercase relative"
+                  className="heading tracking-[-1.3px] text-black font-semibold font-Aloevera uppercase relative"
                 >
                   <span className="relative inline-block">
                     EXPERIENCE
@@ -136,16 +136,16 @@ export default function Hero() {
           <div className="w-full border-t border-[#21212155] py-[20px] sm:mb-[80px] xm:mb-[80px]">
             <div className="flex justify-between items-center padding-x gap-[20px] sm:flex-col sm:items-start xm:flex-col xm:items-start mb-6">
               <div className="w-[50%] xm:w-full sm:w-full">
-                <p className="paragraph font-Bricolage text-secondry">For public and private companies</p>
+                <p className="paragraph font-Aloevera text-secondry">For public and private companies</p>
               </div>
               <div className="w-[50%] xm:w-full sm:w-full flex justify-between xm:flex-col xm:items-start sm:flex-col sm:items-start gap-[20px]">
                 <div>
-                  <p className="paragraph font-Bricolage text-secondry">From the first pitch to IPO</p>
+                  <p className="paragraph font-Aloevera text-secondry">From the first pitch to IPO</p>
                 </div>
                 <div className="flex items-center gap-[5px] group">
                   <div className="rounded-[50px] border border-[#21212199] group-hover:bg-secondry py-[3px] px-[12px] cursor-pointer">
                     <Link
-                      className="paragraph font-Bricolage text-secondry uppercase group-hover:text-background transition-all transform duration-[0.3s] ease-[.215,.61,.355,1]"
+                      className="paragraph font-Aloevera text-secondry uppercase group-hover:text-background transition-all transform duration-[0.3s] ease-[.215,.61,.355,1]"
                       href="/contact"
                     >
                       start the project
@@ -170,7 +170,7 @@ export default function Hero() {
                   repeat: Infinity,
                   ease: [0.3, 0.86, 0.36, 0.95],
                 }}
-                className="paragraph opacity-50 font-Bricolage text-secondry"
+                className="paragraph opacity-50 font-Aloevera text-secondry"
               >
                 scroll down
               </motion.p>
