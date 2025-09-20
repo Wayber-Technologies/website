@@ -21,6 +21,11 @@ body {
 }
 
 @font-face {
+  src: url("../fonts/Aloevera.woff");
+  font-family: Aloevera;
+}
+
+@font-face {
   src: url("../fonts/NeueMontreal.woff");
   font-family: NeueMontreal;
 }
