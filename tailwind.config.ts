@@ -25,6 +25,7 @@ const config: Config = {
     },
     fontFamily: {
       FoundersGrotesk: ["FoundersGrotesk", "sans-serif"],
+      Aloevera: ["Aloevera", "sans-serif"],
       NeueMontreal: ["NeueMontreal", "sans-serif"],
       Bricolage: ["Bricolage", "sans-serif"],
     },
