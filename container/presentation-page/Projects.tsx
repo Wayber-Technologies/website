@@ -17,7 +17,7 @@ export default function Projects() {
       </div>
       <section className="w-full relative z-30 padding-y rounded-t-[20px] bg-background">
         <div>
-          <h2 className="sub-heading font-normal padding-x font-Bricolage text-secondry">
+          <h2 className="sub-heading font-normal padding-x font-Aloevera text-secondry">
             Purpose driven, strategy-led presentations
             <br className="sm:hidden xm:hidden" />
             that people care about.
@@ -28,7 +28,7 @@ export default function Projects() {
             <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
               <div className="flex gap-x-[10px] items-center pb-[10px]">
                 <span className="w-[10px] h-[10px] rounded-full bg-secondry" />
-                <h1 className="small-text uppercase font-medium font-Bricolage text-secondry">{item.title}</h1>
+                <h1 className="small-text uppercase font-medium font-Aloevera text-secondry">{item.title}</h1>
               </div>
               <ProjectCard item={item} key={item.id} />
               <div className="flex flex-wrap items-center gap-[10px] mt-[20px]">
