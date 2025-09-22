@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import { BackgroundVideo } from "@/components";
+import { BackgroundVideo, Rounded } from "@/components";
 
 export default function Hero() {
   return (
@@ -139,20 +139,20 @@ export default function Hero() {
                   From custom software to expert consultancy.
                 </p>
               </div>
-              <div className="flex items-center gap-[5px] group">
-                <div className="rounded-[50px] border border-[#21212199] group-hover:bg-secondry py-[3px] px-[12px] cursor-pointer">
+              <div className="flex items-center gap-[5px]">
+                <Rounded backgroundColor="#212121" className="border border-[#21212199] py-[3px] px-[12px] group">
                   <Link
-                    className="paragraph font-Aloevera text-secondry uppercase group-hover:text-background transition-all transform duration-[0.3s] ease-[.215,.61,.355,1] text-base"
+                    className="paragraph font-Aloevera text-secondry uppercase text-base relative z-10 group-hover:text-white transition-colors"
                     href="/contact"
                   >
                     build smarter solutions
                   </Link>
-                </div>
-                <div className="w-[33px] flex items-center justify-center h-[33px] border border-[#21212199] rounded-full p-[1px] group-hover:bg-secondry transition-all transform duration-[0.3s] ease-[.215,.61,.355,1] cursor-pointer">
-                  <p className="font-normal text-secondry group-hover:text-background">
-                    <ArrowUpRight size={24} strokeWidth={1.25} />
-                  </p>
-                </div>
+                </Rounded>
+                <Rounded backgroundColor="#212121" className="w-[33px] h-[33px] border border-[#21212199] group">
+                  <span className="relative z-10">
+                    <ArrowUpRight size={24} strokeWidth={1.25} className="text-secondry group-hover:text-white transition-colors" />
+                  </span>
+                </Rounded>
               </div>
             </div>
           </div>
@@ -174,20 +174,20 @@ export default function Hero() {
                     From custom software to expert consultancy.
                   </p>
                 </div>
-                <div className="flex items-center gap-[5px] group">
-                  <div className="rounded-[50px] border border-[#21212199] group-hover:bg-secondry py-[3px] px-[12px] cursor-pointer">
+                <div className="flex items-center gap-[5px]">
+                  <Rounded backgroundColor="#212121" className="border border-[#21212199] py-[3px] px-[12px] group">
                     <Link
-                      className="paragraph font-Aloevera text-secondry uppercase group-hover:text-background transition-all transform duration-[0.3s] ease-[.215,.61,.355,1] text-base sm:text-sm xm:text-xs"
+                      className="paragraph font-Aloevera text-secondry uppercase text-base sm:text-sm xm:text-xs relative z-10 group-hover:text-white transition-colors"
                       href="/contact"
                     >
                       build smarter solutions
                     </Link>
-                  </div>
-                  <div className="w-[33px] flex items-center justify-center h-[33px] border border-[#21212199] rounded-full p-[1px] group-hover:bg-secondry transition-all transform duration-[0.3s] ease-[.215,.61,.355,1] cursor-pointer xm:hidden sm:hidden">
-                    <p className="font-normal text-secondry group-hover:text-background">
-                      <ArrowUpRight size={24} strokeWidth={1.25} />
-                    </p>
-                  </div>
+                  </Rounded>
+                  <Rounded backgroundColor="#212121" className="w-[33px] h-[33px] border border-[#21212199] xm:hidden sm:hidden group">
+                    <span className="relative z-10">
+                      <ArrowUpRight size={24} strokeWidth={1.25} className="text-secondry group-hover:text-white transition-colors" />
+                    </span>
+                  </Rounded>
                 </div>
               </div>
             </div>
