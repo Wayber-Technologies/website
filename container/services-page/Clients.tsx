@@ -13,7 +13,7 @@ export default function Clients() {
   };
   return (
     <section className="w-full padding-y">
-      <h1 className="sub-heading padding-x font-medium font-Bricolage text-secondry pb-[50px]">Clients’ reviews</h1>
+      <h1 className="sub-heading padding-x font-medium font-Aloevera text-secondry pb-[50px]">Clients’ reviews</h1>
       {serviceClientsItem.map((item) => (
         <div
           key={item.id}
@@ -24,13 +24,13 @@ export default function Clients() {
           <div className="w-full flex items-center justify-between py-[10px] padding-x">
             <div className="w-[50%] flex items-center">
               <div className="w-[40%] sm:w-auto xm:w-auto">
-                <Link href={item.href} className="small-text font-normal font-Bricolage text-secondry link-flash">
+                <Link href={item.href} className="small-text font-normal font-Aloevera text-secondry link-flash">
                   {item.website}
                 </Link>
               </div>
               <div className="w-auto sm:hidden xm:hidden">
                 <motion.h3
-                  className={`small-text font-normal font-Bricolage text-secondry ${
+                  className={`small-text font-normal font-Aloevera text-secondry ${
                     activeAccordion === item.id ? "opacity-100" : "opacity-0"
                   } opacity-0 transition-all duration-200 ease-in-out`}
                 >
@@ -40,11 +40,11 @@ export default function Clients() {
             </div>
             <div className="w-[50%] flex justify-between items-center">
               <div className="w-[40%] sm:w-auto xm:w-auto">
-                <h3 className="small-text font-normal font-Bricolage text-secondry">{item.name}</h3>
+                <h3 className="small-text font-normal font-Aloevera text-secondry">{item.name}</h3>
               </div>
               <div className="w-[10%] sm:w-auto xm:w-auto flex items-end justify-end">
                 <button
-                  className={`small-text font-normal font-Bricolage uppercase transition-all duration-200 ease-in-out ${
+                  className={`small-text font-normal font-Aloevera uppercase transition-all duration-200 ease-in-out ${
                     activeAccordion === item.id ? "text-gray-300" : "text-secondry link-flash"
                   }`}
                   onClick={() => toggleAccordion(item.id)}
@@ -93,7 +93,7 @@ export default function Clients() {
                         <Image src={item.src} alt="clientImg" className="w-full h-full object-cover rounded-[10px]" />
                       </div>
                       <div className="">
-                        <p className="small-text tracking-wider font-normal font-Bricolage text-secondry">
+                        <p className="small-text tracking-wider font-normal font-Aloevera text-secondry">
                           {item.review}
                         </p>
                       </div>
