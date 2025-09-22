@@ -5,32 +5,30 @@ export default function Hero() {
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
-              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Bricolage uppercase">
+              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Aloevera uppercase">
                 services
               </h1>
             </div>
           </div>
           <div className="w-full border-t border-[#21212155]">
-            <p className="w-[80%] sm:w-full xm:w-full sub-heading font-normal padding-x font-FoundersGrotesk text-secondry padding-y">
+            <p className="w-[80%] sm:w-full xm:w-full sub-heading font-normal padding-x font-Aloevera text-secondry padding-y">
               We create&nbsp;
-              <span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">eye-catching&nbsp;</span>
-              and&nbsp;
               <span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">eye-opening&nbsp;</span>
-              presentations that educate, inspire and influence action.
+              project that educate, inspire and influence action.
             </p>
           </div>
           <div className="w-full flex border-t border-[#21212155] py-[20px] flex-col">
             <div className="w-full flex justify-between sm:flex-col xm:flex-col padding-x sm:gap-[20px] xm:gap-[20px]">
               <div className="w-[50%] sm:w-full xm:w-full">
-                <p className="paragraph font-Bricolage text-secondry">
+                <p className="paragraph font-Aloevera text-secondry">
                   We do this by following <br /> simple approach:
                 </p>
               </div>
               <div className="w-[50%] sm:w-full xm:w-full flex justify-between sm:flex-col xm:flex-col gap-[20px]	">
                 <div className="w-[50%] sm:w-full xm:w-full flex flex-col gap-[20px]">
                   <div className="flex flex-col gap-[20px]">
-                    <p className="paragraph font-Bricolage text-secondry underline">Goal defines it all</p>
-                    <p className="paragraph font-Bricolage text-secondry">
+                    <p className="paragraph font-Aloevera text-secondry underline">Goal defines it all</p>
+                    <p className="paragraph font-Aloevera text-secondry">
                       What do you want to achieve?
                       <br className="sm:hidden xm:hidden" /> Understanding the purpose of your{" "}
                       <br className="sm:hidden xm:hidden" />
@@ -39,8 +37,8 @@ export default function Hero() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-[20px]">
-                    <p className="paragraph font-Bricolage text-secondry underline">Audience is the hero</p>
-                    <p className="paragraph font-Bricolage text-secondry">
+                    <p className="paragraph font-Aloevera text-secondry underline">Audience is the hero</p>
+                    <p className="paragraph font-Aloevera text-secondry">
                       Who is it for? What do they want? Why
                       <br className="sm:hidden xm:hidden" /> does it matter to them? We need to know
                       <br className="sm:hidden xm:hidden" /> your audience well enough to deliver a{" "}
@@ -53,8 +51,8 @@ export default function Hero() {
                 </div>
                 <div className="w-[50%] sm:w-full xm:w-full">
                   <div className="flex flex-col gap-[20px]">
-                    <p className="paragraph font-Bricolage text-secondry underline">Context makes a difference</p>
-                    <p className="paragraph font-Bricolage text-secondry">
+                    <p className="paragraph font-Aloevera text-secondry underline">Context makes a difference</p>
+                    <p className="paragraph font-Aloevera text-secondry">
                       When do you present? Online or live? At a
                       <br className="sm:hidden xm:hidden" />
                       sales meeting, at a conference, or just

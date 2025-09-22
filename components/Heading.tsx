@@ -1,3 +1,3 @@
 export default function Heading({ title, className }: { title: string; className?: string }) {
-  return <h1 className={`sub-heading font-medium font-Bricolage text-secondry ${className}`}>{title}</h1>;
+  return <h1 className={`sub-heading font-medium font-Aloevera text-secondry ${className}`}>{title}</h1>;
 }

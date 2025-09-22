@@ -10,8 +10,8 @@ export default function Faq() {
   };
 
   return (
-    <section className="w-full padding-y mt-[-10px] bg-background z-30 relative rounded-t-[20px]">
-      <h1 className="sub-heading padding-x font-medium font-Bricolage text-secondry pb-[50px]">
+    <section className="w-full padding-y mt-[-10px] bg-white z-30 relative rounded-t-[20px]">
+      <h1 className="sub-heading padding-x font-medium font-Aloevera text-secondry pb-[50px]">
         A few things you <br />
         may want to ask us:
       </h1>
@@ -24,15 +24,15 @@ export default function Faq() {
         >
           <div className="w-full flex items-center justify-between sm:gap-[15px] xm:gap-[15px] py-[10px] padding-x">
             <div className="w-[50%] sm:w-full xm:w-full">
-              <h1 className="paragraph font-normal font-Bricolage text-secondry">{item.question}</h1>
+              <h1 className="paragraph font-normal font-Aloevera text-secondry">{item.question}</h1>
             </div>
             <div className="w-[50%] sm:w-full xm:w-full flex items-center justify-between">
               <div>
-                <h3 className="paragraph font-normal font-Bricolage text-secondry">{item.title}</h3>
+                <h3 className="paragraph font-normal font-Aloevera text-secondry">{item.title}</h3>
               </div>
               <div className="flex items-end justify-end">
                 <button
-                  className={`paragraph font-normal font-Bricolage uppercase transition-all duration-200 ease-in-out ${
+                  className={`paragraph font-normal font-Aloevera uppercase transition-all duration-200 ease-in-out ${
                     activeAccordion === item.id ? "text-gray-300" : "text-secondry link-flash"
                   }`}
                   onClick={() => toggleAccordion(item.id)}
@@ -58,7 +58,7 @@ export default function Faq() {
                   >
                     <div className="flex flex-col gap-[20px] py-[30px]">
                       <div className="">
-                        <p className="paragraph tracking-wider font-normal font-Bricolage text-secondry">
+                        <p className="paragraph tracking-wider font-normal font-Aloevera text-secondry">
                           {item.description}
                         </p>
                       </div>
@@ -67,10 +67,10 @@ export default function Faq() {
                           key={link.id}
                           className="flex pt-[20px] sm:flex-col xm:flex-col sm:gap-[20px] xm:gap-[20px] justify-between gap-[80px]"
                         >
-                          <span className="paragraph tracking-wider font-normal font-Bricolage text-secondry">
+                          <span className="paragraph tracking-wider font-normal font-Aloevera text-secondry">
                             {link.title}
                           </span>
-                          <p className="paragraph tracking-wider font-normal font-Bricolage text-secondry">
+                          <p className="paragraph tracking-wider font-normal font-Aloevera text-secondry">
                             {link.description}
                           </p>
                         </div>

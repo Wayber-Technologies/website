@@ -10,19 +10,15 @@ export default function Capibilyties() {
   return (
     <div className="w-full bg-wayberLightBlue padding-y rounded-t-[20px]">
       <div className="w-[82%] sm:w-full xm:w-full padding-x mb-[70px]">
-        <h1 className="sub-heading font-medium font-FoundersGrotesk text-secondry">
+        <h1 className="sub-heading font-medium font-Aloevera text-secondry">
           <span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">Let’s be honest.</span>
           &nbsp;There are really no excuses to have a bad presentation anymore. No one has time for poorly communicated
-          ideas. Focus on what you do best <span className="sm:hidden xm:hidden">—</span>
-          growing your business, while we do our best at
-          <span className="xl:link-flash lg:link-flash md:link-flash cursor-pointer">
-            &nbsp;making your presentations awesome.
-          </span>
+          ideas. 
         </h1>
       </div>
       <div className="w-full flex sm:flex-col xm:flex-col justify-between py-[20px] padding-x border-t border-[#21212155] sm:gap-[15px] xm:gap-[15px]">
         <div className="w-[10%] sm:w-full xm:w-full">
-          <h3 className="paragraph font-medium text-secondry font-Bricolage">Our Capabilities:</h3>
+          <h3 className="paragraph font-medium text-secondry font-Aloevera">Our Capabilities:</h3>
         </div>
         <div className="w-[90%] flex flex-col gap-y-[30px]">
           {serviceCapaybilitiesItem.map((item) => (
@@ -56,7 +52,7 @@ export default function Capibilyties() {
                 <div className="flex gap-x-[10px] flex-col">
                   <div className="flex items-center gap-x-[10px] pb-[20px]">
                     <span className="w-[12px] h-[12px] rounded-full bg-secondry" />
-                    <h1 className="paragraph uppercase font-medium font-Bricolage text-secondry">{item.title1}</h1>
+                    <h1 className="paragraph uppercase font-medium font-Aloevera text-secondry">{item.title1}</h1>
                   </div>
                 </div>
                 <div
@@ -73,7 +69,7 @@ export default function Capibilyties() {
                 <div className="flex gap-x-[10px] flex-col">
                   <div className="flex items-center gap-x-[10px] pb-[20px]">
                     <span className="w-[12px] h-[12px] rounded-full bg-secondry" />
-                    <h1 className="paragraph uppercase font-medium font-Bricolage text-secondry">{item.title2}</h1>
+                    <h1 className="paragraph uppercase font-medium font-Aloevera text-secondry">{item.title2}</h1>
                   </div>
                 </div>
                 <div

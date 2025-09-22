@@ -13,7 +13,7 @@ export default function About() {
             <div className="w-[48%] sm:w-full xm:w-full flex justify-between">
               <div className="w-[50%] sm:w-full xm:w-full flex flex-col gap-y-[40px]">
                 <div className="flex flex-col gap-y-[20px]">
-                  <p className="paragraph font-Bricolage text-secondry">
+                  <p className="paragraph font-Aloevera text-secondry">
                     The team of designers, storytellers, and
                     <br /> passionate collaborators, who work
                     <br /> together to create industry-shifting <br />
@@ -23,7 +23,7 @@ export default function About() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-y-[20px]">
-                  <p className="paragraph font-Bricolage text-secondry">
+                  <p className="paragraph font-Aloevera text-secondry">
                     And we strive to become one of the most
                     <br />
                     recognizable & influential presentation

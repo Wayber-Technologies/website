@@ -11,7 +11,7 @@ export default function Ratings() {
           <Image src={brand01} alt="brandImg" width={150} height={150} />
           <div className="absolute bottom-[35px] left-[25px] flex items-center justify-center border border-about px-[12px] py-[8px] cursor-pointer rounded-full">
             <Link
-              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] text-about uppercase font-normal font-Bricolage tracking-wider"
+              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] text-about uppercase font-normal font-Aloevera tracking-wider"
               href={"/"}
             >
               &copy;2019 - 2024
@@ -24,7 +24,7 @@ export default function Ratings() {
           <Image src={brand02} alt="brandImg" width={150} height={150} />
           <div className="absolute left-[25px] bottom-[35px] w-fit rounded-[50px] border border-white cursor-pointer">
             <Link
-              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] font-Bricolage text-white uppercase tracking-wider"
+              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] font-Aloevera text-white uppercase tracking-wider"
               href="/services"
             >
               <Rounded backgroundColor="#fff" className="">
@@ -37,7 +37,7 @@ export default function Ratings() {
           <Image src={brand03} alt="brandImg" width={150} height={150} />
           <div className="absolute left-[25px] bottom-[35px] w-fit rounded-[50px] border border-white cursor-pointer">
             <Link
-              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] font-Bricolage text-white uppercase tracking-wider"
+              className="xl:text-[18px] xl:leading-[18px] text-[14px] leading-[14px] font-Aloevera text-white uppercase tracking-wider"
               href="/services"
             >
               <Rounded backgroundColor="#fff" className="">

@@ -10,7 +10,7 @@ export default function Projects() {
           <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
             <div className="flex gap-[10px] items-center pb-[10px]">
               <span className="w-[10px] h-[10px] rounded-full bg-secondry" />
-              <h1 className="small-text uppercase font-medium font-Bricolage text-secondry">{item.title}</h1>
+              <h1 className="small-text uppercase font-medium font-Aloevera text-secondry">{item.title}</h1>
             </div>
             <ProjectCard item={item} key={item.id} />
             <div className="flex items-center gap-[10px] mt-[20px] flex-wrap">

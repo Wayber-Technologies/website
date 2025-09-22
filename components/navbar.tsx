@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Contact Us link - always visible on desktop */}
           <Link
             href="/contact"
-            className="w-fit paragraph font-medium font-Bricolage text-secondry capitalize flex flex-col hover sm:hidden xm:hidden md:hidden"
+            className="w-fit paragraph font-medium font-Aloevera text-secondry capitalize flex flex-col hover sm:hidden xm:hidden md:hidden"
           >
             <TextHover titile1="Contact us" titile2="Contact us" />
           </Link>

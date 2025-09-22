@@ -15,10 +15,10 @@ export default function About() {
       <Curve backgroundColor={"#ffffff"}>
         <Heroabout />
         <Aboutabout />
-        <Team />
+        {/* <Team /> */}
         <Principles />
         <Partners />
-        <Insights />
+        {/* <Insights /> */}
         <Ready />
       </Curve>
     </>

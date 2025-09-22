@@ -12,29 +12,29 @@ export default function Archive() {
       <div className="w-full padding-y">
         <div className="w-full padding-x pt-[20px] border-t border-[#21212155] flex sm:flex-col xm:flex-col justify-between gap-y-[20px]">
           <div className="w-[50%] sm:w-full xm:w-full">
-            <h3 className="paragraph font-medium font-Bricolage">Wayber in numbers:</h3>
+            <h3 className="paragraph font-medium font-Aloevera">Wayber in numbers:</h3>
           </div>
           <div className="w-[50%] sm:w-full xm:w-full flex flex-col gap-y-[20px]">
             {achiveItems.map((item) => (
               <div className="w-full flex justify-between gap-[20px] sm:flex-col xm:flex-col" key={item.id}>
                 <div className="bg-[#E1E1E1] w-full flex flex-col gap-y-[150px] rounded-[20px] px-[30px] py-[20px]">
                   <div className="flex gap-x-[10px] items-center pb-[10px]">
-                    <h1 className="sub-heading font-normal font-Bricolage">
+                    <h1 className="sub-heading font-normal font-Aloevera">
                       <TextMask>{item.title1}</TextMask>
                     </h1>
                   </div>
                   <div className="w-full flex justify-between items-center">
-                    <button className="paragraph font-normal font-Bricolage">{item.subTitle1}</button>
+                    <button className="paragraph font-normal font-Aloevera">{item.subTitle1}</button>
                   </div>
                 </div>
                 <div className="bg-[#E1E1E1] w-full flex flex-col gap-y-[150px] rounded-[20px] px-[30px] py-[20px]">
                   <div className="flex gap-x-[10px] items-center pb-[10px]">
-                    <h1 className="sub-heading font-normal font-Bricolage">
+                    <h1 className="sub-heading font-normal font-Aloevera">
                       <TextMask>{item.title2}</TextMask>
                     </h1>
                   </div>
                   <div className="w-full flex justify-between items-center">
-                    <button className="paragraph font-normal font-Bricolage">{item.subTitle2}</button>
+                    <button className="paragraph font-normal font-Aloevera">{item.subTitle2}</button>
                   </div>
                 </div>
               </div>

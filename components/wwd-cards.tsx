@@ -52,20 +52,20 @@ export default function Card() {
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
-              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-tighter text-white">
+              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-wide text-white font-Aloevera">
                 Strategy & Consulting
               </h4>
-              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-tighter text-white">
+              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-wide text-white font-Aloevera">
                 Digital
                 <br />
                 Strategy
               </h2>
-              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-tighter text-gray-300">
+              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-wide text-gray-300 font-Aloevera">
                 We help brands define their digital roadmap and create strategies that drive growth and engagement.
               </h4>
             </div>
             <div className="w-fit flex flex-col gap-2">
-              <Link className="text-[18px] font-normal leading-tight tracking-tight text-blue-400" href="/">
+              <Link className="text-[18px] font-normal leading-tight tracking-tight text-blue-400 font-Aloevera" href="/">
                 Learn more about our strategy services
               </Link>
               <div className="w-full h-[1px] rounded-lg bg-blue-400" />
@@ -94,21 +94,21 @@ export default function Card() {
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
-              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-tighter text-white">
+              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-wide text-white font-Aloevera">
                 Design & Development
               </h4>
-              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-tighter text-white">
+              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-wide text-white font-Aloevera">
                 Web
                 <br />
                 Development
               </h2>
-              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-tighter text-gray-300">
+              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-wide text-gray-300 font-Aloevera">
                 Custom web solutions that combine beautiful design with powerful functionality to deliver exceptional
                 user experiences.
               </h4>
             </div>
             <div className="w-fit flex flex-col gap-2">
-              <Link className="text-[18px] font-normal leading-tight tracking-tight text-green-400" href="/">
+              <Link className="text-[18px] font-normal leading-tight tracking-tight text-green-400 font-Aloevera" href="/">
                 Explore our development work
               </Link>
               <div className="w-full h-[1px] rounded-lg bg-green-400" />
@@ -137,21 +137,21 @@ export default function Card() {
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
-              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-tighter text-white">
+              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-wide text-white font-Aloevera">
                 Brand & Identity
               </h4>
-              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-tighter text-white">
+              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-wide text-white font-Aloevera">
                 Brand
                 <br />
                 Design
               </h2>
-              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-tighter text-gray-300">
+              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-wide text-gray-300 font-Aloevera">
                 Creating memorable brand identities that resonate with your audience and stand out in competitive
                 markets.
               </h4>
             </div>
             <div className="w-fit flex flex-col gap-2">
-              <Link className="text-[18px] font-normal leading-tight tracking-tight text-purple-400" href="/">
+              <Link className="text-[18px] font-normal leading-tight tracking-tight text-purple-400 font-Aloevera" href="/">
                 View our branding projects
               </Link>
               <div className="w-full h-[1px] rounded-lg bg-purple-400" />
@@ -180,21 +180,21 @@ export default function Card() {
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
-              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-tighter text-white">
+              <h4 className="text-[24px] xm:text-lg sm:text-lg leading-tight tracking-wide text-white font-Aloevera">
                 Marketing & Growth
               </h4>
-              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-tighter text-white">
+              <h2 className="text-[80px] xm:text-[40px] sm:text-[40px] xm:leading-none sm:leading-none font-bold leading-[80px] tracking-wide text-white font-Aloevera">
                 Digital
                 <br />
                 Marketing
               </h2>
-              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-tighter text-gray-300">
+              <h4 className="text-[20px] sm:text-lg xm:text-lg leading-normal tracking-wide text-gray-300 font-Aloevera">
                 Data-driven marketing campaigns that amplify your brand reach and convert prospects into loyal
                 customers.
               </h4>
             </div>
             <div className="w-fit flex flex-col gap-2">
-              <Link className="text-[18px] font-normal leading-tight tracking-tight text-orange-400" href="/">
+              <Link className="text-[18px] font-normal leading-tight tracking-tight text-orange-400 font-Aloevera" href="/">
                 Discover our marketing solutions
               </Link>
               <div className="w-full h-[1px] rounded-lg bg-orange-400" />

@@ -7,14 +7,14 @@ export default function Publication() {
     <section className="w-full bg-marquee padding-y rounded-t-[20px] mt-[-10px] z-30 relative">
       <div className="w-full bg-marquee z-10 relative">
         <Marquee
-          title="behance"
-          className="pb-[50px] lg:pb-[40px] md:pb-[30px] sm:pb-[20px] xm:pb-[15px] text-[540px] leading-[330px] lg:text-[380px] lg:leading-[240px] md:text-[300px] md:leading-[160px] sm:text-[230px] sm:leading-[140px] xm:text-[130px] xm:leading-[80px]"
-        />
+              title="browse our work"
+              className="pb-[30px] lg:pb-[25px] md:pb-[20px] sm:pb-[20px] xm:pb-[15px] text-[280px] leading-[200px] lg:text-[200px] lg:leading-[140px] md:text-[120px] md:leading-[80px] sm:text-[90px] sm:leading-[60px] xm:text-[60px] xm:leading-[40px]"
+            />
       </div>
       <div className="w-full padding-x">
         <div className="w-full flex justify-between pt-[20px] sm:flex-col xm:flex-col gap-y-[20px]">
           <div className="w-[30%] sm:w-full xm:w-full">
-            <h3 className="paragraph font-medium text-white font-Bricolage">Latest publication</h3>
+            <h3 className="paragraph font-medium text-white font-Aloevera">Latest publication</h3>
           </div>
           <div className="w-[70%] flex gap-y-[20px] sm:flex-col xm:flex-col sm:w-full xm:w-full gap-[10px]">
             {publicationItems.map((item) => (
@@ -29,7 +29,7 @@ export default function Publication() {
                   </div>
                   <div className="flex gap-x-[10px] items-center pb-[10px]">
                     <span className="w-[10px] h-[10px] rounded-full bg-white" />
-                    <h1 className="paragraph uppercase font-medium font-Bricolage text-white">{item.title}</h1>
+                    <h1 className="paragraph uppercase font-medium font-Aloevera text-white">{item.title}</h1>
                   </div>
                 </div>
               </div>

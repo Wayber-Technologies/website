@@ -32,7 +32,7 @@ export default function Hero() {
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
-              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Bricolage uppercase">
+              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Aloevera uppercase">
                 INSIGHTS
               </h1>
             </div>
@@ -40,7 +40,7 @@ export default function Hero() {
           <div className="w-full border-t border-[#21212155] pt-[20px]">
             <div className="w-full flex justify-between padding-x sm:flex-col xm:flex-col gap-[20px]">
               <div className="w-[50%] sm:w-full xm:w-full">
-                <h3 className="paragraph font-medium text-secondry font-Bricolage">Latest insights:</h3>
+                <h3 className="paragraph font-medium text-secondry font-Aloevera">Latest insights:</h3>
               </div>
               <div className="w-[50%] sm:w-full xm:w-full flex flex-wrap items-center gap-[10px]">
                 {str.map((item, i) => (
@@ -50,7 +50,7 @@ export default function Hero() {
                         className="w-fit rounded-[50px] border border-[#21212199] cursor-pointer bg-black"
                         key={item.id}
                       >
-                        <Link className="small-text font-Bricolage uppercase text-white" href={item.href}>
+                        <Link className="small-text font-Aloevera uppercase text-white" href={item.href}>
                           <div className="py-[2px]">
                             <p className="z-10 px-[15px]">{item.title}</p>
                           </div>
@@ -83,7 +83,7 @@ export default function Hero() {
                           key={link.id}
                         >
                           <div className="rounded-[50px] border border-secondry py-[3px] px-[15px] cursor-pointer">
-                            <Link className="small-text font-Bricolage text-secondry uppercase" href={"/"}>
+                            <Link className="small-text font-Aloevera text-secondry uppercase" href={"/"}>
                               {link.title}
                             </Link>
                           </div>
@@ -91,11 +91,11 @@ export default function Hero() {
                       ))}
                     </div>
                     <div className="flex flex-col gap-[7px] mt-[10px]">
-                      <h3 className="paragraph font-Bricolage font-normal text-secondry">
+                      <h3 className="paragraph font-Aloevera font-normal text-secondry">
                         Presenting to an International Audience: <br /> Tips and Lessons Learned.
                       </h3>
-                      <p className="paragraph font-Bricolage font-normal text-gray-400">{item.subTitle}</p>
-                      <p className="paragraph font-Bricolage font-normal text-gray-400">{item.date}</p>
+                      <p className="paragraph font-Aloevera font-normal text-gray-400">{item.subTitle}</p>
+                      <p className="paragraph font-Aloevera font-normal text-gray-400">{item.date}</p>
                     </div>
                   </Link>
                 </div>
