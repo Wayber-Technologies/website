@@ -15,11 +15,11 @@ export default function Hero() {
     >
       <div className="w-full flex-1 flex flex-col justify-between">
         {/* Spacer for top */}
-        <div className="h-[20vh] lg:h-[18vh] md:h-[15vh] sm:h-[12vh] xm:h-[10vh]" />
+        <div className="h-[15vh] lg:h-[15vh] md:h-[15vh] sm:h-[12vh] xm:h-[10vh]" />
 
         {/* Main content area */}
         <div className="w-full flex flex-col justify-between flex-1">
-          {/* Header section with title and awards */}
+          {/* Header section */}
           <div className="w-full flex justify-between gap-[20px] pl-[50px] md:pl-[30px] sm:pl-[20px] xm:pl-[20px] sm:pr-[20px] xm:pr-[20px] mb-8">
             <div className="flex-1">
               <div className="heading tracking-[-1.3px] text-black font-semibold sm:font-extrabold xm:font-extrabold font-Aloevera uppercase text-5xl sm:text-[54px] xm:text-[54px]">
