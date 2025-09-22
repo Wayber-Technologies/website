@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
-              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-FoundersGrotesk uppercase">
+              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Aloevera uppercase">
                 WE ARE <br />
                 <div className="flex items-center gap-[5px]">
                   <motion.span
@@ -68,7 +68,7 @@ export default function Hero() {
                       }
                     `}</style>
                   </motion.span>
-                  <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-FoundersGrotesk uppercase">
+                  <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Aloevera uppercase">
                     WAYBER TECH
                   </h1>
                 </div>
@@ -78,12 +78,12 @@ export default function Hero() {
           <div className="w-full border-t border-[#21212155] pt-[20px]">
             <div className="w-full flex justify-between  padding-x sm:flex-col xm:flex-col gap-[20px]">
               <div className="w-[10%] sm:w-full xm:w-full">
-                <h3 className="paragraph font-medium text-secondry font-Bricolage">About us:</h3>
+                <h3 className="paragraph font-medium text-secondry font-Aloevera">About us:</h3>
               </div>
               <div className="w-[48%] flex justify-between sm:w-full xm:w-full sm:flex-col xm:flex-col gap-[20px]">
                 <div className="w-[50%] flex flex-col gap-y-[40px] sm:w-full xm:w-full">
                   <div className="flex flex-col gap-y-[20px]">
-                    <p className="paragraph font-Bricolage text-secondry">
+                    <p className="paragraph font-Aloevera text-secondry">
                       In Ukrainian, Wayber - means eyes. It&apos;s not
                       <br /> just a beautiful word, but our philosophy.
                       <br />
@@ -93,7 +93,7 @@ export default function Hero() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-y-[20px]">
-                    <p className="paragraph font-Bricolage text-secondry">
+                    <p className="paragraph font-Aloevera text-secondry">
                       We believe a great presentation evokes
                       <br />
                       interest and drives business results far
@@ -110,7 +110,7 @@ export default function Hero() {
                   <div className="rounded-[50px] border border-[#21212199] group-hover:bg-secondry  py-[3px] px-[12px] cursor-pointer">
                     <Link
                       href="/case"
-                      className="paragraph font-Bricolage text-secondry uppercase group-hover:text-background transition-all duration-200 ease-in"
+                      className="paragraph font-Aloevera text-secondry uppercase group-hover:text-background transition-all duration-200 ease-in"
                     >
                       Our Work
                     </Link>
@@ -130,7 +130,7 @@ export default function Hero() {
         <Eyes className="w-[300px] h-[300px] md:w-[200px] md:h-[200px] sm:w-[150px] sm:h-[150px] xm:w-[150px] xm:h-[150px] sm:flex-col xm:flex-col" />
       </div>
       <div className="padding-x">
-        <h1 className="sub-heading font-medium font-Bricolage text-secondry">
+        <h1 className="sub-heading font-medium font-Aloevera text-secondry">
           We save businesses from ugly and
           <br className="sm:hidden xm:hidden" /> ineffective presentations.
         </h1>

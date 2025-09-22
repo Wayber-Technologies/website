@@ -26,7 +26,7 @@ export default function Team() {
                   height={300}
                   className="rounded-[10px] sm:w-full xm:w-full"
                 />
-                <p className="paragraph font-Bricolage font-normal text-secondry py-[10px]">Founder and CEO</p>
+                <p className="paragraph font-Aloevera font-normal text-secondry py-[10px]">Founder and CEO</p>
               </div>
             </div>
             <div className="flex justify-between items-end sm:flex-col xm:flex-col sm:items-start xm:items-start">

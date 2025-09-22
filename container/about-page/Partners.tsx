@@ -6,7 +6,7 @@ export default function Principles() {
   return (
     <section className="w-full bg-background">
       <div>
-        <h1 className="sub-heading padding-x font-medium font-Bricolage text-secondry">
+        <h1 className="sub-heading padding-x font-medium font-Aloevera text-secondry">
           We’ve built long-lasting partnerships
           <br className="sm:hidden xm:hidden" /> with the most ambitious brands
           <br className="sm:hidden xm:hidden" />
@@ -22,8 +22,8 @@ export default function Principles() {
                   <Image src={item.src} alt="img" width={80} height={80} className="w-[80px] h-[80px]" />
                 </div>
                 <div className="flex flex-col gap-[20px]">
-                  <p className="paragraph text-secondry font-Bricolage font-normal underline">{item.title}</p>
-                  <p className="paragraph text-secondry font-Bricolage font-normal">{item.para}</p>
+                  <p className="paragraph text-secondry font-Aloevera font-normal underline">{item.title}</p>
+                  <p className="paragraph text-secondry font-Aloevera font-normal">{item.para}</p>
                 </div>
               </div>
             </div>

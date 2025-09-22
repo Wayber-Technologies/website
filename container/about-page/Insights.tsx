@@ -8,12 +8,12 @@ export default function Insights() {
       <div className="w-full flex flex-col justify-between">
         <div className="w-full flex flex-col">
           <div className="padding-x pb-[30px]">
-            <h2 className="sub-heading font-normal tracking-[-1.3px] text-[#212121] font-Bricolage">Insights</h2>
+            <h2 className="sub-heading font-normal tracking-[-1.3px] text-[#212121] font-Aloevera">Insights</h2>
           </div>
           <div className="w-full border-t border-[#21212155] pt-[20px]">
             <div className="w-full flex sm:flex-col xm:flex-col sm:gap-[20px] xm:gap-[20px] padding-x">
               <div className="w-[50%] sm:w-full xm:w-full sm:flex-col xm:flex-col">
-                <h3 className="text-[20px] leading-[30px] font-medium text-secondry font-Bricolage">
+                <h3 className="text-[20px] leading-[30px] font-medium text-secondry font-Aloevera">
                   Latest publication:
                 </h3>
               </div>
@@ -36,7 +36,7 @@ export default function Insights() {
                           >
                             <div className="rounded-[50px] border border-about  py-[2px] px-[15px] cursor-pointer">
                               <Link
-                                className="text-[18px] leading-[22px] font-Bricolage text-about uppercase"
+                                className="text-[18px] leading-[22px] font-Aloevera text-about uppercase"
                                 href={"/"}
                               >
                                 {link.title}
@@ -46,13 +46,13 @@ export default function Insights() {
                         ))}
                       </div>
                       <div className="flex flex-col gap-[7px]">
-                        <h3 className="text-[20px] leading-[30px] font-Bricolage font-normal text-secondry">
+                        <h3 className="text-[20px] leading-[30px] font-Aloevera font-normal text-secondry">
                           Presenting to an International Audience: <br /> Tips and Lessons Learned.
                         </h3>
-                        <p className="text-[20px] leading-[30px] font-Bricolage font-normal text-gray-400">
+                        <p className="text-[20px] leading-[30px] font-Aloevera font-normal text-gray-400">
                           {item.subTitle}
                         </p>
-                        <p className="text-[20px] leading-[30px] font-Bricolage font-normal text-gray-400">
+                        <p className="text-[20px] leading-[30px] font-Aloevera font-normal text-gray-400">
                           {item.date}
                         </p>
                       </div>

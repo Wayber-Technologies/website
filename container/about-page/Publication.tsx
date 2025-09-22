@@ -7,7 +7,7 @@ export default function Publication() {
       <div className="w-full padding-x py-[30px]">
         <div className="w-full flex justify-between gap-[20px] flex-wrap sm:flex-col xm:flex-col">
           <div>
-            <h3 className="paragraph font-medium text-white font-Bricolage">Latest publication</h3>
+            <h3 className="paragraph font-medium text-white font-Aloevera">Latest publication</h3>
           </div>
           <div className="flex gap-[20px] sm:flex-col xm:flex-col">
             {insightsPublicationItems.map((item) => (
@@ -21,7 +21,7 @@ export default function Publication() {
                     className="w-[400px] h-[400px] rounded-[20px]"
                   />
                   <div>
-                    <h1 className="paragraph font-normal tracking-wider font-Bricolage text-white">{item.title}</h1>
+                    <h1 className="paragraph font-normal tracking-wider font-Aloevera text-white">{item.title}</h1>
                   </div>
                 </div>
               </div>
