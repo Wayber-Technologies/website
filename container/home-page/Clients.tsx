@@ -107,9 +107,9 @@ export default function Clients() {
           </div>
         </div>
       ))}
-      <div className="padding-x pt-[80px]">
+      {/* <div className="padding-x pt-[80px]">
         <Ratings />
-      </div>
+      </div> */}
     </section>
   );
 }
