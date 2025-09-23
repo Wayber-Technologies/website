@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { logoBlackfull, logoWhitefull } from "@/public";
+import { logoBlackfull, logoWhiteFull } from "@/public";
 import { footernavbarItems } from "@/constants";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
@@ -50,7 +50,7 @@ export default function MobileNav() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.4 }}
                 >
-                  <Image src={logoWhitefull} alt="wayber logo" width={100} height={100} />
+                  <Image src={logoWhiteFull} alt="wayber logo" width={100} height={100} />
                 </motion.div>
               </Link>
               <motion.div

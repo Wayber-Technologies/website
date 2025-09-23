@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { logoBlackfull, lineWhite, logoWhitefull } from "@/public";
+import { logoBlackfull, lineWhite, logoWhiteFull } from "@/public";
 import { useState } from "react";
 import { navVariants } from "@/motion";
 import { TextHover } from "@/animation";
@@ -80,7 +80,7 @@ export default function Navbar() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.4 }}
                 >
-                  <Image src={logoWhitefull} alt="ochi logo" width={200} height={200} />
+                  <Image src={logoWhiteFull} alt="ochi logo" width={200} height={200} />
                 </motion.div>
               </Link>
               <motion.div
