@@ -2,7 +2,7 @@ export { default as eyes } from "./eyes.svg";
 export { default as logo } from "./logo.svg";
 export { default as logoWhite } from "./logoWhite.svg";
 export { default as logoBlackfull } from "./logoBlackfull.svg";
-export { default as logoWhitefull } from "./logoWhitefull.svg";
+export { default as logoWhiteFull } from "./logoWhiteFull.svg";
 export { default as mobileLogo } from "./mobile-logo.png";
 export { default as awwwards } from "./awwwards.svg";
 export { default as aboutImg } from "./aboutImg.webp";
