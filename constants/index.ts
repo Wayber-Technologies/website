@@ -472,46 +472,38 @@ export const projectItem = [
 export const serviceProcessItems = [
   {
     id: 1,
-    phase: "01. Phase",
-    name: "Discovery",
+    phase: "Phase 01.",
+    name: "Foundation (Consultation)",
     src: phase1,
     review:
-      "We define your goals, get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
+      "We understand your business goals., get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
     button: "read",
   },
   {
     id: 2,
-    phase: "02. Phase",
-    name: "Storytelling",
+    phase: "Phase 02.",
+    name: "Blueprint (Planning)",
     src: phase2,
     review:
-      "Based on the answers, previous drafts, and additional research, we will develop a foundation of the deck — the structure of the presentation. We build a tone of voice, flow, and narrative to engage our audience. Here we will win people's minds.",
+      "Roadmap with milestones + tailored design, and additional research, we will develop a foundation of the deck — the structure of the presentation. We build a tone of voice, flow, and narrative to engage our audience. Here we will win people's minds.",
     button: "read",
   },
   {
     id: 3,
-    phase: "03. Phase",
-    name: "Design",
+    phase: "Phase 03.",
+    name: "Build (Development)",
     src: phase3,
     review:
-      "We use design to guide our audience's attention and keep them engaged. It's not only what you want them to do, but also how you make them feel. We make sure the presentation wins people's hearts and leaves a perfect long-lasting impression.",
+      "Secure, scalable, optimized solutions. Our development process guides our audience's attention and keep them engaged. It's not only what you want them to do, but also how you make them feel. We make sure our work wins people's hearts and leaves a perfect long-lasting impression.",
     button: "read",
   },
   {
     id: 4,
-    phase: "04. Phase",
-    name: "Feedback",
-    src: phase4,
-    review:
-      "We want to stay on the same page. Hence, each phase wraps up presenting the work to you to collect and implement your feedback if such appears.",
-    button: "read",
-  },
-  {
-    id: 5,
-    phase: "05. Phase",
-    name: "Delivery",
+    phase: "Phase 04.",
+    name: "Support (Delivery & Beyond)",
     src: phase5,
-    review: "We will carefully collect and prepare all the project files to ensure smooth future use.",
+    review:
+      "Rigorous testing + 24/7 customer support. We will carefully collect and prepare all the project files to ensure smooth future use.",
     button: "read",
   },
 ];
