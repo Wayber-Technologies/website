@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { aboutImg } from "@/public";
+import { wayberBg1 } from "@/public";
 import { LinkHover } from "@/animation";
 import { footerItems } from "@/constants";
 import { Heading, RoundButton } from "@/components";
@@ -81,7 +81,7 @@ export default function About() {
           }`}
         >
           <Image
-            src={aboutImg}
+            src={wayberBg1}
             alt="about-img"
             className={`w-full h-full transition transform duration-[2s] ease-[.215,.61,.355,1] ${
               hovered && "scale-[1.09]"

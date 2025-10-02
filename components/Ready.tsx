@@ -18,7 +18,7 @@ export default function Ready() {
 
   return (
     <section
-      className="w-full relative z-30 min-h-screen sm:h-screen xm:h-screen bg-wayberYellow padding-y rounded-t-[20px] mt-[-20px]"
+      className="w-full relative z-30 min-h-screen sm:h-screen xm:h-screen bg-wayberLightBlue padding-y rounded-t-[20px] mt-[-20px]"
       ref={container}
     >
       <div className="w-full h-full flex justify-center gap-[50px] items-center flex-col">
@@ -44,7 +44,9 @@ export default function Ready() {
               href="/contact"
             >
               <Rounded className="py-[6px]" backgroundColor="#212121">
-                <p className="z-10 px-[10px] ml-[15px] py-[6px] font-Aloevera group-hover:text-white text-black">hello@wayber.tech</p>
+                <p className="z-10 px-[10px] ml-[15px] py-[6px] font-Aloevera group-hover:text-white text-black">
+                  hello@wayber.tech
+                </p>
                 <div className="bg-black group-hover:bg-white text-black p-[10px] rounded-full scale-[0.3] mr-[10px] group-hover:scale-[0.9] transition-all z-10 transform duration-[0.3s] ease-[.215,.61,.355,1]">
                   <ArrowUpRight strokeWidth={1.5} size={30} className="scale-[0] group-hover:scale-[1]" />
                 </div>

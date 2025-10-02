@@ -130,7 +130,7 @@ export default function Hero() {
 
           {/* Footer section with info and CTA - Desktop version */}
           <div className="hidden lg:block padding-x mb-12">
-            <div className="flex justify-between items-center gap-[20px] mb-6">
+            <div className="flex justify-between items-center gap-[20px] ">
               <div className="flex flex-col gap-4">
                 <p className="paragraph font-Aloevera text-secondry text-base">
                   We help businesses design and implement innovative, future-ready solutions.
@@ -160,7 +160,9 @@ export default function Hero() {
           {/* Background media section */}
           <div className="padding-x mb-36 xl:mb-36 lg:mb-36 md:mb-8 sm:mb-4 xm:mb-4">
             <BackgroundVideo src="./homeVideo.mp4" />
-          </div>          {/* Footer section with info and CTA - Mobile version */}
+          </div>          
+          
+          {/* Footer section with info and CTA - Mobile version */}
           <div className="w-full border-t border-[#21212155] py-[20px] sm:mb-[80px] xm:mb-[80px] lg:hidden">
             <div className="flex justify-between items-center padding-x gap-[20px] sm:flex-col sm:items-start xm:flex-col xm:items-start mb-6">
               <div className="w-[50%] xm:w-full sm:w-full">

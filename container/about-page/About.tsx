@@ -1,4 +1,4 @@
-import { backgroundAbout } from "@/public";
+import { wayberBg4 } from "@/public";
 import { BackgroundImg } from "@/components";
 
 export default function About() {
@@ -36,7 +36,7 @@ export default function About() {
         </div>
       </div>
       <div className="padding-x pt-[100px] lg:pt-[80px] md:pt-[60px] sm:pt-[40px] xm:pt-[40px]">
-        <BackgroundImg src={backgroundAbout} />
+        <BackgroundImg src={wayberBg4} />
       </div>
     </section>
   );
