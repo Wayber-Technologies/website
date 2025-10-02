@@ -1,15 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
-import { Curve, Marquee, Ready, PreLoad } from "@/components";
+import { Curve, Marquee, Ready } from "@/components";
 import { About, Clients, Hero, Projects, VideoHome } from "@/container";
 import Whatwedo from "@/container/home-page/whatwedo";
 import Process from "@/container/home-page/Process";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -20,22 +17,16 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
-      document.body.style.cursor = "default";
-    }, 5000); // Extended to 5 seconds for more bounce animations
-
     (async () => {
       const LocomotiveScroll = (await import("locomotive-scroll")).default;
       const locomotiveScroll = new LocomotiveScroll();
     })();
 
-    return () => clearTimeout(timeout);
+    return () => {};
   }, []);
 
   return (
     <>
-      <AnimatePresence mode="wait">{isLoading && <PreLoad />}</AnimatePresence>
       <Curve backgroundColor={"#ffffff"}>
         <Hero />
 

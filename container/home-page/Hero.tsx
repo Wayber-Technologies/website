@@ -150,7 +150,11 @@ export default function Hero() {
                 </Rounded>
                 <Rounded backgroundColor="#212121" className="w-[33px] h-[33px] border border-[#21212199] group">
                   <span className="relative z-10">
-                    <ArrowUpRight size={24} strokeWidth={1.25} className="text-secondry group-hover:text-white transition-colors" />
+                    <ArrowUpRight
+                      size={24}
+                      strokeWidth={1.25}
+                      className="text-secondry group-hover:text-white transition-colors"
+                    />
                   </span>
                 </Rounded>
               </div>
@@ -159,9 +163,9 @@ export default function Hero() {
 
           {/* Background media section */}
           <div className="padding-x mb-36 xl:mb-36 lg:mb-36 md:mb-8 sm:mb-4 xm:mb-4">
-            <BackgroundVideo src="./homeVideo.mp4" />
-          </div>          
-          
+            <BackgroundVideo src="/homevideo.mp4" fallbackImage="/wayberBg4.png" />
+          </div>
+
           {/* Footer section with info and CTA - Mobile version */}
           <div className="w-full border-t border-[#21212155] py-[20px] sm:mb-[80px] xm:mb-[80px] lg:hidden">
             <div className="flex justify-between items-center padding-x gap-[20px] sm:flex-col sm:items-start xm:flex-col xm:items-start mb-6">
@@ -185,9 +189,16 @@ export default function Hero() {
                       build smarter solutions
                     </Link>
                   </Rounded>
-                  <Rounded backgroundColor="#212121" className="w-[33px] h-[33px] border border-[#21212199] xm:hidden sm:hidden group">
+                  <Rounded
+                    backgroundColor="#212121"
+                    className="w-[33px] h-[33px] border border-[#21212199] xm:hidden sm:hidden group"
+                  >
                     <span className="relative z-10">
-                      <ArrowUpRight size={24} strokeWidth={1.25} className="text-secondry group-hover:text-white transition-colors" />
+                      <ArrowUpRight
+                        size={24}
+                        strokeWidth={1.25}
+                        className="text-secondry group-hover:text-white transition-colors"
+                      />
                     </span>
                   </Rounded>
                 </div>
