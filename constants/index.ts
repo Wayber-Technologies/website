@@ -56,13 +56,13 @@ export const navbarItems = [
     title: "About us",
     href: "/ochi-team",
   },
+  // {
+  //   id: 4,
+  //   title: "Insights",
+  //   href: "/insights",
+  // },
   {
     id: 4,
-    title: "Insights",
-    href: "/insights",
-  },
-  {
-    id: 5,
     title: "Contact us",
     href: "/contact",
   },
