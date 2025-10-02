@@ -5,6 +5,7 @@ import Lenis from "@studio-freight/lenis";
 import { Curve, Marquee, Ready, PreLoad } from "@/components";
 import { About, Clients, Hero, Projects, VideoHome } from "@/container";
 import Whatwedo from "@/container/home-page/whatwedo";
+import Process from "@/container/home-page/Process";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +49,7 @@ export default function Home() {
         <About />
         <VideoHome />
         <Projects />
-        <Clients />
+        <Process />
         <Ready />
       </Curve>
     </>
