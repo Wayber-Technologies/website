@@ -2,7 +2,7 @@ export { default as eyes } from "./eyes.svg";
 export { default as logo } from "./logo.svg";
 export { default as logoWhite } from "./logoWhite.svg";
 export { default as logoDark } from "./logoDark.svg";
-export { default as logoBlackfull } from "./logoBlackfull.svg";
+export { default as logoBlackfull } from "./logoBlackFull.svg";
 export { default as logoWhiteFull } from "./logoWhiteFull.svg";
 export { default as wayberBg1 } from "./wayberBg1.png";
 export { default as wayberBg2 } from "./wayberBg2.png";
