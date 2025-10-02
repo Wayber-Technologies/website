@@ -33,7 +33,7 @@ export default function PreLoad() {
       variants={slideUp}
       initial="initial"
       exit="exit"
-      className="h-screen w-screen flex items-center justify-center fixed z-20 bg-[#1462FF]"
+      className="h-screen w-screen flex items-center justify-center fixed z-[100] bg-[#1462FF]"
     >
       {dimension.width > 0 && (
         <>

@@ -32,7 +32,10 @@ export default function Socials() {
 
   const mq = useTransform(scrollYProgress, [0, 1], [0, -700]);
   return (
-    <section className="w-full min-h-screen sm:h-screen xm:h-screen bg-wayberYellow padding-y relative" ref={container}>
+    <section
+      className="w-full min-h-screen sm:h-screen xm:h-screen bg-wayberLightBlue padding-y relative"
+      ref={container}
+    >
       <div className="w-full h-full flex justify-center gap-[50px] items-center flex-col">
         <div className="flex flex-col gap-[10px] pb-[50px]">
           <h1 className="text-[277px] leading-[207px] lg:text-[230px] lg:leading-[170px] md:text-[150px] md:leading-[100px] sm:text-[74px] sm:leading-[68px] xm:text-[64px] xm:leading-[48px] text-center font-bold font-FoundersGrotesk text-secondry uppercase pointer-events-none">

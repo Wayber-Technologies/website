@@ -34,7 +34,7 @@ export default function Navbar() {
       >
         <div className="w-[50%]">
           <Link href={"/"}>
-            <Image src={logoBlackfull} alt="ochi logo" width={200} height={200} />
+            <Image src={logoBlackfull} alt="wayber logo" width={200} height={200} />
           </Link>
         </div>
         <div className="flex gap-x-[20px] w-[50%] justify-end items-center">
