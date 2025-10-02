@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { text, curve, translate } from "@/motion";
@@ -65,7 +65,17 @@ export default function Curve({ children, backgroundColor }) {
           {dimensions.width != null && <SVG {...dimensions} />}
         </>
       )}
-      {children}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={router.pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
