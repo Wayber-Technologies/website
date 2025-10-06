@@ -13,35 +13,43 @@ export default function About() {
     <section className="w-full bg-wayberLightBlue padding-y rounded-t-[20px] z-20 relative mt-[-15px]">
       <div className="pl-[50px] sm:px-[20px] xm:px-[20px]">
         <h2 className="sub-heading font-medium font-Aloevera text-secondry">
-          Wayber is a strategic partner for fast-grow­ing tech
-          <br className="sm:hidden xm:hidden" /> businesses that need to&nbsp;
-          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">raise funds,</span>
-          &nbsp;sell prod­ucts, <br className="sm:hidden xm:hidden" />
+          At Wayber, we know{" "}
+          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">building technology </span>{" "}
+          can feel overwhelming. That’s why{" "}
           <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">
-            ex­plain com­plex ideas,
-          </span>
-          &nbsp;and&nbsp;
-          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">hire great peo­ple.</span>
+            we stay with you through
+          </span>{" "}
+          &nbsp;
+          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">development,</span>
+          &nbsp;
+          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">launch,</span>
+          &nbsp;and beyond.
         </h2>
       </div>
+
       <div className="w-full border-y border-[#21212155] my-[50px] py-[20px]">
         <div className="padding-x pb-[50px] w-full flex sm:flex-col xm:flex-col gap-[30px] justify-between">
           <div className="w-[50%] sm:w-full xm:w-full">
             <h3 className="sub-paragraph font-medium text-secondry font-Aloevera">What you can expect?</h3>
           </div>
+
           <div className="w-[50%] sm:w-full xm:w-full">
             <div className="w-full flex gap-[30px] h-full items-end sm:items-start sm:flex-col xm:items-start xm:flex-col">
-              <div className="w-[40%] sm:w-[60%] xm:w-[60%]">
+              <div className="w-[50%] sm:w-[90%] xm:w-[90%]">
                 <p className="sub-paragraph font-medium font-Aloevera text-secondry tracking-wide">
-                  We create tailored presentations to help you persuade your colleagues, clients, or investors. Whether
-                  it’s live or digital, delivered for one or a hundred people.
+                  During development → We simplify choices, explain trade-offs, and adapt fast when your needs evolve.
                 </p>
+
                 <p className="sub-paragraph font-medium font-Aloevera text-secondry pt-[30px] tracking-wide">
-                  We believe the mix of strategy and design (with a bit of coffee) is what makes your message clear,
-                  convincing, and captivating.
+                  At launch → We help you transition smoothly, minimize downtime, and guide your team.
+                </p>
+
+                <p className="sub-paragraph font-medium font-Aloevera text-secondry pt-[30px] tracking-wide">
+                  After delivery → We stay close, supporting, optimizing, and securing your systems as you scale.
                 </p>
               </div>
-              <div className="w-[60%] flex justify-end flex-col  sm:w-full xm:w-full">
+
+              <div className="w-[50%] flex justify-end flex-col sm:w-full xm:w-full">
                 <h1 className="sub-paragraph font-medium font-Aloevera text-secondry pb-[20px]">S:</h1>
                 <div className="flex flex-col">
                   {footerItems.map((item) => (
@@ -58,9 +66,10 @@ export default function About() {
           </div>
         </div>
       </div>
+
       <div className="w-full flex justify-between padding-x sm:flex-col xm:flex-col gap-[30px]">
         <div className="flex flex-col gap-[30px]">
-          <Heading title="Our approach:" />
+          <Heading title="Empathy talk:" />
           <div
             className="w-fit flex items-center justify-between bg-secondry cursor-pointer rounded-full group"
             onMouseEnter={() => setHovered(true)}
@@ -75,6 +84,7 @@ export default function About() {
             />
           </div>
         </div>
+
         <div
           className={`w-[50%] sm:w-full xm:w-full transition transform duration-[1.5s] ease-[.215,.61,.355,1] rounded-[15px] overflow-hidden ${
             hovered && "scale-[0.96]"
