@@ -36,8 +36,8 @@ export default function Home() {
             className="pb-[30px] lg:pb-[25px] md:pb-[20px] sm:pb-[20px] xm:pb-[15px] text-[280px] leading-[200px] lg:text-[200px] lg:leading-[140px] md:text-[120px] md:leading-[80px] sm:text-[90px] sm:leading-[60px] xm:text-[60px] xm:leading-[40px]"
           />
         </div>
-        <Whatwedo />
         <About />
+        <Whatwedo />
         <VideoHome />
         <Projects />
         <Process />
