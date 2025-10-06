@@ -73,13 +73,13 @@ export const navbarItems = [
 export const footerItems = [
   {
     id: 1,
-    title: "Instagram",
-    href: "https://www.instagram.com/",
+    title: "Mail",
+    href: "https://www.gmail.com/",
   },
   {
     id: 2,
-    title: "Behance",
-    href: "https://www.behance.com/",
+    title: "Instagram",
+    href: "https://www.instagram.com/",
   },
   {
     id: 3,
@@ -114,13 +114,13 @@ export const footernavbarItems = [
     title: "About us",
     href: "ochi-team",
   },
+  // {
+  //   id: 5,
+  //   title: "Insights",
+  //   href: "insights",
+  // },
   {
     id: 5,
-    title: "Insights",
-    href: "insights",
-  },
-  {
-    id: 6,
     title: "Contact us",
     href: "contact",
   },

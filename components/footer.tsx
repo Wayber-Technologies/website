@@ -3,10 +3,13 @@ import Image from "next/image";
 import { logoWhite } from "@/public";
 import { LinkHover, TextMask } from "@/animation";
 import { footerItems, footernavbarItems } from "@/constants";
+import RoundButton from "./RoundButton";
+import Rounded from "./Rounded";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
-  const phrase = ["Eye-", "opening"];
-  const phrase1 = ["PRESENTATIONS"];
+  const phrase = ["Let's Build"];
+  const phrase1 = ["GREAT COMPANY"];
   return (
     <footer className="w-full min-h-screen padding-x z-30 relative pt-[40px] bg-wayberBlue flex flex-col justify-between rounded-t-[20px] mt-[-20px]">
       <div className="w-full flex justify-between sm:flex-col xm:flex-col">
@@ -21,41 +24,47 @@ export default function Footer() {
               <TextMask>{phrase1}</TextMask>
             </h1>
             <div className="pt-[50px]">
-              <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">S:</h1>
-              {footerItems.map((item) => (
-                <LinkHover
-                  title={item.title}
-                  href={item.href}
-                  key={item.id}
-                  className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                />
-              ))}
+              <div className="flex flex-col gap-y-[30px]">
+                <p className="w-[60%] sub-paragraph font-medium font-Aloevera text-white pt-[30px] tracking-wide">
+                  After delivery → We stay close, supporting, optimizing, and securing your systems as you scale.
+                </p>
+                <div className="w-fit flex items-center justify-between bg-white text-black cursor-pointer rounded-full group">
+                  <div
+                    className="w-fit flex items-center justify-between bg-white text-black cursor-pointer rounded-full group"
+                    onMouseEnter={(e) => {
+                      const text = e.currentTarget.querySelector("p");
+                      if (text) text.style.color = "#fff";
+                    }}
+                    onMouseLeave={(e) => {
+                      const text = e.currentTarget.querySelector("p");
+                      if (text) text.style.color = "#000";
+                    }}
+                  >
+                    <RoundButton
+                      href="/contact"
+                      title="let's start"
+                      bgcolor="#000"
+                      className="bg-black text-white hover:bg-black transition-colors duration-300"
+                      style={{
+                        color: "#000",
+                        transition: "color 0.3s ease",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex justify-between">
               <div className="pt-[50px]">
                 <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">L:</h1>
-                <div className="flex flex-col gap-y-[10px]">
+                {footerItems.map((item) => (
                   <LinkHover
-                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title={`202-1965 W 4th Awe`}
-                    href="/"
-                  />
-                  <LinkHover
+                    title={item.title}
+                    href={item.href}
+                    key={item.id}
                     className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title={`Vancouver, Canada`}
-                    href="/"
                   />
-                  <LinkHover
-                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title="30 Chukarina"
-                    href="/"
-                  />
-                  <LinkHover
-                    className="before:h-[1px] before:bg-white after:h-[1px] after:bg-white w-fit paragraph font-medium text-white capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title="St Lviv, Ukraine"
-                    href="/"
-                  />
-                </div>
+                ))}
               </div>
               <div className="pt-[50px]">
                 <h1 className="paragraph font-medium font-NeueMontreal text-white pb-[20px]">M:</h1>
