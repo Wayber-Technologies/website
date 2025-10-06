@@ -84,7 +84,7 @@ export default function Hero() {
                 <div className="w-[50%] flex flex-col gap-y-[40px] sm:w-full xm:w-full">
                   <div className="flex flex-col gap-y-[20px]">
                     <p className="paragraph font-Aloevera text-secondry">
-                      In Ukrainian, Wayber - means eyes. It&apos;s not
+                      Wayber - means eyes. It&apos;s not
                       <br /> just a beautiful word, but our philosophy.
                       <br />
                       Almost everything that needs to be
