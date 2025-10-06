@@ -7,11 +7,11 @@ import { Heading } from "@/components";
 
 export default function Whatwedo() {
   return (
-    <div id="what-we-do" className="w-full py-20 bg-[#BFFDFF] relative">
+    <div id="what-we-do" className="w-full pt-20 pb-0 bg-[#BFFDFF] relative">
       <div className="w-full flex items-center padding-x justify-start">
-        <Heading title="Conception to Execution:" />
+        <Heading title="Smart Services That Scale With You." />
       </div>
-      <div className="w-full py-20 xm:py-10 sm:py-10">
+      <div className="w-full py-20 pb-0 xm:py-10 sm:py-10">
         <Card />
       </div>
     </div>
