@@ -16,13 +16,9 @@ export default function About() {
           At Wayber, we know{" "}
           <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">building technology </span>{" "}
           can feel overwhelming. That’s why{" "}
-          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">
-            we stay with you through
-          </span>{" "}
+          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">we stay with you</span>
           &nbsp;
-          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">development,</span>
-          &nbsp;
-          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">launch,</span>
+          <span className="sub-heading font-medium font-Aloevera link-flash cursor-pointer">through development,</span>
           &nbsp;and beyond.
         </h2>
       </div>
