@@ -5,6 +5,7 @@ import { Curve, Marquee, Ready } from "@/components";
 import { About, Clients, Hero, Projects, VideoHome } from "@/container";
 import Whatwedo from "@/container/home-page/whatwedo";
 import Process from "@/container/home-page/Process";
+import ProblemSolution from "@/container/home-page/ProblemSolution";
 
 export default function Home() {
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function Home() {
         <About />
         <Whatwedo />
         <VideoHome />
+        <ProblemSolution />
         <Projects />
         <Process />
         <Ready />

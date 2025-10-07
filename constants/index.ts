@@ -68,6 +68,41 @@ export const navbarItems = [
   },
 ];
 
+// Solution
+export const solutions = [
+  {
+    id: "solution-1",
+    imgUrl: "/main1.png",
+    title: "We start with clarity",
+    number: "01",
+    description: "Deep consultations uncover your real challenges, not just the symptoms.",
+  },
+  {
+    id: "solution-2",
+    imgUrl: "/main2.png",
+    title: "We architect smarter",
+    number: "02",
+    description:
+      " Every block in your stack — from infrastructure to UX — is intentionally designed for security, speed, and scalability.",
+  },
+  {
+    id: "solution-3",
+    imgUrl: "/main3.png",
+    title: "We build with precision",
+    number: "03",
+    description:
+      "Our engineers combine best practices with innovation, crafting solutions that are as efficient as they are robust.",
+  },
+  {
+    id: "solution-4",
+    imgUrl: "/main4.png",
+    title: "We stay with you",
+    number: "04",
+    description:
+      "With 100% customer support, we don’t disappear after delivery — we keep your systems healthy, optimized, and ready for what’s next.",
+  },
+];
+
 // Footer
 
 export const footerItems = [
