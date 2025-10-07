@@ -21,7 +21,7 @@ const ExploreCard: React.FC<ExploreCardProps> = ({
     whileInView="show"
     viewport={{ once: true }}
     whileHover={{ scale: active === id ? 1 : 1.02 }}
-    className={`relative ${
+    className={`relative  ${
       active === id ? "lg:flex-[3.5] flex-[10]" : "lg:flex-[0.5] flex-[2]"
     } flex items-center justify-center min-w-[170px] h-[700px] sm:h-[500px] xm:h-[500px] transition-[flex] duration-[0.7s] ease-out-flex cursor-pointer overflow-hidden rounded-[10px]`}
     onClick={() => handleClick(id)}
