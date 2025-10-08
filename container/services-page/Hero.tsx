@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section className="w-full min-h-screen">
-      <div className="w-full flex flex-col justify-between">
+      <div className="w-full mt-[80px] flex flex-col justify-between">
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
