@@ -61,7 +61,7 @@ export default function Card() {
             <div className="w-fit flex flex-col gap-2">
               <Link
                 className="text-[18px] font-normal leading-tight tracking-tight text-blue-400 font-Aloevera"
-                href="/"
+                href="/services"
               >
                 Learn more about our development solutions
               </Link>
@@ -104,7 +104,7 @@ export default function Card() {
             <div className="w-fit flex flex-col gap-2">
               <Link
                 className="text-[18px] font-normal leading-tight tracking-tight text-green-400 font-Aloevera"
-                href="/"
+                href="/services"
               >
                 Explore our consultancy services
               </Link>
@@ -146,7 +146,7 @@ export default function Card() {
             <div className="w-fit flex flex-col gap-2">
               <Link
                 className="text-[18px] font-normal leading-tight tracking-tight text-purple-400 font-Aloevera"
-                href="/"
+                href="/services"
               >
                 View our auditing services
               </Link>
@@ -195,7 +195,7 @@ export default function Card() {
             <div className="w-fit flex flex-col gap-2">
               <Link
                 className="text-[18px] font-normal leading-tight tracking-tight text-orange-400 font-Aloevera"
-                href="/"
+                href="/services"
               >
                 Discover our design approach
               </Link>
