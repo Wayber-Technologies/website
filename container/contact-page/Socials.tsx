@@ -10,7 +10,7 @@ import { Eyes } from "@/components";
 
 export default function Socials() {
   const [rotate, setRotate] = useState(0);
-  const phrase = ["INSTAGRAM", "behance", "facebook", "linkedin"];
+  const phrase = ["INSTAGRAM", "twitter", "facebook", "linkedin"];
   useEffect(() => {
     window.addEventListener("mousemove", (e) => {
       let mouseX = e.clientX;
@@ -53,22 +53,12 @@ export default function Socials() {
                 <div className="flex flex-col gap-y-[10px]">
                   <LinkHover
                     className="before:h-[1px] after:h-[1px] w-fit paragraph font-Aloevera font-medium  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title={`202-1965 W 4th Awe`}
+                    title={`202-1965 W 4th Ave`}
                     href="/"
                   />
                   <LinkHover
                     className="before:h-[1px] after:h-[1px] w-fit paragraph font-Aloevera font-medium  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title={`Vancouver, Canada`}
-                    href="/"
-                  />
-                  <LinkHover
-                    className="before:h-[1px] after:h-[1px] w-fit paragraph font-Aloevera font-medium  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title="30 Chukarina"
-                    href="/"
-                  />
-                  <LinkHover
-                    className="before:h-[1px] after:h-[1px] w-fit paragraph font-Aloevera font-medium  capitalize flex flex-col before:bottom-[1px] after:bottom-[1px]"
-                    title="St Lviv, Ukraine"
+                    title={`Lagos, Nigeria`}
                     href="/"
                   />
                 </div>
