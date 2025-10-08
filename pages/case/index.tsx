@@ -16,9 +16,9 @@ export default function Work() {
         <Heroworkiz />
         <Aboutworkiz />
         <Chelenge />
-        <VideoWorkiz />
+        {/* <VideoWorkiz /> */}
         <Result />
-        <Credit />
+        {/* <Credit /> */}
         <Works />
         <Ready />
       </Curve>

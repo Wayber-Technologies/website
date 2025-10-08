@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { ProjectCard, Tags } from "@/components";
-import { presentationProjectItem } from "@/constants";
+import { presentationProjectItem, projectItem } from "@/constants";
 
 export default function Projects() {
   const container = useRef(null);
@@ -24,7 +24,7 @@ export default function Projects() {
           </h2>
         </div>
         <div className="w-full flex justify-between gap-y-[50px] padding-x padding-y flex-wrap">
-          {presentationProjectItem.map((item) => (
+          {projectItem.map((item) => (
             <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
               <div className="flex gap-x-[10px] items-center pb-[10px]">
                 <span className="w-[10px] h-[10px] rounded-full bg-secondry" />

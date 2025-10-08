@@ -7,11 +7,11 @@ import { BackgroundImg, Rounded } from "@/components";
 export default function Hero() {
   return (
     <section className="w-full rounded-b-[20px]">
-      <div className="w-full pb-[200px]">
+      <div className="w-full mt-[80px] pb-[200px]">
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
-              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Bricolage uppercase">
+              <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-aloevera uppercase">
                 <div className="flex items-center gap-[5px]">
                   <motion.span
                     initial={{ width: 0 }}
@@ -31,7 +31,7 @@ export default function Hero() {
                       className="w-auto h-[95px] lg:w-auto lg:h-auto md:w-[100px] md:h-[63px] sm:w-[74px] sm:h-[45px] xm:w-[64px] xm:h-[40px] object-cover xl:mt-[15px] mt-[10px] rounded-[10px]"
                     />
                   </motion.span>
-                  <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-Bricolage uppercase">
+                  <h1 className="heading tracking-[-1.3px] text-[#212121] font-semibold font-aloevera uppercase">
                     WORKIZ EASY
                   </h1>
                 </div>
@@ -41,11 +41,11 @@ export default function Hero() {
           <div className="w-full border-t border-[#21212155] pt-[20px] ">
             <div className="w-full flex justify-between sm:gap-[25px] xm:gap-[25px] padding-x sm:flex-col xm:flex-col">
               <div className="w-[50%] sm:w-full xm:w-full">
-                <h3 className="paragraph font-medium text-secondry font-Bricolage">Description:</h3>
+                <h3 className="paragraph font-medium text-secondry font-aloevera">Description:</h3>
               </div>
               <div className="w-[50%] sm:w-full xm:w-full sm:flex-col xm:flex-col flex gap-[20px]">
                 <div className="w-[50%] sm:w-full xm:w-full flex flex-col gap-y-[40px]">
-                  <p className="paragraph font-Bricolage text-secondry">
+                  <p className="paragraph font-aloevera text-secondry">
                     Onboarding, internal and sales <br />
                     presentations for software startup.
                   </p>
@@ -53,7 +53,7 @@ export default function Hero() {
                 <div className="flex flex-col gap-[10px]">
                   <div className="w-fit rounded-[50px] border border-[#212121] cursor-pointer">
                     <Link
-                      className="small-text font-Bricolage text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
+                      className="small-text font-aloevera text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
                       href="/services/"
                     >
                       <Rounded className="py-[3px]" backgroundColor="#000">
@@ -63,7 +63,7 @@ export default function Hero() {
                   </div>
                   <div className="w-fit rounded-[50px] border border-[#212121] cursor-pointer">
                     <Link
-                      className="small-text font-Bricolage text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
+                      className="small-text font-aloevera text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
                       href="/services/"
                     >
                       <Rounded className="py-[3px]" backgroundColor="#000">
@@ -73,7 +73,7 @@ export default function Hero() {
                   </div>
                   <div className="w-fit rounded-[50px] border border-[#212121] cursor-pointer">
                     <Link
-                      className="small-text font-Bricolage text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
+                      className="small-text font-aloevera text-secondry uppercase group-hover:text-background transition-all duration-300 ease-in-out hover:text-white"
                       href="/services/"
                     >
                       <Rounded className="py-[3px]" backgroundColor="#000">

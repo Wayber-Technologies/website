@@ -11,7 +11,12 @@ const routes = {
   "/wayber-team": "About Us",
   "/insights": "Insights",
   "/contact": "Contact",
-  "/case": "Workiz Easy",
+  "/case": "Case Studies",
+  "/case/sise": "SISE",
+  "/case/mallamx": "MallamX",
+  "/case/rftf": "RFTF",
+  "/case/burnout": "Burnout",
+  "/case/commercio": "Commercio",
 };
 
 const anim = (variants) => {

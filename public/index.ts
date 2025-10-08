@@ -37,6 +37,37 @@ export { default as ochiside } from "./ochi-side.jpg";
 export { default as eyeplay } from "./eyeplay.svg";
 export { default as contactHero } from "./contacthhero.jpg";
 
+// projects
+export { default as sise1 } from "./sise1.png";
+export { default as sise2 } from "./sise2.png";
+export { default as sise3 } from "./sise3.png";
+export { default as sise4 } from "./sise4.png";
+export { default as sise5 } from "./sise5.png";
+
+export { default as malamx1 } from "./malamx1.png";
+export { default as malamx2 } from "./malamx2.png";
+export { default as malamx3 } from "./malamx3.png";
+export { default as malamx4 } from "./malamx4.png";
+export { default as malamx5 } from "./malamx5.png";
+
+export { default as rftf1 } from "./rftf1.png";
+export { default as rftf2 } from "./rftf2.png";
+export { default as rftf3 } from "./rftf3.png";
+export { default as rftf4 } from "./rftf4.png";
+export { default as rftf5 } from "./rftf5.png";
+
+export { default as burnout1 } from "./burnout1.png";
+export { default as burnout2 } from "./burnout2.png";
+export { default as burnout3 } from "./burnout3.png";
+export { default as burnout4 } from "./burnout4.png";
+export { default as burnout5 } from "./burnout5.png";
+
+export { default as commercio1 } from "./commercio1.png";
+export { default as commercio2 } from "./commercio2.png";
+export { default as commercio3 } from "./commercio3.png";
+export { default as commercio4 } from "./commercio4.png";
+export { default as commercio5 } from "./commercio5.png";
+
 // services page
 export { default as phase1 } from "./phase1.jpeg";
 export { default as phase2 } from "./phase2.jpeg";
