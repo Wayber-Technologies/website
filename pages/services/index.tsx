@@ -16,9 +16,9 @@ export default function Services() {
         <Heroservices />
         <Process />
         <Capibilyties />
-        <Clientsservices />
+        {/* <Clientsservices /> */}
         <Archive />
-        <Expectations />
+        {/* <Expectations /> */}
         <Ready />
       </Curve>
     </>
