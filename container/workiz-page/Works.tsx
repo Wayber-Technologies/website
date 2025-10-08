@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { workizItem } from "@/constants";
+import { projectItem, workizItem } from "@/constants";
 import { ArrowUpRight } from "lucide-react";
 import { Marquee, ProjectCard, Rounded, Tags } from "@/components";
 
@@ -13,7 +13,7 @@ export default function Works() {
         />
       </div>
       <div className="w-full flex justify-between gap-y-[30px] padding-x py-[20px] flex-wrap">
-        {workizItem.map((item) => (
+        {projectItem.splice(0, 2).map((item) => (
           <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
             <div className="flex gap-x-[10px] items-center pb-[10px]">
               <span className="w-[10px] h-[10px] rounded-full bg-white" />
