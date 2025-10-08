@@ -33,6 +33,31 @@ import {
   publication1,
   publication2,
   publication3,
+  sise1,
+  sise2,
+  sise3,
+  sise4,
+  sise5,
+  malamx1,
+  malamx2,
+  malamx3,
+  malamx4,
+  malamx5,
+  rftf1,
+  rftf2,
+  rftf3,
+  rftf4,
+  rftf5,
+  burnout1,
+  burnout2,
+  burnout3,
+  burnout4,
+  burnout5,
+  commercio1,
+  commercio2,
+  commercio3,
+  commercio4,
+  commercio5,
 } from "@/public";
 
 // Navbar
@@ -417,27 +442,36 @@ export const projectItem = [
   {
     id: 1,
     title: "SISE",
-    href: "/case/",
+    href: "/case/sise",
     src: project1,
+    description:
+      "SISE is a comprehensive lead and customer management platform designed to streamline business operations and enhance productivity. The system features an intuitive dashboard that provides real-time insights into pipeline values, lead tracking, and customer metrics.",
+    about:
+      "Built for businesses that value efficiency and clarity, SISE eliminates the friction between data and decision-making, creating a seamless experience where work truly meets flow. The platform transforms complex business data into actionable insights, featuring customizable filters, detailed lead status tracking, and automated workflow management.",
+    challenge:
+      "The challenge was to create a comprehensive lead and customer management platform that could handle complex business data while maintaining an intuitive user experience. We needed to design a system that would provide real-time insights without overwhelming users with information overload.",
+    result:
+      "SISE successfully transformed complex business data into actionable insights, featuring customizable filters, detailed lead status tracking, and automated workflow management. The platform now empowers teams to monitor their sales pipeline effectively and make data-driven decisions.",
+    images: [sise1, sise2, sise3, sise4, sise5],
     links: [
       {
         id: 1,
-        title: "audit",
+        title: "dashboard design",
         href: "/services",
       },
       {
         id: 2,
-        title: "copywriting",
+        title: "data visualization",
         href: "/services",
       },
       {
         id: 3,
-        title: "sales deck",
+        title: "user interface",
         href: "/services",
       },
       {
         id: 4,
-        title: "slides design",
+        title: "workflow management",
         href: "/services",
       },
     ],
@@ -445,17 +479,36 @@ export const projectItem = [
   {
     id: 2,
     title: "MALLLAM-X",
-    href: "/case/",
+    href: "/case/mallamx",
     src: project2,
+    description:
+      "MallamX represents the next generation of digital currency exchange, empowered by cutting-edge e-wallet technology. This platform revolutionizes how users swap between NGN, USD, and GBP without traditional hassles.",
+    about:
+      "MallamX bridges the gap between traditional banking and cryptocurrency, offering a secure, user-friendly gateway to the future of global finance. The platform's responsive design ensures consistent functionality across desktop and mobile devices, while integrated social sharing features make peer-to-peer transactions effortless.",
+    challenge:
+      "Creating a digital currency exchange platform that could handle multiple currencies while maintaining security and user trust. The challenge was to design an interface that would make complex financial transactions simple and accessible to everyday users.",
+    result:
+      "MallamX successfully created a seamless currency exchange experience with real-time Bitcoin, Ethereum, and XRP tracking. The platform now allows users to execute transactions with simple tap-to-action buttons and manage their combined wallet values efficiently.",
+    images: [malamx1, malamx2, malamx3, malamx4, malamx5],
     links: [
       {
         id: 1,
-        title: "agency",
+        title: "e-wallet design",
         href: "/services",
       },
       {
         id: 2,
-        title: "compony presentation",
+        title: "currency exchange",
+        href: "/services",
+      },
+      {
+        id: 3,
+        title: "mobile interface",
+        href: "/services",
+      },
+      {
+        id: 4,
+        title: "security features",
         href: "/services",
       },
     ],
@@ -463,22 +516,36 @@ export const projectItem = [
   {
     id: 3,
     title: "RFTF",
-    href: "/case/",
+    href: "/case/rftf",
     src: project3,
+    description:
+      "Run For The Future is an engaging fitness and community platform developed for ARM Pensions' seventh edition awareness campaign. The app combines health tracking with social impact, encouraging clients and the general public to participate in runs and walks.",
+    about:
+      "RFTF transforms fitness activities into meaningful engagement opportunities, proving that financial planning companies can champion wellness and community building alongside their core services. The app features vibrant, high-energy imagery with an elegant maroon and neutral color scheme.",
+    challenge:
+      "Creating a fitness platform that would engage both existing clients and the general public while maintaining ARM Pensions' professional brand image. The challenge was to combine health tracking with social impact in a way that felt authentic and motivating.",
+    result:
+      "RFTF successfully created a holistic event experience with integrated leaderboards, profile management, and comprehensive event details. The app now encourages community building through fitness activities while maintaining professional standards.",
+    images: [rftf1, rftf2, rftf3, rftf4, rftf5],
     links: [
       {
         id: 1,
-        title: "brand identity",
+        title: "fitness tracking",
         href: "/services",
       },
       {
         id: 2,
-        title: "design research",
+        title: "community platform",
         href: "/services",
       },
       {
         id: 3,
-        title: "investor deck",
+        title: "event management",
+        href: "/services",
+      },
+      {
+        id: 4,
+        title: "social features",
         href: "/services",
       },
     ],
@@ -486,12 +553,73 @@ export const projectItem = [
   {
     id: 4,
     title: "BURNOUT",
-    href: "/case/",
+    href: "/case/burnout",
     src: project4,
+    description:
+      "Burnout tackles one of the modern workplace's most critical challenges: employee burnout. This innovative team management platform combines performance tracking with wellness monitoring, helping team leads identify and address burnout before it impacts productivity.",
+    about:
+      "With its thoughtful blend of productivity metrics and employee wellness features, Burnout demonstrates that successful project management isn't just about getting things done—it's about ensuring your team thrives in the process. The platform features a sophisticated black, white, and cyan color palette.",
+    challenge:
+      "Addressing the critical issue of employee burnout in modern workplaces while maintaining productivity tracking. The challenge was to create a system that would help identify burnout patterns without being intrusive or creating additional stress for employees.",
+    result:
+      "Burnout successfully created a comprehensive wellness monitoring system with color-coded indicators for team health. The platform now tracks cumulative points, task assignments, and completion rates while encouraging healthy work patterns.",
+    images: [burnout1, burnout2, burnout3, burnout4, burnout5],
     links: [
       {
         id: 1,
-        title: "brand template",
+        title: "wellness tracking",
+        href: "/services",
+      },
+      {
+        id: 2,
+        title: "team management",
+        href: "/services",
+      },
+      {
+        id: 3,
+        title: "performance metrics",
+        href: "/services",
+      },
+      {
+        id: 4,
+        title: "health monitoring",
+        href: "/services",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "COMMERCIO",
+    href: "/case/commercio",
+    src: project5,
+    description:
+      "Commercio is a sophisticated investment application that democratizes wealth creation through expertly curated opportunities, all accessible in one elegant platform. The app's striking purple and white design exudes premium quality and financial sophistication.",
+    about:
+      "Commercio transforms the traditionally intimidating world of investing into an accessible, user-friendly experience. The mobile-first design ensures that growing wealth is as simple as checking your phone, bringing professional-grade investment management to everyone's fingertips.",
+    challenge:
+      "Making complex investment products approachable for everyday users while maintaining the sophistication expected in financial applications. The challenge was to create an interface that would inspire confidence while remaining intuitive and accessible.",
+    result:
+      "Commercio successfully created a comprehensive investment platform with detailed asset breakdowns, transaction histories, and performance metrics. The app now empowers users to make informed financial decisions through an elegant, user-friendly interface.",
+    images: [commercio1, commercio2, commercio3, commercio4, commercio5],
+    links: [
+      {
+        id: 1,
+        title: "investment platform",
+        href: "/services",
+      },
+      {
+        id: 2,
+        title: "portfolio management",
+        href: "/services",
+      },
+      {
+        id: 3,
+        title: "financial dashboard",
+        href: "/services",
+      },
+      {
+        id: 4,
+        title: "mobile banking",
         href: "/services",
       },
     ],
