@@ -420,7 +420,7 @@ export const clientsItem = [
 export const projectItem = [
   {
     id: 1,
-    title: "MALLLAM-X",
+    title: "SISE",
     href: "/case/",
     src: project1,
     links: [
@@ -448,7 +448,7 @@ export const projectItem = [
   },
   {
     id: 2,
-    title: "RFTF",
+    title: "MALLLAM-X",
     href: "/case/",
     src: project2,
     links: [
@@ -466,7 +466,7 @@ export const projectItem = [
   },
   {
     id: 3,
-    title: "COMERCIO",
+    title: "RFTF",
     href: "/case/",
     src: project3,
     links: [
@@ -489,7 +489,7 @@ export const projectItem = [
   },
   {
     id: 4,
-    title: "SISE",
+    title: "BURNOUT",
     href: "/case/",
     src: project4,
     links: [
@@ -511,7 +511,7 @@ export const serviceProcessItems = [
     name: "Foundation (Consultation)",
     src: phase1,
     review:
-      "We understand your business goals., get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
+      "We understand your business goals, get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
     button: "read",
   },
   {
@@ -961,7 +961,7 @@ export const achiveItems = [
 export const presentationProjectItem = [
   {
     id: 1,
-    title: "fyde",
+    title: "SISE",
     src: project1,
     href: "/case/",
     links: [
@@ -989,8 +989,8 @@ export const presentationProjectItem = [
   },
   {
     id: 2,
-    title: "trawa",
-    src: project3,
+    title: "MALLAM-X",
+    src: project2,
     href: "/case/",
     links: [
       {
@@ -1012,8 +1012,8 @@ export const presentationProjectItem = [
   },
   {
     id: 3,
-    title: "premium blend",
-    src: project4,
+    title: "RFTF",
+    src: project3,
     href: "/case/",
     links: [
       {
@@ -1025,8 +1025,8 @@ export const presentationProjectItem = [
   },
   {
     id: 4,
-    title: "planetly",
-    src: project5,
+    title: "BURNOUT",
+    src: project4,
     href: "/case/",
     links: [
       {
@@ -1063,8 +1063,8 @@ export const presentationProjectItem = [
   },
   {
     id: 5,
-    title: "black box",
-    src: project8,
+    title: "COMMERCIO",
+    src: project5,
     href: "/case/",
     links: [
       {
@@ -1080,78 +1080,6 @@ export const presentationProjectItem = [
       {
         id: 3,
         title: "review",
-        href: "/services",
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "vise",
-    src: project2,
-    href: "/case/",
-    links: [
-      {
-        id: 1,
-        title: "agency",
-        href: "/services",
-      },
-      {
-        id: 2,
-        title: "compony presentation",
-        href: "services",
-      },
-    ],
-  },
-  {
-    id: 7,
-    title: "soft start",
-    src: project9,
-    href: "/case/",
-    links: [
-      {
-        id: 1,
-        title: "brand template",
-        href: "/services",
-      },
-      {
-        id: 2,
-        title: "sales desc",
-        href: "/services",
-      },
-    ],
-  },
-  {
-    id: 8,
-    title: "officevibe",
-    src: project7,
-    href: "/case/",
-    links: [
-      {
-        id: 1,
-        title: "brand template",
-        href: "/services",
-      },
-    ],
-  },
-  {
-    id: 9,
-    title: "workiz easy",
-    src: project6,
-    href: "/case/",
-    links: [
-      {
-        id: 1,
-        title: "onboarding presentation",
-        href: "/services",
-      },
-      {
-        id: 2,
-        title: "policy deck & playbook",
-        href: "/services",
-      },
-      {
-        id: 3,
-        title: "sales deck",
         href: "/services",
       },
     ],
