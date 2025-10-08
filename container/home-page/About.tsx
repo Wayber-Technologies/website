@@ -47,13 +47,14 @@ export default function About() {
 
               <div className="w-[50%] flex justify-end flex-col sm:w-full xm:w-full">
                 <h1 className="sub-paragraph font-medium font-Aloevera text-secondry pb-[20px]">S:</h1>
-                <div className="flex flex-col">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:gap-[10px]">
                   {footerItems.map((item) => (
                     <LinkHover
                       key={item.id}
-                      className="w-fit sub-paragraph font-medium capitalize before:h-[1px] after:h-[1px] before:bottom-[1px] after:bottom-[1px]"
+                      className="sub-paragraph font-medium capitalize before:h-[1px] after:h-[1px] before:bottom-[1px] after:bottom-[1px] 
+                 w-fit sm:w-full text-left"
                       title={item.title}
-                      href={"/"}
+                      href={item.href}
                     />
                   ))}
                 </div>
