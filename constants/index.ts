@@ -50,7 +50,7 @@ export const navbarItems = [
   {
     id: 3,
     title: "About us",
-    href: "/ochi-team",
+    href: "/wayber-team",
   },
   // {
   //   id: 4,

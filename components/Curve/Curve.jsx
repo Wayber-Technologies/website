@@ -8,7 +8,7 @@ const routes = {
   "/": "Home",
   "/services": "Services",
   "/presentation": "Our Work",
-  "/ochi-team": "About Us",
+  "/wayber-team": "About Us",
   "/insights": "Insights",
   "/contact": "Contact",
   "/case": "Workiz Easy",
