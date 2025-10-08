@@ -6,23 +6,46 @@ import { IoMdClose } from "react-icons/io";
 import { logoBlackfull, logoWhiteFull } from "@/public";
 import { footernavbarItems } from "@/constants";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { navVariants } from "@/motion";
+import { usePathname } from "next/navigation";
 
 export default function MobileNav() {
   const [toggle, setToggle] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const pathname = usePathname();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous && latest > previous) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   return (
     <>
-      <div className="w-full hidden justify-between items-center h-[8vh] padding-x sm:flex xm:flex md:flex">
+      <motion.div
+        variants={navVariants}
+        className="w-full justify-between items-center h-[8vh] padding-x sm:flex xm:flex md:flex"
+        animate={hidden ? "hidden" : "vissible"}
+      >
         <Link href={"/"}>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
-            <Image src={logoBlackfull} alt="wayber logo" width={100} height={100} />
+            <Image
+              src={pathname === "/presentation" ? logoWhiteFull : logoBlackfull}
+              alt="wayber logo"
+              width={100}
+              height={100}
+            />
           </motion.div>
         </Link>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.2 }}>
           <HiOutlineMenuAlt4 onClick={() => setToggle(true)} className="text-3xl cursor-pointer text-black" />
         </motion.div>
-      </div>
+      </motion.div>
 
       <AnimatePresence mode="wait">
         {toggle && (

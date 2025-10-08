@@ -10,11 +10,13 @@ import { useMotionValueEvent, useScroll, motion } from "framer-motion";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -34,7 +36,12 @@ export default function Navbar() {
       >
         <div className="w-[50%]">
           <Link href={"/"}>
-            <Image src={logoBlackfull} alt="wayber logo" width={200} height={200} />
+            <Image
+              src={pathname === "/presentation" ? logoWhiteFull : logoBlackfull}
+              alt="wayber logo"
+              width={200}
+              height={200}
+            />
           </Link>
         </div>
         <div className="flex gap-x-[20px] w-[50%] justify-end items-center">
