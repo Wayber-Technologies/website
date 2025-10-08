@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { useTransform, motion, useScroll } from "framer-motion";
-import { whatwedoImg1, whatwedoImg2, whatwedoImg3, whatwedoImg4 } from "@/public";
+import { whatwedoImg1, whatwedoImg2, whatwedoImg3, whatwedoImg4, whatwedoImg5 } from "@/public";
 
 export default function Card() {
   const container1 = useRef(null);
@@ -120,14 +120,14 @@ export default function Card() {
         </motion.div>
       </div>
 
-      {/* Card 3 */}
+      {/* Card 3 - Circular Image */}
       <div
         ref={container3}
         className="h-auto flex items-center justify-center sticky top-40 xm:top-[10%] sm:top-[10%] w-full"
       >
         <motion.div
           style={{ backgroundColor: "#09182f", top: `calc(-5vh + ${3 * 25}px)` }}
-          className="w-full p-20 xm:p-7 sm:p-7 flex justify-between rounded-t-[30px] rounded-b-none gap-10 relative -top-[45%] h-[800px] transform origin-top xm:flex-col sm:flex-col"
+          className="w-full p-20 xm:p-7 sm:p-7 flex justify-between rounded-t-[30px] rounded-b-none gap-10 relative -top-[45%] h-[800px] xm:h-auto sm:h-auto transform origin-top xm:flex-col sm:flex-col"
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
@@ -157,7 +157,14 @@ export default function Card() {
             className="w-1/2 xm:w-full sm:w-full h-full flex items-center justify-center"
             style={{ scale: imageScale3 }}
           >
-            <Image src={whatwedoImg3} alt="Software Auditing" className="w-[80%] object-cover" />
+            <div className="relative w-[80%] aspect-square">
+              <Image
+                src={whatwedoImg5}
+                alt="Software Auditing"
+                className="w-full h-full object-cover rounded-full"
+                fill
+              />
+            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -169,7 +176,7 @@ export default function Card() {
       >
         <motion.div
           style={{ backgroundColor: "#1462ff", top: `calc(-5vh + ${4 * 25}px)` }}
-          className="w-full p-20 xm:p-7 sm:p-7 flex justify-between rounded-t-[30px] rounded-b-none gap-10 relative -top-[45%] h-[800px] transform origin-top xm:flex-col sm:flex-col"
+          className="w-full p-20 xm:p-7 sm:p-7 flex justify-between rounded-t-[30px] rounded-b-none gap-10 relative -top-[45%] h-[800px] xm:h-auto sm:h-auto transform origin-top xm:flex-col sm:flex-col"
         >
           <div className="w-1/2 xm:w-full sm:w-full h-full flex flex-col gap-14 pt-10 xm:pt-5 sm:pt-5 xm:gap-5 sm:gap-5">
             <div className="flex flex-col gap-2">
