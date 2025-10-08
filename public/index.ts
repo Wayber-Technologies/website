@@ -63,6 +63,10 @@ export { default as burnout4 } from "./burnout4.png";
 export { default as burnout5 } from "./burnout5.png";
 
 export { default as commercio1 } from "./commercio1.png";
+export { default as commercio2 } from "./commercio1.png";
+export { default as commercio3 } from "./commercio1.png";
+export { default as commercio4 } from "./commercio1.png";
+export { default as commercio5 } from "./commercio1.png";
 
 // services page
 export { default as phase1 } from "./phase1.jpeg";
