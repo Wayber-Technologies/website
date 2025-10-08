@@ -42,11 +42,11 @@ export { default as eyeplay } from "./eyeplay.svg";
 export { default as contactHero } from "./contacthhero.jpg";
 
 // services page
-export { default as phase1 } from "./phase1.png";
-export { default as phase2 } from "./phase2.png";
-export { default as phase3 } from "./phase3.png";
-export { default as phase4 } from "./phase4.png";
-export { default as phase5 } from "./phase5.png";
+export { default as phase1 } from "./phase1.jpeg";
+export { default as phase2 } from "./phase2.jpeg";
+export { default as phase3 } from "./phase3.jpeg";
+export { default as phase4 } from "./phase4.jpeg";
+export { default as phase5 } from "./phase5.jpeg";
 export { default as capaybilities1 } from "./capybilities1.jpeg";
 export { default as capaybilities2 } from "./capybilities2.jpeg";
 export { default as capaybilities3 } from "./capybilities3.jpeg";

@@ -511,7 +511,7 @@ export const serviceProcessItems = [
     name: "Foundation (Consultation)",
     src: phase1,
     review:
-      "We understand your business goals., get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
+      "We understand your business goals, get to know your audience, and understand the context. Through a process of exploration, investigation, and research, we seek the insights that inform our future decisions.",
     button: "read",
   },
   {
