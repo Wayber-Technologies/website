@@ -6,7 +6,7 @@ export default function Projects() {
     <section className="w-full rounded-t-[20px]">
       <Heading title="Featured projects" className="padding-x padding-y pb-[50px] border-b border-[#21212155]" />
       <div className="w-full flex justify-between gap-y-[50px] padding-x padding-y flex-wrap">
-        {projectItem.map((item) => (
+        {projectItem.slice(0, 4).map((item) => (
           <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
             <div className="flex gap-[10px] items-center pb-[10px]">
               <span className="w-[10px] h-[10px] rounded-full bg-secondry" />
