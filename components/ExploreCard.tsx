@@ -29,7 +29,7 @@ const ExploreCard: React.FC<ExploreCardProps> = ({
     <Image src={imgUrl} alt={title} className="absolute w-full h-full object-cover rounded-[10px]" fill />
 
     {/* Dark overlay */}
-    <div className="absolute inset-0 bg-[rgba(0,0,0,0.1)] rounded-[10px]" />
+    <div className="absolute inset-0 bg-[rgba(0,0,0,0.05)] rounded-[10px]" />
 
     {/* Inactive state  */}
     {active !== id ? (

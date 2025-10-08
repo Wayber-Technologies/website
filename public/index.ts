@@ -106,6 +106,7 @@ export { default as whatwedoImg1 } from "./whatwedoImg1.png";
 export { default as whatwedoImg2 } from "./whatwedoImg2.png";
 export { default as whatwedoImg3 } from "./whatwedoImg3.png";
 export { default as whatwedoImg4 } from "./whatwedoImg4.png";
+export { default as whatwedoImg5 } from "./whatwedoImg5.jpg";
 export { default as whatwedoCircleImg } from "./whatwedoCircleImg.svg";
 export { default as saion } from "./saion.png";
 export { default as pentuin } from "./pentuin.png";
