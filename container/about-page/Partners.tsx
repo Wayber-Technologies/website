@@ -10,7 +10,7 @@ export default function Principles() {
           We’ve built long-lasting partnerships
           <br className="sm:hidden xm:hidden" /> with the most ambitious brands
           <br className="sm:hidden xm:hidden" />
-          across the globe:
+          across the globe
         </h1>
       </div>
       <div className="w-full border-t border-[#21212155] mt-[50px]">

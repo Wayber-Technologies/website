@@ -30,10 +30,6 @@ import {
   project3,
   project4,
   project5,
-  project6,
-  project7,
-  project8,
-  project9,
   publication1,
   publication2,
   publication3,
@@ -54,7 +50,7 @@ export const navbarItems = [
   {
     id: 3,
     title: "About us",
-    href: "/ochi-team",
+    href: "/wayber-team",
   },
   // {
   //   id: 4,
@@ -1164,7 +1160,7 @@ export const workizItem = [
   {
     id: 1,
     title: "office vibe",
-    src: project7,
+    src: project4,
     href: "/case/",
     links: [
       {
