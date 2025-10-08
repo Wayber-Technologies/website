@@ -17,7 +17,7 @@ export default function Works() {
           <div className="w-[49%] sm:w-full xm:w-full" key={item.id}>
             <div className="flex gap-x-[10px] items-center pb-[10px]">
               <span className="w-[10px] h-[10px] rounded-full bg-white" />
-              <h1 className="text-[18px] leading-[21px] uppercase font-medium font-Bricolage text-white">
+              <h1 className="text-[18px] leading-[21px] uppercase font-medium font-aloevera text-white">
                 {item.title}
               </h1>
             </div>
@@ -32,7 +32,7 @@ export default function Works() {
       </div>
       <div className="w-full flex padding-y justify-center">
         <div className="flex items-center justify-between bg-white cursor-pointer rounded-full group">
-          <Link className="paragraph text-secondry uppercase font-normal font-Bricolage" href={"/presentation"}>
+          <Link className="paragraph text-secondry uppercase font-normal font-aloevera" href={"/presentation"}>
             <Rounded className="py-[6px]" backgroundColor="#212121">
               <p className="text-secondry z-10 px-[10px] ml-[15px] py-[6px] group-hover:text-white">
                 view all case studies
