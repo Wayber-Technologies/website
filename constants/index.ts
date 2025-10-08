@@ -420,7 +420,7 @@ export const clientsItem = [
 export const projectItem = [
   {
     id: 1,
-    title: "MALLLAM-X",
+    title: "SISE",
     href: "/case/",
     src: project1,
     links: [
@@ -448,7 +448,7 @@ export const projectItem = [
   },
   {
     id: 2,
-    title: "RFTF",
+    title: "MALLLAM-X",
     href: "/case/",
     src: project2,
     links: [
@@ -466,7 +466,7 @@ export const projectItem = [
   },
   {
     id: 3,
-    title: "COMERCIO",
+    title: "RFTF",
     href: "/case/",
     src: project3,
     links: [
@@ -489,7 +489,7 @@ export const projectItem = [
   },
   {
     id: 4,
-    title: "SISE",
+    title: "BURNOUT",
     href: "/case/",
     src: project4,
     links: [

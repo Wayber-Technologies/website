@@ -11,14 +11,15 @@ export default function ProjectCard({ item }: { item: any }) {
       <div className="relative w-full group">
         <Link
           href={item.href}
-          className="rounded-[10px] overflow-hidden hover:scale-[0.95] transition cursor-pointer transform duration-[1s] ease-[.4,0,.2,1] block"
+          className="rounded-[10px] overflow-hidden hover:scale-[0.95] transition cursor-pointer transform duration-[1s] ease-[.4,0,.2,1] block h-[500px] sm:h-[350px] xm:h-[350px]"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           <Image
             src={item.src}
             alt={`${item.title}Img`}
-            className="w-full object-cover rounded-[10px] group-hover:scale-[1.09]  transform duration-[1s] ease-[.4,0,.2,1]"
+            className="w-full h-full object-cover rounded-[10px] group-hover:scale-[1.09]  transform duration-[1s] ease-[.4,0,.2,1]"
+            fill
           />
         </Link>
         <div
@@ -34,7 +35,7 @@ export default function ProjectCard({ item }: { item: any }) {
                 duration: 0.5,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className="text-[165px] leading-none inline-block uppercase font-Aloevera text-about font-bold text-center pointer-events-none"
+              className="text-[165px] leading-none inline-block uppercase font-Aloevera text-wayberLightBlue font-bold text-center pointer-events-none"
               key={i}
             >
               {item}
