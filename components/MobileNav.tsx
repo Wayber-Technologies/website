@@ -18,7 +18,11 @@ export default function MobileNav() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (previous && latest > previous) {
+
+    // Always show navbar when at the top of the page (scrollY <= 50 for some tolerance)
+    if (latest <= 50) {
+      setHidden(false);
+    } else if (previous && latest > previous) {
       setHidden(true);
     } else {
       setHidden(false);
