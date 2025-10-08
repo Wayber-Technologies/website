@@ -43,6 +43,16 @@ export const fadeIn = (direction: string, type: string, delay: number, duration:
   },
 });
 
+export const staggerContainer = (staggerChildren: number, delayChildren: number) => ({
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren,
+      delayChildren,
+    },
+  },
+});
+
 // navbar
 // MENUSLIDE
 export const menuSlide = {

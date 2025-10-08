@@ -6,6 +6,7 @@ import { About, Clients, Hero, Projects, VideoHome } from "@/container";
 import Whatwedo from "@/container/home-page/whatwedo";
 import Process from "@/container/home-page/Process";
 import ProblemSolution from "@/container/home-page/ProblemSolution";
+import World from "@/container/home-page/World";
 
 export default function Home() {
   useEffect(() => {
@@ -43,6 +44,7 @@ export default function Home() {
         <ProblemSolution />
         <Projects />
         <Process />
+        <World />
         <Ready />
       </Curve>
     </>

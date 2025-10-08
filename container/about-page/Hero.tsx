@@ -9,7 +9,7 @@ import { ArrowUpRight } from "lucide-react";
 export default function Hero() {
   return (
     <section className="w-full min-h-screen">
-      <div className="w-full flex flex-col justify-between">
+      <div className="w-full flex mt-[80px] flex-col justify-between">
         <div className="w-full flex flex-col">
           <div className="w-full margin padding-x">
             <div>
