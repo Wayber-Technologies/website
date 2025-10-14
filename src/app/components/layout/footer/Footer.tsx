@@ -65,18 +65,18 @@ const Logo: React.FC<{ size?: "small" | "large" }> = ({ size = "small" }) => {
           <Image
             src="/images/logo/DarkModeLogoSmall.svg"
             alt="logo"
-            width={100}
+            width={70}
             height={73}
-            style={{ width: "auto", height: "auto", maxWidth: "100px" }}
+            style={{ width: "auto", height: "auto", maxWidth: "70px" }}
             quality={100}
             className="dark:hidden"
           />
           <Image
             src="/images/logo/logoSmall.svg"
             alt="logo"
-            width={100}
+            width={70}
             height={73}
-            style={{ width: "auto", height: "auto", maxWidth: "100px" }}
+            style={{ width: "auto", height: "auto", maxWidth: "70px" }}
             quality={100}
             priority={true}
             className="dark:block hidden"
