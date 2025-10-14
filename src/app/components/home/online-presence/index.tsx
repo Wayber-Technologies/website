@@ -67,7 +67,7 @@ function OnlinePresence() {
                     </div>
 
                     <div className="flex flex-col items-start gap-4">
-                      <h5 className="group-hover:text-purple_blue">{items.title}</h5>
+                      <h5 className="group-hover:text-[#1462FF]">{items.title}</h5>
                       <div className="flex gap-3">
                         {items.tag?.map((tag: any, index: number) => (
                           <p

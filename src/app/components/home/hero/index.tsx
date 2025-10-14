@@ -174,7 +174,7 @@ function HeroSection() {
                       <StarRating count={4} color="#F59E0B" />
                     </div>
                     <p className="text-xs md:text-sm font-normal text-dark_black/60 dark:text-white/60 whitespace-nowrap">
-                      Trusted by nummerous clients
+                      Trusted by numerous clients
                     </p>
                   </div>
                 </div>
