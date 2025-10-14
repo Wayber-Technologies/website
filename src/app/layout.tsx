@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes'
 import Header from './components/layout/header'
 import Footer from './components/layout/footer/Footer'
 import ScrollToTop from './components/scroll-to-top'
+import PreLoader from './components/shared/preloader/PreLoader'
 
 export default function RootLayout({
   children,
@@ -19,6 +20,10 @@ export default function RootLayout({
             attribute='class'
             enableSystem={false}
             defaultTheme='light'>
+            {/* ---------------------PreLoader Starts-----------------  */}
+            <PreLoader />
+            {/* ---------------------PreLoader Ends-------------------  */}
+            
             {/* ---------------------Header Starts-----------------  */}
             <Header />
             {/* ---------------------Header Ends-------------------  */}
