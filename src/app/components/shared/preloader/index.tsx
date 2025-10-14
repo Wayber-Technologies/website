@@ -85,7 +85,7 @@ export default function PreLoader() {
                 delay: 0.4,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="w-[350px] h-[250px] xm:w-32 sm:w-32 xm:h-24 sm:h-24"
+              className="w-[250px] h-[120px] md:w-[250px] md:h-[150px] sm:w-[200px] sm:h-[150px] xm:w-[180px] xm:h-[130px]"
             >
               <motion.svg
                 width="100%"
@@ -130,8 +130,8 @@ export default function PreLoader() {
                 {/* Stroke animation around the logo */}
                 <motion.path
                   d="M898.796 173.928L674.342 300.432V112.251L629.271 87.0405L404.817 213.545V25.3641L359.746 0.15332L0.0791016 203.19V494.015L45.6009 519.676L269.604 393.172V580.902L315.126 606.563L539.129 480.059V667.789L584.651 693L943.417 490.863V199.139L898.796 173.928Z"
-                  stroke="#BFFDFF"
-                  strokeWidth="6"
+                  stroke="#EFD54D"
+                  strokeWidth="10"
                   fill="none"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{
@@ -145,35 +145,35 @@ export default function PreLoader() {
                     repeatType: "loop",
                   }}
                   style={{
-                    strokeDasharray: "10 10",
+                    strokeDasharray: "15 10",
                   }}
                 />
-                
+
                 {/* Moving indicator on the stroke - implemented as a separate circle with motion */}
-                <motion.circle 
+                <motion.circle
                   cx="898.796"
                   cy="173.928"
                   r="12"
-                  fill="#00FFFF"
-                  filter="drop-shadow(0 0 8px rgba(0, 255, 255, 0.8))"
+                  fill="#EFD54D"
+                  filter="drop-shadow(0 0 12px rgba(255, 85, 0, 0.9))"
                   initial={{ opacity: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: 1,
                     cx: [
-                      898.796, 674.342, 629.271, 404.817, 359.746, 0.0791, 45.6009, 
-                      269.604, 315.126, 539.129, 584.651, 943.417, 898.796
+                      898.796, 674.342, 629.271, 404.817, 359.746, 0.0791, 45.6009, 269.604, 315.126, 539.129, 584.651,
+                      943.417, 898.796,
                     ],
                     cy: [
-                      173.928, 300.432, 87.0405, 213.545, 0.15332, 203.19, 519.676,
-                      393.172, 606.563, 480.059, 693, 490.863, 173.928
-                    ]
+                      173.928, 300.432, 87.0405, 213.545, 0.15332, 203.19, 519.676, 393.172, 606.563, 480.059, 693,
+                      490.863, 173.928,
+                    ],
                   }}
-                  transition={{ 
-                    delay: 0.5, 
-                    duration: 4,
+                  transition={{
+                    delay: 1,
+                    duration: 8,
                     ease: "linear",
                     repeat: Infinity,
-                    repeatType: "loop"
+                    repeatType: "loop",
                   }}
                 />
 
