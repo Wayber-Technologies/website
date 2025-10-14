@@ -115,7 +115,7 @@ function HeroSection() {
                 {/* ----------- Get started Link -------------- */}
                 <Link
                   href="/contact"
-                  className="group bg-purple_blue text-white font-medium flex flex-row justify-between items-center py-3 px-6 md:py-3 md:px-5 rounded-full max-w-64 w-full border border-purple_blue transition-all duration-200 ease-in-out hover:bg-transparent hover:text-purple_blue"
+                  className="group bg-[#1462FF] text-white font-medium flex flex-row justify-between items-center py-3 px-6 md:py-3 md:px-5 rounded-full max-w-64 w-full border border-[#1462FF] transition-all duration-200 ease-in-out hover:bg-transparent hover:text-[#1462FF]"
                 >
                   <span className="flex text-start transform transition-transform duration-200 ease-in-out group-hover:translate-x-28">
                     Get Started
@@ -132,7 +132,7 @@ function HeroSection() {
                       width="40"
                       height="40"
                       rx="20"
-                      className="fill-white transition-colors duration-200 ease-in-out group-hover:fill-purple_blue"
+                      className="fill-white transition-colors duration-200 ease-in-out group-hover:fill-[#1462FF]"
                     />
                     <path
                       d="M15.832 15.3334H24.1654V23.6667"
@@ -174,7 +174,7 @@ function HeroSection() {
                       <StarRating count={4} color="#F59E0B" />
                     </div>
                     <p className="text-xs md:text-sm font-normal text-dark_black/60 dark:text-white/60 whitespace-nowrap">
-                      Trusted by 1000+ clients
+                      Trusted by nummerous clients
                     </p>
                   </div>
                 </div>
