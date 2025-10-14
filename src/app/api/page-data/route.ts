@@ -32,29 +32,30 @@ const avatarList: avatar[] = [
 
 const brandList: brand[] = [
   {
-    image: "/images/home/brand/brand-icon-1.svg",
-    darkImg: "/images/home/brand/brand-darkicon-1.svg",
-    title: "Adobe",
+    image: "/images/home/brand/brand5.png",
+    darkImg: "/images/home/brand/brand5.png",
+    title: "COOMMERCIO",
+  },
+
+  {
+    image: "/images/home/brand/brand2.png",
+    darkImg: "/images/home/brand/brand2.png",
+    title: "MALLAM-X",
   },
   {
-    image: "/images/home/brand/brand-icon-2.svg",
-    darkImg: "/images/home/brand/brand-darkicon-2.svg",
-    title: "Figma",
+    image: "/images/home/brand/brand3.png",
+    darkImg: "/images/home/brand/brand3.png",
+    title: "RFTF",
   },
   {
-    image: "/images/home/brand/brand-icon-3.svg",
-    darkImg: "/images/home/brand/brand-darkicon-3.svg",
-    title: "Shopify",
+    image: "/images/home/brand/brand4.png",
+    darkImg: "/images/home/brand/brand4.png",
+    title: "BURNOUT",
   },
   {
-    image: "/images/home/brand/brand-icon-4.svg",
-    darkImg: "/images/home/brand/brand-darkicon-4.svg",
-    title: "Dribble",
-  },
-  {
-    image: "/images/home/brand/brand-icon-5.svg",
-    darkImg: "/images/home/brand/brand-darkicon-5.svg",
-    title: "Webflow",
+    image: "/images/home/brand/brand1.png",
+    darkImg: "/images/home/brand/brand1.png",
+    title: "SISE",
   },
 ];
 
@@ -100,27 +101,27 @@ const onlinePresenceList: onlinePresence[] = [
   },
   {
     image: "/images/home/onlinePresence/project2.png",
-    title: "Academy.co",
+    title: "Mallam X",
     tag: ["E-Wallet", "Currency Exchange"],
-    link: "https://www.sise.com/",
+    link: "https://www.mallamx.com/",
   },
   {
     image: "/images/home/onlinePresence/project3.png",
-    title: "Genome",
+    title: "RFTF",
     tag: ["Fitness Tracking", "Event Management"],
-    link: "https://www.sise.com/",
+    link: "https://www.rftf.com/",
   },
   {
     image: "/images/home/onlinePresence/project4.png",
-    title: "Hotto",
+    title: "Burnout",
     tag: ["Team Management", "Web & Mobile Design"],
-    link: "https://www.sise.com/",
+    link: "https://www.burnout.com/",
   },
   {
     image: "/images/home/onlinePresence/project5.png",
-    title: "Hotto",
+    title: "Commercio",
     tag: ["Investment Platform", "Mobile Banking"],
-    link: "https://www.sise.com/",
+    link: "https://www.commercio.com/",
   },
 ];
 
