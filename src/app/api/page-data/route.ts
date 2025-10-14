@@ -93,28 +93,34 @@ const innovationList: innovation[] = [
 
 const onlinePresenceList: onlinePresence[] = [
   {
-    image: "/images/home/onlinePresence/online_img_1.jpg",
-    title: "FlowBank",
-    tag: ["UX Research", "Interface Design"],
-    link: "https://www.wrappixel.com/",
+    image: "/images/home/onlinePresence/project1.png",
+    title: "Sise",
+    tag: ["Workflow Management", "Interface Design"],
+    link: "https://www.sise.com/",
   },
   {
-    image: "/images/home/onlinePresence/online_img_2.jpg",
+    image: "/images/home/onlinePresence/project2.png",
     title: "Academy.co",
-    tag: ["Product Design", "Interaction Design"],
-    link: "https://www.wrappixel.com/",
+    tag: ["E-Wallet", "Currency Exchange"],
+    link: "https://www.sise.com/",
   },
   {
-    image: "/images/home/onlinePresence/online_img_3.jpg",
+    image: "/images/home/onlinePresence/project3.png",
     title: "Genome",
-    tag: ["Brand identity design", "UX Research"],
-    link: "https://www.wrappixel.com/",
+    tag: ["Fitness Tracking", "Event Management"],
+    link: "https://www.sise.com/",
   },
   {
-    image: "/images/home/onlinePresence/online_img_4.jpg",
+    image: "/images/home/onlinePresence/project4.png",
     title: "Hotto",
-    tag: ["Visual Storytelling", "Web & Mobile Design"],
-    link: "https://www.wrappixel.com/",
+    tag: ["Team Management", "Web & Mobile Design"],
+    link: "https://www.sise.com/",
+  },
+  {
+    image: "/images/home/onlinePresence/project5.png",
+    title: "Hotto",
+    tag: ["Investment Platform", "Mobile Banking"],
+    link: "https://www.sise.com/",
   },
 ];
 

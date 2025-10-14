@@ -34,23 +34,17 @@ const footerData = {
       { name: "About us", url: "/#aboutus" },
       { name: "Work", url: "/#work" },
       { name: "Services", url: "/#services" },
-      { name: "Pricing", url: "/#pricing" },
     ],
   },
   otherPages: {
     name: "Other Pages",
-    links: [
-      { name: "Error 404", url: "/not-found" },
-      { name: "Terms & Conditions", url: "/terms-and-conditions" },
-      { name: "Privacy Policy", url: "/privacy-policy" },
-      { name: "Documentation", url: "/documentation" },
-    ],
+    links: [{ name: "Error 404", url: "/not-found" }],
   },
   contactDetails: {
     name: "Contact Details",
-    address: "81 Rivington Street London EC2A 3AY",
-    email: "hello@wayber.agency",
-    phone: "0105 192 3556",
+    address: "39b Ondo street, Lagos NG.",
+    email: "office@waybertechnologies.com",
+    phone: "+234 806 111 2232",
   },
   copyright: "©2025 Wayber. All Rights Reserved",
 };
