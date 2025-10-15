@@ -16,22 +16,22 @@ function CustomerStories() {
               <div className="flex flex-col xl:flex xl:flex-row gap-6">
                 <div className="p-8 gap-64 rounded-2xl flex flex-col relative bg-[url('/images/home/customerStories/main1.png')] object-cover bg-center h-full w-full bg-cover bg-no-repeat">
                   {/* Dark overlay for better text visibility */}
-                  <div className="absolute inset-0 bg-black/40 rounded-2xl" />
+                  <div className="absolute inset-0 bg-black/60 rounded-2xl" />
 
                   {/* Content with relative positioning to appear above overlay */}
                   <div className="relative z-10 flex flex-col gap-64">
                     <span className="text-white/60 uppercase text-sm font-medium">Customer stories</span>
                     <div className="flex flex-col gap-6">
-                      <h4 className="text-white">"Wayber's expertise transformed my vision into success!"</h4>
+                      <h4 className="text-white">"Wayber's insight elevated my business to new heights!"</h4>
                       <div className="flex flex-col gap-1">
-                        <p className="text-white font-medium">Kabir Shah</p>
-                        <p className="text-white/60 text-sm font-medium">Founder of Chipsland</p>
+                        <p className="text-white font-medium">Shola Fayiga</p>
+                        <p className="text-white/60 text-sm font-medium">Founder of Techhaven</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-between gap-36 xl:max-w-25 bg-pale-yellow rounded-2xl p-8">
+                <div className="flex flex-col justify-between gap-36 xl:max-w-25 bg-gradient-to-br from-amber-50 to-yellow-100 rounded-2xl p-8">
                   <div>
                     <span className="uppercase text-sm font-medium text-dark_black/60">Facts & numbers</span>
                   </div>
@@ -46,7 +46,7 @@ function CustomerStories() {
                   <div className="flex flex-col gap-6">
                     <span className="text-white/60 uppercase text-sm font-medium">Customer stories</span>
                     <h4 className="text-white">
-                      Their creativity and attention to detail transformed our brand completely!
+                      Their innovative approach and dedication reshaped our brand identity!
                     </h4>
                     <div>
                       <Image
@@ -71,8 +71,8 @@ function CustomerStories() {
                     </h2>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <p className="font-medium">Kabir Shah</p>
-                    <p className="text-dark_black/60 dark:text-white/60 text-sm font-medium">Founder of Chipsland</p>
+                    <p className="font-medium">Shola Fayiga</p>
+                    <p className="text-dark_black/60 dark:text-white/60 text-sm font-medium">Founder of Techhaven</p>
                   </div>
                 </div>
               </div>

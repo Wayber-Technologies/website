@@ -41,7 +41,7 @@ function Faq() {
                     className="p-6 border border-dark_black/10 dark:border-white/50 group"
                   >
                     <AccordionTrigger className="group-hover:cursor-pointer">
-                      <h4 className="text-dark_black dark:text-white/80">{item.faq_que}</h4>
+                      <h5 className="text-dark_black dark:text-white/80">{item.faq_que}</h5>
                     </AccordionTrigger>
                     <AccordionContent>
                       <p className="text-base font-normal text-dark_black/60 dark:text-white/60">{item.faq_ans}</p>
