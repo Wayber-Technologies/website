@@ -29,7 +29,7 @@ function OnlinePresence() {
           <div className="flex flex-col justify-center items-center gap-10 md:gap-20">
             <div className="max-w-2xl text-center">
               <h2>
-                How we transformed a small business’s
+                <span className="font-['Figtree'] dark:text-white/70"> How we transformed a small business’s </span>
                 <span className="instrument-font italic font-normal dark:text-white/70"> online presence</span>
               </h2>
             </div>

@@ -158,7 +158,7 @@ const creativeMindList: creativeMind[] = [
 
 const WebResultTagList: WebResultTag[] = [
   {
-    image: "/images/home/result/creativity.svg",
+    image: "/images/home/result/think.svg",
     name: "Creativity",
     bg_color: "bg-purple/20",
     txt_color: "text-purple",

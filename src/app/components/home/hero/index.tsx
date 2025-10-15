@@ -28,11 +28,11 @@ function HeroSection() {
     fetchData();
   }, []);
 
-  // Animate text change every 3 seconds
+  // Animate text change with modern typewriter effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prevIndex) => (prevIndex + 1) % animatedTexts.length);
-    }, 3000);
+    }, 4000); // Longer interval to accommodate the animation
 
     return () => clearInterval(interval);
   }, [animatedTexts.length]);
@@ -52,23 +52,20 @@ function HeroSection() {
             <motion.div {...bottomAnimation} className="relative flex flex-col text-center items-center gap-4">
               {/* Mobile Layout - Different structure */}
               <h1 className="w-full text-[3rem] leading-[1.1] font-[550] md:hidden">
-                <span className="block">Building bold</span>
-                <span className="block">brands with</span>
+                <span className="block font-['Figtree'] tracking-[-2px] lg:tracking-[-2px]">Building bold</span>
+                <span className="block font-['Figtree'] tracking-[-2px] lg:tracking-[-2px]">brands with</span>
                 <span className="instrument-font italic font-normal text-gray-600 dark:text-white/70 relative inline-block min-w-[280px] h-[1.2em] overflow-hidden align-middle">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentTextIndex}
-                      initial={{ y: "100%", opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: "-100%", opacity: 0 }}
+                      initial={{ opacity: 0, width: "0%" }}
+                      animate={{ opacity: 1, width: "100%" }}
+                      exit={{ opacity: 0, width: "0%" }}
                       transition={{
-                        duration: 0.6,
-                        ease: "easeInOut",
-                        type: "spring",
-                        stiffness: 100,
-                        damping: 15,
+                        opacity: { duration: 0.1, ease: "easeIn" },
+                        width: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                       }}
-                      className="absolute inset-0 flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center whitespace-nowrap overflow-hidden"
                     >
                       {animatedTexts[currentTextIndex]}
                     </motion.span>
@@ -78,24 +75,23 @@ function HeroSection() {
 
               {/* Desktop Layout - Original structure */}
               <h1 className="hidden md:block w-full text-6xl lg:text-8xl xl:text-9xl 2xl:text-9xl leading-tight lg:leading-tight">
-                <span className="font-[550] tracking-[-4px] lg:tracking-[-4px] block">Building bold brands</span>
-                <span className="font-[550] tracking-[-4px] lg:tracking-[-4px] flex flex-wrap items-center justify-center gap-3 lg:gap-4">
-                  <span>with</span>
-                  <span className="instrument-font italic font-normal text-gray-600 dark:text-white/70 relative inline-block min-w-[300px] lg:min-w-[400px] xl:min-w-[650px] h-[1.2em] overflow-hidden">
+                <span className="font-[550] tracking-[-8px] lg:tracking-[-8px] block font-['Figtree']">
+                  Building bold brands
+                </span>
+                <span className="font-[550] tracking-[-8px] lg:tracking-[-8px] flex flex-wrap items-center justify-center gap-3 lg:gap-4">
+                  <span className="font-['Figtree']">with</span>
+                  <span className="instrument-font italic font-normal text-gray-600 dark:text-white/70 relative inline-block min-w-[300px] lg:min-w-[400px] xl:min-w-[600px] h-[1.2em] overflow-hidden">
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={currentTextIndex}
-                        initial={{ y: "100%", opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: "-100%", opacity: 0 }}
+                        initial={{ opacity: 0, width: "0%" }}
+                        animate={{ opacity: 1, width: "100%" }}
+                        exit={{ opacity: 0, width: "0%" }}
                         transition={{
-                          duration: 0.6,
-                          ease: "easeInOut",
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 15,
+                          opacity: { duration: 0.1, ease: "easeIn" },
+                          width: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
                         }}
-                        className="absolute inset-0 flex items-center justify-center"
+                        className="absolute inset-0 flex items-center justify-center whitespace-nowrap overflow-hidden"
                       >
                         {animatedTexts[currentTextIndex]}
                       </motion.span>
