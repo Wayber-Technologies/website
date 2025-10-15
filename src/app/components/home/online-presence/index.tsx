@@ -44,7 +44,7 @@ function OnlinePresence() {
                         width={625}
                         height={410}
                         className={`rounded-2xl w-full h-[410px] object-cover ${
-                          index === 4 ? "brightness-75 contrast-110" : ""
+                          index === 0 || index === 3 ? "brightness-75 contrast-110" : ""
                         }`}
                         unoptimized={true}
                       />

@@ -61,14 +61,14 @@ const brandList: brand[] = [
 
 const innovationList: innovation[] = [
   {
-    image: "/images/home/innovation/brand.svg",
-    title: "Brand\nStrategy",
+    image: "/images/home/innovation/development.svg",
+    title: "Software\nDevelopment",
     bg_color: "bg-purple/20",
     txt_color: "text-purple",
   },
   {
-    image: "/images/home/innovation/digitalmarketing.svg",
-    title: "Digital\nMarketing",
+    image: "/images/home/innovation/consultancy.svg",
+    title: "Software\nConsultancy",
     bg_color: "bg-blue/20",
     txt_color: "text-blue",
   },
@@ -80,19 +80,25 @@ const innovationList: innovation[] = [
   },
   {
     image: "/images/home/innovation/analitics.svg",
-    title: "Analytics &\nReporting",
+    title: "Software &\nAuditing",
     bg_color: "bg-green/20",
     txt_color: "text-green",
   },
   {
-    image: "/images/home/innovation/webdevp.svg",
-    title: "Web\nDevelopment",
+    image: "/images/home/innovation/reporting.svg",
+    title: "Analytics\nReporting",
     bg_color: "bg-pink/20",
     txt_color: "text-pink",
   },
 ];
 
 const onlinePresenceList: onlinePresence[] = [
+  {
+    image: "/images/home/onlinePresence/project5.png",
+    title: "Commercio",
+    tag: ["Investment Platform", "Mobile Banking"],
+    link: "https://www.commercio.com/",
+  },
   {
     image: "/images/home/onlinePresence/project1.png",
     title: "Sise",
@@ -106,6 +112,12 @@ const onlinePresenceList: onlinePresence[] = [
     link: "https://www.mallamx.com/",
   },
   {
+    image: "/images/home/onlinePresence/project7.png",
+    title: "We Sleep",
+    tag: ["NFT", "Cryptocurrency"],
+    link: "https://www.wesleep.io/",
+  },
+  {
     image: "/images/home/onlinePresence/project3.png",
     title: "RFTF",
     tag: ["Fitness Tracking", "Event Management"],
@@ -116,12 +128,6 @@ const onlinePresenceList: onlinePresence[] = [
     title: "Burnout",
     tag: ["Team Management", "Web & Mobile Design"],
     link: "https://www.burnout.com/",
-  },
-  {
-    image: "/images/home/onlinePresence/project5.png",
-    title: "Commercio",
-    tag: ["Investment Platform", "Mobile Banking"],
-    link: "https://www.commercio.com/",
   },
 ];
 
