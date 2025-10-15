@@ -164,8 +164,8 @@ function ContactForm() {
                       onChange={handleChange}
                     >
                       <option value="">Select your budget</option>
-                      <option value="$10000">$10,000</option>
-                      <option value="$50500">$50,500</option>
+                      <option value="$10000">Small Scale</option>
+                      <option value="$50500">Large Scale</option>
                     </select>
                   </div>
                 </div>
