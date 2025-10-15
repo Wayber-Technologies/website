@@ -1,5 +1,6 @@
 "use client";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -55,14 +56,18 @@ function OnlinePresence() {
                         target="blank"
                         className="absolute top-0 left-0 bg-black/50 w-full h-full rounded-2xl hidden group-hover:flex"
                       >
-                        <span className="flex justify-end p-5 w-full">
+                        <motion.span
+                          className="flex justify-end p-5 w-full"
+                          whileHover={{ scale: 0.5, rotate: 10 }}
+                          transition={{ type: "spring", stiffness: 100, damping: 5 }}
+                        >
                           <Icon
                             icon="icon-park-solid:circle-right-up"
                             width="50"
                             height="50"
                             style={{ color: "#fbfbfb" }}
                           />
-                        </span>
+                        </motion.span>
                       </Link>
                     </div>
 
