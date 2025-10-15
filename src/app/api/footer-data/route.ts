@@ -8,17 +8,17 @@ const footerData = {
       {
         icon: "/images/home/footerSocialIcon/twitter.svg",
         dark_icon: "/images/home/footerSocialIcon/twitter_dark.svg",
-        link: "https://twitter.com",
+        link: "https://twitter.com/wayber_tech",
       },
       {
         icon: "/images/home/footerSocialIcon/linkedin.svg",
         dark_icon: "/images/home/footerSocialIcon/linkedin_dark.svg",
-        link: "https://linkedin.com/in",
+        link: "https://linkedin.com/in/wayber-technologies-033394244",
       },
       {
         icon: "/images/home/footerSocialIcon/instagram.svg",
         dark_icon: "/images/home/footerSocialIcon/instagram_dark.svg",
-        link: "https://instagram.com",
+        link: "https://instagram.com/wayber_tech",
       },
     ],
   },

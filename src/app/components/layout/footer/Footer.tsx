@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "../header/Logo";
 
 // Define interfaces for footer data
 interface SocialLink {
@@ -32,61 +33,6 @@ interface FooterData {
   copyright?: string;
 }
 
-// Mock Logo component for demo
-const Logo: React.FC<{ size?: "small" | "large" }> = ({ size = "small" }) => {
-  const dimensions = size === "large" ? { w: 1200, h: 300 } : { w: 177, h: 54 };
-
-  return (
-    <Link href="/" className={size === "small" ? "inline-block" : "block"}>
-      {size === "large" ? (
-        <>
-          <Image
-            src="/images/logo/logo.svg"
-            alt="logo"
-            width={dimensions.w}
-            height={dimensions.h}
-            style={{ width: "100%", height: "auto" }}
-            quality={100}
-            priority={true}
-            className="dark:hidden"
-          />
-          <Image
-            src="/images/logo/DarkModeLogo.svg"
-            alt="logo"
-            width={dimensions.w}
-            height={dimensions.h}
-            style={{ width: "100%", height: "auto" }}
-            quality={100}
-            className="dark:block hidden"
-          />
-        </>
-      ) : (
-        <>
-          <Image
-            src="/images/logo/DarkModeLogoSmall.svg"
-            alt="logo"
-            width={70}
-            height={73}
-            style={{ width: "auto", height: "auto", maxWidth: "70px" }}
-            quality={100}
-            className="dark:hidden"
-          />
-          <Image
-            src="/images/logo/logoSmall.svg"
-            alt="logo"
-            width={70}
-            height={73}
-            style={{ width: "auto", height: "auto", maxWidth: "70px" }}
-            quality={100}
-            priority={true}
-            className="dark:block hidden"
-          />
-        </>
-      )}
-    </Link>
-  );
-};
-
 const Footer = () => {
   const [footerData, setfooterData] = useState<FooterData | null>(null);
 
@@ -110,12 +56,12 @@ const Footer = () => {
       {/* Top Footer Section */}
       <div>
         <div className="container py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="flex flex-col md:flex-row justify-between gap-12 lg:gap-16">
             {/* Left Section - Brand */}
             <div className="flex flex-col gap-6 max-w-md">
               <div className="flex flex-col items-start gap-4">
                 <div className="flex-shrink-0">
-                  <Logo size="small" />
+                  <Logo />
                 </div>
                 <p className="text-dark_black/60 dark:text-white/60 leading-relaxed text-sm pt-2">
                   {footerData?.brand?.tagline}
@@ -146,9 +92,9 @@ const Footer = () => {
             </div>
 
             {/* Right Section - Sitemap and Contact */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+            <div className="flex flex-col sm:flex-row gap-8 justify-end">
               {/* Sitemap Section */}
-              <div className="flex flex-col gap-4">
+              {/* <div className="flex flex-col gap-4">
                 <h3 className="font-semibold text-dark_black dark:text-white text-sm">{footerData?.sitemap?.name}</h3>
                 <ul className="flex flex-col gap-3">
                   {footerData?.sitemap?.links?.map((item: SitemapLink, index: number) => {
@@ -164,7 +110,7 @@ const Footer = () => {
                     );
                   })}
                 </ul>
-              </div>
+              </div> */}
 
               {/* Contact Details Section */}
               <div className="col-span-2 sm:col-span-1 flex flex-col gap-4">
@@ -180,7 +126,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-dark_black/50 dark:text-white/50 text-xs font-medium mb-2">Contact</p>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-row gap-2">
                       <Link
                         href={`mailto:${footerData?.contactDetails?.email}`}
                         className="text-dark_black dark:text-white hover:text-dark_black/70 dark:hover:text-white/70 transition-colors duration-300 text-sm"
