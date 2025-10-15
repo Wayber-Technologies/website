@@ -58,12 +58,11 @@ function HeroSection() {
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentTextIndex}
-                      initial={{ opacity: 0, width: "0%" }}
-                      animate={{ opacity: 1, width: "100%" }}
-                      exit={{ opacity: 0, width: "0%" }}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      exit={{ width: "0%" }}
                       transition={{
-                        opacity: { duration: 0.1, ease: "easeIn" },
-                        width: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                        width: { duration: 0.8, ease: "linear" },
                       }}
                       className="absolute inset-0 flex items-center justify-center whitespace-nowrap overflow-hidden"
                     >
@@ -84,12 +83,11 @@ function HeroSection() {
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={currentTextIndex}
-                        initial={{ opacity: 0, width: "0%" }}
-                        animate={{ opacity: 1, width: "100%" }}
-                        exit={{ opacity: 0, width: "0%" }}
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        exit={{ width: "0%" }}
                         transition={{
-                          opacity: { duration: 0.1, ease: "easeIn" },
-                          width: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                          width: { duration: 0.8, ease: "linear" },
                         }}
                         className="absolute inset-0 flex items-center justify-center whitespace-nowrap overflow-hidden"
                       >
@@ -100,7 +98,7 @@ function HeroSection() {
                 </span>
               </h1>
 
-              <p className="max-w-2xl text-sm md:text-lg lg:text-xl xl:text-2xl text-dark_black/60 dark:text-white/60 leading-relaxed px-1 md:px-0">
+              <p className="max-w-3xl  text-sm md:text-lg font-light text-dark_black/60 dark:text-white/60 leading-relaxed px-1 md:px-0">
                 At Wayber, we help small startups tackle the world&apos;s biggest challenges with tailored solutions,
                 guiding you from strategy to success in a competitive market.
               </p>
