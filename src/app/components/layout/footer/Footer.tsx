@@ -203,11 +203,11 @@ const Footer = () => {
       </div>
 
       {/* Large Logo Section */}
-      <div className="w-full py-8 lg:py-12">
+      {/* <div className="w-full py-8 lg:py-12">
         <div className="px-4 sm:px-6 lg:px-8">
           <Logo size="large" />
         </div>
-      </div>
+      </div> */}
 
       {/* Bottom Footer Section */}
       <div className="container border-t border-dark_black/10 dark:border-white/10">
