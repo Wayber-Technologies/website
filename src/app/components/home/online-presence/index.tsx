@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 function OnlinePresence() {
   const [onlinePresenceList, setonlinePresenceList] = useState<any>(null);
@@ -55,14 +56,14 @@ function OnlinePresence() {
                         target="blank"
                         className="absolute top-0 left-0 bg-black/50 w-full h-full rounded-2xl hidden group-hover:flex"
                       >
-                        <span className="flex justify-end p-5 w-full">
+                        <motion.span whileHover={{ scale: 1, rotate: 1 }} className="flex justify-end p-5 w-full">
                           <Icon
                             icon="icon-park-solid:circle-right-up"
                             width="50"
                             height="50"
                             style={{ color: "#fbfbfb" }}
                           />
-                        </span>
+                        </motion.span>
                       </Link>
                     </div>
 

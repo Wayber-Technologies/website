@@ -88,7 +88,7 @@ const Header = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed top-0 left-0 w-full h-full bg-black/50 z-40"
+              className="fixed top-0 left-0 w-full h-full bg-black/50 z-40 lg:hidden"
               onClick={() => setSidebarOpen(false)}
             />
           )}
@@ -96,14 +96,14 @@ const Header = () => {
         <AnimatePresence mode="wait">
           {sidebarOpen && (
             <motion.div
-              initial={{ x: "100%" }}
+              initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
-              exit={{ x: "100%" }}
+              exit={{ x: "-100%" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="lg:hidden fixed top-0 right-0 h-full w-full max-w-xs bg-white dark:bg-dark_black shadow-lg z-50"
+              className="lg:hidden fixed top-0 left-0 h-full w-full max-w-xs bg-white dark:bg-dark_black shadow-lg z-50"
             >
               <div className="flex items-center justify-between p-4">
-                <h2 className="text-lg font-bold">Menu</h2>
+                <Logo />
                 <button onClick={() => setSidebarOpen(false)} aria-label="Close mobile menu">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <path
@@ -118,9 +118,17 @@ const Header = () => {
                 </button>
               </div>
               <div className="p-4">
-                <ul className="flex flex-col">
+                <ul className="flex flex-col gap-4">
                   {headerData.map((item, index) => (
-                    <MobileHeader key={index} item={item} />
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className="text-2xl font-bold text-dark_black dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-300"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </div>

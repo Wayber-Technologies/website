@@ -52,7 +52,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-white dark:bg-dark_black">
+    <footer className="relative w-full before:absolute before:w-full before:h-[60%] before:bg-gradient-to-t before:from-yellow_gradient before:to-transparent before:bottom-0 before:blur-3xl before:-z-10 dark:before:from-dark_blue_gradient dark:before:to-transparent dark:before:bottom-0 dark:before:blur-3xl dark:before:-z-10">
       {/* Top Footer Section */}
       <div>
         <div className="container py-16 lg:py-20">
