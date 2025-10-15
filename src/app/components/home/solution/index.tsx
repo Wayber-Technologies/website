@@ -24,7 +24,7 @@ function Solutions() {
             <motion.div {...bottomAnimation} className="flex flex-col gap-6 items-center md:max-w-3xl mx-auto">
               <div className="flex flex-col gap-3 items-center text-center">
                 <h2 className="text-3xl md:text-5xl font-bold dark:text-dark_black">
-                  <span className="font-['Figtree'] dark:text-white/70">Innovative Solutions for </span>
+                  <span className="font-['Figtree'] dark:text-black/70">Innovative Solutions for </span>
                   <span className="instrument-font italic font-normal dark:text-black/70">Bold Brands</span>
                 </h2>
                 <p className="dark:text-dark_black">
