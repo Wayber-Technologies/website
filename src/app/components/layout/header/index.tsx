@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { signOut, useSession } from "next-auth/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Image from "next/image";
@@ -41,12 +42,11 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 z-50 w-full`}>
+      <header className={`fixed top-0 z-50 w-full bg-white dark:bg-dark_black`}>
         <div className="container p-3">
           <nav
-            className={`flex items-center py-3 px-4 justify-between ${
-              sticky ? " rounded-full shadow-sm bg-white dark:bg-dark_black" : null
-            } `}
+            className={`flex items-center py-3 px-4 justify-between ${sticky && null}
+              `}
           >
             <div className="flex items-center">
               <Logo />
@@ -81,37 +81,52 @@ const Header = () => {
         </div>
 
         {/* ------------------------- Mobile sidebar starts ------------------------- */}
-        {sidebarOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-40" onClick={() => setSidebarOpen(false)} />
-        )}
-        <div
-          className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white dark:bg-dark_black shadow-lg transform transition-transform duration-300 max-w-xs ${
-            sidebarOpen ? "translate-x-0" : "translate-x-full"
-          } z-50`}
-        >
-          <div className="flex items-center justify-between p-4">
-            <h2 className="text-lg font-bold">Menu</h2>
-            <button onClick={() => setSidebarOpen(false)} aria-label="Close mobile menu">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="p-4">
-            <ul className="flex flex-col">
-              {headerData.map((item, index) => (
-                <MobileHeader key={index} item={item} />
-              ))}
-            </ul>
-          </div>
-        </div>
+        <AnimatePresence mode="wait">
+          {sidebarOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-0 left-0 w-full h-full bg-black/50 z-40"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          {sidebarOpen && (
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="lg:hidden fixed top-0 right-0 h-full w-full max-w-xs bg-white dark:bg-dark_black shadow-lg z-50"
+            >
+              <div className="flex items-center justify-between p-4">
+                <h2 className="text-lg font-bold">Menu</h2>
+                <button onClick={() => setSidebarOpen(false)} aria-label="Close mobile menu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-4">
+                <ul className="flex flex-col">
+                  {headerData.map((item, index) => (
+                    <MobileHeader key={index} item={item} />
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </>
   );
