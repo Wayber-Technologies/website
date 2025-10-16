@@ -75,7 +75,7 @@ export default function ServicesSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
+                key={index}
                 className={`${service.bgColor} ${service.borderColor} border-0 rounded-2xl p-6 text-center transition-all duration-300 cursor-pointer`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
