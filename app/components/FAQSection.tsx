@@ -54,8 +54,8 @@ export default function FAQSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-aloevera">
-              Got questions? We've got <span className="italic">answers</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              Got questions? <br /> We've got <span className="italic">answers</span>
             </h2>
           </motion.div>
 

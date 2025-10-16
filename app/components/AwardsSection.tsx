@@ -47,7 +47,7 @@ export default function AwardsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-aloevera">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Accolades and achievements celebration our <span className="italic">design excellence</span>
             </h2>
           </motion.div>

@@ -105,23 +105,20 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 0.95;
 }
 
-/* Body and paragraph text should use Figtree */
-body, p {
+/* All text elements should use Figtree by default */
+body, p, h1, h2, h3, h4, h5, h6, .font-bold, .font-semibold, .font-medium, b, strong {
   font-family: 'Figtree', system-ui, sans-serif !important;
   line-height: 1.6;
+}
+
+/* Paragraph and body text */
+body, p {
   font-weight: 400;
 }
 
-/* Bold text should use Aloevera */
-.font-bold, .font-semibold, .font-medium, b, strong {
-  font-family: 'Figtree', system-ui, sans-serif !important;
-  font-weight: 600 !important;
-}
-
-/* Headings should use Aloevera */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Figtree', system-ui, sans-serif !important;
-  font-weight: 600 !important;
+/* Headings and bold text */
+h1, h2, h3, h4, h5, h6, .font-bold, .font-semibold, .font-medium, b, strong {
+  font-weight: 600;
 }
 
 /* Debug font loading */

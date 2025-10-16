@@ -6,6 +6,7 @@ import TrustedBySection from './components/TrustedBySection';
 import MetricsSection from './components/MetricsSection';
 import ServicesSection from './components/ServicesSection';
 import WorkSection from './components/WorkSection';
+import TeamSection from './components/TeamSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
@@ -37,7 +38,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h1 className="w-full text-5xl md:text-9xl lg:text-9xl xl:text-9xl text-gray-900">
-                  <span className="font-sans font-medium tracking-[-6px]">Building bold brands <br /> with</span> <span className="italic font-normal text-gray-600 tracking-[-6px]">
+                  <span className="font-medium tracking-[-6px]" style={{ lineHeight: "1.5rem" }}>Building bold brands <br /> with</span> <span className="italic font-normal text-gray-600 tracking-[-6px]">
                     <TypewriterText 
                       texts={[
                         "thoughtful design",
@@ -64,7 +65,7 @@ export default function Home() {
               >
                 <div className="flex flex-col items-center justify-center space-y-12 w-full lg:flex-row lg:items-center lg:justify-center lg:space-y-0 lg:space-x-16">
                   <motion.a
-                    className="group gap-2 text-white font-medium bg-blue-600 rounded-full flex items-center lg:gap-4 py-3 pl-6 pr-3 border border-blue-600 hover:bg-transparent hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="group gap-2 text-white font-medium bg-blue-600 rounded-xl flex items-center lg:gap-4 py-3 pl-6 pr-3 border border-blue-600 hover:bg-transparent hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl"
                     href="#contact"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
@@ -108,6 +109,9 @@ export default function Home() {
 
         {/* Work Section */}
         <WorkSection />
+
+        {/* Team Section */}
+        <TeamSection />
 
         {/* Testimonials Section */}
         <TestimonialsSection />

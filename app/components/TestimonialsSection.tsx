@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-20 bg-transparent">
+    <section className="py-20 bg-transparent hidden">
       <div className="container">
         <motion.div 
           className="flex flex-col justify-center gap-16"
@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 font-aloevera">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
               What our satisfied customers are saying <span className="italic">about us</span>
             </h2>
           </motion.div>

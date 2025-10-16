@@ -5,36 +5,46 @@ import { motion } from 'framer-motion';
 export default function WorkSection() {
   const projects = [
     {
-      title: "FlowBank",
-      description: "Mobile banking application with intuitive payment interface",
-      image: "/api/placeholder/600/400",
-      tags: ["UX Research", "Interface Design"],
-      mockup: "mobile",
-      color: "from-green-900 to-green-800"
+      title: "CPCompass",
+      description: "Investment platform with mobile banking capabilities",
+      image: "/images/home/onlinePresence/cpcompass.png",
+      tags: ["Investment Platform", "Mobile Banking"],
+      link: "https://www.app.cpcompass.ng/"
     },
     {
-      title: "Academy.co",
-      description: "Online learning platform with comprehensive course management",
-      image: "/api/placeholder/600/400",
-      tags: ["Product Design", "Interaction Design"],
-      mockup: "desktop",
-      color: "from-purple-100 to-purple-50"
+      title: "Sise",
+      description: "Workflow management system with intuitive interface design",
+      image: "/images/home/onlinePresence/project1.png",
+      tags: ["Workflow Management", "Interface Design"],
+      link: "https://www.sise.com/"
     },
     {
-      title: "Genome",
-      description: "Scientific research platform with advanced data visualization",
-      image: "/api/placeholder/600/400",
-      tags: ["Brand Design", "Data Visualization"],
-      mockup: "image",
-      color: "from-gray-900 to-gray-800"
+      title: "Mallam X",
+      description: "E-wallet platform with currency exchange functionality",
+      image: "/images/home/onlinePresence/project2.png",
+      tags: ["E-Wallet", "Currency Exchange"],
+      link: "https://www.mallamx.com/"
     },
     {
-      title: "Hotto",
-      description: "E-commerce platform for health and wellness products",
-      image: "/api/placeholder/600/400",
-      tags: ["E-commerce Design", "Brand Strategy"],
-      mockup: "laptop",
-      color: "from-blue-100 to-blue-50"
+      title: "We Sleep",
+      description: "NFT and cryptocurrency platform for digital assets",
+      image: "/images/home/onlinePresence/project7.png",
+      tags: ["NFT", "Cryptocurrency"],
+      link: "https://www.wesleep.io/"
+    },
+    {
+      title: "RFTF",
+      description: "Fitness tracking app with event management features",
+      image: "/images/home/onlinePresence/project3.png",
+      tags: ["Fitness Tracking", "Event Management"],
+      link: "https://www.rftf.com/"
+    },
+    {
+      title: "Burnout",
+      description: "Team management platform with web and mobile design",
+      image: "/images/home/onlinePresence/project4.png",
+      tags: ["Team Management", "Web & Mobile Design"],
+      link: "https://www.burnout.com/"
     }
   ];
 
@@ -56,7 +66,7 @@ export default function WorkSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 font-aloevera">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
               How we transformed a small business's <span className="italic">online presence</span>
             </h2>
           </motion.div>
@@ -68,7 +78,7 @@ export default function WorkSection() {
                 className="group"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 <div className="relative mb-4">
@@ -77,13 +87,15 @@ export default function WorkSection() {
                     loading="lazy"
                     width="625"
                     height="410"
-                    className="rounded-2xl w-full h-auto object-cover"
-                    src="https://placehold.co/600x400"
+                    className={`rounded-2xl w-full h-[410px] object-cover ${
+                      index === 0 || index === 3 ? "brightness-75 contrast-110" : ""
+                    }`}
+                    src={project.image}
                   />
                   <a 
                     target="blank" 
                     className="absolute top-0 left-0 bg-black/50 w-full h-full rounded-2xl hidden group-hover:flex" 
-                    href="#"
+                    href={project.link}
                   >
                     <span className="flex justify-end p-5 w-full">
                       <svg 
@@ -99,14 +111,17 @@ export default function WorkSection() {
                 </div>
                 
                 <div className="flex flex-col items-start gap-4">
-                  <h5 className="group-hover:text-blue-600 text-xl font-bold text-gray-800 font-instrumentSerif">
+                  <h5 className="group-hover:text-blue-600 text-xl font-bold text-gray-800">
                     {project.title}
                   </h5>
-                  <div className="flex gap-3">
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIndex) => (
                       <p 
                         key={tagIndex}
-                        className="text-sm border border-gray-300 w-fit py-1.5 px-4 rounded-full hover:bg-gray-800 hover:text-white transition-colors duration-200"
+                        className="text-xs sm:text-sm border border-gray-300 w-fit py-1 sm:py-1.5 px-3 sm:px-4 rounded-full hover:bg-gray-800 hover:text-white transition-colors duration-200"
                       >
                         {tag}
                       </p>

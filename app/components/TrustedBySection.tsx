@@ -4,14 +4,11 @@ import { motion } from 'framer-motion';
 
 export default function TrustedBySection() {
   const clientLogos = [
-    { name: "Client 1", url: "/images/clients/logoipsum-332.svg" },
-    { name: "Client 2", url: "/images/clients/logoipsum-350.svg" },
-    { name: "Client 3", url: "/images/clients/logoipsum-380.svg" },
-    { name: "Client 4", url: "/images/clients/logoipsum-391.svg" },
-    { name: "Client 5", url: "/images/clients/logoipsum-395.svg" },
-    { name: "Client 6", url: "/images/clients/logoipsum-332.svg" },
-    { name: "Client 7", url: "/images/clients/logoipsum-350.svg" },
-    { name: "Client 8", url: "/images/clients/logoipsum-380.svg" }
+    { name: "Comercio Partners", url: "/images/clients/comercio-partner-logo.png" },
+    { name: "City Distro", url: "/images/clients/citydistro-logo.svg" },
+    { name: "Richardson Oil and Gas", url: "/images/clients/richardson-logo.png" },
+    { name: "ARM", url: "/images/clients/arm-logo.webp" },
+
   ];
 
   // Duplicate logos for seamless scrolling
@@ -38,7 +35,7 @@ export default function TrustedBySection() {
             viewport={{ once: true }}
           >
             <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent to-gray-400"></div>
-            <p className="text-gray-500 text-sm font-medium tracking-wide whitespace-nowrap px-6">Loved by 1000+ big and small brands around the worlds</p>
+            <p className="text-gray-500 text-sm font-medium tracking-wide whitespace-nowrap px-6">Loved by big and small brands around the worlds</p>
             <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent to-gray-400"></div>
           </motion.div>
 

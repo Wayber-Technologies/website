@@ -58,7 +58,7 @@ export default function PricingSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 font-aloevera">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
               Pick the plan that fits your <span className="italic">start-up</span>
             </h2>
           </motion.div>
@@ -85,7 +85,7 @@ export default function PricingSection() {
                 </p>
 
                 {/* Price */}
-                <h3 className={`${plan.textColor} text-4xl font-bold mb-8 font-aloevera`}>
+                <h3 className={`${plan.textColor} text-4xl font-bold mb-8`}>
                   {plan.price}
                 </h3>
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
+import { BloggerIcon, LinkCircleIcon, Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
 export default function Header() {
@@ -32,7 +32,7 @@ export default function Header() {
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'services', 'work', 'team', 'contact'];
+      const sections = ['about', 'services', 'work', 'team'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -72,57 +72,118 @@ export default function Header() {
           </motion.div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 font-sans">
+          <div className="hidden md:flex items-center gap-8">
             <Link 
               href="#about" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 relative transition-colors ${
                 activeSection === 'about' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
+                  ? 'text-gray-800 dark:text-gray-200' 
                   : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
               }`}
             >
               About us
+              {activeSection === 'about' && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='4' viewBox='0 0 100 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,2 Q25,0 50,2 T100,2' stroke='%236366f1' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat-x',
+                    backgroundSize: '100px 4px',
+                    height: '4px'
+                  }}
+                />
+              )}
             </Link>
             <Link 
               href="#services" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 relative transition-colors ${
                 activeSection === 'services' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
+                  ? 'text-gray-800 dark:text-gray-200' 
                   : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
               }`}
             >
               Services
+              {activeSection === 'services' && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='4' viewBox='0 0 100 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,2 Q25,0 50,2 T100,2' stroke='%236366f1' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat-x',
+                    backgroundSize: '100px 4px',
+                    height: '4px'
+                  }}
+                />
+              )}
             </Link>
             <Link 
               href="#work" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 relative transition-colors ${
                 activeSection === 'work' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
+                  ? 'text-gray-800 dark:text-gray-200' 
                   : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
               }`}
             >
               Work
+              {activeSection === 'work' && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='4' viewBox='0 0 100 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,2 Q25,0 50,2 T100,2' stroke='%236366f1' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat-x',
+                    backgroundSize: '100px 4px',
+                    height: '4px'
+                  }}
+                />
+              )}
             </Link>
             <Link 
               href="#team" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
+              className={`px-3 py-2 relative transition-colors ${
                 activeSection === 'team' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
+                  ? 'text-gray-800 dark:text-gray-200' 
                   : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
               }`}
             >
               Team
+              {activeSection === 'team' && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='4' viewBox='0 0 100 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,2 Q25,0 50,2 T100,2' stroke='%236366f1' stroke-width='2' fill='none'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat-x',
+                    backgroundSize: '100px 4px',
+                    height: '4px'
+                  }}
+                />
+              )}
             </Link>
             <Link 
-              href="#contact" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                activeSection === 'contact' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
-                  : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
-              }`}
+              href="/contact" 
+              className="px-3 py-2 relative transition-colors text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400"
             >
               Contact
             </Link>
+            <a 
+              href="https://blog.wayber.com" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 rounded-lg transition-colors text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 flex items-center gap-2"
+            >
+              Blogs
+              <HugeiconsIcon icon={LinkCircleIcon} className="w-5 h-5" />
+            </a>
           </div>
 
           {/* Theme Toggle */}
