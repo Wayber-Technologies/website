@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
+import { Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -30,7 +32,7 @@ export default function Header() {
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'services', 'work', 'team', 'pricing', 'awards', 'contact'];
+      const sections = ['about', 'services', 'work', 'team', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -112,26 +114,6 @@ export default function Header() {
               Team
             </Link>
             <Link 
-              href="#pricing" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                activeSection === 'pricing' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
-                  : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
-              }`}
-            >
-              Pricing
-            </Link>
-            <Link 
-              href="#awards" 
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                activeSection === 'awards' 
-                  ? 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200' 
-                  : 'text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400'
-              }`}
-            >
-              Awards
-            </Link>
-            <Link 
               href="#contact" 
               className={`px-3 py-2 rounded-lg transition-colors ${
                 activeSection === 'contact' 
@@ -152,13 +134,9 @@ export default function Header() {
               whileTap={{ scale: 0.9 }}
             >
               {isDarkMode ? (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-600 dark:text-gray-400">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                </svg>
+                <HugeiconsIcon icon={Sun02Icon} />
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-600 dark:text-gray-400">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                </svg>
+                <HugeiconsIcon icon={Moon02Icon} />
               )}
             </motion.button>
           </div>

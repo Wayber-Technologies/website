@@ -10,6 +10,9 @@ import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import TypewriterText from './components/TypewriterText';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { StarIcon } from '@hugeicons/core-free-icons';
 
 export default function Home() {
   return (
@@ -34,7 +37,19 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h1 className="w-full text-5xl md:text-9xl lg:text-9xl xl:text-9xl text-gray-900">
-                  <span className="font-sans font-medium tracking-[-6px]">Building bold brands <br /> with</span> <span className="italic font-normal text-gray-600 tracking-[-6px]">thoughtful design</span>
+                  <span className="font-sans font-medium tracking-[-6px]">Building bold brands <br /> with</span> <span className="italic font-normal text-gray-600 tracking-[-6px]">
+                    <TypewriterText 
+                      texts={[
+                        "thoughtful design",
+                        "creative strategy", 
+                        "innovative solutions"
+                      ]}
+                      speed={150} 
+                      deleteSpeed={75}
+                      pauseTime={2500}
+                      delay={2000}
+                    />
+                  </span>
                 </h1>
                 <p className="max-w-3xl text-gray-600 text-sm md:text-lg leading-relaxed font-light">
                   At Wayber, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
@@ -73,14 +88,7 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((i) => (
-                          <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fbbf24" className="w-3.5 h-3.5">
-                            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-sm font-medium text-gray-600">Trusted by 1000+ clients</p>
+                      <p className="text-sm font-semibold text-gray-600">Trusted by numerous clients</p>
                     </div>
                   </div>
                 </div>
