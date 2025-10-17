@@ -99,6 +99,22 @@ export default function RootLayout({
         <link rel="icon" sizes="32x32" href="/images/Wayber Icon.svg" />
         <link rel="icon" sizes="192x192" href="/images/Wayber Icon.svg" />
         <link rel="icon" sizes="512x512" href="/images/Wayber Icon.svg" />
+        
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGV8Q0QK8T"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WGV8Q0QK8T', {
+                page_title: document.title,
+                page_location: window.location.href,
+              });
+            `,
+          }}
+        />
       </head>
       <body className={`${figtree.className} ${instrumentSerif.className}`}>
         {/* JSON-LD Structured Data */}
