@@ -53,7 +53,7 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="max-w-3xl text-gray-600 text-sm md:text-lg leading-relaxed font-light">
-                  At Wayber, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
+                  <strong>Wayber Technologies</strong> is a leading digital agency specializing in <strong>web development</strong>, <strong>mobile app development</strong>, <strong>UI/UX design</strong>, and <strong>digital marketing</strong>. We help businesses transform their digital presence with cutting-edge technology solutions and innovative strategies.
                 </p>
               </motion.div>
               
