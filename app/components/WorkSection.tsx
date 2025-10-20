@@ -38,13 +38,6 @@ export default function WorkSection() {
       image: "/images/home/onlinePresence/project3.png",
       tags: ["Fitness Tracking", "Event Management"],
       link: "https://www.rftf.com/"
-    },
-    {
-      title: "Burnout",
-      description: "Team management platform with web and mobile design",
-      image: "/images/home/onlinePresence/project4.png",
-      tags: ["Team Management", "Web & Mobile Design"],
-      link: "https://www.burnout.com/"
     }
   ];
 

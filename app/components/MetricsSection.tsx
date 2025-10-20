@@ -1,6 +1,6 @@
 'use client';
 
-import { BrainIcon, CellsIcon, Idea01Icon, PisaTowerIcon } from '@hugeicons/core-free-icons';
+import { BrainIcon, BulbChargingIcon, CellsIcon, Idea01Icon, PisaTowerIcon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -55,20 +55,20 @@ export default function MetricsSection() {
   const tags = [
     {
       label: "Creativity",
-      icon: <HugeiconsIcon icon={Idea01Icon} className="w-7 h-7" />,
-      bgColor: "bg-purple-100",
+      icon: <HugeiconsIcon icon={BulbChargingIcon} className="w-7 h-7" />,
+      bgColor: "bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100",
       textColor: "text-purple-700"
     },
     {
       label: "Innovation",
       icon: <HugeiconsIcon icon={PisaTowerIcon} className="w-7 h-7" />,
-      bgColor: "bg-blue-100",
+      bgColor: "bg-gradient-to-r from-blue-100 via-green-100 to-cyan-100",
       textColor: "text-blue-700"
     },
     {
       label: "Strategy",
       icon: <HugeiconsIcon icon={CellsIcon} className="w-7 h-7" />,
-      bgColor: "bg-orange-100",
+      bgColor: "bg-gradient-to-r from-orange-100 via-red-100 to-yellow-100",
       textColor: "text-orange-700"
     }
   ];

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Logo from './Logo';
-import { BloggerIcon, LinkCircleIcon, Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
+import { BloggerIcon, LinkCircleIcon, LinkSquare02Icon, Moon02Icon, Sun02Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
 
 export default function Header() {
@@ -176,13 +176,13 @@ export default function Header() {
               Contact
             </Link>
             <a 
-              href="https://blog.wayber.com" 
+              href="https://medium.com/@waybertechnologies" 
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-2 rounded-lg transition-colors text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 flex items-center gap-2"
             >
               Blogs
-              <HugeiconsIcon icon={LinkCircleIcon} className="w-5 h-5" />
+              <HugeiconsIcon icon={LinkSquare02Icon} className="w-5 h-5" />
             </a>
           </div>
 

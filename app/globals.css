@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 /* All text elements should use Figtree by default */
 body, p, h1, h2, h3, h4, h5, h6, .font-bold, .font-semibold, .font-medium, b, strong {
   font-family: 'Figtree', system-ui, sans-serif !important;
-  line-height: 1.6;
+  /* line-height: 1.6; */
 }
 
 /* Paragraph and body text */
