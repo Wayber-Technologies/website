@@ -7,7 +7,8 @@ export const projectDetails = [
     tags: ["Workflow Management", "Interface Design"],
     about: "Built for businesses that value efficiency and clarity, SISE eliminates the friction between data and decision-making, creating a seamless experience where work truly meets flow. The platform transforms complex business data into actionable insights, featuring customizable filters, detailed lead status tracking, and automated workflow management.", 
     challenge: "The challenge was to create a comprehensive lead and customer management platform that could handle complex business data while maintaining an intuitive user experience. We needed to design a system that would provide real-time insights without overwhelming users with information overload.", 
-    result: "SISE successfully transformed complex business data into actionable insights, featuring customizable filters, detailed lead status tracking, and automated workflow management. The platform now empowers teams to monitor their sales pipeline effectively and make data-driven decisions.", 
+    result: "SISE successfully transformed complex business data into actionable insights, featuring customizable filters, detailed lead status tracking, and automated workflow management. The platform now empowers teams to monitor their sales pipeline effectively and make data-driven decisions.",
+    link: "https://www.figma.com/design/IZbKLjsymCgMurQ36l4p0Q/_____SISE_____?node-id=56-1374&t=KhrIfR0NM4h7zNRd-0"
   }, 
   { 
     id: 2, 
@@ -17,7 +18,8 @@ export const projectDetails = [
     tags: ["E-Wallet", "Currency Exchange"],
     about: "MallamX bridges the gap between traditional banking and cryptocurrency, offering a secure, user-friendly gateway to the future of global finance. The platform's responsive design ensures consistent functionality across desktop and mobile devices, while integrated social sharing features make peer-to-peer transactions effortless.", 
     challenge: "Creating a digital currency exchange platform that could handle multiple currencies while maintaining security and user trust. The challenge was to design an interface that would make complex financial transactions simple and accessible to everyday users.", 
-    result: "MallamX successfully created a seamless currency exchange experience with real-time Bitcoin, Ethereum, and XRP tracking. The platform now allows users to execute transactions with simple tap-to-action buttons and manage their combined wallet values efficiently.", 
+    result: "MallamX successfully created a seamless currency exchange experience with real-time Bitcoin, Ethereum, and XRP tracking. The platform now allows users to execute transactions with simple tap-to-action buttons and manage their combined wallet values efficiently.",
+    link: "https://www.figma.com/design/DT2UuxGWEhWn4VOQpkuwLbGs/Mallam-X?node-id=0-1&p=f&t=vk66nn1VkYS5oTK4-0"
   }, 
   { 
     id: 3, 
@@ -27,7 +29,8 @@ export const projectDetails = [
     tags: ["Fitness Tracking", "Event Management"],
     about: "RFTF transforms fitness activities into meaningful engagement opportunities, proving that financial planning companies can champion wellness and community building alongside their core services. The app features vibrant, high-energy imagery with an elegant maroon and neutral color scheme.", 
     challenge: "Creating a fitness platform that would engage both existing clients and the general public while maintaining ARM Pensions' professional brand image. The challenge was to combine health tracking with social impact in a way that felt authentic and motivating.", 
-    result: "RFTF successfully created a holistic event experience with integrated leaderboards, profile management, and comprehensive event details. The app now encourages community building through fitness activities while maintaining professional standards.", 
+    result: "RFTF successfully created a holistic event experience with integrated leaderboards, profile management, and comprehensive event details. The app now encourages community building through fitness activities while maintaining professional standards.",
+    link: "https://www.figma.com/design/qc0xwo2RVwkPVAxzebjpMl/____RFTF_____?node-id=131-311&p=f&t=vYgcD4fdfQcbCdxK-0"
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ export const projectDetails = [
     tags: ["Investment Platform", "Mobile Banking"],
     about: "CPCompass is a comprehensive investment platform that combines mobile banking capabilities with sophisticated investment tools. The platform provides users with a seamless experience for managing their finances and investments in one place.",
     challenge: "The challenge was to create an integrated platform that could handle both traditional banking operations and investment activities while maintaining a user-friendly interface and robust security measures.",
-    result: "CPCompass successfully delivered a unified platform where users can manage their banking needs and investment portfolio with ease. The platform now enables users to make informed investment decisions with real-time data and analytics."
+    result: "CPCompass successfully delivered a unified platform where users can manage their banking needs and investment portfolio with ease. The platform now enables users to make informed investment decisions with real-time data and analytics.",
+    link: "https://app.cpcompass.ng"
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ export const projectDetails = [
     tags: ["NFT", "Cryptocurrency"],
     about: "We Sleep is an innovative platform that combines NFT marketplace functionality with cryptocurrency trading capabilities. The platform provides a secure environment for users to buy, sell, and trade digital assets.",
     challenge: "The challenge was to create a platform that could handle the complexities of NFT transactions and cryptocurrency trading while providing a seamless user experience and maintaining high security standards.",
-    result: "We Sleep successfully created a platform that simplifies the process of buying, selling, and trading digital assets. The platform now enables users to manage their digital portfolio with confidence and ease."
+    result: "We Sleep successfully created a platform that simplifies the process of buying, selling, and trading digital assets. The platform now enables users to manage their digital portfolio with confidence and ease.",
+    link: "https://devsolutely.com/projects/wesleep"
   },
   { 
     id: 6, 
