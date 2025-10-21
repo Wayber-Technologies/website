@@ -61,18 +61,18 @@ export default function CTASection() {
               >
                 <Link
                   href="/contact"
-                  className="group relative bg-[#1462FF] text-white font-medium flex flex-row justify-between items-center py-3 sm:py-3.5 px-6 sm:px-8 rounded-full w-[240px] sm:w-[280px] border border-[#1462FF] transition-all duration-200 ease-in-out hover:bg-transparent hover:text-[#1462FF] overflow-hidden"
+                  className="group relative bg-[#1462FF] text-white font-medium flex flex-row justify-between items-center py-3 sm:py-3.5 px-5 sm:px-6 rounded-full w-[200px] sm:w-[260px] border border-[#1462FF] transition-all duration-200 ease-in-out hover:bg-transparent hover:text-[#1462FF] overflow-hidden"
                 >
-                  <span className="relative z-10 flex text-start text-base sm:text-lg transform transition-transform duration-200 ease-in-out group-hover:translate-x-20">
+                  <span className="relative z-10 flex text-start text-base sm:text-lg transform transition-transform duration-200 ease-in-out group-hover:translate-x-16">
                     Let's Collaborate
                   </span>
                   <svg
-                    width="40"
-                    height="40"
+                    width="36"
+                    height="36"
                     viewBox="0 0 40 40"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="absolute right-6 sm:right-8 transform transition-transform duration-200 ease-in-out group-hover:-translate-x-44 group-hover:rotate-45"
+                    className="absolute right-4 sm:right-6 transform transition-transform duration-200 ease-in-out group-hover:-translate-x-44 group-hover:rotate-45"
                   >
                     <rect
                       width="40"
