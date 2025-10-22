@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -9,28 +9,34 @@ export default function FAQSection() {
   const faqs = [
     {
       question: "What services does Wayber Agency offer?",
-      answer: "We offer comprehensive design and development services including web design, mobile app development, UI/UX design, brand identity, and ongoing support for startups and established businesses."
+      answer:
+        "We offer comprehensive design and development services including web design, mobile app development, UI/UX design, brand identity, and ongoing support for startups and established businesses.",
     },
     {
       question: "How long does a typical project take?",
-      answer: "Project timelines vary based on complexity. Simple websites typically take 2-4 weeks, while complex web applications can take 8-12 weeks. We provide detailed timelines during our initial consultation."
+      answer:
+        "Project timelines vary based on complexity. Simple websites typically take 2-4 weeks, while complex web applications can take 8-12 weeks. We provide detailed timelines during our initial consultation.",
     },
     {
       question: "How is pricing structured at Wayber Agency?",
-      answer: "We offer flexible pricing models including fixed-price projects and monthly retainer plans. Our pricing is transparent and based on project scope, timeline, and specific requirements."
+      answer:
+        "We offer flexible pricing models including fixed-price projects and monthly retainer plans. Our pricing is transparent and based on project scope, timeline, and specific requirements.",
     },
     {
       question: "Do you offer ongoing support after project completion?",
-      answer: "Yes, we provide comprehensive post-launch support including maintenance, updates, performance monitoring, and feature enhancements to ensure your project continues to perform optimally."
+      answer:
+        "Yes, we provide comprehensive post-launch support including maintenance, updates, performance monitoring, and feature enhancements to ensure your project continues to perform optimally.",
     },
     {
       question: "How often will I receive updates on my project?",
-      answer: "We provide regular updates throughout the project lifecycle. For retainer clients, you'll receive daily updates, while project-based clients get weekly progress reports and milestone reviews."
+      answer:
+        "We provide regular updates throughout the project lifecycle. For retainer clients, you'll receive daily updates, while project-based clients get weekly progress reports and milestone reviews.",
     },
     {
       question: "What makes Wayber Agency different from other design agencies?",
-      answer: "We combine cutting-edge design with strategic thinking, focusing on user experience and business outcomes. Our team brings together expertise in design, development, and business strategy to deliver results that drive growth."
-    }
+      answer:
+        "We combine cutting-edge design with strategic thinking, focusing on user experience and business outcomes. Our team brings together expertise in design, development, and business strategy to deliver results that drive growth.",
+    },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -38,16 +44,16 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-20 bg-transparent">
+    <section id="faq" className="py-20 bg-transparent">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="flex flex-col gap-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.div 
+          <motion.div
             className="max-w-2xl text-center mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,12 +86,19 @@ export default function FAQSection() {
                     transition={{ duration: 0.3 }}
                     className="flex-shrink-0"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-600">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-5 h-5 text-gray-600"
+                    >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                   </motion.div>
                 </motion.button>
-                
+
                 <AnimatePresence>
                   {openIndex === index && (
                     <motion.div

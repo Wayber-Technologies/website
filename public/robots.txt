@@ -18,7 +18,7 @@ Allow: /contact
 Allow: /#services
 Allow: /#about
 Allow: /#work
-Allow: /#team
+Allow: /#faq
 
 # Host
 Host: https://waybertechnologies.com
