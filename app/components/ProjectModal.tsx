@@ -87,7 +87,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
             left: "50%",
             x: "-50%",
             y: "-50%",
-            width: "100%",
+            width: "calc(100% - 1rem)",
             maxWidth: "900px",
             height: "auto",
             borderRadius: "24px",
