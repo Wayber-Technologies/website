@@ -1,0 +1,15 @@
+export const interests = [
+  "Web Development",
+  "UI/UX Design",
+  "Software Auditing",
+  "Software Consulting",
+  "Digital Marketing Services",
+  "Analytics & Reporting",
+  "Brand Strategy & Consulting",
+  "E-commerce Solutions",
+  "Mobile App Development",
+  "Cloud Solutions",
+  "Data Science & AI",
+  "IT Support & Management",
+  "Other",
+];

@@ -1,18 +1,22 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { interests } from "../data/interests";
 import { motion } from "framer-motion";
 
 function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    interest: "design & branding",
+    interest: "",
     budget: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredInterests, setFilteredInterests] = useState<string[]>(interests);
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -21,11 +25,28 @@ function ContactForm() {
     }));
   };
 
+  const handleInterestChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      interest: value,
+    }));
+    setFilteredInterests(interests.filter((item) => item.toLowerCase().includes(value.toLowerCase())));
+  };
+
+  const handleInterestSelect = (item: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      interest: item,
+    }));
+    setShowSuggestions(false);
+  };
+
   const reset = () => {
     setFormData({
       name: "",
       email: "",
-      interest: "design & branding",
+      interest: "",
       budget: "",
       message: "",
     });
@@ -93,7 +114,7 @@ function ContactForm() {
 
               <Link
                 href="/"
-                className="group w-fit text-white  font-medium bg-[#1f2937] dark:bg-white rounded-full flex items-center gap-4 py-2 pl-5 pr-2 transition-all duration-200 ease-in-out  hover:bg-transparent border hover:text-[#1f2937] border-[#1f2937]"
+                className="group w-fit text-[#1f2937] font-medium bg-transparent dark:bg-white rounded-full flex items-center gap-4 py-2 pl-5 pr-2 transition-all duration-200 ease-in-out  hover:bg-transparent border hover:text-[#1f2937] border-[#1f2937]"
               >
                 <span className="group-hover:translate-x-9 group-hover:dark:text-dark_black dark:text-white transform transition-transform duration-200 ease-in-out">
                   Back to home
@@ -165,22 +186,36 @@ function ContactForm() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col md:flex md:flex-row gap-6">
-                <div className="w-full">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="w-full relative">
                   <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
                     What are you interested in?
                   </label>
-                  <select
-                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    name="interest"
+                  <input
+                    type="text"
                     id="interest"
+                    name="interest"
                     value={formData.interest}
-                    onChange={handleChange}
-                  >
-                    <option value="design & branding">Design & Branding</option>
-                    <option value="Ecommerce">Ecommerce</option>
-                    <option value="Specialist">Specialist</option>
-                  </select>
+                    onChange={handleInterestChange}
+                    onFocus={() => setShowSuggestions(true)}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
+                    placeholder="Select your interest"
+                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    required
+                  />
+                  {showSuggestions && filteredInterests.length > 0 && (
+                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
+                      {filteredInterests.map((item) => (
+                        <li
+                          key={item}
+                          onMouseDown={() => handleInterestSelect(item)}
+                          className="px-5 py-3 cursor-pointer hover:bg-gray-100"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
                 <div className="w-full">
                   <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
