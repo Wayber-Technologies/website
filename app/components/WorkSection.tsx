@@ -117,7 +117,11 @@ export default function WorkSection() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl transition-opacity duration-300 ${
+              selectedProject ? "opacity-30" : "opacity-100"
+            }`}
+          >
             {projects.map((project: Project, index) => (
               <motion.div
                 key={project.title}
@@ -127,8 +131,17 @@ export default function WorkSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="relative mb-4" ref={(el) => (projectRefs.current[project.detailId] = el)}>
-                  <img
+                <motion.div
+                  className="relative mb-4"
+                  ref={(el) => (projectRefs.current[project.detailId] = el)}
+                  layoutId={`project-${project.detailId}`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                  }}
+                >
+                  <motion.img
                     alt={project.title}
                     loading="lazy"
                     width="625"
@@ -137,10 +150,16 @@ export default function WorkSection() {
                       index === 0 || index === 3 ? "brightness-75 contrast-110" : ""
                     }`}
                     src={project.image}
+                    layoutId={`project-image-${project.detailId}`}
                   />
-                  <button
+                  <motion.button
                     className="absolute top-0 left-0 bg-black/50 w-full h-full rounded-2xl hidden group-hover:flex cursor-pointer"
                     onClick={(e) => handleProjectClick(project.detailId, e)}
+                    whileHover={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
                   >
                     <span className="flex justify-end p-5 w-full">
                       <svg
@@ -152,8 +171,8 @@ export default function WorkSection() {
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
                       </svg>
                     </span>
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
 
                 <div className="flex flex-col items-start gap-4">
                   <h5 className="group-hover:text-blue-600 text-xl font-bold text-gray-800">{project.title}</h5>

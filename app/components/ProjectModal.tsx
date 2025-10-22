@@ -59,61 +59,60 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
   if (!project) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="popLayout">
       <motion.div
         className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6 py-4 sm:p-6 md:p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{
+          duration: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
       >
         <motion.div
           ref={modalRef}
-          className="bg-white rounded-3xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col"
-          initial={{
-            opacity: 0,
-            scale: 0.8,
-            top: modalPosition?.top,
-            left: modalPosition?.left,
-            width: modalPosition?.width,
-            height: modalPosition?.height,
-            borderRadius: "16px",
-            position: "absolute",
-          }}
+          className="bg-white rounded-3xl overflow-hidden max-w-4xl w-full h-[80vh] flex flex-col"
+          layoutId={`project-${project.id}`}
+          initial={{ borderRadius: "16px" }}
           animate={{
-            opacity: 1,
-            scale: 1,
-            top: "50%",
-            left: "50%",
-            x: "-50%",
-            y: "-50%",
-            width: "calc(100% - 1rem)",
-            maxWidth: "900px",
-            height: "auto",
             borderRadius: "24px",
-            position: "fixed",
+            scale: 1,
           }}
           exit={{
-            opacity: 0,
-            scale: 0.8,
-            top: modalPosition?.top,
-            left: modalPosition?.left,
-            width: modalPosition?.width,
-            height: modalPosition?.height,
             borderRadius: "16px",
-            position: "absolute",
+            scale: 1,
           }}
           transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
+            duration: 0.8,
+            ease: [0.23, 1, 0.32, 1],
+            layout: {
+              duration: 0.8,
+              ease: [0.23, 1, 0.32, 1],
+            },
+          }}
+          style={{
+            willChange: "transform, border-radius",
           }}
         >
           {/* Close button */}
-          <button
+          <motion.button
             onClick={onClose}
             className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm rounded-full p-2 hover:bg-gray-100 transition-colors duration-200"
             aria-label="Close modal"
+            initial={{
+              opacity: 0,
+              scale: 0.8,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.4,
+              delay: 0.7,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -124,18 +123,72 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
-          </button>
+          </motion.button>
 
-          {/* Project image */}
-          <div className="relative w-full h-64 sm:h-80 md:h-96 bg-gray-100">
-            <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold p-6 md:p-8">{project.title}</h2>
-            </div>
-          </div>
+          {/* Project image - morphing from project item */}
+          <motion.div
+            className="relative h-64 sm:h-80 md:h-96 bg-gray-100 flex-shrink-0"
+            initial={{ height: "410px" }}
+            animate={{ height: "320px" }}
+            exit={{ height: "410px" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.23, 1, 0.32, 1],
+            }}
+            style={{
+              willChange: "height",
+            }}
+          >
+            <motion.img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              layoutId={`project-image-${project.id}`}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              <motion.h2
+                className="text-white text-2xl sm:text-3xl md:text-4xl font-bold p-6 md:p-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.6,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+              >
+                {project.title}
+              </motion.h2>
+            </motion.div>
+          </motion.div>
 
           {/* Project content */}
-          <div className="p-6 md:p-8 overflow-y-auto">
+          <motion.div
+            className="p-6 md:p-8 overflow-y-auto flex-1"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.6,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+          >
             <div className="space-y-6">
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3 border-t pt-6 border-gray-200 pb-2">Description</h3>
@@ -219,7 +272,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
