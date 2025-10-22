@@ -31,11 +31,11 @@ export default function TrustedBySection() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <div className="flex-1 h-[1px] sm:h-[2px] bg-gradient-to-r from-transparent to-gray-400"></div>
+            <div className="flex-1 h-[1px] sm:h-[2px] bg-gradient-to-r from-transparent to-gray-400 hidden sm:block"></div>
             <p className="text-gray-500 text-xs sm:text-sm font-medium tracking-wide whitespace-nowrap px-2 sm:px-4 md:px-6 text-center">
               Loved by big and small brands around the worlds
             </p>
-            <div className="flex-1 h-[1px] sm:h-[2px] bg-gradient-to-l from-transparent to-gray-400"></div>
+            <div className="flex-1 h-[1px] sm:h-[2px] bg-gradient-to-l from-transparent to-gray-400 hidden sm:block"></div>
           </motion.div>
 
           {/* Scrolling Logo section */}

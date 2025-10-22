@@ -58,7 +58,23 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <h1 className="w-full text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-gray-900">
+                {/* Mobile Layout - Different structure */}
+                <h1 className="w-full text-5xl sm:text-5xl md:hidden text-gray-900 leading-[1.1] font-[550]">
+                  <span className="block">Building bold</span>
+                  <span className="block">brands with</span>
+                  <span className="italic font-normal text-gray-600 relative inline-block min-w-[280px] h-[1.2em] overflow-hidden align-middle">
+                    <TypewriterText
+                      texts={["thoughtful design", "creative strategy", "innovative solutions"]}
+                      speed={150}
+                      deleteSpeed={75}
+                      pauseTime={2500}
+                      delay={2000}
+                    />
+                  </span>
+                </h1>
+
+                {/* Desktop Layout - Original structure */}
+                <h1 className="hidden md:block w-full text-5xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-gray-900">
                   <span
                     className="font-medium tracking-tight sm:tracking-[-2px] md:tracking-[-4px] lg:tracking-[-6px]"
                     style={{ lineHeight: "1.2" }}
