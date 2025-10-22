@@ -36,7 +36,7 @@ export default function CTASection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Innovative Solutions for <span className="italic">Bold Brands</span>
+                <span className="block">Innovative Solutions for</span> <span className="italic">Bold Brands</span>
               </motion.h2>
 
               <motion.p
@@ -63,7 +63,7 @@ export default function CTASection() {
                   href="/contact"
                   className="group relative bg-[#1462FF] text-white font-medium flex flex-row justify-between items-center py-3 sm:py-3.5 px-5 sm:px-6 rounded-full w-[200px] sm:w-[260px] border border-[#1462FF] transition-all duration-200 ease-in-out hover:bg-transparent hover:text-[#1462FF] overflow-hidden"
                 >
-                  <span className="relative z-10 flex text-start text-base sm:text-lg transform transition-transform duration-200 ease-in-out group-hover:translate-x-16">
+                  <span className="relative z-10 flex text-start text-sm sm:text-lg transform transition-transform duration-200 ease-in-out group-hover:translate-x-16">
                     Let's Collaborate
                   </span>
                   <svg

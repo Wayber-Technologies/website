@@ -46,9 +46,9 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Team Section -->
+  <!-- Faq Section -->
   <url>
-    <loc>https://waybertechnologies.com/#team</loc>
+    <loc>https://waybertechnologies.com/#faq</loc>
     <lastmod>2024-01-15T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
