@@ -59,7 +59,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Mobile Layout - Different structure */}
-                <h1 className="w-full text-5xl sm:text-5xl md:hidden text-gray-900 leading-[1.1] font-[550]">
+                <h1 className="w-full text-5xl sm:text-5xl md:hidden text-gray-900 space-y-3 leading-[1.1] font-[550]">
                   <span className="block">Building bold</span>
                   <span className="block">brands with</span>
                   <span className="italic font-normal text-gray-600 relative inline-block min-w-[280px] h-[1.2em] overflow-hidden align-middle">
