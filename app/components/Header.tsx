@@ -78,7 +78,7 @@ export default function Header() {
             </motion.div>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-8">
               <Link
                 href={currentPathname === "/contact" ? "/#about" : "#about"}
                 className={`px-3 py-2 relative transition-colors ${
@@ -192,8 +192,8 @@ export default function Header() {
               </a>
             </div>
 
-            {/* Mobile: Theme Toggle + Hamburger */}
-            <div className="flex md:hidden items-center gap-4">
+            {/* Mobile/Tablet: Theme Toggle + Hamburger */}
+            <div className="flex lg:hidden items-center gap-4">
               <ThemeToggler />
               {/* Hamburger Menu Button */}
               <motion.button
@@ -216,7 +216,7 @@ export default function Header() {
             </div>
 
             {/* Desktop Theme Toggle */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <ThemeToggler />
             </div>
           </nav>
@@ -234,7 +234,7 @@ export default function Header() {
               duration: 0.5,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="fixed top-0 right-0 bottom-0 z-40 w-full min-h-screen flex flex-col bg-white dark:bg-gray-900 md:hidden"
+            className="fixed top-0 right-0 bottom-0 z-40 w-full min-h-screen flex flex-col bg-white dark:bg-gray-900 lg:hidden"
           >
             {/* Header */}
             <motion.div

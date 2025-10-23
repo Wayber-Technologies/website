@@ -72,7 +72,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
       >
         <motion.div
           ref={modalRef}
-          className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden max-w-4xl w-full h-[80vh] flex flex-col"
+          className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden max-w-4xl w-full max-h-[90vh] h-auto flex flex-col"
           layoutId={`project-${project.id}`}
           initial={{ borderRadius: "16px" }}
           animate={{
@@ -127,9 +127,9 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
 
           {/* Project image - morphing from project item */}
           <motion.div
-            className="relative h-64 sm:h-80 md:h-96 bg-gray-100 flex-shrink-0"
+            className="relative h-48 sm:h-60 md:h-72 bg-gray-100 flex-shrink-0"
             initial={{ height: "410px" }}
-            animate={{ height: "320px" }}
+            animate={{ height: "25vh" }}
             exit={{ height: "410px" }}
             transition={{
               duration: 0.8,
@@ -137,6 +137,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
             }}
             style={{
               willChange: "height",
+              maxHeight: "30vh"
             }}
           >
             <img
@@ -175,7 +176,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
 
           {/* Project content */}
           <motion.div
-            className="p-6 md:p-8 overflow-y-auto flex-1"
+            className="p-4 md:p-6 overflow-y-auto flex-1 max-h-[50vh]"
             initial={{
               opacity: 0,
             }}
@@ -190,7 +191,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
           >
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 pt-6 pb-2">
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 pt-2 pb-1">
                   Description
                 </h3>
                 <p className="text-gray-600 dark:text-gray-200 leading-relaxed">{project.description}</p>
@@ -198,21 +199,21 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
 
               {project.about && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">About</h3>
+                  <h3 className="text-lg font-bold text-gray-800  dark:text-white mb-2 pb-1">About</h3>
                   <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.about}</p>
                 </div>
               )}
 
               {project.challenge && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">Challenge</h3>
+                  <h3 className="text-lg font-bold text-gray-800  dark:text-white mb-2 pb-1">Challenge</h3>
                   <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.challenge}</p>
                 </div>
               )}
 
               {project.result && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">Result</h3>
+                  <h3 className="text-lg font-bold text-gray-800  dark:text-white mb-2 pb-1">Result</h3>
                   <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.result}</p>
                 </div>
               )}

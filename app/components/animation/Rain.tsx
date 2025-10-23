@@ -66,7 +66,7 @@ const Rain: React.FC<RainProps> = ({ numberOfDrops = 100 }) => {
   return (
     <div className="absolute inset-0 overflow-hidden z-0">
       {drops.map((drop) => (
-        <Raindrop {...drop} />
+        <Raindrop key={drop.id} {...drop} />
       ))}
     </div>
   );
