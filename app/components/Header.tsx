@@ -4,30 +4,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { LinkSquare02Icon, Moon02Icon, Sun02Icon, CancelIcon } from "@hugeicons/core-free-icons";
+import { LinkSquare02Icon, CancelIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import ThemeToggler from "./ThemeToggler";
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", !isDarkMode ? "dark" : "light");
-  };
-
-  // Initialize theme on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
 
   // Track active section based on scroll position
   useEffect(() => {
@@ -201,19 +184,7 @@ export default function Header() {
 
             {/* Mobile: Theme Toggle + Hamburger */}
             <div className="flex md:hidden items-center gap-4">
-              <motion.button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {isDarkMode ? (
-                  <HugeiconsIcon icon={Sun02Icon} className="w-6 h-6" />
-                ) : (
-                  <HugeiconsIcon icon={Moon02Icon} className="w-6 h-6" />
-                )}
-              </motion.button>
-
+              <ThemeToggler />
               {/* Hamburger Menu Button */}
               <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -236,14 +207,7 @@ export default function Header() {
 
             {/* Desktop Theme Toggle */}
             <div className="hidden md:flex items-center gap-4">
-              <motion.button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {isDarkMode ? <HugeiconsIcon icon={Sun02Icon} /> : <HugeiconsIcon icon={Moon02Icon} />}
-              </motion.button>
+              <ThemeToggler />
             </div>
           </nav>
         </div>
