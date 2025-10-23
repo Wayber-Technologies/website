@@ -63,7 +63,8 @@ export default function Header() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <Link href="/" className="flex items-center">
-                <Logo size="md" showText={true} />
+                <Logo size="md" showText={true} variant={"default"} className="dark:hidden" />
+                <Logo size="md" showText={true} variant={"white"} className="hidden dark:block" />
               </Link>
             </motion.div>
 

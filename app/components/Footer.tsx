@@ -28,7 +28,8 @@ export default function Footer() {
               viewport={{ once: true }}
             >
               <Link href="/" className="flex items-center mb-4">
-                <Logo size="md" showText={true} />
+                <Logo size="md" showText={true} variant={"default"} className="dark:hidden" />
+                <Logo size="md" showText={true} variant={"white"} className="hidden dark:block" />
               </Link>
             </motion.div>
             
