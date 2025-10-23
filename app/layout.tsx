@@ -1,7 +1,6 @@
 import { Figtree, Instrument_Serif } from "next/font/google";
 import { metadata } from "./metadata";
 import ClientLayout from "./client-layout";
-import Script from "next/script";
 import "./globals.css";
 
 const figtree = Figtree({ subsets: ["latin"] });
@@ -10,9 +9,7 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
 });
-
 export { metadata };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -31,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2563eb" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -44,25 +42,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" sizes="192x192" href="/favicon.ico" />
         <link rel="icon" sizes="512x512" href="/favicon.ico" />
 
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGV8Q0QK8T"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WGV8Q0QK8T', {
+                page_title: document.title,
+                page_location: window.location.href,
+              });
+            `,
+          }}
+        />
       </head>
       <body className={`${figtree.className} ${instrumentSerif.className}`}>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-WGV8Q0QK8T"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-WGV8Q0QK8T', {
-              page_title: document.title,
-              page_location: window.location.href,
-            });
-          `}
-        </Script>
-        
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
