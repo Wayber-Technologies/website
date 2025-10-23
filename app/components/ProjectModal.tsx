@@ -139,11 +139,10 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
               willChange: "height",
             }}
           >
-            <motion.img
+            <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
-              layoutId={`project-image-${project.id}`}
               style={{
                 objectFit: "cover",
                 objectPosition: "center",
@@ -191,7 +190,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
           >
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 border-t pt-6 border-gray-200 pb-2">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 pt-6 pb-2">
                   Description
                 </h3>
                 <p className="text-gray-600 dark:text-gray-200 leading-relaxed">{project.description}</p>
