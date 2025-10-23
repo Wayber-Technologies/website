@@ -151,12 +151,13 @@ export default function Home() {
                           key={index}
                           src={avatar.image}
                           alt={avatar.title}
-                          width={32}
-                          height={32}
-                          className="inline-block h-8 w-8 sm:h-10 sm:w-10 rounded-full ring-2 ring-white"
+                          width={40}
+                          height={40}
+                          className="inline-block h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover border-2 border-white dark:border-gray-800"
                         />
                       ))}
                     </div>
+
                     <div className="flex flex-col gap-1">
                       <p className="text-xs sm:text-sm font-semibold text-gray-600 dark:text-white/60 text-center sm:text-left">
                         Trusted by numerous clients

@@ -61,38 +61,39 @@ export default function CTASection() {
               >
                 <Link
                   href="/contact"
-                  className="group relative bg-[#1462FF] text-white font-medium flex flex-row justify-between items-center py-3 sm:py-3.5 px-5 sm:px-6 rounded-full w-[200px] sm:w-[260px] border border-[#1462FF] transition-all duration-200 ease-in-out hover:bg-transparent hover:text-[#1462FF] overflow-hidden"
+                  className="group  font-medium bg-[#1462FF] text-white rounded-full flex items-center 
+    text-sm sm:text-base md:text-lg 
+    py-2.5 pl-5 pr-2 sm:py-3 sm:pl-6 sm:pr-2.5 md:py-3.5 md:pl-7 md:pr-3 
+    gap-2 sm:gap-3 lg:gap-4 
+    border border-[#1462FF] hover:bg-transparent hover:text-[#1462FF] 
+    transition-all duration-200 ease-in-out 
+    w-fit"
                 >
-                  <span className="relative z-10 flex text-start text-sm sm:text-lg transform transition-transform duration-200 ease-in-out group-hover:translate-x-16">
+                  <span className="group-hover:translate-x-9 sm:group-hover:translate-x-10 md:group-hover:translate-x-11 transform transition-transform duration-200 ease-in-out whitespace-nowrap">
                     Let's Collaborate
                   </span>
                   <svg
-                    width="36"
-                    height="36"
-                    viewBox="0 0 40 40"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="absolute right-4 sm:right-6 transform transition-transform duration-200 ease-in-out group-hover:-translate-x-44 group-hover:rotate-45"
+                    className="group-hover:-translate-x-36 sm:group-hover:-translate-x-40 md:group-hover:-translate-x-44 transition-all duration-200 ease-in-out flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
                   >
                     <rect
-                      width="40"
-                      height="40"
-                      rx="20"
+                      width="32"
+                      height="32"
+                      rx="16"
+                      fill="#1B1D1E"
                       className="fill-white transition-colors duration-200 ease-in-out group-hover:fill-[#1462FF]"
                     />
                     <path
-                      d="M15.832 15.3334H24.1654V23.6667"
-                      className="stroke-[#1B1D1E] transition-colors duration-200 ease-in-out group-hover:stroke-white"
-                      strokeWidth="1.66667"
+                      d="M11.832 11.3335H20.1654M20.1654 11.3335V19.6668M20.1654 11.3335L11.832 19.6668"
+                      stroke="white"
+                      strokeWidth="1.42857"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    />
-                    <path
-                      d="M15.832 23.6667L24.1654 15.3334"
-                      className="stroke-[#1B1D1E] transition-colors duration-500 ease-in-out group-hover:stroke-white"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      className="group-hover:stroke-white stroke-black"
                     />
                   </svg>
                 </Link>
