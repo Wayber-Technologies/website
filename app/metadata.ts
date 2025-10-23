@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Wayber Technologies - Digital Agency & Web Development Services",
+  title: "Wayber Technologies - Web & Mobile App Development Agency",
   description:
-    "Wayber Technologies is a leading digital agency specializing in web development, mobile apps, UI/UX design, and digital marketing. We help businesses transform their digital presence with innovative solutions.",
+    "Wayber Technologies is a premier digital agency specializing in custom web development, mobile app creation, UI/UX design, and strategic digital marketing. We build innovative solutions to elevate your business.",
   keywords:
-    "digital agency, web development, mobile app development, UI/UX design, digital marketing, software development, web design, app development, digital transformation, business solutions",
+    "custom web development, web development agency, mobile app development company, UI/UX design services, digital marketing agency, software development services, web design and development, app design and development, digital transformation solutions, business growth strategies, React development, Next.js development, iOS app development, Android app development, user experience design, user interface design, SEO services, content marketing, social media marketing, e-commerce development, full-stack development, front-end development, back-end development",
   authors: [{ name: "Wayber Technologies" }],
   creator: "Wayber Technologies",
   publisher: "Wayber Technologies",

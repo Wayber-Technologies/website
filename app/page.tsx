@@ -18,6 +18,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import StarRating from "./components/StarRating";
+import AnimatedSection from "./components/animation/AnimatedSection";
+import Rain from "./components/animation/Rain";
 
 export default function Home() {
   const [avatarList, setAvatarList] = useState<Array<{ image: string; title: string }>>([]);
@@ -43,6 +45,7 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section className="relative w-full min-h-screen flex items-center justify-center py-20 lg:py-0">
+          <Rain />
           {/* Gradient Background - extends beyond section */}
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-50 via-purple-50 to-orange-50 dark:from-dark_blue_gradient dark:via-black dark:to-dark_yellow_gradient dark:rounded-full dark:blur-3xl dark:before:-z-10"></div>
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-16 max-w-7xl mx-auto">
@@ -171,28 +174,44 @@ export default function Home() {
         </section>
 
         {/* Trusted By Section */}
-        <TrustedBySection />
+        <AnimatedSection>
+          <TrustedBySection />
+        </AnimatedSection>
 
         {/* Metrics Section */}
-        <MetricsSection />
+        <AnimatedSection>
+          <MetricsSection />
+        </AnimatedSection>
 
         {/* Services Section */}
-        <ServicesSection />
+        <AnimatedSection>
+          <ServicesSection />
+        </AnimatedSection>
 
         {/* Work Section */}
-        <WorkSection />
+        <AnimatedSection>
+          <WorkSection />
+        </AnimatedSection>
 
         {/* Team Section */}
-        <TeamSection />
+        <AnimatedSection>
+          <TeamSection />
+        </AnimatedSection>
 
         {/* Testimonials Section */}
-        <TestimonialsSection />
+        <AnimatedSection>
+          <TestimonialsSection />
+        </AnimatedSection>
 
         {/* FAQ Section */}
-        <FAQSection />
+        <AnimatedSection>
+          <FAQSection />
+        </AnimatedSection>
 
         {/* Final CTA Section */}
-        <CTASection />
+        <AnimatedSection>
+          <CTASection />
+        </AnimatedSection>
       </main>
 
       {/* Footer */}
