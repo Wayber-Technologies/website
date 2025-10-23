@@ -11,6 +11,14 @@ import ThemeToggler from "./ThemeToggler";
 export default function Header() {
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentPathname, setCurrentPathname] = useState("");
+
+  // Set current pathname on client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentPathname(window.location.pathname);
+    }
+  }, []);
 
   // Track active section based on scroll position
   useEffect(() => {
@@ -71,7 +79,7 @@ export default function Header() {
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
               <Link
-                href={window.location.pathname === "/contact" ? "/#about" : "#about"}
+                href={currentPathname === "/contact" ? "/#about" : "#about"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "about"
                     ? "text-gray-800 dark:text-gray-200"
@@ -95,7 +103,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href={window.location.pathname === "/contact" ? "/#services" : "#services"}
+                href={currentPathname === "/contact" ? "/#services" : "#services"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "services"
                     ? "text-gray-800 dark:text-gray-200"
@@ -119,7 +127,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href={window.location.pathname === "/contact" ? "/#work" : "#work"}
+                href={currentPathname === "/contact" ? "/#work" : "#work"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "work"
                     ? "text-gray-800 dark:text-gray-200"
@@ -143,7 +151,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href={window.location.pathname === "/contact" ? "/#faq" : "#faq"}
+                href={currentPathname === "/contact" ? "/#faq" : "#faq"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "faq"
                     ? "text-gray-800 dark:text-gray-200"
@@ -270,7 +278,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href.startsWith("#") ? 
-                      (window.location.pathname === "/contact" ? `/${item.href}` : item.href) : 
+                      (currentPathname === "/contact" ? `/${item.href}` : item.href) : 
                       item.href}
                     onClick={handleMenuItemClick}
                     className="text-5xl sm:text-6xl md:text-7xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-200 block relative group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-300 ease-out uppercase"
