@@ -81,7 +81,10 @@ function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-transparent">
+    <section
+      id="contact"
+      className="relative overflow-hidden py-20 md:py-32 bg-gray-50 dark:bg-gray-900 before:absolute before:inset-0 before:bg-gradient-to-br before:from-blue_gradient before:via-white before:to-yellow_gradient before:opacity-50 dark:before:from-dark_blue_gradient dark:before:via-black dark:before:to-dark_yellow_gradient dark:before:opacity-70"
+    >
       <div className="container">
         <div className="flex flex-col gap-10 md:gap-20">
           <motion.div
@@ -91,14 +94,14 @@ function ContactForm() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 mt-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-6 mt-12">
               Love to hear from you, <br /> Get in <span className="italic">touch</span>
             </h2>
           </motion.div>
 
           {submitted ? (
             <motion.div
-              className="flex flex-col items-center gap-5 text-center max-w-xl mx-auto p-6 rounded-lg bg-green-50 border border-green-200"
+              className="flex flex-col items-center gap-5 text-center max-w-xl mx-auto p-6 rounded-lg bg-green-50 dark:bg-green-50 border border-green-200"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -116,7 +119,7 @@ function ContactForm() {
                 href="/"
                 className="group w-fit text-[#1f2937] font-medium bg-transparent dark:bg-white rounded-full flex items-center gap-4 py-2 pl-5 pr-2 transition-all duration-200 ease-in-out  hover:bg-transparent border hover:text-[#1f2937] border-[#1f2937]"
               >
-                <span className="group-hover:translate-x-9 group-hover:dark:text-dark_black dark:text-white transform transition-transform duration-200 ease-in-out">
+                <span className="group-hover:translate-x-9 group-hover:dark:text-dark_black dark:text-black transform transition-transform duration-200 ease-in-out">
                   Back to home
                 </span>
                 <svg
@@ -148,7 +151,7 @@ function ContactForm() {
           ) : (
             <motion.form
               onSubmit={handleSubmit}
-              className="flex flex-col bg-white rounded-2xl p-8 gap-8 shadow-lg border border-gray-100"
+              className="flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-8 gap-8 shadow-lg border border-gray-100 dark:border-gray-700 relative z-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -156,11 +159,11 @@ function ContactForm() {
             >
               <div className="flex flex-col md:flex md:flex-row gap-6">
                 <div className="w-full">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Your Name
                   </label>
                   <input
-                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full rounded-full border border-gray-300 dark:border-gray-600 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:bg-gray-700 dark:text-white"
                     id="name"
                     type="text"
                     name="name"
@@ -171,11 +174,11 @@ function ContactForm() {
                   />
                 </div>
                 <div className="w-full">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Your Email
                   </label>
                   <input
-                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full rounded-full border border-gray-300 dark:border-gray-600 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:bg-gray-700 dark:text-white"
                     id="email"
                     type="email"
                     name="email"
@@ -188,7 +191,7 @@ function ContactForm() {
               </div>
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="w-full relative">
-                  <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="interest" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     What are you interested in?
                   </label>
                   <input
@@ -200,16 +203,16 @@ function ContactForm() {
                     onFocus={() => setShowSuggestions(true)}
                     onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
                     placeholder="Select your interest"
-                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full rounded-full border border-gray-300 dark:border-gray-600 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:bg-gray-700 dark:text-white"
                     required
                   />
                   {showSuggestions && filteredInterests.length > 0 && (
-                    <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
+                    <ul className="absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
                       {filteredInterests.map((item) => (
                         <li
                           key={item}
                           onMouseDown={() => handleInterestSelect(item)}
-                          className="px-5 py-3 cursor-pointer hover:bg-gray-100"
+                          className="px-5 py-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white"
                         >
                           {item}
                         </li>
@@ -218,28 +221,34 @@ function ContactForm() {
                   )}
                 </div>
                 <div className="w-full">
-                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Project budget
                   </label>
                   <select
-                    className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full rounded-full border border-gray-300 dark:border-gray-600 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors dark:bg-gray-700 dark:text-white"
                     name="budget"
                     id="budget"
                     value={formData.budget}
                     onChange={handleChange}
                   >
-                    <option value="">Select your budget</option>
-                    <option value="$10000">Small Scale</option>
-                    <option value="$50500">Large Scale</option>
+                    <option value="" className="dark:bg-gray-700">
+                      Select your budget
+                    </option>
+                    <option value="$10000" className="dark:bg-gray-700">
+                      Small Scale
+                    </option>
+                    <option value="$50500" className="dark:bg-gray-700">
+                      Large Scale
+                    </option>
                   </select>
                 </div>
               </div>
               <div className="w-full">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Message
                 </label>
                 <textarea
-                  className="w-full rounded-2xl border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                  className="w-full rounded-2xl border border-gray-300 dark:border-gray-600 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none dark:bg-gray-700 dark:text-white"
                   name="message"
                   id="message"
                   value={formData.message}
@@ -253,7 +262,7 @@ function ContactForm() {
                 {!loader ? (
                   <button
                     type="submit"
-                    className="group w-fit text-white  font-medium bg-[#1462FF] dark:bg-white dark:text-white rounded-full flex items-center gap-4 py-2 pl-5 pr-2 transition-all duration-200 ease-in-out  hover:bg-transparent border hover:text-[#1462FF] border-[#1462FF]"
+                    className="group w-fit text-white font-medium bg-[#1462FF] dark:bg-[#1462FF] rounded-full flex items-center gap-4 py-2 pl-5 pr-2 transition-all duration-200 ease-in-out hover:bg-transparent border hover:text-[#1462FF] dark:hover:text-white border-[#1462FF] "
                   >
                     <span className="transform transition-transform duration-200 ease-in-out group-hover:translate-x-10">
                       Let’s Collaborate
@@ -271,7 +280,7 @@ function ContactForm() {
                         height="32"
                         rx="16"
                         fill="white"
-                        className="fill-white dark:fill-[#1462FF] transition-colors duration-200 ease-in-out group-hover:fill-[#1462FF] "
+                        className="fill-white  transition-colors duration-200 ease-in-out group-hover:fill-[#1462FF] "
                       />
                       <path
                         d="M11.832 11.3334H20.1654M20.1654 11.3334V19.6668M20.1654 11.3334L11.832 19.6668"
@@ -279,7 +288,7 @@ function ContactForm() {
                         strokeWidth="1.42857"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="stroke-[#1462FF] dark:stroke-white transition-colors duration-200 ease-in-out group-hover:stroke-white"
+                        className="stroke-[#1462FF]  transition-colors duration-200 ease-in-out group-hover:stroke-white"
                       />
                     </svg>
                   </button>

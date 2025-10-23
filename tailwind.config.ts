@@ -17,6 +17,8 @@ const config: Config = {
     },
     extend: {
       colors: {
+        dark_blue_gradient: '#0F172A',
+        dark_yellow_gradient: '#422006',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

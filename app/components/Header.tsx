@@ -4,28 +4,19 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
-import { LinkSquare02Icon, Moon02Icon, Sun02Icon, CancelIcon } from "@hugeicons/core-free-icons";
+import { LinkSquare02Icon, CancelIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import ThemeToggler from "./ThemeToggler";
 
 export default function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentPathname, setCurrentPathname] = useState("");
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", !isDarkMode ? "dark" : "light");
-  };
-
-  // Initialize theme on mount
+  // Set current pathname on client side
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
+    if (typeof window !== "undefined") {
+      setCurrentPathname(window.location.pathname);
     }
   }, []);
 
@@ -80,14 +71,15 @@ export default function Header() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <Link href="/" className="flex items-center">
-                <Logo size="md" showText={true} />
+                <Logo size="md" showText={true} variant={"default"} className="dark:hidden" />
+                <Logo size="md" showText={true} variant={"white"} className="hidden dark:block" />
               </Link>
             </motion.div>
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
               <Link
-                href="#about"
+                href={currentPathname === "/contact" ? "/#about" : "#about"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "about"
                     ? "text-gray-800 dark:text-gray-200"
@@ -111,7 +103,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#services"
+                href={currentPathname === "/contact" ? "/#services" : "#services"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "services"
                     ? "text-gray-800 dark:text-gray-200"
@@ -135,7 +127,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#work"
+                href={currentPathname === "/contact" ? "/#work" : "#work"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "work"
                     ? "text-gray-800 dark:text-gray-200"
@@ -159,7 +151,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#faq"
+                href={currentPathname === "/contact" ? "/#faq" : "#faq"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "faq"
                     ? "text-gray-800 dark:text-gray-200"
@@ -201,19 +193,7 @@ export default function Header() {
 
             {/* Mobile: Theme Toggle + Hamburger */}
             <div className="flex md:hidden items-center gap-4">
-              <motion.button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {isDarkMode ? (
-                  <HugeiconsIcon icon={Sun02Icon} className="w-6 h-6" />
-                ) : (
-                  <HugeiconsIcon icon={Moon02Icon} className="w-6 h-6" />
-                )}
-              </motion.button>
-
+              <ThemeToggler />
               {/* Hamburger Menu Button */}
               <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -236,14 +216,7 @@ export default function Header() {
 
             {/* Desktop Theme Toggle */}
             <div className="hidden md:flex items-center gap-4">
-              <motion.button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {isDarkMode ? <HugeiconsIcon icon={Sun02Icon} /> : <HugeiconsIcon icon={Moon02Icon} />}
-              </motion.button>
+              <ThemeToggler />
             </div>
           </nav>
         </div>
@@ -304,7 +277,9 @@ export default function Header() {
                   className="group relative overflow-hidden"
                 >
                   <Link
-                    href={item.href.startsWith("#") ? `/${item.href}` : item.href}
+                    href={item.href.startsWith("#") ? 
+                      (currentPathname === "/contact" ? `/${item.href}` : item.href) : 
+                      item.href}
                     onClick={handleMenuItemClick}
                     className="text-5xl sm:text-6xl md:text-7xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-200 block relative group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-300 ease-out uppercase"
                   >

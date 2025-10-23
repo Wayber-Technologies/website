@@ -31,7 +31,7 @@ export default function AwardsSection() {
   ];
 
   return (
-    <section id="awards" className="py-20 bg-transparent">
+    <section id="awards" className="py-20 bg-transparent dark:bg-gray-900">
       <div className="container">
         <motion.div 
           className="flex flex-col gap-16"
@@ -47,7 +47,7 @@ export default function AwardsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4">
               Accolades and achievements celebration our <span className="italic">design excellence</span>
             </h2>
           </motion.div>
@@ -56,7 +56,7 @@ export default function AwardsSection() {
             {awards.map((award, index) => (
               <motion.div
                 key={award.title}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -76,16 +76,16 @@ export default function AwardsSection() {
                   {award.icon}
                 </motion.div>
 
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">
                   {award.title}
                 </h3>
 
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                   {award.description}
                 </p>
 
                 <motion.div 
-                  className="text-sm text-gray-500"
+                  className="text-sm text-gray-500 dark:text-gray-400"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}

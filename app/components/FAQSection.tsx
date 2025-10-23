@@ -44,7 +44,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-transparent">
+    <section id="faq" className="py-20 bg-transparent dark:bg-gray-900">
       <div className="container">
         <motion.div
           className="flex flex-col gap-16"
@@ -60,7 +60,7 @@ export default function FAQSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-100 mb-4">
               Got questions? <br /> We've got <span className="italic">answers</span>
             </h2>
           </motion.div>
@@ -69,7 +69,7 @@ export default function FAQSection() {
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
-                className="border border-gray-200 rounded-lg overflow-hidden w-full"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden w-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -77,10 +77,10 @@ export default function FAQSection() {
               >
                 <motion.button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                   whileHover={{ backgroundColor: "rgba(249, 250, 251, 0.5)" }}
                 >
-                  <span className="text-gray-800 font-medium pr-4">{faq.question}</span>
+                  <span className="text-gray-800 dark:text-gray-200 font-medium pr-4">{faq.question}</span>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -92,7 +92,7 @@ export default function FAQSection() {
                       viewBox="0 0 24 24"
                       strokeWidth={2}
                       stroke="currentColor"
-                      className="w-5 h-5 text-gray-600"
+                      className="w-5 h-5 text-gray-600 dark:text-gray-400"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -109,7 +109,7 @@ export default function FAQSection() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-4">
-                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                       </div>
                     </motion.div>
                   )}

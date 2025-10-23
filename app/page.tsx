@@ -44,7 +44,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative w-full min-h-screen flex items-center justify-center py-20 lg:py-0">
           {/* Gradient Background - extends beyond section */}
-          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-50 via-purple-50 to-orange-50"></div>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-50 via-purple-50 to-orange-50 dark:from-dark_blue_gradient dark:via-black dark:to-dark_yellow_gradient dark:rounded-full dark:blur-3xl dark:before:-z-10"></div>
           <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-16 max-w-7xl mx-auto">
             <motion.div
               className="flex flex-col items-center text-center"
@@ -59,10 +59,10 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 {/* Mobile Layout - Different structure */}
-                <h1 className="w-full text-5xl sm:text-5xl md:hidden text-gray-900 space-y-3 leading-[1.1] font-[550]">
+                <h1 className="w-full text-5xl sm:text-5xl md:hidden text-gray-900 dark:text-white space-y-3 leading-[1.1] font-[550]">
                   <span className="block">Building bold</span>
                   <span className="block">brands with</span>
-                  <span className="italic font-normal text-gray-600 relative inline-block min-w-[280px] h-[1.2em] overflow-hidden align-middle">
+                  <span className="italic font-normal text-gray-600 dark:text-white/70 relative inline-block min-w-[280px] h-[1.2em] overflow-hidden align-middle">
                     <TypewriterText
                       texts={["thoughtful design", "creative strategy", "innovative solutions"]}
                       speed={150}
@@ -74,14 +74,14 @@ export default function Home() {
                 </h1>
 
                 {/* Desktop Layout - Original structure */}
-                <h1 className="hidden md:block w-full text-5xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-gray-900">
+                <h1 className="hidden md:block w-full text-5xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-gray-900 dark:text-white">
                   <span
                     className="font-medium tracking-tight sm:tracking-[-2px] md:tracking-[-4px] lg:tracking-[-6px]"
                     style={{ lineHeight: "1.2" }}
                   >
                     Building bold brands <br /> with
                   </span>{" "}
-                  <span className="italic font-normal text-gray-600 tracking-tight sm:tracking-[-2px] md:tracking-[-4px] lg:tracking-[-6px]">
+                  <span className="italic font-normal text-gray-600 dark:text-white/70 tracking-tight sm:tracking-[-2px] md:tracking-[-4px] lg:tracking-[-6px]">
                     <TypewriterText
                       texts={["thoughtful design", "creative strategy", "innovative solutions"]}
                       speed={150}
@@ -91,7 +91,7 @@ export default function Home() {
                     />
                   </span>
                 </h1>
-                <p className="max-w-3xl text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed font-light px-4 sm:px-0">
+                <p className="max-w-3xl text-gray-600 dark:text-white/60 text-sm sm:text-base md:text-lg leading-relaxed font-light px-4 sm:px-0">
                   <strong>Wayber Technologies</strong> is a leading digital agency specializing in{" "}
                   <strong>web development</strong>, <strong>mobile app development</strong>,{" "}
                   <strong>UI/UX design</strong>, and <strong>digital marketing</strong>. We help businesses transform
@@ -151,14 +151,15 @@ export default function Home() {
                           key={index}
                           src={avatar.image}
                           alt={avatar.title}
-                          width={32}
-                          height={32}
-                          className="inline-block h-8 w-8 sm:h-10 sm:w-10 rounded-full ring-2 ring-white"
+                          width={40}
+                          height={40}
+                          className="inline-block h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover border-2 border-white dark:border-gray-800"
                         />
                       ))}
                     </div>
+
                     <div className="flex flex-col gap-1">
-                      <p className="text-xs sm:text-sm font-semibold text-gray-600 text-center sm:text-left">
+                      <p className="text-xs sm:text-sm font-semibold text-gray-600 dark:text-white/60 text-center sm:text-left">
                         Trusted by numerous clients
                       </p>
                     </div>
