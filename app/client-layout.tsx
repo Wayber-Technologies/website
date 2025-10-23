@@ -12,7 +12,7 @@ const instrumentSerif = Instrument_Serif({
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="light" storageKey="wayber-theme">
+    <ThemeProvider attribute="class" enableSystem={false} storageKey="wayber-theme">
       {children}
     </ThemeProvider>
   );
