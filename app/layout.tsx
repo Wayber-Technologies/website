@@ -36,13 +36,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Wayber Technologies" />
-        <link rel="apple-touch-icon" href="/images/Wayber Icon.svg" />
-        <link rel="icon" type="image/svg+xml" href="/images/Wayber Icon.svg" />
-        <link rel="shortcut icon" href="/images/Wayber Icon.svg" />
-        <link rel="icon" sizes="16x16" href="/images/Wayber Icon.svg" />
-        <link rel="icon" sizes="32x32" href="/images/Wayber Icon.svg" />
-        <link rel="icon" sizes="192x192" href="/images/Wayber Icon.svg" />
-        <link rel="icon" sizes="512x512" href="/images/Wayber Icon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" sizes="16x16" href="/favicon.ico" />
+        <link rel="icon" sizes="32x32" href="/favicon.ico" />
+        <link rel="icon" sizes="192x192" href="/favicon.ico" />
+        <link rel="icon" sizes="512x512" href="/favicon.ico" />
 
         {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGV8Q0QK8T"></script>

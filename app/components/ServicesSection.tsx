@@ -132,7 +132,7 @@ export default function ServicesSection() {
             </h4>
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <Link
-                href="#contact"
+                href="/contact"
                 className="group gap-2  font-medium bg-white text-gray-900 rounded-full flex items-center lg:gap-4 py-2 pl-5 pr-2 border border-white dark:border-opacity-50 hover:bg-transparent hover:text-white transition-all duration-200 ease-in-out"
               >
                 <span className="group-hover:translate-x-9 transform  transition-transform duration-200 ease-in-out">

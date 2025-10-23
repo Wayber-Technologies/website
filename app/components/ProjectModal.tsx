@@ -72,7 +72,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
       >
         <motion.div
           ref={modalRef}
-          className="bg-white rounded-3xl overflow-hidden max-w-4xl w-full h-[80vh] flex flex-col"
+          className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden max-w-4xl w-full h-[80vh] flex flex-col"
           layoutId={`project-${project.id}`}
           initial={{ borderRadius: "16px" }}
           animate={{
@@ -98,7 +98,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
           {/* Close button */}
           <motion.button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 bg-white/80 backdrop-blur-sm rounded-full p-2 hover:bg-gray-100 transition-colors duration-200"
+            className="absolute top-4 right-4 z-10 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200"
             aria-label="Close modal"
             initial={{
               opacity: 0,
@@ -116,7 +116,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-800"
+              className="h-6 w-6 text-gray-800 dark:text-gray-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -191,28 +191,30 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
           >
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3 border-t pt-6 border-gray-200 pb-2">Description</h3>
-                <p className="text-gray-600 leading-relaxed">{project.description}</p>
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 border-t pt-6 border-gray-200 pb-2">
+                  Description
+                </h3>
+                <p className="text-gray-600 dark:text-gray-200 leading-relaxed">{project.description}</p>
               </div>
 
               {project.about && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3  pb-2">About</h3>
-                  <p className="text-gray-600 leading-relaxed">{project.about}</p>
+                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">About</h3>
+                  <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.about}</p>
                 </div>
               )}
 
               {project.challenge && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3  pb-2">Challenge</h3>
-                  <p className="text-gray-600 leading-relaxed">{project.challenge}</p>
+                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">Challenge</h3>
+                  <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.challenge}</p>
                 </div>
               )}
 
               {project.result && (
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-3  pb-2">Result</h3>
-                  <p className="text-gray-600 leading-relaxed">{project.result}</p>
+                  <h3 className="text-xl font-bold text-gray-800  dark:text-white mb-3  pb-2">Result</h3>
+                  <p className="text-gray-600  dark:text-gray-200 leading-relaxed">{project.result}</p>
                 </div>
               )}
 
@@ -221,7 +223,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
                   <Link
                     href={project.link}
                     target="_blank"
-                    className="group gap-2 text-white font-medium  bg-[#1f2937] rounded-full flex items-center lg:gap-4 py-2 pl-5 pr-2 border border-[#1f2937]  hover:bg-transparent hover:text-[#1f2937] transition-all duration-200 ease-in-out"
+                    className="group gap-2 text-white font-medium  bg-[#1f2937] rounded-full flex items-center lg:gap-4 py-2 pl-5 pr-2 border border-[#1f2937] dark:border-gray-400  hover:bg-transparent hover:text-[#1f2937] hover:dark:text-gray-200 transition-all duration-200 ease-in-out"
                   >
                     <span className="group-hover:translate-x-10 transform transition-transform duration-200 ease-in-out">
                       View Project
@@ -263,7 +265,7 @@ export default function ProjectModal({ project, onClose, modalPosition }: Projec
                     {project.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="text-xs sm:text-sm border border-gray-300 py-1 sm:py-1.5 px-3 sm:px-4 rounded-full bg-gray-50 text-gray-700 font-medium"
+                        className="text-xs sm:text-sm border border-gray-300 dark:border-gray-600 py-1 sm:py-1.5 px-3 sm:px-4 rounded-full bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium"
                       >
                         {tag}
                       </span>

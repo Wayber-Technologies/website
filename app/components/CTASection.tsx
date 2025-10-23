@@ -62,12 +62,12 @@ export default function CTASection() {
                 <Link
                   href="/contact"
                   className="group  font-medium bg-[#1462FF] text-white rounded-full flex items-center 
-    text-sm sm:text-base md:text-lg 
-    py-2.5 pl-5 pr-2 sm:py-3 sm:pl-6 sm:pr-2.5 md:py-3.5 md:pl-7 md:pr-3 
-    gap-2 sm:gap-3 lg:gap-4 
-    border border-[#1462FF] hover:bg-transparent hover:text-[#1462FF] 
-    transition-all duration-200 ease-in-out 
-    w-fit"
+                  text-sm sm:text-base md:text-lg 
+                  py-2.5 pl-5 pr-2 sm:py-3 sm:pl-6 sm:pr-2.5 md:py-3.5 md:pl-7 md:pr-3 
+                  gap-2 sm:gap-3 lg:gap-4 
+                  border border-[#1462FF] hover:bg-transparent hover:text-[#1462FF] 
+                  transition-all duration-200 ease-in-out 
+                  w-fit"
                 >
                   <span className="group-hover:translate-x-9 sm:group-hover:translate-x-10 md:group-hover:translate-x-11 transform transition-transform duration-200 ease-in-out whitespace-nowrap">
                     Let's Collaborate

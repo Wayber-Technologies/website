@@ -71,7 +71,7 @@ export default function Header() {
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
               <Link
-                href="#about"
+                href={window.location.pathname === "/contact" ? "/#about" : "#about"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "about"
                     ? "text-gray-800 dark:text-gray-200"
@@ -95,7 +95,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#services"
+                href={window.location.pathname === "/contact" ? "/#services" : "#services"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "services"
                     ? "text-gray-800 dark:text-gray-200"
@@ -119,7 +119,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#work"
+                href={window.location.pathname === "/contact" ? "/#work" : "#work"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "work"
                     ? "text-gray-800 dark:text-gray-200"
@@ -143,7 +143,7 @@ export default function Header() {
                 )}
               </Link>
               <Link
-                href="#faq"
+                href={window.location.pathname === "/contact" ? "/#faq" : "#faq"}
                 className={`px-3 py-2 relative transition-colors ${
                   activeSection === "faq"
                     ? "text-gray-800 dark:text-gray-200"
@@ -269,7 +269,9 @@ export default function Header() {
                   className="group relative overflow-hidden"
                 >
                   <Link
-                    href={item.href.startsWith("#") ? `/${item.href}` : item.href}
+                    href={item.href.startsWith("#") ? 
+                      (window.location.pathname === "/contact" ? `/${item.href}` : item.href) : 
+                      item.href}
                     onClick={handleMenuItemClick}
                     className="text-5xl sm:text-6xl md:text-7xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-200 block relative group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-300 ease-out uppercase"
                   >
