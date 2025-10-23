@@ -26,8 +26,8 @@ export default function ServicesSection() {
         </>
       ),
       icon: <HugeiconsIcon icon={SourceCodeCircleIcon} className="w-10 h-10 text-pink-500" />,
-      bgColor: "bg-pink-50",
-      borderColor: "border-pink-200",
+      bgColor: "bg-pink-50 dark:bg-gray-800",
+      borderColor: "border-pink-200 dark:border-pink-900",
     },
     {
       title: (
@@ -36,8 +36,8 @@ export default function ServicesSection() {
         </>
       ),
       icon: <HugeiconsIcon icon={MarketingIcon} className="w-10 h-10 text-blue-500" />,
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      bgColor: "bg-blue-50 dark:bg-gray-800",
+      borderColor: "border-blue-200 dark:border-blue-900",
     },
     {
       title: (
@@ -46,8 +46,8 @@ export default function ServicesSection() {
         </>
       ),
       icon: <HugeiconsIcon icon={AiMagicIcon} className="w-10 h-10 text-orange-500" />,
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      bgColor: "bg-orange-50 dark:bg-gray-800",
+      borderColor: "border-orange-200 dark:border-orange-900",
     },
     {
       title: (
@@ -56,8 +56,8 @@ export default function ServicesSection() {
         </>
       ),
       icon: <HugeiconsIcon icon={PresentationLineChart02Icon} className="w-10 h-10 text-green-500" />,
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
+      bgColor: "bg-green-50 dark:bg-gray-800",
+      borderColor: "border-green-200 dark:border-green-900",
     },
     {
       title: (
@@ -66,13 +66,13 @@ export default function ServicesSection() {
         </>
       ),
       icon: <HugeiconsIcon icon={StrategyIcon} className="w-10 h-10 text-purple-500" />,
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      bgColor: "bg-purple-50 dark:bg-gray-800",
+      borderColor: "border-purple-200 dark:border-purple-900",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-transparent">
+    <section id="services" className="py-20 bg-transparent dark:bg-gray-900">
       <div className="container">
         <motion.div
           className="flex flex-col gap-16"
@@ -89,10 +89,10 @@ export default function ServicesSection() {
             viewport={{ once: true }}
           >
             <div className="max-w-4xl text-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100">
                 Professional <strong>Web Development</strong> & <strong>Digital Marketing</strong> Services
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto mt-6">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-6">
                 Our comprehensive digital solutions include custom web development, mobile app development, UI/UX
                 design, and strategic digital marketing to help your business grow online.
               </p>
@@ -112,7 +112,7 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <div className="flex justify-center mb-4">{service.icon}</div>
-                <h3 className="text-lg font-bold text-gray-800 font-aloevera leading-tight">{service.title}</h3>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 font-aloevera leading-tight">{service.title}</h3>
               </motion.div>
             ))}
           </div>

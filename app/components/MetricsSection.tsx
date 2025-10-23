@@ -74,7 +74,7 @@ export default function MetricsSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-transparent">
+    <section id="about" className="py-20 bg-transparent dark:bg-gray-900">
       <div className="container">
         <motion.div 
           className="flex flex-col lg:gap-16 gap-12"
@@ -90,7 +90,7 @@ export default function MetricsSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="max-w-6xl text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
+            <h2 className="max-w-6xl text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-gray-100">
               Crafting exceptional, well experienced & technology driven strategies to drive impactful results with
             </h2>
             
@@ -99,7 +99,7 @@ export default function MetricsSection() {
               {tags.map((tag, index) => (
                 <motion.div
                   key={tag.label}
-                  className={`${tag.bgColor} ${tag.textColor} px-6 py-3 rounded-lg flex items-center gap-3 font-medium`}
+                  className={`${tag.bgColor} ${tag.textColor} px-6 py-3 rounded-lg flex items-center gap-3 font-medium dark:bg-gray-800 dark:text-gray-200`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
@@ -123,7 +123,7 @@ export default function MetricsSection() {
                 viewport={{ once: true }}
               >
                 <motion.h2 
-                  className="text-5xl md:text-7xl lg:text-9xl font-bold text-gray-800"
+                  className="text-5xl md:text-7xl lg:text-9xl font-bold text-gray-800 dark:text-gray-100"
                   initial={{ scale: 0.5 }}
                   whileInView={{ scale: 1 }}
                   transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
@@ -131,9 +131,9 @@ export default function MetricsSection() {
                 >
                   <Counter end={metric.number} prefix={metric.prefix} />
                 </motion.h2>
-                <p className="mt-4 text-gray-600 text-lg">{metric.label}</p>
+                <p className="mt-4 text-gray-600 dark:text-gray-400 text-lg">{metric.label}</p>
                 {index < metrics.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 h-28 w-px bg-gray-200" />
+                  <div className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 h-28 w-px bg-gray-200 dark:bg-gray-700" />
                 )}
               </motion.div>
             ))}
