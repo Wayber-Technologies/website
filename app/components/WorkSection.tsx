@@ -112,7 +112,7 @@ export default function WorkSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white mb-6">
               How we transformed a small business's <span className="italic">online presence</span>
             </h2>
           </motion.div>
@@ -175,13 +175,13 @@ export default function WorkSection() {
                 </motion.div>
 
                 <div className="flex flex-col items-start gap-4">
-                  <h5 className="group-hover:text-blue-600 text-xl font-bold text-gray-800">{project.title}</h5>
-                  <p className="text-gray-600 text-sm leading-relaxed">{project.description}</p>
+                  <h5 className="group-hover:text-blue-600 text-xl font-bold text-gray-800 dark:text-white">{project.title}</h5>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIndex) => (
                       <p
                         key={tagIndex}
-                        className="text-xs sm:text-sm border border-gray-300 w-fit py-1 sm:py-1.5 px-3 sm:px-4 rounded-full hover:bg-gray-800 hover:text-white transition-colors duration-200"
+                        className="text-xs sm:text-sm border border-gray-300 dark:border-gray-700 w-fit py-1 sm:py-1.5 px-3 sm:px-4 rounded-full hover:bg-gray-800 hover:text-white dark:text-gray-300 transition-colors duration-200"
                       >
                         {tag}
                       </p>

@@ -112,13 +112,15 @@ export default function ServicesSection() {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <div className="flex justify-center mb-4">{service.icon}</div>
-                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 font-aloevera leading-tight">{service.title}</h3>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100 font-aloevera leading-tight">
+                  {service.title}
+                </h3>
               </motion.div>
             ))}
           </div>
 
           <motion.div
-            className="flex flex-col gap-6 xl:flex xl:flex-row bg-gray-900 items-center justify-between py-8 px-7 sm:px-8 rounded-2xl w-full p-5"
+            className="flex flex-col gap-6 xl:flex xl:flex-row bg-gray-900 dark:bg-gray-800 items-center justify-between py-8 px-7 sm:px-8 rounded-2xl w-full p-5"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -131,9 +133,9 @@ export default function ServicesSection() {
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <Link
                 href="#contact"
-                className="group gap-2 text-dark_black font-medium bg-white rounded-full flex items-center lg:gap-4 py-2 pl-5 pr-2 border border-white dark:border-opacity-50 hover:bg-transparent hover:text-white transition-all duration-200 ease-in-out"
+                className="group gap-2  font-medium bg-white text-gray-900 rounded-full flex items-center lg:gap-4 py-2 pl-5 pr-2 border border-white dark:border-opacity-50 hover:bg-transparent hover:text-white transition-all duration-200 ease-in-out"
               >
-                <span className="group-hover:translate-x-9 transform transition-transform duration-200 ease-in-out">
+                <span className="group-hover:translate-x-9 transform  transition-transform duration-200 ease-in-out">
                   Let's Collaborate
                 </span>
                 <svg
