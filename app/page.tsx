@@ -44,7 +44,7 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative w-full min-h-screen flex items-center justify-center py-20 lg:py-0">
+        <section className="relative w-full min-h-screen flex items-center justify-center py-24 sm:py-28 md:py-32 lg:py-20">
           <Rain />
           {/* Gradient Background - extends beyond section */}
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-50 via-purple-50 to-orange-50 dark:from-dark_blue_gradient dark:via-black dark:to-dark_yellow_gradient dark:rounded-full dark:blur-3xl dark:before:-z-10"></div>
