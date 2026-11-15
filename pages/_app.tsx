@@ -4,9 +4,14 @@ import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function App({ Component, pageProps, router }: { Component: any; pageProps: any; router: any }) {
-  const [isLoading, setIsLoading] = useState(true);
+// Pages that have moved to the new design bring their own header and footer
+// and skip the legacy preloader. The rest keep the old chrome until redesigned.
+const REDESIGNED_ROUTES = new Set(["/"]);
+
+export default function App({ Component, pageProps }: { Component: any; pageProps: any }) {
   const nextRouter = useRouter();
+  const redesigned = REDESIGNED_ROUTES.has(nextRouter.pathname);
+  const [isLoading, setIsLoading] = useState(!redesigned);
 
   useEffect(() => {
     // Hide navbar during initial loading
@@ -31,6 +36,8 @@ export default function App({ Component, pageProps, router }: { Component: any; 
       nextRouter.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [nextRouter]);
+
+  if (redesigned) return <Component key={nextRouter.pathname} {...pageProps} />;
 
   return (
     <>
