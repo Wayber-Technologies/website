@@ -8,10 +8,7 @@ export default function Studio() {
       <div className={styles.narrow}>
         <p className={styles.statementText}>
           Wayber Technologies is a software studio in Lagos.{" "}
-          <span className={styles.grey}>
-            We work with founders, banks and operators who need software that works on launch day and still holds up
-            when they have grown tenfold.
-          </span>
+          <span className={styles.grey}>We build software that works on launch day and keeps working as you grow.</span>
         </p>
       </div>
       <div className={`${styles.container} ${styles.photos}`}>
