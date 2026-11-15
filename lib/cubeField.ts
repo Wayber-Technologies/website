@@ -16,7 +16,31 @@ const MARK_PATH =
 const MARK_W = 944;
 const MARK_H = 693;
 
-const MARK_COLOR = "#1462FF";
+// Brand palette, weighted so the mark still reads as Wayber Blue. Light Blue
+// (#BFFDFF) disappears on white, so a deeper cyan stands in for it.
+const PALETTE: { color: string; weight: number }[] = [
+  { color: "#1462FF", weight: 55 }, // Wayber Blue
+  { color: "#09182F", weight: 20 }, // Dark Blue
+  { color: "#2FC4D6", weight: 13 }, // Light Blue, deepened
+  { color: "#EFD54D", weight: 12 }, // Yellow
+];
+const PALETTE_TOTAL = PALETTE.reduce((sum, p) => sum + p.weight, 0);
+
+// Stable pseudo-random value per grid cell, so the colour pattern is the same on every load.
+function cellNoise(i: number, j: number) {
+  let h = (i * 374761393 + j * 668265263) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+}
+
+function pickColor(i: number, j: number) {
+  let r = cellNoise(i, j) * PALETTE_TOTAL;
+  for (let k = 0; k < PALETTE.length; k++) {
+    r -= PALETTE[k].weight;
+    if (r < 0) return k;
+  }
+  return 0;
+}
 // From this width up, the hero is two columns and the mark sits in the right one.
 const SPLIT_MIN_WIDTH = 900;
 // Matches .container in site.module.css.
@@ -35,6 +59,8 @@ type MarkSquare = {
   delay: number;
   offX: number;
   offY: number;
+  /** Index into PALETTE. */
+  color: number;
 };
 
 type GridDot = { homeX: number; homeY: number; x: number; y: number };
@@ -86,7 +112,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
 
     const narrow = width < 700;
     const gap = narrow ? 8 : 10;
-    squareSize = narrow ? 3.2 : 4;
+    squareSize = narrow ? 3.8 : 4.8;
     squares = [];
     dots = [];
 
@@ -95,6 +121,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
         if (probe.isPointInPath(mark, (x - originX) / scale, (y - originY) / scale)) {
           squares.push({
             x, y, offX: 0, offY: 0,
+            color: pickColor(Math.round(x / gap), Math.round(y / gap)),
             startX: reduceMotion ? x : x + (Math.random() - 0.5) * width * 0.9,
             startY: reduceMotion ? y : y + (Math.random() - 0.5) * height * 1.4,
             delay: reduceMotion ? 0 : Math.random() * 400,
@@ -129,12 +156,14 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.x += (tx - d.x) * 0.1;
       d.y += (ty - d.y) * 0.1;
       if (Math.abs(tx - d.x) > 0.2 || Math.abs(ty - d.y) > 0.2) busy = true;
-      grid.rect(d.x - 0.8, d.y - 0.8, 1.6, 1.6);
+      grid.moveTo(d.x + 0.9, d.y);
+      grid.arc(d.x, d.y, 0.9, 0, Math.PI * 2);
     }
     ctx!.fillStyle = GRID_COLOR;
     ctx!.fill(grid);
 
-    const marks = new Path2D();
+    const marks = PALETTE.map(() => new Path2D());
+    const radius = squareSize / 2;
     for (const s of squares) {
       const intro = Math.max(0, Math.min(1, (now - startedAt - s.delay) / INTRO_MS));
       if (intro < 1) busy = true;
@@ -154,10 +183,14 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       s.offY += (pushY - s.offY) * 0.15;
       if (Math.abs(pushX - s.offX) > 0.2 || Math.abs(pushY - s.offY) > 0.2) busy = true;
 
-      marks.rect(x + s.offX - squareSize / 2, y + s.offY - squareSize / 2, squareSize, squareSize);
+      const cx = x + s.offX, cy = y + s.offY;
+      marks[s.color].moveTo(cx + radius, cy);
+      marks[s.color].arc(cx, cy, radius, 0, Math.PI * 2);
     }
-    ctx!.fillStyle = MARK_COLOR;
-    ctx!.fill(marks);
+    PALETTE.forEach((p, k) => {
+      ctx!.fillStyle = p.color;
+      ctx!.fill(marks[k]);
+    });
 
     if (busy) requestDraw();
   }
