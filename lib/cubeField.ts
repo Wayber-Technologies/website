@@ -71,6 +71,10 @@ type Dot = {
   offX: number;
   offY: number;
   color: number;
+  /** This frame's position and visibility, worked out once and then drawn per colour. */
+  drawX: number;
+  drawY: number;
+  hidden: boolean;
 };
 
 /** `underMark`: hidden while the mark covers it, faded in while another shape shows. */
@@ -264,6 +268,9 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
         offX: 0,
         offY: 0,
         color: pickColor(k),
+        drawX: mark.x,
+        drawY: mark.y,
+        hidden: false,
       };
     });
 
@@ -310,8 +317,10 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     let busy = false;
     ctx!.clearRect(0, 0, width, height);
 
-    const gridOpen = new Path2D();
-    const gridUnder = new Path2D();
+    // Drawing uses the context's own path (beginPath/arc/fill), never new Path2D
+    // objects per frame: their memory lives outside the JS heap, so garbage
+    // collection doesn't keep up with ~20k shapes a frame and the tab can run
+    // out of memory.
     for (const g of grid) {
       let tx = g.homeX, ty = g.homeY;
       const dx = g.homeX - pointer.x, dy = g.homeY - pointer.y;
@@ -324,23 +333,26 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       g.x += (tx - g.x) * 0.1;
       g.y += (ty - g.y) * 0.1;
       if (Math.abs(tx - g.x) > 0.2 || Math.abs(ty - g.y) > 0.2) busy = true;
-      const path = g.underMark ? gridUnder : gridOpen;
-      path.moveTo(g.x + 0.8, g.y);
-      path.arc(g.x, g.y, 0.8, 0, Math.PI * 2);
     }
     // While the cubes show, the grid softens and the dots the mark was covering
     // fade in, so no mark-shaped hole is left.
     const away = 1 - markPresence(now);
     ctx!.fillStyle = GRID_COLOR;
-    ctx!.globalAlpha = 1 - away * 0.5;
-    ctx!.fill(gridOpen);
-    if (away > 0) {
-      ctx!.globalAlpha = away * 0.5;
-      ctx!.fill(gridUnder);
-    }
+    const fillGrid = (underMark: boolean, alpha: number) => {
+      if (alpha <= 0) return;
+      ctx!.globalAlpha = alpha;
+      ctx!.beginPath();
+      for (const g of grid) {
+        if (g.underMark !== underMark) continue;
+        ctx!.moveTo(g.x + 0.8, g.y);
+        ctx!.arc(g.x, g.y, 0.8, 0, Math.PI * 2);
+      }
+      ctx!.fill();
+    };
+    fillGrid(false, 1 - away * 0.5);
+    fillGrid(true, away * 0.5);
     ctx!.globalAlpha = 1;
 
-    const paths = PALETTE.map(() => new Path2D());
     const radius = dotSize / 2;
     let morphing = false;
 
@@ -379,14 +391,19 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.offY += (pushY - d.offY) * 0.15;
       if (Math.abs(pushX - d.offX) > 0.2 || Math.abs(pushY - d.offY) > 0.2) busy = true;
 
-      if (hidden) continue;
-      const cx = x + d.offX, cy = y + d.offY;
-      paths[d.color].moveTo(cx + radius, cy);
-      paths[d.color].arc(cx, cy, radius, 0, Math.PI * 2);
+      d.hidden = hidden;
+      d.drawX = x + d.offX;
+      d.drawY = y + d.offY;
     }
     PALETTE.forEach((p, k) => {
       ctx!.fillStyle = p.color;
-      ctx!.fill(paths[k]);
+      ctx!.beginPath();
+      for (const d of dots) {
+        if (d.color !== k || d.hidden) continue;
+        ctx!.moveTo(d.drawX + radius, d.drawY);
+        ctx!.arc(d.drawX, d.drawY, radius, 0, Math.PI * 2);
+      }
+      ctx!.fill();
     });
 
     if (morph && !morphing) {
