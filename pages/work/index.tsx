@@ -24,8 +24,6 @@ export default function WorkPage() {
               <CaseCard key={item.slug} item={item} />
             ))}
           </div>
-
-          <p className={styles.soon}>Also shipped: We Sleep, an NFT and crypto platform. Case study coming soon.</p>
         </div>
       </section>
 

@@ -4,9 +4,13 @@ import {
   malamx2, malamx3, malamx4, malamx5,
   rftf2, rftf3, rftf4,
   burnout2, burnout3, burnout4, burnout5,
-  commercio2, commercio3, commercio4, commercio5,
-  project1, project3, project4, project5,
+  project1, project3, project4,
 } from "@/public";
+import cpcompassPhones from "@/public/work/cpcompass-phones.png";
+import cpcompassAspire from "@/public/work/cpcompass-aspire.jpg";
+import wesleepCover from "@/public/work/wesleep-cover.jpg";
+import wesleepMarket from "@/public/work/wesleep-market.jpg";
+import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
 
 // Case studies for the redesigned /work and /case/[slug] pages. The copy is
 // rewritten from the original case data in constants/index.ts. Unverified
@@ -136,28 +140,49 @@ export const CASES: CaseStudy[] = [
     ],
   },
   {
-    // TODO(content): confirm the CPCompass name and logo. The original repo data called this "Commercio".
-    slug: "commercio",
+    // Facts from the live product (app.cpcompass.ng, cpcompass.ng) and its codebases
+    // (cp-customer, cp-mobile, cp-admin, cp-api). Images are the team's own public marketing assets.
+    slug: "cpcompass",
     title: "CPCompass",
-    client: "Comercio Partners",
+    client: "Comercio Partners Asset Management",
     sector: "Investment",
-    platform: "Web & mobile",
-    services: ["Product design", "Investment platform", "Financial dashboards", "Web development"],
-    summary: "Curated investments and mobile banking in one app.",
+    platform: "Web, iOS & Android",
+    services: ["Product design", "Web app", "Flutter mobile app", "Admin & APIs"],
+    summary: "Goal-based saving and investing: set a goal, pick a plan, and watch your money work toward it.",
     overview:
-      "CPCompass brings Comercio Partners’ investment opportunities, from trading and advisory to property development, into one place that everyday investors can use.",
+      "CPCompass helps everyday Nigerians save and invest toward the things they care about: an emergency fund, a home, school fees, travel or retirement. Users fund a wallet, choose a plan, and track every naira in one portfolio.",
     challenge:
-      "Investing is intimidating for most people. The product had to inspire the confidence of a serious financial firm while staying simple enough for someone making their first investment.",
+      "Make professional asset management feel personal and approachable, while meeting the identity checks, security and record-keeping a regulated asset manager needs.",
     approach:
-      "Clear asset breakdowns, transaction histories and performance numbers, with a mobile-first design so checking a portfolio is as easy as checking your messages.",
+      "We built the whole platform: the web app at app.cpcompass.ng and a Flutter app for iOS and Android, on our own API. Users verify their identity (with OTP, and manual review as a fallback), take a risk-profile questionnaire, fund their wallet through Paystack, and invest from a marketplace of three products: Snappy Investments for two-click flexible-term saving, Aspire Goals for custom targets, and Flash Deals for time-limited offers like commercial papers and bonds. An admin dashboard, audit logging and SMS alerts run the operation behind it.",
     outcome:
-      "Professional-grade investment management in a form everyday investors can actually use.",
-    card: { src: project5, alt: "CPCompass mark", fit: "contain", background: "#F3F5F8" },
-    cover: { src: commercio2, alt: "Comercio Partners website hero over the Lagos skyline", fit: "cover", background: "#1B2333" },
+      "CPCompass is live on the web, the App Store and Google Play, with a portfolio view, an investment calculator, personal finance insights and in-app support.",
+    card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
+    cover: { src: cpcompassPhones, alt: "CPCompass home screen and app store listing on two phones", fit: "contain", background: "#EEF0F7" },
+    gallery: [],
+  },
+  {
+    // Facts from the product page at devsolutely.com/projects/wesleep (copy rewritten).
+    // TODO(content): confirm launch status; the source says the beta is in preparation.
+    slug: "wesleep",
+    title: "WeSleep",
+    sector: "Web3 & wellness",
+    platform: "iOS & Android",
+    services: ["Product design", "Mobile development", "NFT marketplace", "In-app wallet"],
+    summary: "A sleep-to-earn app that rewards rest with tokens and nudges people toward healthier routines.",
+    overview:
+      "WeSleep is a Web3 app with game-like rewards for sleep. People hold a Sleepie NFT, sleep, and earn $ZZZ tokens. Each Sleepie’s traits (fatigue, drowsiness, luck and devotion) set how much it can earn in a day.",
+    challenge:
+      "Blend crypto mechanics with a health habit without letting either feel like a chore. Rewards had to be fair and hard to game, and the wallet and marketplace simple enough for people new to Web3.",
+    approach:
+      "An iOS and Android app that reads health, GPS and motion data to check activity and work out rewards. Around it: an NFT marketplace to level up, breed and trade Sleepies, an in-app wallet to swap rewards and send $WEZ and $ZZZ, and daily tasks with leaderboards.",
+    outcome:
+      "The core loop is in place (sleep, earn, level up, compete) and the product is heading into beta, with health tracking that also suggests ways to live a more active life.",
+    card: { src: wesleepCover, alt: "WeSleep marketplace, Sleepie and leaderboard screens", fit: "cover", background: "#1C1F26" },
+    cover: { src: wesleepCover, alt: "Three phones showing the WeSleep marketplace, a Sleepie and the leaderboard", fit: "cover", background: "#1C1F26" },
     gallery: [
-      { src: commercio3, alt: "Service areas: trading, advisory, investments and property development", fit: "contain", background: "#F3F5F8", span: "full" },
-      { src: commercio4, alt: "Company milestones timeline", fit: "contain", background: "#F3F5F8", span: "full" },
-      { src: commercio5, alt: "Personalised guidance section", fit: "contain", background: "#F3F5F8", span: "full" },
+      { src: wesleepMarket, alt: "Sleepie marketplace with traits and prices", fit: "contain", background: "#1C1F26", span: "half" },
+      { src: wesleepRanks, alt: "Regional leaderboard", fit: "contain", background: "#1C1F26", span: "half" },
     ],
   },
 ];

@@ -98,19 +98,21 @@ export default function CaseStudyPage({ slug }: Props) {
         </div>
       </section>
 
-      <section aria-label={`${item.title} screens`}>
-        <div className={`${site.container} ${styles.gallery}`}>
-          {item.gallery.map((img) => (
-            <div key={img.alt} className={img.span === "full" ? styles.galleryFull : undefined}>
-              <CaseFrame
-                image={img}
-                shape={img.span}
-                sizes={img.span === "full" ? "(max-width: 1320px) 100vw, 1272px" : "(max-width: 760px) 100vw, 640px"}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+      {item.gallery.length > 0 && (
+        <section aria-label={`${item.title} screens`}>
+          <div className={`${site.container} ${styles.gallery}`}>
+            {item.gallery.map((img) => (
+              <div key={img.alt} className={img.span === "full" ? styles.galleryFull : undefined}>
+                <CaseFrame
+                  image={img}
+                  shape={img.span}
+                  sizes={img.span === "full" ? "(max-width: 1320px) 100vw, 1272px" : "(max-width: 760px) 100vw, 640px"}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className={styles.next}>
         <div className={site.container}>

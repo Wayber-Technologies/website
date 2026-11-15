@@ -72,28 +72,35 @@ export const CAPABILITIES: Capability[] = [
 
 export const OTHER_SERVICES = ["Product & UI/UX design", "Consultancy & audits", "Analytics & reporting", "Brand & growth"];
 
-export const FEATURED_WORK = [
+export type FeaturedWork = {
+  title: string;
+  sector: string;
+  summary: string;
+  href: string;
+  image: { src: string; alt: string; background: string; fit: "cover" | "contain" };
+};
+
+export const FEATURED_WORK: FeaturedWork[] = [
   {
     title: "Sise",
     sector: "Workflow & CRM",
     summary: "Lead and customer management for teams who live in their pipeline.",
     href: "/case/sise",
-    image: { src: "/project1.png", alt: "Sise logo on a light blue field", background: "#DCEBFF", fit: "cover" as const },
+    image: { src: "/project1.png", alt: "Sise logo on a light blue field", background: "#DCEBFF", fit: "cover" },
   },
   {
     title: "Run For The Future",
     sector: "Wellness · ARM Pensions",
     summary: "Runs, leaderboards and events for ARM’s seventh awareness campaign.",
     href: "/case/rftf",
-    image: { src: "/project3.png", alt: "Run For The Future campaign artwork", background: "#4A1F3D", fit: "cover" as const },
+    image: { src: "/project3.png", alt: "Run For The Future campaign artwork", background: "#4A1F3D", fit: "cover" },
   },
   {
-    // TODO(content): confirm this is the right mark for CPCompass (the repo calls it Commercio).
     title: "CPCompass",
-    sector: "Investment",
-    summary: "Curated investments and mobile banking in one app.",
-    href: "/case/commercio",
-    image: { src: "/project5.png", alt: "CPCompass mark", background: "#F3F5F8", fit: "contain" as const },
+    sector: "Investment · Comercio Partners",
+    summary: "Goal-based saving and investing on web, iOS and Android.",
+    href: "/case/cpcompass",
+    image: { src: "/work/cpcompass-aspire.jpg", alt: "CPCompass Aspire Goals", background: "#3B4180", fit: "cover" },
   },
 ];
 

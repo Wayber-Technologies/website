@@ -1,6 +1,8 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import SiteLayout from "@/components/site/SiteLayout";
 import PageHero from "@/components/site/PageHero";
+import MarkExploded from "@/components/site/MarkExploded";
 import { Clients } from "@/components/site/Work";
 import { Closing } from "@/components/site/Contact";
 import { LEADERSHIP, MARK_MEANING, VALUES } from "@/constants/pages";
@@ -19,6 +21,25 @@ const initials = (name: string) =>
     .map((p) => p[0])
     .join("")
     .slice(0, 2);
+
+/** Three stacked slabs, the "layers" in W + B + layers. */
+function LayersGlyph() {
+  return (
+    <svg viewBox="0 0 48 48" width="1em" height="1em">
+      {[0, 1, 2].map((k) => (
+        <path
+          key={k}
+          d="M4 22 L24 12 L44 22 L24 32 Z"
+          transform={`translate(0 ${k * 7 - 7})`}
+          fill={k === 2 ? "#1462FF" : "none"}
+          stroke="#1462FF"
+          strokeWidth="3"
+          strokeLinejoin="round"
+        />
+      ))}
+    </svg>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -56,24 +77,32 @@ export default function AboutPage() {
               <span className={site.grey}>is how we work.</span>
             </h2>
           </div>
-          <div className={styles.mark}>
-            <svg className={styles.markArt} viewBox="0 0 950 700" role="img" aria-label="The Wayber mark: three stacked slabs">
-              <polygon points="0,203 360,0 405,25 405,316 45,519 0,494" fill="none" stroke="#1462FF" strokeWidth="12" />
-              <polygon points="270,290 630,87 675,112 675,403 315,606 270,581" fill="none" stroke="#1462FF" strokeWidth="12" />
-              <polygon points="540,377 900,174 945,199 945,490 585,693 540,668" fill="none" stroke="#1462FF" strokeWidth="12" />
-            </svg>
-            <div className={styles.markList}>
-              {MARK_MEANING.map((m) => (
-                <div key={m.word} className={styles.markItem}>
-                  <span className={styles.markLetter} aria-hidden="true">
-                    {m.letter}
-                  </span>
-                  <span>
-                    <span className={styles.markWord}>{m.word}</span>
-                    <span className={styles.markBody}>{m.body}</span>
-                  </span>
-                </div>
-              ))}
+          <div className={`${styles.mark} ${site.gridBg}`}>
+            <MarkExploded />
+            <div className={styles.decode}>
+              <span className={styles.decodeLabel}>The mark, decoded</span>
+              <div className={styles.formula} aria-label="W for Way, plus B for Better, plus layers of technology">
+                {MARK_MEANING.map((m, i) => (
+                  <Fragment key={m.word}>
+                    {i > 0 && (
+                      <span className={styles.formulaPlus} aria-hidden="true">
+                        +
+                      </span>
+                    )}
+                    <div className={styles.term}>
+                      <span className={styles.termGlyph} aria-hidden="true">
+                        {m.glyph === "layers" ? <LayersGlyph /> : m.glyph}
+                      </span>
+                      <span className={styles.termWord}>{m.word}</span>
+                      <span className={styles.termBody}>{m.body}</span>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+              <p className={styles.decodeSum}>
+                The layers are the ones in the drawing: interface, data and infrastructure, designed and built as one
+                stack that holds together.
+              </p>
             </div>
           </div>
         </div>
