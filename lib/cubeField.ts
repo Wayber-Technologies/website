@@ -16,8 +16,12 @@ const MARK_PATH =
 const MARK_W = 944;
 const MARK_H = 693;
 
-// Kept light so the headline on top stays readable.
-const MARK_COLOR = "rgba(20, 98, 255, 0.34)";
+const MARK_COLOR = "#1462FF";
+// From this width up, the hero is two columns and the mark sits in the right one.
+const SPLIT_MIN_WIDTH = 900;
+// Matches .container in site.module.css.
+const CONTAINER_MAX = 1320;
+const CONTAINER_PAD = 24;
 const GRID_COLOR = "#E1E6EE";
 
 const REPEL_RADIUS = 140;
@@ -69,13 +73,20 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
 
     const mark = new Path2D(MARK_PATH);
     const probe = document.createElement("canvas").getContext("2d")!;
-    const narrow = width < 700;
-    const scale = Math.min((height * (narrow ? 0.52 : 0.74)) / MARK_H, (width * (narrow ? 0.92 : 0.78)) / MARK_W);
-    const originX = (width - MARK_W * scale) / 2;
+    // Two-column hero: centre the mark in the right half of the page container.
+    // Narrow screens: the canvas sits below the text, so centre it in the canvas.
+    const split = width >= SPLIT_MIN_WIDTH;
+    const containerW = Math.min(width, CONTAINER_MAX);
+    const containerX = (width - containerW) / 2;
+    const areaX = split ? containerX + containerW * 0.52 : 0;
+    const areaW = split ? containerW * 0.48 - CONTAINER_PAD : width;
+    const scale = Math.min((height * (split ? 0.62 : 0.8)) / MARK_H, (areaW * (split ? 0.94 : 0.84)) / MARK_W);
+    const originX = areaX + (areaW - MARK_W * scale) / 2;
     const originY = (height - MARK_H * scale) / 2;
 
-    const gap = narrow ? 8 : 11;
-    squareSize = narrow ? 3 : 4;
+    const narrow = width < 700;
+    const gap = narrow ? 8 : 10;
+    squareSize = narrow ? 3.2 : 4;
     squares = [];
     dots = [];
 
@@ -111,7 +122,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       const dx = d.homeX - pointer.x, dy = d.homeY - pointer.y;
       const dist = Math.hypot(dx, dy);
       if (dist < REPEL_RADIUS && dist > 0.01) {
-        const push = (1 - dist / REPEL_RADIUS) * 14;
+        const push = (1 - dist / REPEL_RADIUS) * 12;
         tx += (dx / dist) * push;
         ty += (dy / dist) * push;
       }
