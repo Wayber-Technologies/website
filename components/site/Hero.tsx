@@ -1,5 +1,5 @@
 import CubeField from "./CubeField";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function Hero() {
   return (

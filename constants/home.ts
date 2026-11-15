@@ -16,9 +16,9 @@ export const SOCIAL = [
 ];
 
 export const NAV_LINKS = [
-  { label: "What we build", href: "#build" },
-  { label: "Work", href: "#work" },
-  { label: "Studio", href: "#studio" },
+  { label: "What we build", href: "/#build" },
+  { label: "Work", href: "/work" },
+  { label: "Studio", href: "/#studio" },
   { label: "Journal", href: "https://medium.com/@waybertechnologies" },
 ];
 
@@ -33,6 +33,7 @@ export type Capability = {
   title: string;
   body: string;
   linkLabel: string;
+  href: string;
   image: { src: string; alt: string; fit: "cover" | "contain"; position?: string; background: string };
   tone: "light" | "dark";
   mediaFirst?: boolean;
@@ -44,6 +45,7 @@ export const CAPABILITIES: Capability[] = [
     title: "Web platforms",
     body: "Dashboards, portals and internal tools built for real traffic and real data. Laravel, Python and Vue, shipped in milestones you can see.",
     linkLabel: "See Sise",
+    href: "/case/sise",
     image: { src: "/sise1.png", alt: "Sise workflow platform artwork", fit: "cover", position: "center top", background: "#DCEBFF" },
     tone: "light",
   },
@@ -52,6 +54,7 @@ export const CAPABILITIES: Capability[] = [
     title: "Mobile apps",
     body: "Native and Flutter apps for iOS and Android, from first sketch to the store and every update after.",
     linkLabel: "See RFTF",
+    href: "/case/rftf",
     image: { src: "/rftf2.png", alt: "Four screens from the Run For The Future mobile app", fit: "contain", background: "#FFFFFF" },
     tone: "light",
     mediaFirst: true,
@@ -61,6 +64,7 @@ export const CAPABILITIES: Capability[] = [
     title: "Fintech & systems",
     body: "Wallets, exchanges and investment products, with the audits, security and compliance work regulated money needs.",
     linkLabel: "See Mallam X",
+    href: "/case/mallamx",
     image: { src: "/malamx2.png", alt: "Mallam X e-wallet dashboard", fit: "cover", position: "left center", background: "#EEF5EC" },
     tone: "dark",
   },

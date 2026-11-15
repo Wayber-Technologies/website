@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CLIENTS, FEATURED_WORK } from "@/constants/home";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function Work() {
   return (
@@ -14,7 +14,7 @@ export default function Work() {
               <br />
               <span className={styles.grey}>that can’t afford to rebuild.</span>
             </h2>
-            <Link href="/presentation" className={styles.textLink}>
+            <Link href="/work" className={styles.textLink}>
               All case studies <span className={styles.go}>→</span>
             </Link>
           </div>

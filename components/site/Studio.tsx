@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { STUDIO_PHOTOS } from "@/constants/home";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function Studio() {
   return (

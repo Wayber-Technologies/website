@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CONTACT, SOCIAL } from "@/constants/home";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function SiteFooter() {
   return (
@@ -13,9 +14,9 @@ export default function SiteFooter() {
           </div>
           <nav aria-label="Footer: studio" className={styles.footerCol}>
             <span className={styles.footerHeading}>Studio</span>
-            <a href="#build">What we build</a>
-            <a href="#work">Work</a>
-            <a href="#studio">About</a>
+            <Link href="/#build">What we build</Link>
+            <Link href="/work">Work</Link>
+            <Link href="/#studio">About</Link>
           </nav>
           <nav aria-label="Footer: contact" className={`${styles.footerCol} ${styles.footerColWide}`}>
             <span className={styles.footerHeading}>Contact</span>

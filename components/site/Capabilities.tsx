@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CAPABILITIES, OTHER_SERVICES } from "@/constants/home";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function Capabilities() {
   return (
@@ -33,9 +34,9 @@ export default function Capabilities() {
                   <h3 className={styles.rowTitle}>{item.title}</h3>
                   <p className={styles.rowBody}>{item.body}</p>
                 </div>
-                <a href="#work" className={styles.textLink}>
+                <Link href={item.href} className={styles.textLink}>
                   {item.linkLabel} <span className={styles.go}>→</span>
-                </a>
+                </Link>
               </div>
             );
 

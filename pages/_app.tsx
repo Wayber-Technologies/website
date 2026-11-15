@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 // Pages that have moved to the new design bring their own header and footer
 // and skip the legacy preloader. The rest keep the old chrome until redesigned.
-const REDESIGNED_ROUTES = new Set(["/"]);
+const REDESIGNED_ROUTES = new Set(["/", "/work", "/case/[id]"]);
 
 export default function App({ Component, pageProps }: { Component: any; pageProps: any }) {
   const nextRouter = useRouter();

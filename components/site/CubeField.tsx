@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { createCubeField, type CubeField as Field } from "@/lib/cubeField";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function CubeField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

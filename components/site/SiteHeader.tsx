@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CONTACT, NAV_LINKS } from "@/constants/home";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/site.module.css";
 
 export default function SiteHeader() {
   return (
@@ -19,19 +19,25 @@ export default function SiteHeader() {
           <Image src="/logoBlackFull.svg" alt="Wayber" width={145} height={24} priority unoptimized />
         </Link>
         <div className={`${styles.navLinks} ${styles.hideSmall}`}>
-          {NAV_LINKS.map((link) => (
-            <a key={link.label} href={link.href}>
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.href.startsWith("http") ? (
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.label} href={link.href}>
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
         <div className={styles.navRight}>
           <a href={`mailto:${CONTACT.officeEmail}`} className={`${styles.navContact} ${styles.hideSmall}`}>
             Contact
           </a>
-          <a href="#start" className={`${styles.pill} ${styles.pillSmall} ${styles.pillInk}`}>
+          <Link href="/#start" className={`${styles.pill} ${styles.pillSmall} ${styles.pillInk}`}>
             Start a project
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
