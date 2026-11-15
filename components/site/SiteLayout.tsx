@@ -16,11 +16,9 @@ type Props = {
   title: string;
   description: string;
   children: ReactNode;
-  /** Blueprint grid lines behind the whole page. */
-  grid?: boolean;
 };
 
-export default function SiteLayout({ title, description, children, grid = false }: Props) {
+export default function SiteLayout({ title, description, children }: Props) {
   return (
     <>
       <Head>
@@ -29,7 +27,7 @@ export default function SiteLayout({ title, description, children, grid = false 
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
       </Head>
-      <div className={`${figtree.variable} ${styles.page} ${grid ? styles.gridPage : ""}`}>
+      <div className={`${figtree.variable} ${styles.page}`}>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
