@@ -201,23 +201,36 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const markPath = new Path2D();
     markPath.addPath(new Path2D(MARK_PATH), new DOMMatrix([markScale, 0, 0, markScale, markLeft, markTop]));
 
-    // Cubes: sized so three in a row fit the area; one and two cubes use the same size, centred.
+    // Cubes: each arrangement (1, 2 or 3 cubes) is sized to use about as many
+    // dots as the stack, so it is as big as the stack and the same dots move
+    // across almost one-to-one. It is capped so it never leaves the stack's area.
     const groupW = (n: number) => 2 * COS30 + (n - 1) * CUBE_STEP_X;
     const groupH = (n: number) => 2 + (n - 1) * CUBE_STEP_Y;
-    const s = Math.min((area.w * 0.94) / groupW(3), (area.h * 0.8) / groupH(3));
-    const cubeShape = (n: number) => {
+    const cubeShape = (n: number, s: number) => {
       const path = new Path2D();
       const left = area.x + (area.w - groupW(n) * s) / 2;
       const top = area.y + (area.h - groupH(n) * s) / 2;
       for (let k = 0; k < n; k++) addCube(path, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s);
       return path;
     };
+    const markPoints = sample(markPath, area, gap);
+    const cubesMatchingStack = (n: number) => {
+      const maxS = Math.min(area.w / groupW(n), area.h / groupH(n));
+      let s = maxS * 0.6;
+      let points = sample(cubeShape(n, s), area, gap);
+      // Dot count grows with the square of the size, so two corrections land close.
+      for (let i = 0; i < 2 && points.length; i++) {
+        s = Math.min(maxS, s * Math.sqrt(markPoints.length / points.length));
+        points = sample(cubeShape(n, s), area, gap);
+      }
+      return points;
+    };
 
     const shapes: Record<Shape, Point[]> = {
-      mark: sample(markPath, area, gap),
-      cube1: sample(cubeShape(1), area, gap),
-      cube2: sample(cubeShape(2), area, gap),
-      cube3: sample(cubeShape(3), area, gap),
+      mark: markPoints,
+      cube1: cubesMatchingStack(1),
+      cube2: cubesMatchingStack(2),
+      cube3: cubesMatchingStack(3),
     };
     if (SEQUENCE.some((k) => !shapes[k].length)) return false;
 
