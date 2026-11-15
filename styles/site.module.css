@@ -195,7 +195,7 @@ a:hover .go {
   align-items: center;
 }
 
-/* Blueprint-style grid lines behind the hero. They fade out toward the edges
+/* Blueprint-style grid lines behind the hero (180px squares, 120px on phones). They fade out toward the edges
    so they frame the content instead of covering the page like graph paper. */
 .hero::before {
   content: "";
@@ -203,7 +203,7 @@ a:hover .go {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  --grid-size: 72px;
+  --grid-size: 180px;
   --grid-line: rgba(9, 24, 47, 0.09);
   background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
@@ -305,7 +305,7 @@ a:hover .go {
     grid-template-columns: minmax(0, 1fr);
   }
   .hero::before {
-    --grid-size: 48px;
+    --grid-size: 120px;
   }
   .fieldCanvas {
     position: relative;
