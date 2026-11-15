@@ -3,8 +3,8 @@ import styles from "@/styles/site.module.css";
 
 export default function Hero() {
   return (
-    <section id="top" className={styles.hero}>
-      {/* Desktop: the canvas fills the hero (grid dots everywhere) and draws the
+    <section id="top" className={`${styles.hero} ${styles.gridBg}`}>
+      {/* Desktop: the canvas fills the hero and draws the
           mark in the right column. Phones: it sits below the copy. */}
       <CubeField />
       <div className={`${styles.container} ${styles.heroGrid}`}>

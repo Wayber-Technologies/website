@@ -53,7 +53,8 @@ export default function Contact() {
 export function Closing() {
   return (
     <>
-      <section className={styles.closing}>
+      {/* Grid lines here echo the hero, so every page opens and closes on the same blueprint. */}
+      <section className={`${styles.closing} ${styles.gridBg}`}>
         <div className={`${styles.narrow} ${styles.closingInner}`}>
           <svg width="64" height="47" viewBox="0 0 944 693" aria-hidden="true">
             <path d={MARK_PATH} fill="#1462FF" />

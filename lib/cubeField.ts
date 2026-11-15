@@ -29,7 +29,6 @@ const PALETTE: { color: string; weight: number }[] = [
   { color: "#EFD54D", weight: 12 }, // Yellow
 ];
 const PALETTE_TOTAL = PALETTE.reduce((sum, p) => sum + p.weight, 0);
-const GRID_COLOR = "#E1E6EE";
 
 // From this width up, the hero is two columns and the shape sits in the right one.
 const SPLIT_MIN_WIDTH = 900;
@@ -47,14 +46,17 @@ const SWEEP = 0.3;
 
 // Isometric cube: the slabs in the mark slope at about 30°, so the cubes use the same angle.
 const COS30 = Math.cos(Math.PI / 6);
-// The seam between a cube's faces, in dot-grid steps: one empty row of dots at any cube size.
-const SEAM_IN_GAPS = 1.1;
+// Cube faces have no gaps; they are told apart by shade instead, as if lit from above.
+// Opacity per face: top, left, right. The mark itself is drawn at full strength.
+const FACE_SHADE = [1, 0.72, 0.45];
+const SHADE_STEPS = 20;
 // Next cube: one cube-width to the right and a little lower, like the slabs.
 const CUBE_STEP_X = 2 * COS30 * 1.08;
 const CUBE_STEP_Y = 0.62;
 
 type Shape = (typeof SEQUENCE)[number];
-type Point = { x: number; y: number };
+/** `shade`: opacity for this spot (1 on the mark, by face on the cubes). */
+type Point = { x: number; y: number; shade: number };
 type Area = { x: number; y: number; w: number; h: number };
 
 type Dot = {
@@ -71,10 +73,12 @@ type Dot = {
   offX: number;
   offY: number;
   color: number;
+  /** This frame's position, opacity and visibility, worked out once and then drawn in batches. */
+  drawX: number;
+  drawY: number;
+  drawShade: number;
+  hidden: boolean;
 };
-
-/** `underMark`: hidden while the mark covers it, faded in while another shape shows. */
-type GridDot = { homeX: number; homeY: number; x: number; y: number; underMark: boolean };
 
 export type CubeField = { destroy: () => void };
 
@@ -98,14 +102,8 @@ function pickColor(seed: number) {
   return 0;
 }
 
-/**
- * The three faces of an isometric cube centred on (cx, cy), with half-height `s`,
- * separated by seams `seam` pixels wide.
- */
-function addCube(path: Path2D, cx: number, cy: number, s: number, seam: number) {
-  // Each face is a rhombus with side `s`; its centre sits s·sin60°/2 from every edge.
-  // Shrinking it toward its centre moves each edge in by seam/2, whatever the cube's size.
-  const inset = Math.max(0.5, 1 - seam / 2 / ((s * Math.sin(Math.PI / 3)) / 2));
+/** Adds the three faces of an isometric cube centred on (cx, cy), with half-height `s`, to `faces` [top, left, right]. */
+function addCube(faces: Path2D[], cx: number, cy: number, s: number) {
   const top = { x: cx, y: cy - s };
   const ur = { x: cx + COS30 * s, y: cy - s / 2 };
   const lr = { x: cx + COS30 * s, y: cy + s / 2 };
@@ -113,31 +111,27 @@ function addCube(path: Path2D, cx: number, cy: number, s: number, seam: number) 
   const ll = { x: cx - COS30 * s, y: cy + s / 2 };
   const ul = { x: cx - COS30 * s, y: cy - s / 2 };
   const centre = { x: cx, y: cy };
-  const faces = [
-    [top, ur, centre, ul], // top
-    [ul, centre, bottom, ll], // left
-    [centre, ur, lr, bottom], // right
-  ];
-  for (const face of faces) {
-    const fx = face.reduce((a, p) => a + p.x, 0) / 4;
-    const fy = face.reduce((a, p) => a + p.y, 0) / 4;
-    face.forEach((p, i) => {
-      const x = fx + (p.x - fx) * inset;
-      const y = fy + (p.y - fy) * inset;
-      if (i === 0) path.moveTo(x, y);
-      else path.lineTo(x, y);
-    });
-    path.closePath();
-  }
+  [
+    [top, ur, centre, ul],
+    [ul, centre, bottom, ll],
+    [centre, ur, lr, bottom],
+  ].forEach((face, i) => {
+    face.forEach((p, k) => (k === 0 ? faces[i].moveTo(p.x, p.y) : faces[i].lineTo(p.x, p.y)));
+    faces[i].closePath();
+  });
 }
 
-/** Grid points inside `path` (already in screen coordinates) within `bounds`. */
-function sample(path: Path2D, bounds: Area, gap: number): Point[] {
+/**
+ * Grid points within `bounds` that fall inside any of `regions` (paths already in
+ * screen coordinates). Each point takes the shade of the first region it falls in.
+ */
+function sample(regions: Path2D[], shades: number[], bounds: Area, gap: number): Point[] {
   const probe = document.createElement("canvas").getContext("2d")!;
   const points: Point[] = [];
   for (let y = bounds.y + gap / 2; y < bounds.y + bounds.h; y += gap) {
     for (let x = bounds.x + gap / 2; x < bounds.x + bounds.w; x += gap) {
-      if (probe.isPointInPath(path, x, y)) points.push({ x, y });
+      const i = regions.findIndex((r) => probe.isPointInPath(r, x, y));
+      if (i >= 0) points.push({ x, y, shade: shades[i] });
     }
   }
   return points;
@@ -161,7 +155,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
   let height = 0;
   let dotSize = 3.4;
   let dots: Dot[] = [];
-  let grid: GridDot[] = [];
   let pointer = { x: -9999, y: -9999 };
   let frame = 0;
   let alive = true;
@@ -212,24 +205,23 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     // across almost one-to-one. It is capped so it never leaves the stack's area.
     const groupW = (n: number) => 2 * COS30 + (n - 1) * CUBE_STEP_X;
     const groupH = (n: number) => 2 + (n - 1) * CUBE_STEP_Y;
-    const cubeShape = (n: number, s: number) => {
-      const path = new Path2D();
+    /** Face paths [top, left, right] for `n` cubes of half-height `s`. */
+    const cubeFaces = (n: number, s: number) => {
+      const faces = [new Path2D(), new Path2D(), new Path2D()];
       const left = area.x + (area.w - groupW(n) * s) / 2;
       const top = area.y + (area.h - groupH(n) * s) / 2;
-      for (let k = 0; k < n; k++) {
-        addCube(path, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s, gap * SEAM_IN_GAPS);
-      }
-      return path;
+      for (let k = 0; k < n; k++) addCube(faces, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s);
+      return faces;
     };
-    const markPoints = sample(markPath, area, gap);
+    const markPoints = sample([markPath], [1], area, gap);
     const cubesMatchingStack = (n: number) => {
       const maxS = Math.min(area.w / groupW(n), area.h / groupH(n));
       let s = maxS * 0.6;
-      let points = sample(cubeShape(n, s), area, gap);
+      let points = sample(cubeFaces(n, s), FACE_SHADE, area, gap);
       // Dot count grows with the square of the size, so two corrections land close.
       for (let i = 0; i < 2 && points.length; i++) {
         s = Math.min(maxS, s * Math.sqrt(markPoints.length / points.length));
-        points = sample(cubeShape(n, s), area, gap);
+        points = sample(cubeFaces(n, s), FACE_SHADE, area, gap);
       }
       return points;
     };
@@ -264,17 +256,12 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
         offX: 0,
         offY: 0,
         color: pickColor(k),
+        drawX: mark.x,
+        drawY: mark.y,
+        drawShade: 1,
+        hidden: false,
       };
     });
-
-    // Faint background grid across the whole hero.
-    const probe = document.createElement("canvas").getContext("2d")!;
-    grid = [];
-    for (let y = gap / 2; y < height; y += gap) {
-      for (let x = gap / 2; x < width; x += gap) {
-        grid.push({ homeX: x, homeY: y, x, y, underMark: probe.isPointInPath(markPath, x, y) });
-      }
-    }
 
     startedAt = performance.now();
     showing = 0;
@@ -295,14 +282,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     }, delay);
   }
 
-  /** 1 while the mark shows, 0 while a cube shape shows, in between while morphing. */
-  function markPresence(now: number) {
-    const isMark = (i: number) => (SEQUENCE[i] === "mark" ? 1 : 0);
-    if (!morph) return isMark(showing);
-    const t = easeInOutCubic(clamp01((now - morph.startedAt) / MORPH_MS));
-    return isMark(morph.from) + (isMark(morph.to) - isMark(morph.from)) * t;
-  }
-
   function draw() {
     frame = 0;
     if (!alive) return;
@@ -310,43 +289,16 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     let busy = false;
     ctx!.clearRect(0, 0, width, height);
 
-    const gridOpen = new Path2D();
-    const gridUnder = new Path2D();
-    for (const g of grid) {
-      let tx = g.homeX, ty = g.homeY;
-      const dx = g.homeX - pointer.x, dy = g.homeY - pointer.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < REPEL_RADIUS && dist > 0.01) {
-        const push = (1 - dist / REPEL_RADIUS) * 12;
-        tx += (dx / dist) * push;
-        ty += (dy / dist) * push;
-      }
-      g.x += (tx - g.x) * 0.1;
-      g.y += (ty - g.y) * 0.1;
-      if (Math.abs(tx - g.x) > 0.2 || Math.abs(ty - g.y) > 0.2) busy = true;
-      const path = g.underMark ? gridUnder : gridOpen;
-      path.moveTo(g.x + 0.8, g.y);
-      path.arc(g.x, g.y, 0.8, 0, Math.PI * 2);
-    }
-    // While the cubes show, the grid softens and the dots the mark was covering
-    // fade in, so no mark-shaped hole is left.
-    const away = 1 - markPresence(now);
-    ctx!.fillStyle = GRID_COLOR;
-    ctx!.globalAlpha = 1 - away * 0.5;
-    ctx!.fill(gridOpen);
-    if (away > 0) {
-      ctx!.globalAlpha = away * 0.5;
-      ctx!.fill(gridUnder);
-    }
-    ctx!.globalAlpha = 1;
-
-    const paths = PALETTE.map(() => new Path2D());
+    // Drawing uses the context's own path (beginPath/arc/fill), never new Path2D
+    // objects per frame: their memory lives outside the JS heap, so garbage
+    // collection doesn't keep up and the tab can run out of memory.
+    // The background grid lines are CSS on the hero (site.module.css), not drawn here.
     const radius = dotSize / 2;
     let morphing = false;
 
     for (const d of dots) {
       const current = d.targets[SEQUENCE[showing]];
-      let x = current.x, y = current.y;
+      let x = current.x, y = current.y, shade = current.shade;
       // A dot sharing its spot with another is hidden while it sits still, so each
       // spot shows one dot in its own colour; it still travels during a morph.
       let hidden = !morph && d.repeat[SEQUENCE[showing]];
@@ -359,6 +311,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
         const e = easeInOutCubic(local);
         x = from.x + (to.x - from.x) * e;
         y = from.y + (to.y - from.y) * e + Math.sin(Math.PI * e) * d.lift;
+        shade = from.shade + (to.shade - from.shade) * e;
       }
 
       const intro = clamp01((now - startedAt - d.introDelay) / INTRO_MS);
@@ -379,15 +332,32 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.offY += (pushY - d.offY) * 0.15;
       if (Math.abs(pushX - d.offX) > 0.2 || Math.abs(pushY - d.offY) > 0.2) busy = true;
 
-      if (hidden) continue;
-      const cx = x + d.offX, cy = y + d.offY;
-      paths[d.color].moveTo(cx + radius, cy);
-      paths[d.color].arc(cx, cy, radius, 0, Math.PI * 2);
+      d.hidden = hidden;
+      d.drawX = x + d.offX;
+      d.drawY = y + d.offY;
+      // Opacity in steps of 0.05, so dots can be drawn in a handful of batches.
+      d.drawShade = Math.round(shade * SHADE_STEPS) / SHADE_STEPS;
     }
+    // One fill per colour and opacity step.
     PALETTE.forEach((p, k) => {
       ctx!.fillStyle = p.color;
-      ctx!.fill(paths[k]);
+      // Shades never go below 0.4 (the lightest face is 0.45), so only the upper steps are checked.
+      for (let level = SHADE_STEPS; level >= SHADE_STEPS * 0.4; level--) {
+        const shade = level / SHADE_STEPS;
+        let any = false;
+        ctx!.beginPath();
+        for (const d of dots) {
+          if (d.color !== k || d.hidden || d.drawShade !== shade) continue;
+          ctx!.moveTo(d.drawX + radius, d.drawY);
+          ctx!.arc(d.drawX, d.drawY, radius, 0, Math.PI * 2);
+          any = true;
+        }
+        if (!any) continue;
+        ctx!.globalAlpha = shade;
+        ctx!.fill();
+      }
     });
+    ctx!.globalAlpha = 1;
 
     if (morph && !morphing) {
       showing = morph.to;

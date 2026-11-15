@@ -18,6 +18,38 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Blueprint grid lines, used as an accent on a few sections only (the hero
+   and the closing call to action, which bookend each page). Add .gridBg to a
+   section; the lines fade out toward its edges so there's never a hard line
+   where the section ends. --grid-focus moves the brightest spot. */
+.gridBg {
+  position: relative;
+  isolation: isolate;
+}
+
+.gridBg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  --grid-size: 180px;
+  --grid-line: rgba(9, 24, 47, 0.06);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: center center;
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
+  mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
+}
+
+@media (max-width: 760px) {
+  .gridBg::before {
+    --grid-size: 120px;
+  }
+}
+
 .page *,
 .page *::before,
 .page *::after {
@@ -193,6 +225,10 @@ a:hover .go {
   padding: 72px 0 96px;
   display: flex;
   align-items: center;
+}
+
+.hero.gridBg {
+  --grid-focus: 62% 50%;
 }
 
 .heroGrid {
