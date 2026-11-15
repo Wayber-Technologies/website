@@ -1,0 +1,536 @@
+/* Services, About, Contact and 404. These sit inside .page from
+   site.module.css and reuse the hero styles from case.module.css. */
+
+/* Services list: number | title + text | examples */
+.serviceList {
+  padding-top: 88px;
+}
+
+.serviceRow {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 20px 48px;
+  padding: 40px 0 48px;
+  border-top: 1px solid var(--line);
+}
+
+.serviceNumber {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+  padding-top: 10px;
+}
+
+.serviceTitle {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 2.8vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.serviceBody {
+  margin: 0;
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.serviceSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.examples {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.examples li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.examples li::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  background: var(--blue);
+  transform: translateY(-2px);
+}
+
+/* Process cards */
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.processCard {
+  min-height: 280px;
+  padding: 32px;
+  border-radius: 28px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+.processCardDark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.processNumber {
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--blue);
+}
+
+.processCardDark .processNumber {
+  color: var(--cyan);
+}
+
+.processTitle {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.processBody {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.processCardDark .processBody {
+  color: #c9d3e3;
+}
+
+/* Three short columns */
+.trio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px 48px;
+}
+
+.trioItem {
+  padding-top: 24px;
+  border-top: 2px solid var(--ink);
+}
+
+.trioTitle {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.trioBody {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* About: the mark */
+.mark {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 48px 72px;
+  align-items: center;
+  padding: 64px;
+  border-radius: 32px;
+  background: var(--surface);
+}
+
+.markArt {
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  justify-self: center;
+}
+
+.markList {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.markItem {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.markLetter {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.markWord {
+  display: block;
+  margin: 4px 0 6px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.markBody {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* About: photo strip */
+.photoStrip {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 16px;
+}
+
+.stripPhoto {
+  position: relative;
+  height: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #e9edf2;
+}
+
+/* About: leadership */
+.people {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.person {
+  padding: 28px;
+  border-radius: 28px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.personName {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.personRole {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Contact */
+.contactGrid {
+  padding-top: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 48px 64px;
+  align-items: start;
+}
+
+.form {
+  padding: 48px;
+  border-radius: 32px;
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 16px;
+}
+
+.fieldFull {
+  grid-column: span 2;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--soft);
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid #cfd7e3;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+
+textarea.input {
+  min-height: 160px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formFoot {
+  grid-column: span 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.submit {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.formNote {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.status {
+  grid-column: span 2;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.statusError {
+  background: #fdecec;
+  color: #8a1c1c;
+}
+
+.sent {
+  padding: 56px 48px;
+  border-radius: 32px;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sentTitle {
+  margin: 0;
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.sentBody {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #c9d3e3;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.detail {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--soft);
+}
+
+.detailValue {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+a.detailValue:hover {
+  color: var(--blue);
+}
+
+.detailHint {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* FAQ */
+.faq {
+  border-top: 1px solid var(--line);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--line);
+}
+
+.faqItem summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 0;
+  font-size: clamp(19px, 1.8vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary:hover {
+  color: var(--blue);
+}
+
+.faqIcon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(45deg);
+  background: var(--blue);
+  color: #fff;
+}
+
+.faqAnswer {
+  margin: 0;
+  padding: 0 64px 28px 0;
+  max-width: 820px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* 404 */
+.notFound {
+  padding: 120px 0 160px;
+}
+
+.notFoundActions {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .contactGrid,
+  .mark {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .serviceRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 32px 0 40px;
+  }
+  .serviceNumber {
+    padding-top: 0;
+  }
+  .photoStrip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .stripPhoto {
+    height: 300px;
+  }
+}
+
+@media (max-width: 760px) {
+  .mark,
+  .form,
+  .sent {
+    padding: 28px;
+  }
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fieldFull,
+  .formFoot,
+  .status {
+    grid-column: auto;
+  }
+  .faqAnswer {
+    padding-right: 0;
+  }
+}

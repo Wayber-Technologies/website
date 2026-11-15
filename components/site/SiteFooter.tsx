@@ -14,9 +14,10 @@ export default function SiteFooter() {
           </div>
           <nav aria-label="Footer: studio" className={styles.footerCol}>
             <span className={styles.footerHeading}>Studio</span>
-            <Link href="/#build">What we build</Link>
+            <Link href="/services">Services</Link>
             <Link href="/work">Work</Link>
-            <Link href="/#studio">About</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
           <nav aria-label="Footer: contact" className={`${styles.footerCol} ${styles.footerColWide}`}>
             <span className={styles.footerHeading}>Contact</span>

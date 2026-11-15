@@ -51,6 +51,14 @@ export default function Work() {
         </div>
       </section>
 
+      <Clients />
+    </>
+  );
+}
+
+export function Clients() {
+  return (
+    <>
       <section aria-label="Clients" className={styles.clients}>
         <div className={styles.container}>
           <div className={styles.clientsRow}>

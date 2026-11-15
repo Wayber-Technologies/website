@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CONTACT, NAV_LINKS } from "@/constants/home";
+import { NAV_LINKS } from "@/constants/home";
 import styles from "@/styles/site.module.css";
 
 export default function SiteHeader() {
@@ -32,10 +32,10 @@ export default function SiteHeader() {
           )}
         </div>
         <div className={styles.navRight}>
-          <a href={`mailto:${CONTACT.officeEmail}`} className={`${styles.navContact} ${styles.hideSmall}`}>
+          <Link href="/contact" className={`${styles.navContact} ${styles.hideSmall}`}>
             Contact
-          </a>
-          <Link href="/#start" className={`${styles.pill} ${styles.pillSmall} ${styles.pillInk}`}>
+          </Link>
+          <Link href="/contact" className={`${styles.pill} ${styles.pillSmall} ${styles.pillInk}`}>
             Start a project
           </Link>
         </div>

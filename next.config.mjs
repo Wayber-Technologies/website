@@ -5,6 +5,9 @@ const nextConfig = {
       // The old "Our work" page and the leftover template case page now live at /work.
       { source: "/presentation", destination: "/work", permanent: false },
       { source: "/case", destination: "/work", permanent: false },
+      // The old About page, and the "Insights" page (template posts) now that the journal lives on Medium.
+      { source: "/wayber-team", destination: "/about", permanent: false },
+      { source: "/insights", destination: "https://medium.com/@waybertechnologies", permanent: false },
     ];
   },
 };

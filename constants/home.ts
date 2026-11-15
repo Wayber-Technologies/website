@@ -16,9 +16,9 @@ export const SOCIAL = [
 ];
 
 export const NAV_LINKS = [
-  { label: "What we build", href: "/#build" },
+  { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
-  { label: "Studio", href: "/#studio" },
+  { label: "About", href: "/about" },
   { label: "Journal", href: "https://medium.com/@waybertechnologies" },
 ];
 
