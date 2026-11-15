@@ -18,6 +18,24 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Blueprint grid lines across the whole page (homepage). Sections with their
+   own background (cards, dark rows, footer) sit on top of it. */
+.page.gridPage {
+  --grid-size: 180px;
+  --grid-line: rgba(9, 24, 47, 0.045);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: center top;
+}
+
+@media (max-width: 760px) {
+  .page.gridPage {
+    --grid-size: 120px;
+  }
+}
+
 .page *,
 .page *::before,
 .page *::after {
@@ -195,25 +213,6 @@ a:hover .go {
   align-items: center;
 }
 
-/* Blueprint-style grid lines behind the hero (180px squares, 120px on phones). They fade out toward the edges
-   so they frame the content instead of covering the page like graph paper. */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  --grid-size: 180px;
-  --grid-line: rgba(9, 24, 47, 0.09);
-  background-image:
-    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-  background-size: var(--grid-size) var(--grid-size);
-  background-position: center center;
-  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 55% 50%, #000 35%, transparent 85%);
-  mask-image: radial-gradient(ellipse 75% 70% at 55% 50%, #000 35%, transparent 85%);
-}
-
 .heroGrid {
   position: relative;
   z-index: 1;
@@ -303,9 +302,6 @@ a:hover .go {
   }
   .heroGrid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .hero::before {
-    --grid-size: 120px;
   }
   .fieldCanvas {
     position: relative;

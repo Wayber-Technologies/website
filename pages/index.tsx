@@ -10,6 +10,7 @@ export default function Home() {
     <SiteLayout
       title="Wayber Technologies · Software studio in Lagos"
       description="Wayber Technologies designs, builds and looks after web platforms, mobile apps and the systems underneath them."
+      grid
     >
       <Hero />
       <Studio />
