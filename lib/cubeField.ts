@@ -1,13 +1,16 @@
 /**
  * Draws the Wayber mark as a field of small round dots, as the hero background.
  *
- * - On load, the dots fly in and form the mark (the three-slab icon).
- * - Slow loop: hold the mark, morph into the "wayber" wordmark, hold, morph
- *   back. The same dots and colours are rearranged, sweeping left to right.
+ * - On load, the dots fly in and form the mark (the stack of three slabs).
+ * - Slow loop, with the same dots rearranging each time:
+ *     the stack → 1 cube → 2 cubes → 3 cubes → the stack
+ *   The cubes are isometric, at the same angle as the slabs, and step down
+ *   to the right like the slabs do, so the layers build up and then become
+ *   the stack again.
  * - Dots move away from the pointer. The pointer is tracked on the canvas's
  *   parent element, so text and buttons on top don't block it.
- * - Nothing is drawn while a shape is holding still. The loop pauses while
- *   the hero is off screen.
+ * - Nothing is drawn while a shape holds still. The loop pauses while the
+ *   hero is off screen.
  *
  * Users with "prefers-reduced-motion" see the mark with no fly-in and no morph.
  */
@@ -15,18 +18,7 @@
 // The icon, from public/logoBlackFull.svg (also the brand guide).
 const MARK_PATH =
   "M898.796 173.928L674.342 300.432V112.251L629.271 87.0405L404.817 213.545V25.3641L359.746 0.15332L0.0791016 203.19V494.015L45.6009 519.676L269.604 393.172V580.902L315.126 606.563L539.129 480.059V667.789L584.651 693L943.417 490.863V199.139L898.796 173.928Z";
-const MARK_BOX = { x: 0, y: 0, w: 944, h: 693 };
-
-// The six letters of the wordmark, from public/logoBlackFull.svg.
-const WORDMARK_PATHS = [
-  "M240.952 102.519L218.03 25.207H243.066L256.683 72.3219L269.201 25.207H290.854L304.133 72.3219L319.357 25.207H344.393L320.119 102.519H295.421L280.197 59.9722L265.057 102.519H240.952Z",
-  "M342.617 64.2025C342.617 38.4035 358.349 23.3471 378.902 23.6008C390.997 23.77 403.938 30.1986 407.405 42.9712V25.1234H432.441V102.436H407.575V84.4188C404.191 96.1764 392.181 103.789 380.255 103.958C358.264 104.297 342.617 86.4489 342.617 64.1179V64.2025ZM406.306 64.0334C406.306 51.6837 397.763 44.24 386.937 43.9017C375.942 43.7325 367.399 51.3453 367.399 64.0334C367.399 75.7909 376.111 83.5729 386.937 83.4037C397.594 83.0654 406.306 75.4526 406.306 64.0334Z",
-  "M453.333 105.394C456.716 109.2 464.751 110.3 467.796 104.041L471.433 95.9203L441.492 25.1211H466.527L483.782 76.8037L503.743 25.1211H528.779L488.18 109.031C477.015 132.208 454.348 132.969 439.546 119.689L453.248 105.394H453.333Z",
-  "M560.836 84.5017V102.519H535.969V1.86035H561.005V43.0542C564.388 30.2815 577.498 23.8529 589.34 23.6838C609.893 23.3454 625.794 38.4865 625.794 64.2855C625.794 86.5318 609.893 104.38 587.986 104.126C576.061 103.957 564.219 96.3439 560.836 84.5863V84.5017ZM600.843 64.0317C600.843 51.3437 592.469 43.7309 581.474 43.9C570.647 44.2384 561.936 51.5129 561.936 64.0317C561.936 75.4509 570.817 83.0638 581.305 83.4021C592.131 83.5713 600.843 75.7893 600.843 64.0317Z",
-  "M633.066 64.0302C633.066 37.047 653.534 23.5977 675.187 23.5977C696.839 23.5977 713.502 37.2161 715.87 59.7163C716.208 62.5922 716.208 66.1449 715.87 69.0208H656.579C658.271 77.987 666.475 83.4852 675.187 83.6544C682.545 83.8235 689.058 80.9476 692.441 75.4494L710.711 84.754C703.69 96.6808 690.581 103.955 675.187 103.955C653.534 103.955 633.066 88.8142 633.066 63.9456V64.0302ZM692.357 55.4869C690.242 48.1279 682.884 43.4756 675.102 43.4756C667.321 43.4756 660.47 48.2124 658.44 55.4869H692.272H692.357Z",
-  "M723.312 102.522V25.1249H748.348V43.9031C752.493 26.6474 773.807 19.6267 789.877 28.5083L776.598 48.64C767.463 40.858 749.617 48.4708 749.617 63.8657V102.437H723.397L723.312 102.522Z",
-];
-const WORDMARK_BOX = { x: 218, y: 1.8, w: 572, h: 130.4 };
+const MARK_BOX = { w: 944, h: 693 };
 
 // Brand palette, weighted so the mark still reads as Wayber Blue. Light Blue
 // (#BFFDFF) disappears on white, so a deeper cyan stands in for it.
@@ -46,21 +38,33 @@ const CONTAINER_MAX = 1320;
 
 const REPEL_RADIUS = 140;
 const INTRO_MS = 1100;
-const HOLD_MARK_MS = 5000;
-const HOLD_WORD_MS = 4000;
-const MORPH_MS = 1700;
+const MORPH_MS = 1400;
+// How long each shape holds before morphing on. Index matches SEQUENCE.
+const SEQUENCE = ["mark", "cube1", "cube2", "cube3"] as const;
+const HOLD_MS: Record<(typeof SEQUENCE)[number], number> = { mark: 5000, cube1: 1300, cube2: 1300, cube3: 1600 };
 // Share of the morph used to stagger dots from left to right.
-const SWEEP = 0.35;
+const SWEEP = 0.3;
 
+// Isometric cube: the slabs in the mark slope at about 30°, so the cubes use the same angle.
+const COS30 = Math.cos(Math.PI / 6);
+// Each face is shrunk toward its centre so thin gaps separate the three faces.
+const FACE_INSET = 0.86;
+// Next cube: one cube-width to the right and a little lower, like the slabs.
+const CUBE_STEP_X = 2 * COS30 * 1.08;
+const CUBE_STEP_Y = 0.62;
+
+type Shape = (typeof SEQUENCE)[number];
 type Point = { x: number; y: number };
+type Area = { x: number; y: number; w: number; h: number };
 
 type Dot = {
-  mark: Point;
-  word: Point;
+  targets: Record<Shape, Point>;
+  /** True where another dot already owns the same spot in that shape: drawn only while moving. */
+  repeat: Record<Shape, boolean>;
   startX: number;
   startY: number;
   introDelay: number;
-  /** 0..1 position across the shape, used to stagger the morph. */
+  /** 0..1 left-to-right position, used to stagger each morph. */
   sweep: number;
   /** Small vertical drift mid-morph, so the motion looks fluid. */
   lift: number;
@@ -69,7 +73,7 @@ type Dot = {
   color: number;
 };
 
-/** `underMark`: hidden while the mark sits on top of it, faded in while the wordmark shows. */
+/** `underMark`: hidden while the mark covers it, faded in while another shape shows. */
 type GridDot = { homeX: number; homeY: number; x: number; y: number; underMark: boolean };
 
 export type CubeField = { destroy: () => void };
@@ -94,23 +98,40 @@ function pickColor(seed: number) {
   return 0;
 }
 
-/** Points on a regular grid that fall inside `paths`, fitted into the target area. */
-function sampleShape(
-  paths: Path2D[],
-  box: { x: number; y: number; w: number; h: number },
-  area: { x: number; y: number; w: number; h: number },
-  gap: number
-): Point[] {
+/** The three faces of an isometric cube centred on (cx, cy), with half-height `s`. */
+function addCube(path: Path2D, cx: number, cy: number, s: number) {
+  const top = { x: cx, y: cy - s };
+  const ur = { x: cx + COS30 * s, y: cy - s / 2 };
+  const lr = { x: cx + COS30 * s, y: cy + s / 2 };
+  const bottom = { x: cx, y: cy + s };
+  const ll = { x: cx - COS30 * s, y: cy + s / 2 };
+  const ul = { x: cx - COS30 * s, y: cy - s / 2 };
+  const centre = { x: cx, y: cy };
+  const faces = [
+    [top, ur, centre, ul], // top
+    [ul, centre, bottom, ll], // left
+    [centre, ur, lr, bottom], // right
+  ];
+  for (const face of faces) {
+    const fx = face.reduce((a, p) => a + p.x, 0) / 4;
+    const fy = face.reduce((a, p) => a + p.y, 0) / 4;
+    face.forEach((p, i) => {
+      const x = fx + (p.x - fx) * FACE_INSET;
+      const y = fy + (p.y - fy) * FACE_INSET;
+      if (i === 0) path.moveTo(x, y);
+      else path.lineTo(x, y);
+    });
+    path.closePath();
+  }
+}
+
+/** Grid points inside `path` (already in screen coordinates) within `bounds`. */
+function sample(path: Path2D, bounds: Area, gap: number): Point[] {
   const probe = document.createElement("canvas").getContext("2d")!;
-  const scale = Math.min(area.w / box.w, area.h / box.h);
-  const left = area.x + (area.w - box.w * scale) / 2;
-  const top = area.y + (area.h - box.h * scale) / 2;
   const points: Point[] = [];
-  for (let y = top + gap / 2; y < top + box.h * scale; y += gap) {
-    for (let x = left + gap / 2; x < left + box.w * scale; x += gap) {
-      const sx = box.x + (x - left) / scale;
-      const sy = box.y + (y - top) / scale;
-      if (paths.some((p) => probe.isPointInPath(p, sx, sy))) points.push({ x, y });
+  for (let y = bounds.y + gap / 2; y < bounds.y + bounds.h; y += gap) {
+    for (let x = bounds.x + gap / 2; x < bounds.x + bounds.w; x += gap) {
+      if (probe.isPointInPath(path, x, y)) points.push({ x, y });
     }
   }
   return points;
@@ -129,8 +150,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
 
   const host = canvas.parentElement ?? canvas;
   const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
-  const markPath = [new Path2D(MARK_PATH)];
-  const wordPaths = WORDMARK_PATHS.map((d) => new Path2D(d));
 
   let width = 0;
   let height = 0;
@@ -144,8 +163,8 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
   let startedAt = 0;
 
   // Shape loop state.
-  let showing: "mark" | "word" = "mark";
-  let morph: { to: "mark" | "word"; startedAt: number } | null = null;
+  let showing = 0; // index into SEQUENCE
+  let morph: { from: number; to: number; startedAt: number } | null = null;
   let timer: ReturnType<typeof setTimeout> | null = null;
 
   function build(): boolean {
@@ -168,56 +187,78 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const narrow = width < 700;
     const gap = narrow ? 7 : 9;
     dotSize = narrow ? 2.8 : 3.4;
-
-    const markArea = {
+    const area: Area = {
       x: areaX + areaW * (split ? 0.01 : 0.04),
       y: height * (split ? 0.13 : 0.07),
       w: areaW * (split ? 0.98 : 0.92),
       h: height * (split ? 0.74 : 0.86),
     };
-    const wordArea = { x: areaX + areaW * 0.04, y: height * 0.2, w: areaW * 0.92, h: height * 0.6 };
 
-    const markPoints = sampleShape(markPath, MARK_BOX, markArea, gap);
-    // The wordmark's strokes are thin, so sample it on a finer grid to keep the letters legible.
-    const wordPoints = sampleShape(wordPaths, WORDMARK_BOX, wordArea, gap * 0.62);
-    if (!markPoints.length || !wordPoints.length) return false;
+    // The stack (the mark), fitted into the area.
+    const markScale = Math.min(area.w / MARK_BOX.w, area.h / MARK_BOX.h);
+    const markLeft = area.x + (area.w - MARK_BOX.w * markScale) / 2;
+    const markTop = area.y + (area.h - MARK_BOX.h * markScale) / 2;
+    const markPath = new Path2D();
+    markPath.addPath(new Path2D(MARK_PATH), new DOMMatrix([markScale, 0, 0, markScale, markLeft, markTop]));
 
-    const n = Math.max(markPoints.length, wordPoints.length);
-    const marks = toLength(markPoints, n);
-    const words = toLength(wordPoints, n);
-    const minX = Math.min(marks[0].x, words[0].x);
-    const spanX = Math.max(marks[n - 1].x, words[n - 1].x) - minX || 1;
+    // Cubes: sized so three in a row fit the area; one and two cubes use the same size, centred.
+    const groupW = (n: number) => 2 * COS30 + (n - 1) * CUBE_STEP_X;
+    const groupH = (n: number) => 2 + (n - 1) * CUBE_STEP_Y;
+    const s = Math.min((area.w * 0.94) / groupW(3), (area.h * 0.8) / groupH(3));
+    const cubeShape = (n: number) => {
+      const path = new Path2D();
+      const left = area.x + (area.w - groupW(n) * s) / 2;
+      const top = area.y + (area.h - groupH(n) * s) / 2;
+      for (let k = 0; k < n; k++) addCube(path, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s);
+      return path;
+    };
 
-    dots = marks.map((mark, k) => ({
-      mark,
-      word: words[k],
-      startX: reduceMotion ? mark.x : mark.x + (Math.random() - 0.5) * width * 0.9,
-      startY: reduceMotion ? mark.y : mark.y + (Math.random() - 0.5) * height * 1.4,
-      introDelay: reduceMotion ? 0 : Math.random() * 400,
-      sweep: ((mark.x + words[k].x) / 2 - minX) / spanX,
-      lift: (noise(k, 13) - 0.5) * 60,
-      offX: 0,
-      offY: 0,
-      color: pickColor(k),
-    }));
+    const shapes: Record<Shape, Point[]> = {
+      mark: sample(markPath, area, gap),
+      cube1: sample(cubeShape(1), area, gap),
+      cube2: sample(cubeShape(2), area, gap),
+      cube3: sample(cubeShape(3), area, gap),
+    };
+    if (SEQUENCE.some((k) => !shapes[k].length)) return false;
+
+    const n = Math.max(...SEQUENCE.map((k) => shapes[k].length));
+    const resampled = Object.fromEntries(SEQUENCE.map((k) => [k, toLength(shapes[k], n)])) as Record<Shape, Point[]>;
+    const minX = Math.min(...SEQUENCE.map((k) => resampled[k][0].x));
+    const spanX = Math.max(...SEQUENCE.map((k) => resampled[k][n - 1].x)) - minX || 1;
+
+    dots = resampled.mark.map((mark, k) => {
+      const targets = Object.fromEntries(SEQUENCE.map((key) => [key, resampled[key][k]])) as Record<Shape, Point>;
+      const repeat = Object.fromEntries(
+        SEQUENCE.map((key) => [key, k > 0 && resampled[key][k - 1] === resampled[key][k]])
+      ) as Record<Shape, boolean>;
+      const avgX = SEQUENCE.reduce((a, key) => a + targets[key].x, 0) / SEQUENCE.length;
+      return {
+        targets,
+        repeat,
+        startX: reduceMotion ? mark.x : mark.x + (Math.random() - 0.5) * width * 0.9,
+        startY: reduceMotion ? mark.y : mark.y + (Math.random() - 0.5) * height * 1.4,
+        introDelay: reduceMotion ? 0 : Math.random() * 400,
+        sweep: (avgX - minX) / spanX,
+        lift: (noise(k, 13) - 0.5) * 36,
+        offX: 0,
+        offY: 0,
+        color: pickColor(k),
+      };
+    });
 
     // Faint background grid across the whole hero.
-    grid = [];
     const probe = document.createElement("canvas").getContext("2d")!;
-    const markScale = Math.min(markArea.w / MARK_BOX.w, markArea.h / MARK_BOX.h);
-    const markLeft = markArea.x + (markArea.w - MARK_BOX.w * markScale) / 2;
-    const markTop = markArea.y + (markArea.h - MARK_BOX.h * markScale) / 2;
+    grid = [];
     for (let y = gap / 2; y < height; y += gap) {
       for (let x = gap / 2; x < width; x += gap) {
-        const underMark = probe.isPointInPath(markPath[0], (x - markLeft) / markScale, (y - markTop) / markScale);
-        grid.push({ homeX: x, homeY: y, x, y, underMark });
+        grid.push({ homeX: x, homeY: y, x, y, underMark: probe.isPointInPath(markPath, x, y) });
       }
     }
 
     startedAt = performance.now();
-    showing = "mark";
+    showing = 0;
     morph = null;
-    scheduleNext(INTRO_MS + 400 + HOLD_MARK_MS);
+    scheduleNext(INTRO_MS + 400 + HOLD_MS.mark);
     return true;
   }
 
@@ -228,16 +269,17 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     timer = setTimeout(() => {
       timer = null;
       if (!visible) return; // resumed by the visibility observer
-      morph = { to: showing === "mark" ? "word" : "mark", startedAt: performance.now() };
+      morph = { from: showing, to: (showing + 1) % SEQUENCE.length, startedAt: performance.now() };
       requestDraw();
     }, delay);
   }
 
-  /** 0 = mark, 1 = wordmark, in between while morphing. */
-  function wordAmount(now: number) {
-    if (!morph) return showing === "word" ? 1 : 0;
+  /** 1 while the mark shows, 0 while a cube shape shows, in between while morphing. */
+  function markPresence(now: number) {
+    const isMark = (i: number) => (SEQUENCE[i] === "mark" ? 1 : 0);
+    if (!morph) return isMark(showing);
     const t = easeInOutCubic(clamp01((now - morph.startedAt) / MORPH_MS));
-    return morph.to === "word" ? t : 1 - t;
+    return isMark(morph.from) + (isMark(morph.to) - isMark(morph.from)) * t;
   }
 
   function draw() {
@@ -265,14 +307,16 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       path.moveTo(g.x + 0.8, g.y);
       path.arc(g.x, g.y, 0.8, 0, Math.PI * 2);
     }
-    // While the wordmark shows, the grid fades back (so the letters read cleanly)
-    // and the dots the mark was covering fade in, so no mark-shaped hole is left.
-    const w = wordAmount(now);
+    // While the cubes show, the grid softens and the dots the mark was covering
+    // fade in, so no mark-shaped hole is left.
+    const away = 1 - markPresence(now);
     ctx!.fillStyle = GRID_COLOR;
-    ctx!.globalAlpha = 1 - w * 0.6;
+    ctx!.globalAlpha = 1 - away * 0.5;
     ctx!.fill(gridOpen);
-    ctx!.globalAlpha = w * 0.4;
-    ctx!.fill(gridUnder);
+    if (away > 0) {
+      ctx!.globalAlpha = away * 0.5;
+      ctx!.fill(gridUnder);
+    }
     ctx!.globalAlpha = 1;
 
     const paths = PALETTE.map(() => new Path2D());
@@ -280,14 +324,17 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     let morphing = false;
 
     for (const d of dots) {
-      // Where this dot sits in the current shape (mid-morph: between the two).
-      const current = showing === "mark" ? d.mark : d.word;
+      const current = d.targets[SEQUENCE[showing]];
       let x = current.x, y = current.y;
+      // A dot sharing its spot with another is hidden while it sits still, so each
+      // spot shows one dot in its own colour; it still travels during a morph.
+      let hidden = !morph && d.repeat[SEQUENCE[showing]];
       if (morph) {
-        const from = morph.to === "word" ? d.mark : d.word;
-        const to = morph.to === "word" ? d.word : d.mark;
+        const from = d.targets[SEQUENCE[morph.from]];
+        const to = d.targets[SEQUENCE[morph.to]];
         const local = clamp01(((now - morph.startedAt) / MORPH_MS - d.sweep * SWEEP) / (1 - SWEEP));
         if (local < 1) morphing = true;
+        hidden = (local <= 0 && d.repeat[SEQUENCE[morph.from]]) || (local >= 1 && d.repeat[SEQUENCE[morph.to]]);
         const e = easeInOutCubic(local);
         x = from.x + (to.x - from.x) * e;
         y = from.y + (to.y - from.y) * e + Math.sin(Math.PI * e) * d.lift;
@@ -311,6 +358,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.offY += (pushY - d.offY) * 0.15;
       if (Math.abs(pushX - d.offX) > 0.2 || Math.abs(pushY - d.offY) > 0.2) busy = true;
 
+      if (hidden) continue;
       const cx = x + d.offX, cy = y + d.offY;
       paths[d.color].moveTo(cx + radius, cy);
       paths[d.color].arc(cx, cy, radius, 0, Math.PI * 2);
@@ -323,7 +371,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     if (morph && !morphing) {
       showing = morph.to;
       morph = null;
-      scheduleNext(showing === "word" ? HOLD_WORD_MS : HOLD_MARK_MS);
+      scheduleNext(HOLD_MS[SEQUENCE[showing]]);
     }
     if (busy || morph) requestDraw();
   }
