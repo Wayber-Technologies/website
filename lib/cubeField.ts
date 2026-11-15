@@ -29,7 +29,6 @@ const PALETTE: { color: string; weight: number }[] = [
   { color: "#EFD54D", weight: 12 }, // Yellow
 ];
 const PALETTE_TOTAL = PALETTE.reduce((sum, p) => sum + p.weight, 0);
-const GRID_COLOR = "#E1E6EE";
 
 // From this width up, the hero is two columns and the shape sits in the right one.
 const SPLIT_MIN_WIDTH = 900;
@@ -76,9 +75,6 @@ type Dot = {
   drawY: number;
   hidden: boolean;
 };
-
-/** `underMark`: hidden while the mark covers it, faded in while another shape shows. */
-type GridDot = { homeX: number; homeY: number; x: number; y: number; underMark: boolean };
 
 export type CubeField = { destroy: () => void };
 
@@ -165,7 +161,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
   let height = 0;
   let dotSize = 3.4;
   let dots: Dot[] = [];
-  let grid: GridDot[] = [];
   let pointer = { x: -9999, y: -9999 };
   let frame = 0;
   let alive = true;
@@ -274,15 +269,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       };
     });
 
-    // Faint background grid across the whole hero.
-    const probe = document.createElement("canvas").getContext("2d")!;
-    grid = [];
-    for (let y = gap / 2; y < height; y += gap) {
-      for (let x = gap / 2; x < width; x += gap) {
-        grid.push({ homeX: x, homeY: y, x, y, underMark: probe.isPointInPath(markPath, x, y) });
-      }
-    }
-
     startedAt = performance.now();
     showing = 0;
     morph = null;
@@ -302,14 +288,6 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     }, delay);
   }
 
-  /** 1 while the mark shows, 0 while a cube shape shows, in between while morphing. */
-  function markPresence(now: number) {
-    const isMark = (i: number) => (SEQUENCE[i] === "mark" ? 1 : 0);
-    if (!morph) return isMark(showing);
-    const t = easeInOutCubic(clamp01((now - morph.startedAt) / MORPH_MS));
-    return isMark(morph.from) + (isMark(morph.to) - isMark(morph.from)) * t;
-  }
-
   function draw() {
     frame = 0;
     if (!alive) return;
@@ -319,40 +297,8 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
 
     // Drawing uses the context's own path (beginPath/arc/fill), never new Path2D
     // objects per frame: their memory lives outside the JS heap, so garbage
-    // collection doesn't keep up with ~20k shapes a frame and the tab can run
-    // out of memory.
-    for (const g of grid) {
-      let tx = g.homeX, ty = g.homeY;
-      const dx = g.homeX - pointer.x, dy = g.homeY - pointer.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < REPEL_RADIUS && dist > 0.01) {
-        const push = (1 - dist / REPEL_RADIUS) * 12;
-        tx += (dx / dist) * push;
-        ty += (dy / dist) * push;
-      }
-      g.x += (tx - g.x) * 0.1;
-      g.y += (ty - g.y) * 0.1;
-      if (Math.abs(tx - g.x) > 0.2 || Math.abs(ty - g.y) > 0.2) busy = true;
-    }
-    // While the cubes show, the grid softens and the dots the mark was covering
-    // fade in, so no mark-shaped hole is left.
-    const away = 1 - markPresence(now);
-    ctx!.fillStyle = GRID_COLOR;
-    const fillGrid = (underMark: boolean, alpha: number) => {
-      if (alpha <= 0) return;
-      ctx!.globalAlpha = alpha;
-      ctx!.beginPath();
-      for (const g of grid) {
-        if (g.underMark !== underMark) continue;
-        ctx!.moveTo(g.x + 0.8, g.y);
-        ctx!.arc(g.x, g.y, 0.8, 0, Math.PI * 2);
-      }
-      ctx!.fill();
-    };
-    fillGrid(false, 1 - away * 0.5);
-    fillGrid(true, away * 0.5);
-    ctx!.globalAlpha = 1;
-
+    // collection doesn't keep up and the tab can run out of memory.
+    // The background grid lines are CSS on the hero (site.module.css), not drawn here.
     const radius = dotSize / 2;
     let morphing = false;
 
