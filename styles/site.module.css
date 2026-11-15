@@ -35,13 +35,12 @@
   pointer-events: none;
   --grid-size: 180px;
   --grid-line: rgba(9, 24, 47, 0.06);
-  /* Layer 1 is a small hollow square centred in each tile (an SVG tile the
-     size of the grid), like a node in a CAD drawing. Its white fill hides the
-     lines inside it, so they stop at its edges. The two line layers are shifted
-     half a tile so every crossing lands exactly on a node. Drawn for a 180px
-     tile (7px square, 1px border, Dark Blue at 22%); it scales with --grid-size. */
+  /* Layer 1 is a small "+" mark centred in each tile (an SVG tile the size of
+     the grid). The two line layers are shifted half a tile so every crossing
+     lands exactly on a mark. The mark is drawn for a 180px tile (11px across,
+     2px thick, Dark Blue at 16%) and scales with --grid-size. */
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect x='86.5' y='86.5' width='7' height='7' fill='%23ffffff' stroke='%2309182F' stroke-opacity='0.22' stroke-width='1'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cg fill='%2309182F' fill-opacity='0.16'%3E%3Crect x='84.5' y='89' width='11' height='2'/%3E%3Crect x='89' y='84.5' width='2' height='11'/%3E%3C/g%3E%3C/svg%3E"),
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
