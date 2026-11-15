@@ -175,16 +175,19 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const split = width >= SPLIT_MIN_WIDTH;
     const containerW = Math.min(width, CONTAINER_MAX);
     const containerX = (width - containerW) / 2;
-    const areaX = split ? containerX + containerW * 0.5 : 0;
-    const areaW = split ? containerW * 0.5 : width;
+    // Desktop: from just left of the container's midpoint to the screen's right
+    // edge (past the container margin), so the mark can be as large as possible
+    // without crowding the copy.
+    const areaX = split ? containerX + containerW * 0.47 : 0;
+    const areaW = split ? width - areaX - 16 : width;
     const narrow = width < 700;
     const gap = narrow ? 7 : 9;
     dotSize = narrow ? 2.8 : 3.4;
     const area: Area = {
-      x: areaX + areaW * (split ? 0.01 : 0.04),
-      y: height * (split ? 0.13 : 0.07),
-      w: areaW * (split ? 0.98 : 0.92),
-      h: height * (split ? 0.74 : 0.86),
+      x: areaX + areaW * 0.01,
+      y: height * (split ? 0.08 : 0.04),
+      w: areaW * 0.98,
+      h: height * (split ? 0.84 : 0.92),
     };
 
     // The stack (the mark), fitted into the area.
