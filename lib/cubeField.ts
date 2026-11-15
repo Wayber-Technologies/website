@@ -104,15 +104,15 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const split = width >= SPLIT_MIN_WIDTH;
     const containerW = Math.min(width, CONTAINER_MAX);
     const containerX = (width - containerW) / 2;
-    const areaX = split ? containerX + containerW * 0.52 : 0;
-    const areaW = split ? containerW * 0.48 - CONTAINER_PAD : width;
-    const scale = Math.min((height * (split ? 0.62 : 0.8)) / MARK_H, (areaW * (split ? 0.94 : 0.84)) / MARK_W);
+    const areaX = split ? containerX + containerW * 0.5 : 0;
+    const areaW = split ? containerW * 0.5 : width;
+    const scale = Math.min((height * (split ? 0.74 : 0.86)) / MARK_H, (areaW * (split ? 0.98 : 0.92)) / MARK_W);
     const originX = areaX + (areaW - MARK_W * scale) / 2;
     const originY = (height - MARK_H * scale) / 2;
 
     const narrow = width < 700;
-    const gap = narrow ? 8 : 10;
-    squareSize = narrow ? 3.8 : 4.8;
+    const gap = narrow ? 7 : 9;
+    squareSize = narrow ? 2.8 : 3.4;
     squares = [];
     dots = [];
 
@@ -156,8 +156,8 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.x += (tx - d.x) * 0.1;
       d.y += (ty - d.y) * 0.1;
       if (Math.abs(tx - d.x) > 0.2 || Math.abs(ty - d.y) > 0.2) busy = true;
-      grid.moveTo(d.x + 0.9, d.y);
-      grid.arc(d.x, d.y, 0.9, 0, Math.PI * 2);
+      grid.moveTo(d.x + 0.8, d.y);
+      grid.arc(d.x, d.y, 0.8, 0, Math.PI * 2);
     }
     ctx!.fillStyle = GRID_COLOR;
     ctx!.fill(grid);
