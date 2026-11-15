@@ -8,9 +8,6 @@ import {
 } from "@/public";
 import cpcompassPhones from "@/public/work/cpcompass-phones.png";
 import cpcompassAspire from "@/public/work/cpcompass-aspire.jpg";
-import cpcompassFlash from "@/public/work/cpcompass-flash.jpg";
-import cpcompassQuick from "@/public/work/cpcompass-quick.jpg";
-import cpcompassDashboard from "@/public/work/cpcompass-dashboard.png";
 import wesleepCover from "@/public/work/wesleep-cover.jpg";
 import wesleepMarket from "@/public/work/wesleep-market.jpg";
 import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
@@ -18,9 +15,6 @@ import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
 // Case studies for the redesigned /work and /case/[slug] pages. The copy is
 // rewritten from the original case data in constants/index.ts. Unverified
 // numbers ("50+ people" and so on) were left out on purpose.
-
-// The CPCompass banners run blue to purple; framing them on the same gradient hides the edges.
-const CPCOMPASS_GRADIENT = "linear-gradient(90deg, #3B4080 0%, #473C78 50%, #54376D 100%)";
 
 export type CaseImage = {
   src: StaticImageData;
@@ -165,11 +159,7 @@ export const CASES: CaseStudy[] = [
       "CPCompass is live on the web, the App Store and Google Play, with a portfolio view, an investment calculator, personal finance insights and in-app support.",
     card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
     cover: { src: cpcompassPhones, alt: "CPCompass home screen and app store listing on two phones", fit: "contain", background: "#EEF0F7" },
-    gallery: [
-      { src: cpcompassDashboard, alt: "The CPCompass dashboard: portfolio breakdown and quick actions", fit: "contain", background: "#F3F5F8", span: "full" },
-      { src: cpcompassFlash, alt: "Flash Deals, time-limited investment offers", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
-      { src: cpcompassQuick, alt: "Snappy Investments, invest in two clicks", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
-    ],
+    gallery: [],
   },
   {
     // Facts from the product page at devsolutely.com/projects/wesleep (copy rewritten).
