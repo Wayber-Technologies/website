@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import SiteLayout from "@/components/site/SiteLayout";
 import PageHero from "@/components/site/PageHero";
@@ -20,6 +21,25 @@ const initials = (name: string) =>
     .map((p) => p[0])
     .join("")
     .slice(0, 2);
+
+/** Three stacked slabs, the "layers" in W + B + layers. */
+function LayersGlyph() {
+  return (
+    <svg viewBox="0 0 48 48" width="1em" height="1em">
+      {[0, 1, 2].map((k) => (
+        <path
+          key={k}
+          d="M4 22 L24 12 L44 22 L24 32 Z"
+          transform={`translate(0 ${k * 7 - 7})`}
+          fill={k === 2 ? "#1462FF" : "none"}
+          stroke="#1462FF"
+          strokeWidth="3"
+          strokeLinejoin="round"
+        />
+      ))}
+    </svg>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -59,18 +79,30 @@ export default function AboutPage() {
           </div>
           <div className={`${styles.mark} ${site.gridBg}`}>
             <MarkExploded />
-            <div className={styles.markList}>
-              {MARK_MEANING.map((m) => (
-                <div key={m.word} className={styles.markItem}>
-                  <span className={styles.markLetter} aria-hidden="true">
-                    {m.letter}
-                  </span>
-                  <span>
-                    <span className={styles.markWord}>{m.word}</span>
-                    <span className={styles.markBody}>{m.body}</span>
-                  </span>
-                </div>
-              ))}
+            <div className={styles.decode}>
+              <span className={styles.decodeLabel}>The mark, decoded</span>
+              <div className={styles.formula} aria-label="W for Way, plus B for Better, plus layers of technology">
+                {MARK_MEANING.map((m, i) => (
+                  <Fragment key={m.word}>
+                    {i > 0 && (
+                      <span className={styles.formulaPlus} aria-hidden="true">
+                        +
+                      </span>
+                    )}
+                    <div className={styles.term}>
+                      <span className={styles.termGlyph} aria-hidden="true">
+                        {m.glyph === "layers" ? <LayersGlyph /> : m.glyph}
+                      </span>
+                      <span className={styles.termWord}>{m.word}</span>
+                      <span className={styles.termBody}>{m.body}</span>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+              <p className={styles.decodeSum}>
+                The layers are the ones in the drawing: interface, data and infrastructure, designed and built as one
+                stack that holds together.
+              </p>
             </div>
           </div>
         </div>

@@ -222,43 +222,88 @@
   }
 }
 
-.markList {
+/* "The mark, decoded": W + B + layers, after the brand guide. */
+.decode {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.markItem {
-  display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
-  gap: 20px;
-  align-items: start;
+.decodeLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
 }
 
-.markLetter {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background: var(--blue);
-  color: #fff;
+.formula {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.term {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.termGlyph {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: 700;
+  height: 72px;
+  font-size: 68px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 8px;
 }
 
-.markWord {
-  display: block;
-  margin: 4px 0 6px;
-  font-size: 22px;
+.termWord {
+  font-size: 17px;
   font-weight: 600;
 }
 
-.markBody {
-  font-size: 16px;
-  line-height: 1.55;
+.termBody {
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--muted);
+}
+
+.formulaPlus {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--soft);
+}
+
+.decodeSum {
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .formula {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .formulaPlus {
+    height: auto;
+    font-size: 24px;
+  }
+  .termGlyph {
+    height: 56px;
+    font-size: 52px;
+  }
 }
 
 /* About: photo strip */
@@ -557,6 +602,10 @@ a.detailValue:hover {
   .contactGrid,
   .mark {
     grid-template-columns: minmax(0, 1fr);
+  }
+  /* Stacked: keep the grid on the drawing at the top, not behind the text. */
+  .mark {
+    --grid-focus: 50% 14%;
   }
   .serviceRow {
     grid-template-columns: minmax(0, 1fr);

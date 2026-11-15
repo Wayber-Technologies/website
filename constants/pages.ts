@@ -112,10 +112,11 @@ export const STACK = [
 ];
 
 // From the Figma brand guide: the icon is W (Way) + B (Better) + layers of technology.
-export const MARK_MEANING = [
-  { letter: "W", word: "Way", body: "The path from an idea to a product people use, and the way we work along it." },
-  { letter: "B", word: "Better", body: "Every release should leave the product, and the business behind it, better than before." },
-  { letter: "≡", word: "Layers of technology", body: "Infrastructure, data and interface, built as one stack that holds together." },
+// Shown as the brand guide's equation: W + B + layers = the mark.
+export const MARK_MEANING: { glyph: "W" | "B" | "layers"; word: string; body: string }[] = [
+  { glyph: "W", word: "Way", body: "From an idea to a product people use." },
+  { glyph: "B", word: "Better", body: "Every release leaves it better than before." },
+  { glyph: "layers", word: "Layers", body: "Technology built to stack and hold." },
 ];
 
 // From the brand guide letterhead: "competence, strong relationships, and futuristic thinking".
