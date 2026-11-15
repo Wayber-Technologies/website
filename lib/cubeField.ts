@@ -47,8 +47,8 @@ const SWEEP = 0.3;
 
 // Isometric cube: the slabs in the mark slope at about 30°, so the cubes use the same angle.
 const COS30 = Math.cos(Math.PI / 6);
-// Each face is shrunk toward its centre so thin gaps separate the three faces.
-const FACE_INSET = 0.86;
+// The seam between a cube's faces, in dot-grid steps: one empty row of dots at any cube size.
+const SEAM_IN_GAPS = 1.1;
 // Next cube: one cube-width to the right and a little lower, like the slabs.
 const CUBE_STEP_X = 2 * COS30 * 1.08;
 const CUBE_STEP_Y = 0.62;
@@ -98,8 +98,14 @@ function pickColor(seed: number) {
   return 0;
 }
 
-/** The three faces of an isometric cube centred on (cx, cy), with half-height `s`. */
-function addCube(path: Path2D, cx: number, cy: number, s: number) {
+/**
+ * The three faces of an isometric cube centred on (cx, cy), with half-height `s`,
+ * separated by seams `seam` pixels wide.
+ */
+function addCube(path: Path2D, cx: number, cy: number, s: number, seam: number) {
+  // Each face is a rhombus with side `s`; its centre sits s·sin60°/2 from every edge.
+  // Shrinking it toward its centre moves each edge in by seam/2, whatever the cube's size.
+  const inset = Math.max(0.5, 1 - seam / 2 / ((s * Math.sin(Math.PI / 3)) / 2));
   const top = { x: cx, y: cy - s };
   const ur = { x: cx + COS30 * s, y: cy - s / 2 };
   const lr = { x: cx + COS30 * s, y: cy + s / 2 };
@@ -116,8 +122,8 @@ function addCube(path: Path2D, cx: number, cy: number, s: number) {
     const fx = face.reduce((a, p) => a + p.x, 0) / 4;
     const fy = face.reduce((a, p) => a + p.y, 0) / 4;
     face.forEach((p, i) => {
-      const x = fx + (p.x - fx) * FACE_INSET;
-      const y = fy + (p.y - fy) * FACE_INSET;
+      const x = fx + (p.x - fx) * inset;
+      const y = fy + (p.y - fy) * inset;
       if (i === 0) path.moveTo(x, y);
       else path.lineTo(x, y);
     });
@@ -210,7 +216,9 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       const path = new Path2D();
       const left = area.x + (area.w - groupW(n) * s) / 2;
       const top = area.y + (area.h - groupH(n) * s) / 2;
-      for (let k = 0; k < n; k++) addCube(path, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s);
+      for (let k = 0; k < n; k++) {
+        addCube(path, left + COS30 * s + k * CUBE_STEP_X * s, top + s + k * CUBE_STEP_Y * s, s, gap * SEAM_IN_GAPS);
+      }
       return path;
     };
     const markPoints = sample(markPath, area, gap);
