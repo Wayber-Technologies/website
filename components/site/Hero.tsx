@@ -4,6 +4,8 @@ import styles from "@/styles/site.module.css";
 export default function Hero() {
   return (
     <section id="top" className={styles.hero}>
+      {/* The mark sits behind the copy as a full-bleed background. */}
+      <CubeField />
       <div className={`${styles.narrow} ${styles.heroInner}`}>
         <span className={styles.eyebrow}>Software studio · Lagos, Nigeria</span>
         <h1 className={styles.heroTitle}>
@@ -26,7 +28,8 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <CubeField />
+      <span className={`${styles.fieldNote} ${styles.fieldNoteLeft}`}>W + B + layers of technology</span>
+      <span className={`${styles.fieldNote} ${styles.fieldNoteRight} ${styles.hideSmall}`}>Move your cursor through it</span>
     </section>
   );
 }
