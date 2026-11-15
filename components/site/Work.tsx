@@ -46,7 +46,7 @@ export default function Work() {
           </div>
 
           <p className={styles.workMore}>
-            Also shipped: <Link href="/case/mallamx">Mallam X</Link>, We Sleep and work we can’t name yet.
+            Also shipped: <Link href="/case/mallamx">Mallam X</Link>, <Link href="/case/wesleep">WeSleep</Link> and work we can’t name yet.
           </p>
         </div>
       </section>

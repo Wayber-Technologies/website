@@ -20,14 +20,8 @@ const MARK_PATH =
   "M898.796 173.928L674.342 300.432V112.251L629.271 87.0405L404.817 213.545V25.3641L359.746 0.15332L0.0791016 203.19V494.015L45.6009 519.676L269.604 393.172V580.902L315.126 606.563L539.129 480.059V667.789L584.651 693L943.417 490.863V199.139L898.796 173.928Z";
 const MARK_BOX = { w: 944, h: 693 };
 
-// Brand palette, weighted so the mark still reads as Wayber Blue. Light Blue
-// (#BFFDFF) disappears on white, so a deeper cyan stands in for it.
-const PALETTE: { color: string; weight: number }[] = [
-  { color: "#1462FF", weight: 55 }, // Wayber Blue
-  { color: "#09182F", weight: 20 }, // Dark Blue
-  { color: "#2FC4D6", weight: 13 }, // Light Blue, deepened
-  { color: "#EFD54D", weight: 12 }, // Yellow
-];
+// The dots are a single colour: Wayber Blue. (Kept as a list so a mix can come back easily.)
+const PALETTE: { color: string; weight: number }[] = [{ color: "#1462FF", weight: 1 }];
 const PALETTE_TOTAL = PALETTE.reduce((sum, p) => sum + p.weight, 0);
 
 // From this width up, the hero is two columns and the shape sits in the right one.

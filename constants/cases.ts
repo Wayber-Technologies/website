@@ -7,6 +7,9 @@ import {
   commercio2, commercio3, commercio4, commercio5,
   project1, project3, project4, project5,
 } from "@/public";
+import wesleepCover from "@/public/work/wesleep-cover.jpg";
+import wesleepMarket from "@/public/work/wesleep-market.jpg";
+import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
 
 // Case studies for the redesigned /work and /case/[slug] pages. The copy is
 // rewritten from the original case data in constants/index.ts. Unverified
@@ -158,6 +161,30 @@ export const CASES: CaseStudy[] = [
       { src: commercio3, alt: "Service areas: trading, advisory, investments and property development", fit: "contain", background: "#F3F5F8", span: "full" },
       { src: commercio4, alt: "Company milestones timeline", fit: "contain", background: "#F3F5F8", span: "full" },
       { src: commercio5, alt: "Personalised guidance section", fit: "contain", background: "#F3F5F8", span: "full" },
+    ],
+  },
+  {
+    // Facts from the product page at devsolutely.com/projects/wesleep (copy rewritten).
+    // TODO(content): confirm launch status; the source says the beta is in preparation.
+    slug: "wesleep",
+    title: "WeSleep",
+    sector: "Web3 & wellness",
+    platform: "iOS & Android",
+    services: ["Product design", "Mobile development", "NFT marketplace", "In-app wallet"],
+    summary: "A sleep-to-earn app that rewards rest with tokens and nudges people toward healthier routines.",
+    overview:
+      "WeSleep is a Web3 app with game-like rewards for sleep. People hold a Sleepie NFT, sleep, and earn $ZZZ tokens. Each Sleepie’s traits (fatigue, drowsiness, luck and devotion) set how much it can earn in a day.",
+    challenge:
+      "Blend crypto mechanics with a health habit without letting either feel like a chore. Rewards had to be fair and hard to game, and the wallet and marketplace simple enough for people new to Web3.",
+    approach:
+      "An iOS and Android app that reads health, GPS and motion data to check activity and work out rewards. Around it: an NFT marketplace to level up, breed and trade Sleepies, an in-app wallet to swap rewards and send $WEZ and $ZZZ, and daily tasks with leaderboards.",
+    outcome:
+      "The core loop is in place (sleep, earn, level up, compete) and the product is heading into beta, with health tracking that also suggests ways to live a more active life.",
+    card: { src: wesleepCover, alt: "WeSleep marketplace, Sleepie and leaderboard screens", fit: "cover", background: "#1C1F26" },
+    cover: { src: wesleepCover, alt: "Three phones showing the WeSleep marketplace, a Sleepie and the leaderboard", fit: "cover", background: "#1C1F26" },
+    gallery: [
+      { src: wesleepMarket, alt: "Sleepie marketplace with traits and prices", fit: "contain", background: "#1C1F26", span: "half" },
+      { src: wesleepRanks, alt: "Regional leaderboard", fit: "contain", background: "#1C1F26", span: "half" },
     ],
   },
 ];
