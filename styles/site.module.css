@@ -36,7 +36,7 @@
   --grid-size: 180px;
   --grid-line: rgba(9, 24, 47, 0.06);
   --grid-node: rgba(9, 24, 47, 0.24);
-  --grid-node-size: 4px; /* radius of the dot where lines cross */
+  --grid-node-size: 2.5px; /* radius of the dot where lines cross */
   /* Layer 1 is the node dots, centred in each tile. The two line layers are
      shifted half a tile so every crossing lands exactly on a node. */
   background-image:
