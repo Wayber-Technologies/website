@@ -1,0 +1,170 @@
+import type { StaticImageData } from "next/image";
+import {
+  sise1, sise2, sise3, sise4, sise5,
+  malamx2, malamx3, malamx4, malamx5,
+  rftf2, rftf3, rftf4,
+  burnout2, burnout3, burnout4, burnout5,
+  commercio2, commercio3, commercio4, commercio5,
+  project1, project3, project4, project5,
+} from "@/public";
+
+// Case studies for the redesigned /work and /case/[slug] pages. The copy is
+// rewritten from the original case data in constants/index.ts. Unverified
+// numbers ("50+ people" and so on) were left out on purpose.
+
+export type CaseImage = {
+  src: StaticImageData;
+  alt: string;
+  /** "cover" fills the frame; "contain" shows the whole screenshot on the frame colour. */
+  fit: "cover" | "contain";
+  background: string;
+};
+
+export type GalleryItem = CaseImage & { span: "full" | "half" };
+
+export type CaseStudy = {
+  slug: string;
+  title: string;
+  client?: string;
+  sector: string;
+  platform: string;
+  services: string[];
+  summary: string;
+  overview: string;
+  challenge: string;
+  approach: string;
+  outcome: string;
+  card: CaseImage;
+  cover: CaseImage;
+  gallery: GalleryItem[];
+};
+
+export const CASES: CaseStudy[] = [
+  {
+    slug: "sise",
+    title: "Sise",
+    sector: "Workflow & CRM",
+    platform: "Web app",
+    services: ["Product design", "Dashboard & data viz", "Web development", "Workflow automation"],
+    summary: "Lead and customer management for teams who live in their pipeline.",
+    overview:
+      "Sise is a lead and customer management platform. One dashboard shows pipeline value, lead status and customer numbers in real time, so a sales team always knows where each deal stands.",
+    challenge:
+      "Sales data is messy and it never stops coming in. The product had to handle a lot of it without burying people in numbers, and make the next action obvious from any screen.",
+    approach:
+      "We built Sise around the pipeline: custom filters, clear lead statuses and automated hand-offs between stages. Sign-up and onboarding were designed to get a team into its own data in minutes.",
+    outcome:
+      "Teams use Sise to watch their pipeline and make decisions from live data instead of a spreadsheet passed around on email.",
+    card: { src: project1, alt: "Sise logo on a light blue field", fit: "cover", background: "#DCEBFF" },
+    cover: { src: sise1, alt: "Sise brand artwork: Work meets flow", fit: "contain", background: "#DCEBFF" },
+    gallery: [
+      { src: sise5, alt: "Sise leads table with filters and status tags", fit: "contain", background: "#EEF3FB", span: "full" },
+      { src: sise4, alt: "Sise dashboard with pipeline value and recent activity", fit: "contain", background: "#EEF3FB", span: "half" },
+      { src: sise2, alt: "Sise sign-up screen", fit: "contain", background: "#DCEBFF", span: "half" },
+      { src: sise3, alt: "Sise welcome and log-in screens", fit: "contain", background: "#F3F5F8", span: "full" },
+    ],
+  },
+  {
+    slug: "mallamx",
+    title: "Mallam X",
+    sector: "Fintech",
+    platform: "Web & mobile",
+    services: ["Product design", "E-wallet", "Currency exchange", "Security"],
+    summary: "An e-wallet for swapping naira, dollars and pounds without the bank queue.",
+    overview:
+      "Mallam X is a digital currency exchange built on an e-wallet. People hold and swap NGN, USD and GBP, and track Bitcoin, Ethereum and XRP, from desktop or phone.",
+    challenge:
+      "Money apps live or die on trust. Moving between currencies had to feel as simple as sending a message, without ever hiding what is happening to someone’s money.",
+    approach:
+      "One combined wallet balance, tap-to-act buttons for buy, sell, send and receive, and live price tracking. The interface works the same way on desktop and mobile, with sharing built in for person-to-person payments.",
+    outcome:
+      "One place to manage several currencies and crypto assets, with every transaction one clear step away.",
+    card: { src: malamx2, alt: "Mallam X wallet dashboard", fit: "contain", background: "#EEF5EC" },
+    cover: { src: malamx2, alt: "Mallam X wallet dashboard on desktop and mobile", fit: "contain", background: "#EEF5EC" },
+    gallery: [
+      { src: malamx3, alt: "Mallam X trade screen with price chart", fit: "contain", background: "#EEF5EC", span: "full" },
+      { src: malamx4, alt: "Mallam X crypto portfolio overview", fit: "contain", background: "#F3F5F8", span: "half" },
+      { src: malamx5, alt: "Mallam X transactions view", fit: "contain", background: "#F3F5F8", span: "half" },
+    ],
+  },
+  {
+    slug: "rftf",
+    title: "Run For The Future",
+    client: "ARM Pensions",
+    sector: "Wellness",
+    platform: "Mobile app",
+    services: ["Product design", "Mobile development", "Event management", "Community features"],
+    summary: "Runs, leaderboards and events for ARM Pensions’ seventh Run For The Future campaign.",
+    overview:
+      "Run For The Future is a fitness and community app for ARM Pensions’ awareness campaign. Clients and the public sign up, track runs and walks, and take part in events together.",
+    challenge:
+      "A pensions company asking people to go running. The app had to feel energetic and genuine while staying true to ARM’s professional brand.",
+    approach:
+      "Run tracking, leaderboards, profiles and full event details in one app. Bold imagery and a maroon and neutral palette sit comfortably alongside ARM’s own identity.",
+    outcome:
+      "A complete event experience that turns a campaign into a community, from sign-up to the finish line.",
+    card: { src: project3, alt: "Run For The Future campaign artwork", fit: "cover", background: "#4A1F3D" },
+    cover: { src: project3, alt: "Run For The Future campaign artwork: a runner on maroon", fit: "cover", background: "#4A1F3D" },
+    gallery: [
+      { src: rftf2, alt: "Onboarding and sign-up screens", fit: "contain", background: "#F6F1F4", span: "full" },
+      { src: rftf4, alt: "Run tracking and progress screens", fit: "contain", background: "#F3F5F8", span: "full" },
+      { src: rftf3, alt: "Profile set-up and selfie capture screens", fit: "contain", background: "#F6F1F4", span: "full" },
+    ],
+  },
+  {
+    // TODO(content): Burnout is not on the live site. Confirm it should be shown.
+    slug: "burnout",
+    title: "Burnout",
+    sector: "People & HR",
+    platform: "Web app",
+    services: ["Product design", "Web development", "Wellness tracking", "Performance metrics"],
+    summary: "Team management that spots burnout before it costs you people.",
+    overview:
+      "Burnout combines performance tracking with wellness monitoring, so team leads can see who is overloaded before productivity starts to drop.",
+    challenge:
+      "Tracking wellbeing at work can easily feel like surveillance. The system had to surface burnout patterns without adding stress for the people being measured.",
+    approach:
+      "Colour-coded team health, points, task assignments and completion rates, in a calm black, white and cyan interface that keeps the focus on people, not scores.",
+    outcome:
+      "Team leads get an early warning system, and healthy work patterns become something the product rewards.",
+    card: { src: project4, alt: "Burnout logo", fit: "cover", background: "#F7F7F7" },
+    cover: { src: burnout3, alt: "Burnout team members view with health scores", fit: "contain", background: "#F3F5F8" },
+    gallery: [
+      { src: burnout2, alt: "Burnout team lead dashboard", fit: "contain", background: "#EAF7F9", span: "half" },
+      { src: burnout4, alt: "Burnout points leaderboard", fit: "contain", background: "#F3F5F8", span: "half" },
+      { src: burnout5, alt: "Burnout employee directory", fit: "contain", background: "#F3F5F8", span: "full" },
+    ],
+  },
+  {
+    // TODO(content): confirm the CPCompass name and logo. The original repo data called this "Commercio".
+    slug: "commercio",
+    title: "CPCompass",
+    client: "Comercio Partners",
+    sector: "Investment",
+    platform: "Web & mobile",
+    services: ["Product design", "Investment platform", "Financial dashboards", "Web development"],
+    summary: "Curated investments and mobile banking in one app.",
+    overview:
+      "CPCompass brings Comercio Partners’ investment opportunities, from trading and advisory to property development, into one place that everyday investors can use.",
+    challenge:
+      "Investing is intimidating for most people. The product had to inspire the confidence of a serious financial firm while staying simple enough for someone making their first investment.",
+    approach:
+      "Clear asset breakdowns, transaction histories and performance numbers, with a mobile-first design so checking a portfolio is as easy as checking your messages.",
+    outcome:
+      "Professional-grade investment management in a form everyday investors can actually use.",
+    card: { src: project5, alt: "CPCompass mark", fit: "contain", background: "#F3F5F8" },
+    cover: { src: commercio2, alt: "Comercio Partners website hero over the Lagos skyline", fit: "cover", background: "#1B2333" },
+    gallery: [
+      { src: commercio3, alt: "Service areas: trading, advisory, investments and property development", fit: "contain", background: "#F3F5F8", span: "full" },
+      { src: commercio4, alt: "Company milestones timeline", fit: "contain", background: "#F3F5F8", span: "full" },
+      { src: commercio5, alt: "Personalised guidance section", fit: "contain", background: "#F3F5F8", span: "full" },
+    ],
+  },
+];
+
+export const getCase = (slug: string) => CASES.find((c) => c.slug === slug);
+
+export const getNextCase = (slug: string) => {
+  const i = CASES.findIndex((c) => c.slug === slug);
+  return CASES[(i + 1) % CASES.length];
+};

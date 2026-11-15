@@ -3,8 +3,10 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <title>Wayber - Building Tommorows Tech, Today</title>
-      <Head />
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#09182F" />
+      </Head>
       <body>
         <Main />
         <NextScript />
