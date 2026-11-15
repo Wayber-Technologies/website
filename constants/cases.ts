@@ -10,7 +10,7 @@ import cpcompassPhones from "@/public/work/cpcompass-phones.png";
 import cpcompassAspire from "@/public/work/cpcompass-aspire.jpg";
 import cpcompassFlash from "@/public/work/cpcompass-flash.jpg";
 import cpcompassQuick from "@/public/work/cpcompass-quick.jpg";
-import cpcompassLogin from "@/public/work/cpcompass-login.jpg";
+import cpcompassDashboard from "@/public/work/cpcompass-dashboard.png";
 import wesleepCover from "@/public/work/wesleep-cover.jpg";
 import wesleepMarket from "@/public/work/wesleep-market.jpg";
 import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
@@ -166,7 +166,7 @@ export const CASES: CaseStudy[] = [
     card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
     cover: { src: cpcompassPhones, alt: "CPCompass home screen and app store listing on two phones", fit: "contain", background: "#EEF0F7" },
     gallery: [
-      { src: cpcompassLogin, alt: "The CPCompass web app sign-in screen", fit: "contain", background: "#F3F5F8", span: "full" },
+      { src: cpcompassDashboard, alt: "The CPCompass dashboard: portfolio breakdown and quick actions", fit: "contain", background: "#F3F5F8", span: "full" },
       { src: cpcompassFlash, alt: "Flash Deals, time-limited investment offers", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
       { src: cpcompassQuick, alt: "Snappy Investments, invest in two clicks", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
     ],
