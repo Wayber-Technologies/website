@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SiteLayout from "@/components/site/SiteLayout";
 import PageHero from "@/components/site/PageHero";
+import MarkExploded from "@/components/site/MarkExploded";
 import { Clients } from "@/components/site/Work";
 import { Closing } from "@/components/site/Contact";
 import { LEADERSHIP, MARK_MEANING, VALUES } from "@/constants/pages";
@@ -56,12 +57,8 @@ export default function AboutPage() {
               <span className={site.grey}>is how we work.</span>
             </h2>
           </div>
-          <div className={styles.mark}>
-            <svg className={styles.markArt} viewBox="0 0 950 700" role="img" aria-label="The Wayber mark: three stacked slabs">
-              <polygon points="0,203 360,0 405,25 405,316 45,519 0,494" fill="none" stroke="#1462FF" strokeWidth="12" />
-              <polygon points="270,290 630,87 675,112 675,403 315,606 270,581" fill="none" stroke="#1462FF" strokeWidth="12" />
-              <polygon points="540,377 900,174 945,199 945,490 585,693 540,668" fill="none" stroke="#1462FF" strokeWidth="12" />
-            </svg>
+          <div className={`${styles.mark} ${site.gridBg}`}>
+            <MarkExploded />
             <div className={styles.markList}>
               {MARK_MEANING.map((m) => (
                 <div key={m.word} className={styles.markItem}>

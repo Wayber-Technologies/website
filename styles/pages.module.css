@@ -149,7 +149,7 @@
 /* About: the mark */
 .mark {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   gap: 48px 72px;
   align-items: center;
   padding: 64px;
@@ -160,8 +160,66 @@
 .markArt {
   width: 100%;
   height: auto;
-  max-width: 420px;
+  max-width: 620px;
   justify-self: center;
+  overflow: visible;
+}
+
+/* Exploded stack: slabs pulled apart along the stacking diagonal (SPREAD in
+   MarkExploded.tsx). Hovering the card slides them into the finished mark. */
+.explode {
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.explode1 {
+  transform: translate(161.7px, 52.1px);
+}
+
+.explode2 {
+  transform: translate(323.4px, 104.2px);
+}
+
+.markGhost,
+.markGuide,
+.slabLabel {
+  transition: opacity 0.4s ease;
+}
+
+/* The solid mark appears only after the slabs have slid into place. */
+.markSolid {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Keep the blueprint grid on the illustration side, away from the text. */
+.mark {
+  --grid-focus: 26% 50%;
+}
+
+@media (hover: hover) {
+  .mark:hover .explode1,
+  .mark:hover .explode2 {
+    transform: none;
+  }
+  .mark:hover .markGhost,
+  .mark:hover .markGuide,
+  .mark:hover .slabLabel {
+    opacity: 0;
+  }
+  .mark:hover .markSolid {
+    opacity: 1;
+    transition-delay: 0.55s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explode,
+  .markGhost,
+  .markGuide,
+  .slabLabel,
+  .markSolid {
+    transition: none;
+  }
 }
 
 .markList {
