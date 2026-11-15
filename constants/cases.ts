@@ -160,7 +160,7 @@ export const CASES: CaseStudy[] = [
     challenge:
       "Make professional asset management feel personal and approachable, while meeting the identity checks, security and record-keeping a regulated asset manager needs.",
     approach:
-      "We built the whole platform: the web app at app.cpcompass.ng and a Flutter app for iOS and Android, on our own API. Users verify their identity (with OTP, and manual review as a fallback), take a risk-profile questionnaire, fund their wallet through Paystack, and invest from a marketplace of termed investments, Aspire goals and flash deals. An admin dashboard, audit logging and SMS alerts run the operation behind it.",
+      "We built the whole platform: the web app at app.cpcompass.ng and a Flutter app for iOS and Android, on our own API. Users verify their identity (with OTP, and manual review as a fallback), take a risk-profile questionnaire, fund their wallet through Paystack, and invest from a marketplace of three products: Snappy Investments for two-click flexible-term saving, Aspire Goals for custom targets, and Flash Deals for time-limited offers like commercial papers and bonds. An admin dashboard, audit logging and SMS alerts run the operation behind it.",
     outcome:
       "CPCompass is live on the web, the App Store and Google Play, with a portfolio view, an investment calculator, personal finance insights and in-app support.",
     card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
@@ -168,7 +168,7 @@ export const CASES: CaseStudy[] = [
     gallery: [
       { src: cpcompassLogin, alt: "The CPCompass web app sign-in screen", fit: "contain", background: "#F3F5F8", span: "full" },
       { src: cpcompassFlash, alt: "Flash Deals, time-limited investment offers", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
-      { src: cpcompassQuick, alt: "Quick Bookings, one-tap investments", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
+      { src: cpcompassQuick, alt: "Snappy Investments, invest in two clicks", fit: "contain", background: CPCOMPASS_GRADIENT, span: "half" },
     ],
   },
   {
