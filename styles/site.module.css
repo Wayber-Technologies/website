@@ -35,19 +35,11 @@
   pointer-events: none;
   --grid-size: 180px;
   --grid-line: rgba(9, 24, 47, 0.06);
-  --grid-node: rgba(9, 24, 47, 0.24);
-  --grid-node-size: 2.5px; /* radius of the dot where lines cross */
-  /* Layer 1 is the node dots, centred in each tile. The two line layers are
-     shifted half a tile so every crossing lands exactly on a node. */
   background-image:
-    radial-gradient(circle at center, var(--grid-node) var(--grid-node-size), transparent calc(var(--grid-node-size) + 0.75px)),
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
-  background-position:
-    center center,
-    calc(50% + var(--grid-size) / 2 - 0.5px) center,
-    center calc(50% + var(--grid-size) / 2 - 0.5px);
+  background-position: center center;
   -webkit-mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
   mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
 }

@@ -182,7 +182,7 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const areaW = split ? width - areaX - 16 : width;
     const narrow = width < 700;
     const gap = narrow ? 7 : 9;
-    dotSize = narrow ? 2.8 : 3.4;
+    dotSize = narrow ? 2 : 2.4;
     const area: Area = {
       x: areaX + areaW * 0.01,
       y: height * (split ? 0.08 : 0.04),
