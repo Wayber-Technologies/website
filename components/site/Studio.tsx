@@ -52,6 +52,8 @@ export default function Studio() {
         <p className={styles.statementText}>
           Wayber is a software studio in Lagos. We build the product, then stay to keep it running.
         </p>
+        {/* The hero's dots fly here and form a browser window and a phone (lib/cubeField.ts). */}
+        <div className={styles.fieldStage} data-field-stage aria-hidden="true" />
       </div>
     </section>
   );

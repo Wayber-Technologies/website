@@ -221,6 +221,35 @@ a:hover .go {
   font-weight: 600;
 }
 
+/* Sticks to the top, above the dot canvas (.fieldLayer). */
+.siteHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.siteHeaderScrolled {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom-color: rgba(9, 24, 47, 0.07);
+}
+
+.siteHeader .nav {
+  transition:
+    padding 0.3s var(--ease-out);
+}
+
+.siteHeaderScrolled .nav {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -312,7 +341,7 @@ a:hover .go {
   margin: 0;
   font-family: var(--font-aloevera), var(--font-figtree), system-ui, sans-serif;
   font-size: clamp(48px, 6.2vw, 96px);
-  line-height: 1;
+  line-height: 1.2;
   font-weight: 600;
   /* Aloevera is already tightly set; Figtree-style negative tracking makes letters touch. */
   letter-spacing: -0.01em;
@@ -332,6 +361,7 @@ a:hover .go {
   gap: 12px;
 }
 
+/* Where the mark sits. The dots themselves are drawn on .fieldLayer. */
 .fieldCanvas {
   position: absolute;
   inset: 0;
@@ -339,7 +369,17 @@ a:hover .go {
   display: block;
   width: 100%;
   height: 100%;
-  touch-action: pan-y;
+}
+
+/* The dots: one canvas over the window, so they can leave the hero. It never
+   takes the pointer. */
+.fieldLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
 
 .fieldNote {
@@ -388,8 +428,29 @@ a:hover .go {
 }
 
 /* Statement, and the Medium journal further down the page. */
+.studioHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px 64px;
+}
+
 .studioHead .statementText {
   max-width: 900px;
+}
+
+/* An empty box the hero's dots fly into. */
+.fieldStage {
+  height: 340px;
+}
+
+@media (max-width: 899px) {
+  .studioHead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fieldStage {
+    height: 240px;
+  }
 }
 
 .journalActions {
@@ -590,10 +651,17 @@ a:hover .go {
 }
 
 /* Capability rows */
+/* Roomy gaps: the hero's dots ring each card as it scrolls past (lib/cubeField.ts). */
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 56px;
+}
+
+@media (max-width: 760px) {
+  .rows {
+    gap: 40px;
+  }
 }
 
 .row {
