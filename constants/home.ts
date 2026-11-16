@@ -52,7 +52,7 @@ export const CAPABILITIES: Capability[] = [
     body: "Flutter and native apps for iOS and Android. For ARM Pensions we built run tracking, leaderboards and event sign-up.",
     linkLabel: "See RFTF",
     href: "/case/rftf",
-    image: { src: "/rftf2.png", alt: "Four screens from the Run For The Future mobile app", fit: "contain", background: "#FFFFFF" },
+    image: { src: "/rftf2.png", alt: "Four screens from the Run For The Future mobile app", fit: "contain", background: "#E5E5E5" },
     tone: "light",
     mediaFirst: true,
   },
@@ -73,6 +73,7 @@ export type FeaturedWork = {
   sector: string;
   summary: string;
   href: string;
+  /** `background` fills the card below the image: match the image's bottom edge (any CSS background). */
   image: { src: string; alt: string; background: string; fit: "cover" | "contain" };
 };
 
@@ -82,21 +83,21 @@ export const FEATURED_WORK: FeaturedWork[] = [
     sector: "Workflow & CRM",
     summary: "Lead and customer management: pipeline, statuses and hand-offs on one dashboard.",
     href: "/case/sise",
-    image: { src: "/project1.png", alt: "Sise logo on a light blue field", background: "#DCEBFF", fit: "cover" },
+    image: { src: "/project1.png", alt: "Sise logo on a light blue field", background: "#D1ECFC", fit: "cover" },
   },
   {
     title: "Run For The Future",
     sector: "Wellness · ARM Pensions",
     summary: "Runs, leaderboards and events for ARM’s seventh awareness campaign.",
     href: "/case/rftf",
-    image: { src: "/project3.png", alt: "Run For The Future campaign artwork", background: "#4A1F3D", fit: "cover" },
+    image: { src: "/project3.png", alt: "Run For The Future campaign artwork", background: "#4D2544", fit: "cover" },
   },
   {
     title: "CPCompass",
     sector: "Investment · Comercio Partners",
     summary: "Goal-based saving and investing on web, iOS and Android.",
     href: "/case/cpcompass",
-    image: { src: "/work/cpcompass-aspire.jpg", alt: "CPCompass Aspire Goals", background: "#3B4180", fit: "cover" },
+    image: { src: "/work/cpcompass-aspire.jpg", alt: "CPCompass Aspire Goals", background: "linear-gradient(90deg, #3B4080, #53386F)", fit: "cover" },
   },
 ];
 

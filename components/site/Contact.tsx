@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { CONTACT } from "@/constants/home";
 import styles from "@/styles/site.module.css";
@@ -20,7 +21,7 @@ export default function Contact() {
             </div>
             <div className={styles.startFoot}>
               <Link href="/contact" className={`${styles.pill} ${styles.pillBlue}`}>
-                Start a project <span className={styles.go}>→</span>
+                Start a project <ArrowRightIcon className={styles.go} />
               </Link>
               <span className={styles.startEmail}>{CONTACT.officeEmail}</span>
             </div>
@@ -36,7 +37,7 @@ export default function Contact() {
             </div>
             <div className={styles.startFoot}>
               <a href={`mailto:${CONTACT.technologyEmail}`} className={`${styles.pill} ${styles.pillWhite}`}>
-                Talk to engineering <span className={styles.go}>→</span>
+                Talk to engineering <ArrowRightIcon className={styles.go} />
               </a>
               <span className={styles.startEmail}>{CONTACT.technologyEmail}</span>
             </div>

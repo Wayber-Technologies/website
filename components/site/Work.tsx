@@ -1,3 +1,5 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { ArrowRightIcon as CardArrowIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { CLIENTS, FEATURED_WORK } from "@/constants/home";
@@ -11,7 +13,7 @@ export default function Work() {
           <div className={styles.sectionHead} style={{ marginBottom: 48 }}>
             <h2 className={styles.sectionTitle}>Selected work</h2>
             <Link href="/work" className={styles.textLink}>
-              All case studies <span className={styles.go}>→</span>
+              All case studies <ArrowRightIcon className={styles.go} />
             </Link>
           </div>
 
@@ -20,23 +22,15 @@ export default function Work() {
               <Link key={item.title} href={item.href} className={styles.workCard}>
                 <span className={`${styles.workMedia} ${styles.zoom}`} style={{ background: item.image.background }}>
                   <span className={styles.workArrow} aria-hidden="true">
-                    →
+                    <CardArrowIcon className={styles.workArrowIcon} />
                   </span>
-                  <Image
-                    src={item.image.src}
-                    alt={item.image.alt}
-                    fill
-                    sizes="(max-width: 760px) 100vw, 33vw"
-                    style={{
-                      objectFit: item.image.fit,
-                      padding: item.image.fit === "contain" ? "18%" : 0,
-                      // Logos on white backgrounds take on the card colour.
-                      mixBlendMode: item.image.fit === "contain" ? "multiply" : undefined,
-                    }}
-                  />
+                  {/* The artwork sits at the top and fades into the card colour below. */}
+                  <span className={styles.workArt}>
+                    <Image src={item.image.src} alt={item.image.alt} fill sizes="(max-width: 760px) 100vw, 33vw" style={{ objectFit: "cover" }} />
+                  </span>
+                  <span className={styles.workSector}>{item.sector}</span>
                 </span>
                 <span className={styles.workMeta}>
-                  <span className={styles.workSector}>{item.sector}</span>
                   <span className={styles.workTitle}>{item.title}</span>
                   <span className={styles.workSummary}>{item.summary}</span>
                 </span>

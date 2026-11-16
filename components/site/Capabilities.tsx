@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { CAPABILITIES, OTHER_SERVICES } from "@/constants/home";
@@ -30,7 +31,7 @@ export default function Capabilities() {
                   <p className={styles.rowBody}>{item.body}</p>
                 </div>
                 <Link href={item.href} className={styles.textLink}>
-                  {item.linkLabel} <span className={styles.go}>→</span>
+                  {item.linkLabel} <ArrowRightIcon className={styles.go} />
                 </Link>
               </div>
             );

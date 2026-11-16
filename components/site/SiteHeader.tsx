@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "@/constants/home";
@@ -9,7 +10,7 @@ export default function SiteHeader() {
       <Link href="/case/rftf" className={styles.announce}>
         <span>Case study: Run For The Future, the run-tracking app we built for ARM Pensions</span>
         <span className={styles.announceCta}>
-          Read it <span className={styles.go}>→</span>
+          Read it <ArrowRightIcon className={styles.go} />
         </span>
       </Link>
 

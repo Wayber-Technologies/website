@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import SiteLayout from "@/components/site/SiteLayout";
 import PageHero from "@/components/site/PageHero";
@@ -35,7 +36,7 @@ export default function ServicesPage() {
                 </ul>
                 {s.caseStudy && (
                   <Link href={s.caseStudy.href} className={site.textLink}>
-                    {s.caseStudy.label} <span className={site.go}>→</span>
+                    {s.caseStudy.label} <ArrowRightIcon className={site.go} />
                   </Link>
                 )}
               </div>

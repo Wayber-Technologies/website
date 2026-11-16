@@ -2,14 +2,16 @@
  * Draws the Wayber mark as a field of small round dots, as the hero background.
  *
  * - The mark is three identical slabs, each one step down and to the right of
- *   the one before (a little closer together than in the logo), all in Wayber
- *   Blue. A slab in front hides the dots of the slab behind it.
- * - On load, the dots fly in and form the mark.
+ *   the one before (a little closer together than in the logo). Each dot is a
+ *   brand colour, mostly Wayber Blue. A slab in front hides the dots of the
+ *   slab behind it.
+ * - On load, the mark fades in while each dot settles from a few pixels away,
+ *   in a soft wave from left to right.
  * - Dots move away from the pointer. The pointer is tracked on the canvas's
  *   parent element, so text and buttons on top don't block it.
  * - Nothing is drawn while the mark holds still.
  *
- * Users with "prefers-reduced-motion" see the mark with no fly-in.
+ * Users with "prefers-reduced-motion" see the mark with no entrance motion.
  */
 
 // The front slab of the icon (public/logoBlackFull.svg), in the icon's own
@@ -29,8 +31,15 @@ const SPACING = 0.8;
 // The mark's size with that spacing: one slab plus two steps.
 const MARK_BOX = { w: 404.82 + 2 * SLAB_STEP.x * SPACING, h: 519.68 + 2 * SLAB_STEP.y * SPACING };
 
-// All three slabs are Wayber Blue.
-const COLOR = "#1462FF";
+// Each dot takes a colour from the brand palette, weighted so blue leads.
+// (Light Blue #BFFDFF is left out: it disappears on the white hero.)
+const PALETTE: { color: string; weight: number }[] = [
+  { color: "#1462FF", weight: 55 }, // Wayber Blue
+  { color: "#09182F", weight: 20 }, // Dark Blue
+  { color: "#6E9BFF", weight: 15 }, // a lighter Wayber Blue
+  { color: "#EFD54D", weight: 10 }, // Yellow
+];
+const PALETTE_TOTAL = PALETTE.reduce((sum, p) => sum + p.weight, 0);
 
 // From this width up, the hero is two columns and the shape sits in the right one.
 const SPLIT_MIN_WIDTH = 900;
@@ -40,7 +49,11 @@ const CONTAINER_MAX = 1320;
 const MARK_SCALE = 0.85;
 
 const REPEL_RADIUS = 140;
-const INTRO_MS = 1100;
+// Entrance: each dot settles over INTRO_MS, starting up to INTRO_DRIFT px away;
+// the wave across the mark adds up to INTRO_WAVE_MS of delay.
+const INTRO_MS = 900;
+const INTRO_DRIFT = 14;
+const INTRO_WAVE_MS = 450;
 
 type Area = { x: number; y: number; w: number; h: number };
 type Point = { x: number; y: number };
@@ -48,6 +61,8 @@ type Point = { x: number; y: number };
 type Dot = {
   /** Which slab (0..2) the dot belongs to. */
   slab: number;
+  /** Index into PALETTE. */
+  color: number;
   /** Resting position. */
   x: number;
   y: number;
@@ -65,6 +80,23 @@ export type CubeField = { destroy: () => void };
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 const clamp01 = (t: number) => Math.max(0, Math.min(1, t));
+
+/** Stable pseudo-random 0..1 from two numbers, so colours are the same on every load. */
+function noise(a: number, b: number) {
+  let h = (Math.round(a * 10) * 374761393 + Math.round(b * 10) * 668265263) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+}
+
+/** Index into PALETTE for a dot, picked by weight. */
+function pickColor(seed1: number, seed2: number) {
+  let r = noise(seed1, seed2) * PALETTE_TOTAL;
+  for (let k = 0; k < PALETTE.length; k++) {
+    r -= PALETTE[k].weight;
+    if (r < 0) return k;
+  }
+  return 0;
+}
 
 /** True if (x, y) is inside the convex polygon `poly` (vertices in order). */
 function insideConvex(poly: Point[], x: number, y: number) {
@@ -127,8 +159,8 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
     const areaW = split ? width - areaX - 16 : width;
     const narrow = width < 700;
     // Dots need a few screen pixels across to read as round, not as squares.
-    const gap = narrow ? 6.5 : 8;
-    dotSize = narrow ? 2.4 : 2.8;
+    const gap = narrow ? 5.5 : 6.5;
+    dotSize = narrow ? 1.9 : 2.2;
     const full: Area = {
       x: areaX + areaW * 0.01,
       y: height * (split ? 0.08 : 0.04),
@@ -169,7 +201,8 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
 
     dots = [];
     for (let slab = 0; slab < 3; slab++) {
-      for (const p of pattern) {
+      for (let i = 0; i < pattern.length; i++) {
+        const p = pattern[i];
         const x = p.x + slab * step.x;
         const y = p.y + slab * step.y;
         let covered = false;
@@ -179,11 +212,14 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
         if (covered) continue;
         dots.push({
           slab,
+          // Seeded by the dot's place in the slab pattern, so it is stable across resizes.
+          color: pickColor(i, slab),
           x,
           y,
-          startX: fly ? x + (Math.random() - 0.5) * width * 0.9 : x,
-          startY: fly ? y + (Math.random() - 0.5) * height * 1.4 : y,
-          introDelay: fly ? Math.random() * 400 : 0,
+          // A small nudge, mostly from below, so the mark settles into place.
+          startX: fly ? x + (Math.random() - 0.5) * INTRO_DRIFT : x,
+          startY: fly ? y + Math.random() * INTRO_DRIFT : y,
+          introDelay: fly ? ((x - left) / (MARK_BOX.w * scale)) * INTRO_WAVE_MS + Math.random() * 120 : 0,
           offX: 0,
           offY: 0,
           drawX: x,
@@ -232,13 +268,22 @@ export function createCubeField(canvas: HTMLCanvasElement): CubeField {
       d.drawY = y + d.offY;
     }
 
-    ctx!.fillStyle = COLOR;
-    ctx!.beginPath();
-    for (const d of dots) {
-      ctx!.moveTo(d.drawX + radius, d.drawY);
-      ctx!.arc(d.drawX, d.drawY, radius, 0, Math.PI * 2);
-    }
-    ctx!.fill();
+    // The whole mark fades in over the entrance.
+    const fade = reduceMotion ? 1 : clamp01((now - startedAt) / (INTRO_MS * 0.8));
+    ctx!.globalAlpha = fade;
+
+    // One fill per palette colour.
+    PALETTE.forEach((p, k) => {
+      ctx!.fillStyle = p.color;
+      ctx!.beginPath();
+      for (const d of dots) {
+        if (d.color !== k) continue;
+        ctx!.moveTo(d.drawX + radius, d.drawY);
+        ctx!.arc(d.drawX, d.drawY, radius, 0, Math.PI * 2);
+      }
+      ctx!.fill();
+    });
+    ctx!.globalAlpha = 1;
 
     if (busy) requestDraw();
   }
