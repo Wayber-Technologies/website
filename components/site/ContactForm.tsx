@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { BUDGETS, INTERESTS } from "@/constants/pages";
 import { CONTACT } from "@/constants/home";
 import site from "@/styles/site.module.css";
@@ -38,6 +38,8 @@ export default function ContactForm() {
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  // When the form was shown, so the server can drop instant (bot) submissions.
+  const startedAt = useRef(Date.now());
 
   const set = (key: keyof Fields) => (e: { target: { value: string } }) =>
     setFields((f) => ({ ...f, [key]: e.target.value }));
@@ -50,7 +52,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, startedAt: startedAt.current }),
       });
       if (res.ok) {
         setStatus("sent");
