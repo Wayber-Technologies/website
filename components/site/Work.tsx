@@ -9,11 +9,7 @@ export default function Work() {
       <section id="work" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHead} style={{ marginBottom: 48 }}>
-            <h2 className={styles.sectionTitle}>
-              Built for teams
-              <br />
-              <span className={styles.grey}>that can’t afford to rebuild.</span>
-            </h2>
+            <h2 className={styles.sectionTitle}>Selected work</h2>
             <Link href="/work" className={styles.textLink}>
               All case studies <span className={styles.go}>→</span>
             </Link>
@@ -23,6 +19,9 @@ export default function Work() {
             {FEATURED_WORK.map((item) => (
               <Link key={item.title} href={item.href} className={styles.workCard}>
                 <span className={`${styles.workMedia} ${styles.zoom}`} style={{ background: item.image.background }}>
+                  <span className={styles.workArrow} aria-hidden="true">
+                    →
+                  </span>
                   <Image
                     src={item.image.src}
                     alt={item.image.alt}
@@ -46,7 +45,7 @@ export default function Work() {
           </div>
 
           <p className={styles.workMore}>
-            Also shipped: <Link href="/case/mallamx">Mallam X</Link>, <Link href="/case/wesleep">WeSleep</Link> and work we can’t name yet.
+            Also shipped: <Link href="/case/mallamx">Mallam X</Link> and <Link href="/case/wesleep">WeSleep</Link>.
           </p>
         </div>
       </section>
@@ -62,7 +61,7 @@ export function Clients() {
       <section aria-label="Clients" className={styles.clients}>
         <div className={styles.container}>
           <div className={styles.clientsRow}>
-            <span className={styles.clientsLabel}>Trusted by teams at</span>
+            <span className={styles.clientsLabel}>Clients include</span>
             {CLIENTS.map((client) => (
               <span key={client} className={styles.clientName}>
                 {client}

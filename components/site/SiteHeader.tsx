@@ -7,8 +7,7 @@ export default function SiteHeader() {
   return (
     <header>
       <Link href="/case/rftf" className={styles.announce}>
-        <span className={styles.tag}>New</span>
-        <span>Case study: how we built Run For The Future for ARM Pensions</span>
+        <span>Case study: Run For The Future, the run-tracking app we built for ARM Pensions</span>
         <span className={styles.announceCta}>
           Read it <span className={styles.go}>→</span>
         </span>

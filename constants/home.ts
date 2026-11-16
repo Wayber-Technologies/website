@@ -29,7 +29,6 @@ export const STUDIO_PHOTOS = [
 ];
 
 export type Capability = {
-  number: string;
   title: string;
   body: string;
   linkLabel: string;
@@ -41,18 +40,16 @@ export type Capability = {
 
 export const CAPABILITIES: Capability[] = [
   {
-    number: "01",
     title: "Web platforms",
-    body: "Dashboards, portals and internal tools built for real traffic and real data. Laravel, Python and Vue, shipped in milestones you can see.",
+    body: "Dashboards, client portals and internal tools. Sise puts a sales team’s pipeline value, lead statuses and hand-offs on one screen.",
     linkLabel: "See Sise",
     href: "/case/sise",
     image: { src: "/sise1.png", alt: "Sise workflow platform artwork", fit: "cover", position: "center top", background: "#DCEBFF" },
     tone: "light",
   },
   {
-    number: "02",
     title: "Mobile apps",
-    body: "Native and Flutter apps for iOS and Android, from first sketch to the store and every update after.",
+    body: "Flutter and native apps for iOS and Android. For ARM Pensions we built run tracking, leaderboards and event sign-up.",
     linkLabel: "See RFTF",
     href: "/case/rftf",
     image: { src: "/rftf2.png", alt: "Four screens from the Run For The Future mobile app", fit: "contain", background: "#FFFFFF" },
@@ -60,9 +57,8 @@ export const CAPABILITIES: Capability[] = [
     mediaFirst: true,
   },
   {
-    number: "03",
     title: "Fintech & systems",
-    body: "Wallets, exchanges and investment products, with the audits, security and compliance work regulated money needs.",
+    body: "Wallets, currency exchange and investment products. Mallam X holds and swaps naira, dollars and pounds in one balance. CPCompass adds identity checks, Paystack funding and audit logs for a regulated asset manager.",
     linkLabel: "See Mallam X",
     href: "/case/mallamx",
     image: { src: "/malamx2.png", alt: "Mallam X e-wallet dashboard", fit: "cover", position: "left center", background: "#EEF5EC" },
@@ -84,7 +80,7 @@ export const FEATURED_WORK: FeaturedWork[] = [
   {
     title: "Sise",
     sector: "Workflow & CRM",
-    summary: "Lead and customer management for teams who live in their pipeline.",
+    summary: "Lead and customer management: pipeline, statuses and hand-offs on one dashboard.",
     href: "/case/sise",
     image: { src: "/project1.png", alt: "Sise logo on a light blue field", background: "#DCEBFF", fit: "cover" },
   },

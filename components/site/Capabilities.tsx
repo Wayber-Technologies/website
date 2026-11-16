@@ -8,14 +8,10 @@ export default function Capabilities() {
     <section id="build" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.sectionHead}>
-          <h2 className={styles.sectionTitle}>
-            What we build
-            <br />
-            <span className={styles.grey}>and keep running.</span>
-          </h2>
+          <h2 className={styles.sectionTitle}>What we build</h2>
           <p className={styles.sectionLead}>
-            Strategy, design and engineering in one team, so nothing gets lost between the person who scoped it and the
-            person who ships it.
+            Designers and engineers on one team. Laravel, Python and Vue on the web; Flutter, Swift and Kotlin on
+            mobile.
           </p>
         </div>
 
@@ -29,7 +25,6 @@ export default function Capabilities() {
 
             const text = (
               <div className={styles.rowText}>
-                <span className={styles.rowNumber}>{item.number}</span>
                 <div>
                   <h3 className={styles.rowTitle}>{item.title}</h3>
                   <p className={styles.rowBody}>{item.body}</p>
@@ -75,7 +70,7 @@ export default function Capabilities() {
         </div>
 
         <div className={styles.chips}>
-          <span className={styles.chipsLabel}>Also in the studio:</span>
+          <span className={styles.chipsLabel}>We also do</span>
           {OTHER_SERVICES.map((service) => (
             <span key={service} className={styles.chip}>
               {service}

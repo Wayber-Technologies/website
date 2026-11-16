@@ -7,8 +7,8 @@ export default function Studio() {
     <section id="studio" className={styles.statement}>
       <div className={styles.narrow}>
         <p className={styles.statementText}>
-          Wayber Technologies is a software studio in Lagos.{" "}
-          <span className={styles.grey}>We build software that works on launch day and keeps working as you grow.</span>
+          Wayber Technologies is a software studio in Lagos. We built CPCompass for Comercio Partners, Run For The
+          Future for ARM Pensions and the Mallam X wallet, and we look after what we ship.
         </p>
       </div>
       <div className={`${styles.container} ${styles.photos}`}>

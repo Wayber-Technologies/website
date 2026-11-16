@@ -81,76 +81,122 @@
   color: var(--blue);
 }
 
+.page {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
 .go {
   display: inline-block;
-  transition: transform 0.2s ease;
+  transition: transform 0.35s var(--ease-out);
 }
 
 a:hover .go {
   transform: translateX(4px);
 }
 
-/* Buttons */
+/* Underline that draws in from the left on hover (text links, nav, footer). */
+.textLink,
+.navLinks a,
+.navContact,
+.footerCol a,
+.workMore a,
+.announceCta {
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 1.5px no-repeat;
+  padding-bottom: 2px;
+  transition:
+    background-size 0.4s var(--ease-out),
+    color 0.2s ease;
+}
+
+.textLink:hover,
+.navLinks a:hover,
+.navContact:hover,
+.footerCol a:hover,
+.workMore a:hover,
+.announce:hover .announceCta {
+  background-size: 100% 1.5px;
+}
+
+/* Buttons: fully rounded. A second colour rises from the bottom edge on
+   hover, and the button gives a little on press. */
 .pill {
+  --pill-bg: var(--surface);
+  --pill-fg: var(--ink);
+  --pill-hover-bg: var(--ink);
+  --pill-hover-fg: #fff;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   min-height: 52px;
   padding: 0 28px;
   border-radius: 999px;
   font-size: 16px;
   font-weight: 600;
-  transition: background-color 0.2s ease;
+  background: var(--pill-bg);
+  color: var(--pill-fg) !important;
+  transition:
+    color 0.3s var(--ease-out),
+    transform 0.15s ease;
+}
+
+.pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--pill-hover-bg);
+  transform: translateY(101%);
+  transition: transform 0.45s var(--ease-out);
+}
+
+.pill:hover {
+  color: var(--pill-hover-fg) !important;
+}
+
+.pill:hover::before {
+  transform: translateY(0);
+}
+
+.pill:active {
+  transform: scale(0.97);
 }
 
 .pillSmall {
   min-height: 44px;
   padding: 0 22px;
+  border-radius: 999px;
   font-size: 15px;
 }
 
 .pillBlue {
-  background: var(--blue);
-  color: #fff !important;
-}
-
-.pillBlue:hover {
-  background: var(--blue-hover);
+  --pill-bg: var(--blue);
+  --pill-fg: #fff;
+  --pill-hover-bg: var(--ink);
 }
 
 .pillSoft {
-  background: #eef1f5;
-}
-
-.pillSoft:hover {
-  background: #e3e8ef;
+  --pill-bg: #eef1f5;
+  --pill-hover-bg: var(--ink);
 }
 
 .pillInk {
-  background: var(--ink);
-  color: #fff !important;
-}
-
-.pillInk:hover {
-  background: #1b2e4d;
+  --pill-bg: var(--ink);
+  --pill-fg: #fff;
+  --pill-hover-bg: var(--blue);
 }
 
 .pillWhite {
-  background: #fff;
-  color: var(--ink) !important;
-}
-
-.pillWhite:hover {
-  background: #e8eef7;
+  --pill-bg: #fff;
+  --pill-hover-bg: var(--cyan);
+  --pill-hover-fg: var(--ink);
 }
 
 .textLink {
   font-size: 15px;
   font-weight: 600;
-}
-
-.textLink:hover {
-  color: var(--blue);
 }
 
 /* Announcement + nav */
@@ -164,19 +210,6 @@ a:hover .go {
   font-size: 14px;
   text-align: center;
   background: var(--surface);
-}
-
-.announce:hover .announceCta {
-  color: var(--blue);
-}
-
-.tag {
-  background: var(--blue);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 999px;
 }
 
 .announceCta {
@@ -200,10 +233,6 @@ a:hover .go {
   font-weight: 500;
 }
 
-.navLinks a:hover,
-.navContact:hover {
-  color: var(--blue);
-}
 
 .navRight {
   display: flex;
@@ -231,6 +260,25 @@ a:hover .go {
   --grid-focus: 62% 50%;
 }
 
+/* Faint background: fine film grain, faded out at the top and bottom so it
+   melts into the white page. */
+.hero {
+  background: #fff;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Grain strength: raise for more texture, lower for less. */
+  opacity: 0.85;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.09 0 0 0 0 0.18 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent);
+}
+
 .heroGrid {
   position: relative;
   z-index: 1;
@@ -255,22 +303,32 @@ a:hover .go {
   pointer-events: auto;
 }
 
+/* A small blue dot, like one dot of the field, then plain text. */
 .eyebrow {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--muted);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 7px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
 .heroTitle {
   margin: 0;
+  font-family: var(--font-aloevera), var(--font-figtree), system-ui, sans-serif;
   font-size: clamp(48px, 6.2vw, 96px);
-  line-height: 0.96;
+  line-height: 1;
   font-weight: 600;
-  letter-spacing: -0.045em;
+  /* Aloevera is already tightly set; Figtree-style negative tracking makes letters touch. */
+  letter-spacing: -0.01em;
 }
 
 .heroLead {
@@ -428,16 +486,6 @@ a:hover .go {
   gap: 40px;
 }
 
-.rowNumber {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--blue);
-}
-
-.rowDark .rowNumber {
-  color: var(--cyan);
-}
-
 .rowTitle {
   margin: 0 0 14px;
   font-size: 34px;
@@ -497,11 +545,53 @@ a:hover .go {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.workCard:hover {
-  transform: translateY(-4px);
+/* Arrow tile in the image corner: slides in on hover. */
+.workArrow {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 20px;
+  opacity: 0;
+  transform: translate(-8px, 8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s var(--ease-out),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.workCard:hover .workArrow {
+  opacity: 1;
+  transform: none;
+  background: var(--blue);
+  color: #fff;
+}
+
+.workTitle {
+  width: fit-content;
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 2px no-repeat;
+  transition: background-size 0.4s var(--ease-out);
+}
+
+.workCard:hover .workTitle {
+  background-size: 100% 2px;
+}
+
+@media (hover: none) {
+  .workArrow {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .workMedia {
@@ -547,9 +637,6 @@ a:hover .go {
   color: var(--ink);
 }
 
-.workMore a:hover {
-  color: var(--blue);
-}
 
 /* Clients */
 .clients {
@@ -577,6 +664,11 @@ a:hover .go {
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #5b6678;
+  transition: color 0.25s ease;
+}
+
+.clientName:hover {
+  color: var(--ink);
 }
 
 /* Two ways in */
@@ -618,16 +710,24 @@ a:hover .go {
   color: #9fb0cc;
 }
 
+.startBody {
+  margin: 16px 0 0;
+  max-width: 420px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.startCardDark .startBody {
+  color: #c9d3e3;
+}
+
 .startTitle {
   margin: 0;
   font-size: clamp(32px, 3.2vw, 44px);
   line-height: 1.05;
   font-weight: 600;
   letter-spacing: -0.035em;
-}
-
-.startCardDark .grey {
-  color: #8796b0;
 }
 
 .startFoot {
@@ -675,21 +775,31 @@ a:hover .go {
   color: var(--muted);
 }
 
+/* The blue underline rises to fill the address on hover. */
 .closingEmail {
   font-size: clamp(22px, 2.6vw, 34px);
   font-weight: 600;
   letter-spacing: -0.02em;
-  border-bottom: 2px solid var(--blue);
-  padding-bottom: 4px;
+  padding: 2px 8px 6px;
+  background: linear-gradient(var(--blue), var(--blue)) left 100% / 100% 3px no-repeat;
+  transition:
+    background-size 0.45s var(--ease-out),
+    color 0.3s var(--ease-out);
 }
 
 .closingEmail:hover {
-  color: var(--blue);
+  background-size: 100% 100%;
+  color: #fff !important;
 }
 
 .closingPhone {
   font-size: 16px;
   color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.closingPhone:hover {
+  color: var(--ink);
 }
 
 /* Footer */
@@ -730,6 +840,10 @@ a:hover .go {
 
 .footerCol a {
   color: #fff;
+}
+
+.footerCol a {
+  width: fit-content;
 }
 
 .footerCol a:hover {
@@ -797,10 +911,33 @@ a:hover .go {
   }
 }
 
+.page button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .zoom img,
-  .workCard,
-  .go {
+  .go,
+  .pill,
+  .pill::before,
+  .workArrow,
+  .workTitle,
+  .closingEmail,
+  .textLink,
+  .navLinks a,
+  .navContact,
+  .footerCol a,
+  .workMore a,
+  .announceCta {
     transition: none;
   }
+}
+
+.pill:disabled:hover {
+  color: var(--pill-fg) !important;
+}
+
+.pill:disabled::before {
+  transform: translateY(101%);
 }
