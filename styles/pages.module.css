@@ -468,6 +468,21 @@ textarea.input {
   color: #8a1c1c;
 }
 
+.statusNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  background: #fff6e0;
+  color: #6b4a00;
+}
+
+.statusText {
+  margin: 0;
+  flex: 1 1 320px;
+}
+
 .sent {
   padding: 56px 48px;
   border-radius: 32px;

@@ -56,18 +56,26 @@ export function Clients({ tight = false }: { tight?: boolean }) {
         <div className={styles.container}>
           <div className={styles.clientsRow}>
             <span className={styles.clientsLabel}>Clients include</span>
-            {CLIENTS.map((client) => (
-              <Image
-                key={client.name}
-                src={client.logo}
-                alt={client.name}
-                width={client.width}
-                height={client.height}
-                className={styles.clientLogo}
-                style={{ height: client.display, width: "auto" }}
-                unoptimized={client.logo.endsWith(".svg")}
-              />
-            ))}
+            <div className={styles.marquee}>
+              <div className={styles.marqueeTrack}>
+                {[0, 1].map((copy) => (
+                  <div key={copy} className={styles.marqueeSet} aria-hidden={copy === 1 || undefined}>
+                    {CLIENTS.map((client) => (
+                      <Image
+                        key={client.name}
+                        src={client.logo}
+                        alt={copy === 0 ? client.name : ""}
+                        width={client.width}
+                        height={client.height}
+                        className={styles.clientLogo}
+                        style={{ height: client.display, width: "auto" }}
+                        unoptimized={client.logo.endsWith(".svg")}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

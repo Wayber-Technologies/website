@@ -4,11 +4,13 @@ import { clientIp, rateLimit } from "@/lib/rateLimit";
 // Sends contact-form enquiries by email through Resend (https://resend.com).
 //
 // Environment variables:
-//   RESEND_API_KEY  required. Without it this route returns 501 and the form
-//                   opens the visitor's email app instead.
+//   RESEND_API_KEY  required.
+//   CONTACT_FROM    required. Without either, this route returns 501 and the form
+//                   tells the visitor, offering their own email app instead.
 //   CONTACT_TO      inbox that receives enquiries (default office@waybertechnologies.com)
-//   CONTACT_FROM    sender on a domain verified in the SAME Resend account as the key,
-//                   e.g. "Wayber Website <website@waybertechnologies.com>"
+//                   CONTACT_FROM is the sender, on a domain verified in the SAME Resend
+//                   account as the key, e.g. "Wayber Website <website@waybertechnologies.com>".
+//                   (Resend's onboarding@resend.dev only delivers to the account owner.)
 //
 // Abuse protection: a hidden honeypot field, a minimum fill time, per-IP and
 // per-email rate limits (see lib/rateLimit.ts), and a small body size limit.
@@ -79,10 +81,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return res.status(501).json({ error: "not_configured" });
+  const from = process.env.CONTACT_FROM;
+  if (!apiKey || !from) {
+    console.error(
+      `Contact form: not configured. Missing ${[!apiKey && "RESEND_API_KEY", !from && "CONTACT_FROM"].filter(Boolean).join(" and ")} in this environment.`
+    );
+    return res.status(501).json({ error: "not_configured" });
+  }
 
   const to = process.env.CONTACT_TO || "office@waybertechnologies.com";
-  const from = process.env.CONTACT_FROM || "Wayber Website <onboarding@resend.dev>";
 
   const rows: [string, string][] = [
     ["Name", name],
