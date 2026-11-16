@@ -24,6 +24,27 @@
   aspect-ratio: 4 / 3;
 }
 
+/* A label inside the frame's bottom edge, on a light gradient (the same
+   treatment as the homepage's Selected work cards). */
+.frameShade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(9, 24, 47, 0) 55%, rgba(9, 24, 47, 0.38) 100%);
+}
+
+.frameLabel {
+  position: absolute;
+  z-index: 1;
+  left: 24px;
+  bottom: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(9, 24, 47, 0.35);
+}
+
 /* Hero */
 .hero {
   padding-top: 64px;
@@ -246,16 +267,14 @@
 .cardTop {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   gap: 12px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.cardSector {
-  color: var(--blue);
 }
 
 .cardPlatform {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--soft);
 }
 

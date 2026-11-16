@@ -11,6 +11,9 @@ import cpcompassAspire from "@/public/work/cpcompass-aspire.jpg";
 import wesleepCover from "@/public/work/wesleep-cover.jpg";
 import wesleepMarket from "@/public/work/wesleep-market.jpg";
 import wesleepRanks from "@/public/work/wesleep-ranks.jpg";
+import postoffCard from "@/public/work/postoff-card.jpg";
+import postoffCover from "@/public/work/postoff-cover.jpg";
+import postoffFlow from "@/public/work/postoff-flow.jpg";
 
 // Case studies for the redesigned /work and /case/[slug] pages. The copy is
 // rewritten from the original case data in constants/index.ts. Unverified
@@ -44,6 +47,31 @@ export type CaseStudy = {
 };
 
 export const CASES: CaseStudy[] = [
+  {
+    // Facts from postoff.co (rendered 2026-11-16) and the PostOff mobile app designs in Figma.
+    // The site's "10,000+ trusted Envoys" figure is left out: unverified, and the app is pre-launch.
+    // TODO(content): confirm Wayber's scope (design only, or design and build) and launch status.
+    slug: "postoff",
+    title: "PostOff",
+    client: "PostOff Technologies",
+    sector: "Logistics",
+    platform: "iOS & Android",
+    services: ["Product design", "Mobile app", "KYC & verification", "Escrow payments"],
+    summary: "Peer-to-peer delivery: send parcels with verified Envoys already travelling your route.",
+    overview:
+      "PostOff is a decentralised logistics network for Nigeria. Senders book a delivery, and the app matches them with a verified Envoy (someone already heading that way by car, motorcycle, bicycle or public transport) for local or interstate drops. Fleet owners can register their vehicles and manage deliveries on the same platform.",
+    challenge:
+      "Handing a parcel to a stranger only works if every step feels safe. Envoys had to be properly vetted, payment had to wait until the parcel arrived, and sender, Envoy and receiver had to stay in touch without sharing phone numbers.",
+    approach:
+      "One app for Senders and Envoys. Booking starts on a live map: choose local or interstate, pick the transport types you’re happy with, and fill in the route. Envoys go through layered KYC (BVN, NIN, driver’s licence and a live liveness check) before they can take a job. The fee sits in an escrow wallet and is only released when the receiver hands over a one-time code. Masked chat and calls connect sender and Envoy, a tracking link lets the receiver follow the delivery, and Envoys see pending escrow payments and their earnings history.",
+    outcome:
+      "PostOff is preparing to launch on iOS and Android, with a waitlist open for Senders and Envoys at postoff.co.",
+    card: { src: postoffCard, alt: "PostOff welcome, booking and escrow screens on orange", fit: "cover", background: "#FF5C1F" },
+    cover: { src: postoffCover, alt: "Three PostOff screens: welcome, local delivery booking on a map, and pending escrow payments", fit: "cover", background: "#FF5C1F" },
+    gallery: [
+      { src: postoffFlow, alt: "PostOff chat with an Envoy, receiver tracking link, Envoy verification submitted, and Envoy earnings", fit: "contain", background: "#FEEFEA", span: "full" },
+    ],
+  },
   {
     slug: "sise",
     title: "Sise",

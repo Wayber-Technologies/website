@@ -387,19 +387,168 @@ a:hover .go {
   letter-spacing: -0.025em;
 }
 
-.photos {
-  margin-top: 72px;
+/* Statement, and the Medium journal further down the page. */
+.studioHead .statementText {
+  max-width: 900px;
+}
+
+.journalActions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.carouselNav {
+  display: flex;
+  gap: 10px;
+}
+
+.carouselBtn {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #eef1f5;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.carouselBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.carouselBtn:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.carouselBtn:active {
+  transform: scale(0.94);
+}
+
+/* Carousel (3+ articles): a row that starts in line with the page content
+   and runs off the right edge. Swipe or scroll; it snaps to each card. */
+.carousel {
+  --edge: max(24px, calc((100vw - 1320px) / 2 + 24px));
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--edge);
+  padding: 0 var(--edge) 4px;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* Article cards */
+.articleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
 }
 
-.photo {
-  position: relative;
-  height: 380px;
+.article {
+  display: flex;
+  flex-direction: column;
   border-radius: 28px;
   overflow: hidden;
-  background: #e9edf2;
+  background: var(--surface);
+  transition: background-color 0.3s ease;
+}
+
+.article:hover {
+  background: #e9eef5;
+}
+
+.articleSlide {
+  flex: 0 0 min(400px, 82vw);
+  scroll-snap-align: start;
+}
+
+/* One article: image left, text right. */
+.articleWide {
+  flex-direction: row;
+  grid-column: 1 / -1;
+}
+
+.articleMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #e1e7ef;
+}
+
+.articleWide .articleMedia {
+  flex: 1 1 55%;
+  aspect-ratio: auto;
+  min-height: 340px;
+}
+
+.articleBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+}
+
+.articleWide .articleBody {
+  flex: 1 1 45%;
+  justify-content: center;
+  padding: 48px;
+}
+
+.articleDate {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.articleTitle {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.articleWide .articleTitle {
+  font-size: clamp(26px, 2.6vw, 36px);
+}
+
+.articleExcerpt {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.articleBody .textLink {
+  margin-top: 8px;
+  width: fit-content;
+}
+
+.article:hover .textLink {
+  background-size: 100% 1.5px;
 }
 
 .zoom img {
@@ -662,6 +811,11 @@ a:hover .go {
   padding-top: 140px;
 }
 
+/* On the homepage the strip sits right under the hero. */
+.clientsTight {
+  padding-top: 8px;
+}
+
 .clientsRow {
   display: flex;
   flex-wrap: wrap;
@@ -678,16 +832,20 @@ a:hover .go {
   color: var(--muted);
 }
 
-.clientName {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: #5b6678;
-  transition: color 0.25s ease;
+/* Logos sit in greyscale so the row reads as one; full colour on hover. */
+.clientLogo {
+  display: block;
+  max-width: 100%;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
 }
 
-.clientName:hover {
-  color: var(--ink);
+.clientLogo:hover {
+  filter: none;
+  opacity: 1;
 }
 
 /* Two ways in */
@@ -922,8 +1080,18 @@ a:hover .go {
     min-height: 280px;
     flex-basis: 100%;
   }
-  .photo {
-    height: 300px;
+  .carouselNav {
+    display: none;
+  }
+  .articleWide {
+    flex-direction: column;
+  }
+  .articleWide .articleMedia {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+  .articleWide .articleBody {
+    padding: 28px;
   }
   .closing {
     padding: 112px 0 88px;
@@ -937,6 +1105,7 @@ a:hover .go {
 
 @media (prefers-reduced-motion: reduce) {
   .zoom img,
+  .carouselBtn,
   .go,
   .pill,
   .pill::before,

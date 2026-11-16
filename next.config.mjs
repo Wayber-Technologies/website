@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Cover images for the Medium articles on the homepage.
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "cdn-images-1.medium.com" },
+      { protocol: "https", hostname: "miro.medium.com" },
+    ],
+  },
   async redirects() {
     return [
       // The old "Our work" page and the leftover template case page now live at /work.
