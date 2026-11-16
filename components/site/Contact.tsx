@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CONTACT } from "@/constants/home";
 import styles from "@/styles/site.module.css";
 
@@ -11,33 +12,31 @@ export default function Contact() {
         <div className={`${styles.container} ${styles.startGrid}`}>
           <div className={styles.startCard}>
             <div>
-              <span className={styles.startKicker}>For founders</span>
-              <h3 className={styles.startTitle}>
-                Ship the first version
-                <br />
-                <span className={styles.grey}>without cutting corners.</span>
-              </h3>
+              <span className={styles.startKicker}>New product</span>
+              <h3 className={styles.startTitle}>Building something new?</h3>
+              <p className={styles.startBody}>
+                Send us the idea, who it’s for and your deadline. Rough notes are fine.
+              </p>
             </div>
             <div className={styles.startFoot}>
-              <a href={`mailto:${CONTACT.officeEmail}`} className={`${styles.pill} ${styles.pillBlue}`}>
-                Start a project
-              </a>
+              <Link href="/contact" className={`${styles.pill} ${styles.pillBlue}`}>
+                Start a project <span className={styles.go}>→</span>
+              </Link>
               <span className={styles.startEmail}>{CONTACT.officeEmail}</span>
             </div>
           </div>
 
           <div className={`${styles.startCard} ${styles.startCardDark}`}>
             <div>
-              <span className={styles.startKicker}>For organisations</span>
-              <h3 className={styles.startTitle}>
-                Modernise what you run
-                <br />
-                <span className={styles.grey}>without stopping it.</span>
-              </h3>
+              <span className={styles.startKicker}>Existing systems</span>
+              <h3 className={styles.startTitle}>Software you already run?</h3>
+              <p className={styles.startBody}>
+                Audits, rebuilds and ongoing support. This goes straight to our engineering team.
+              </p>
             </div>
             <div className={styles.startFoot}>
               <a href={`mailto:${CONTACT.technologyEmail}`} className={`${styles.pill} ${styles.pillWhite}`}>
-                Talk to engineering
+                Talk to engineering <span className={styles.go}>→</span>
               </a>
               <span className={styles.startEmail}>{CONTACT.technologyEmail}</span>
             </div>
@@ -63,8 +62,7 @@ export function Closing() {
             Got something to build<span className={styles.dot}>?</span>
           </h2>
           <p className={styles.closingLead}>
-            Even if it is only an idea. Tell us what you are trying to fix, and we will tell you honestly whether
-            software is the answer.
+            Tell us what you’re trying to fix and when you need it by. Email or phone, whichever is easier.
           </p>
           <a href={`mailto:${CONTACT.officeEmail}`} className={styles.closingEmail}>
             {CONTACT.officeEmail}
