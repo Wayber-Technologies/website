@@ -22,12 +22,6 @@ export const NAV_LINKS = [
   { label: "Journal", href: "https://medium.com/@waybertechnologies" },
 ];
 
-export const STUDIO_PHOTOS = [
-  { src: "/home/photo-team-laptop.jpg", alt: "Team gathered around a laptop, reviewing a build", position: "center" },
-  { src: "/home/photo-whiteboard.jpg", alt: "Team mapping a system on a whiteboard", position: "center" },
-  { src: "/home/photo-dev.jpg", alt: "Engineer focused on code", position: "65% center" },
-];
-
 export type Capability = {
   title: string;
   body: string;
@@ -101,4 +95,13 @@ export const FEATURED_WORK: FeaturedWork[] = [
   },
 ];
 
-export const CLIENTS = ["Comercio Partners", "ARM", "City Distro", "Richardson Oil & Gas"];
+// Logos from each client's own website (public/clients/). `display` is the
+// display height in px, tuned per logo so they look the same size.
+export const CLIENTS = [
+  { name: "Comercio Partners", logo: "/clients/comercio-partners.png", width: 503, height: 154, display: 34 },
+  { name: "ARM", logo: "/clients/arm.png", width: 469, height: 140, display: 30 },
+  { name: "City Distro", logo: "/clients/city-distro.svg", width: 154, height: 28, display: 26 },
+  { name: "Richardson Oil & Gas", logo: "/clients/richardson.png", width: 737, height: 175, display: 34 },
+  { name: "TradeFi", logo: "/clients/tradefi.png", width: 141, height: 45, display: 32 },
+  { name: "PostOff", logo: "/clients/postoff.png", width: 330, height: 92, display: 28 },
+];

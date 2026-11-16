@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import type { CaseImage } from "@/constants/cases";
 import site from "@/styles/site.module.css";
 import styles from "@/styles/case.module.css";
@@ -11,6 +12,8 @@ type Props = {
   /** Blend white logo backgrounds into the frame colour. */
   blend?: boolean;
   zoom?: boolean;
+  /** Text set inside the frame's bottom edge, on a light gradient (used on cards). */
+  label?: ReactNode;
 };
 
 const SHAPES = {
@@ -20,11 +23,11 @@ const SHAPES = {
   card: styles.frameCard,
 };
 
-export default function CaseFrame({ image, shape, sizes, priority, blend, zoom }: Props) {
+export default function CaseFrame({ image, shape, sizes, priority, blend, zoom, label }: Props) {
   const contain = image.fit === "contain";
   return (
     <span
-      className={`${styles.frame} ${SHAPES[shape]} ${zoom ? site.zoom : ""}`}
+      className={`${styles.frame} ${SHAPES[shape]} ${zoom ? site.zoom : ""} ${label ? styles.frameShade : ""}`}
       style={{ background: image.background, display: "block" }}
     >
       <Image
@@ -40,6 +43,7 @@ export default function CaseFrame({ image, shape, sizes, priority, blend, zoom }
           mixBlendMode: blend && contain ? "multiply" : undefined,
         }}
       />
+      {label && <span className={styles.frameLabel}>{label}</span>}
     </span>
   );
 }

@@ -44,22 +44,29 @@ export default function Work() {
         </div>
       </section>
 
-      <Clients />
     </>
   );
 }
 
-export function Clients() {
+/** `tight`: little space above, for when the strip sits right under the hero. */
+export function Clients({ tight = false }: { tight?: boolean }) {
   return (
     <>
-      <section aria-label="Clients" className={styles.clients}>
+      <section aria-label="Clients" className={`${styles.clients} ${tight ? styles.clientsTight : ""}`}>
         <div className={styles.container}>
           <div className={styles.clientsRow}>
             <span className={styles.clientsLabel}>Clients include</span>
             {CLIENTS.map((client) => (
-              <span key={client} className={styles.clientName}>
-                {client}
-              </span>
+              <Image
+                key={client.name}
+                src={client.logo}
+                alt={client.name}
+                width={client.width}
+                height={client.height}
+                className={styles.clientLogo}
+                style={{ height: client.display, width: "auto" }}
+                unoptimized={client.logo.endsWith(".svg")}
+              />
             ))}
           </div>
         </div>
