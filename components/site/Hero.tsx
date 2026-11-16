@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import CubeField from "./CubeField";
 import styles from "@/styles/site.module.css";
@@ -10,7 +11,6 @@ export default function Hero() {
       <CubeField />
       <div className={`${styles.container} ${styles.heroGrid}`}>
         <div className={styles.heroInner}>
-          <span className={styles.eyebrow}>Software studio, Lagos</span>
           <h1 className={styles.heroTitle}>
             Think big.
             <br />
@@ -24,7 +24,7 @@ export default function Hero() {
           </p>
           <div className={styles.actions}>
             <Link href="/contact" className={`${styles.pill} ${styles.pillBlue}`}>
-              Start a project <span className={styles.go}>→</span>
+              Start a project <ArrowRightIcon className={styles.go} />
             </Link>
             <a href="#work" className={`${styles.pill} ${styles.pillSoft}`}>
               See the work

@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import SiteLayout from "@/components/site/SiteLayout";
 import site from "@/styles/site.module.css";
@@ -19,7 +20,7 @@ export default function NotFound() {
               Back to home
             </Link>
             <Link href="/work" className={`${site.pill} ${site.pillSoft}`}>
-              See our work <span className={site.go}>→</span>
+              See our work <ArrowRightIcon className={site.go} />
             </Link>
           </div>
         </div>

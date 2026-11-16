@@ -85,8 +85,13 @@
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* Heroicons arrow (20/solid) set inline with text. */
 .go {
   display: inline-block;
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.2em;
   transition: transform 0.35s var(--ease-out);
 }
 
@@ -301,24 +306,6 @@ a:hover .go {
 
 .heroInner a {
   pointer-events: auto;
-}
-
-/* A small blue dot, like one dot of the field, then plain text. */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.eyebrow::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--blue);
 }
 
 .heroTitle {
@@ -557,7 +544,7 @@ a:hover .go {
   place-items: center;
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 50%;
   background: #fff;
   color: var(--ink);
   font-size: 20px;
@@ -568,6 +555,11 @@ a:hover .go {
     transform 0.45s var(--ease-out),
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+.workArrowIcon {
+  width: 22px;
+  height: 22px;
 }
 
 .workCard:hover .workArrow {
@@ -594,11 +586,44 @@ a:hover .go {
   }
 }
 
+/* The category sits over the card's bottom edge on a light gradient. The
+   title and summary sit below the card. */
 .workMedia {
   position: relative;
+  display: block;
   aspect-ratio: 4 / 3;
   border-radius: 28px;
   overflow: hidden;
+}
+
+.workArt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  aspect-ratio: 4 / 3;
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent);
+}
+
+.workMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(9, 24, 47, 0) 55%, rgba(9, 24, 47, 0.38) 100%);
+  transition: opacity 0.4s ease;
+}
+
+.workSector {
+  position: absolute;
+  z-index: 1;
+  left: 24px;
+  bottom: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(9, 24, 47, 0.35);
 }
 
 .workMeta {
@@ -606,12 +631,6 @@ a:hover .go {
   flex-direction: column;
   gap: 6px;
   padding: 0 6px;
-}
-
-.workSector {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--blue);
 }
 
 .workTitle {

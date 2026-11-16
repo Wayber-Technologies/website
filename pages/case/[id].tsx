@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import SiteLayout from "@/components/site/SiteLayout";
@@ -120,7 +121,7 @@ export default function CaseStudyPage({ slug }: Props) {
             <span className={styles.nextText}>
               <span className={styles.nextKicker}>Next case</span>
               <span className={styles.nextTitle}>
-                {next.title} <span className={site.go}>→</span>
+                {next.title} <ArrowRightIcon className={site.go} />
               </span>
               <span className={styles.nextSummary}>{next.summary}</span>
             </span>
