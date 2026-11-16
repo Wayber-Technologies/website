@@ -818,24 +818,80 @@ a:hover .go {
 
 .clientsRow {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px 40px;
+  gap: 40px;
   padding: 36px 0;
   border-top: 1px solid #e6eaf0;
   border-bottom: 1px solid #e6eaf0;
 }
 
 .clientsLabel {
+  flex-shrink: 0;
   font-size: 15px;
   color: var(--muted);
+}
+
+/* Logos loop right to left. The track holds two identical sets, so moving it
+   by half its width lands exactly where it started. */
+.marquee {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.marqueeSet {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  padding-right: 72px;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 760px) {
+  .clientsRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .marquee {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+  .marqueeSet {
+    flex-wrap: wrap;
+    gap: 20px 40px;
+  }
+  .marqueeSet[aria-hidden] {
+    display: none;
+  }
 }
 
 /* Logos sit in greyscale so the row reads as one; full colour on hover. */
 .clientLogo {
   display: block;
-  max-width: 100%;
+  flex-shrink: 0;
   filter: grayscale(1);
   opacity: 0.7;
   transition:
