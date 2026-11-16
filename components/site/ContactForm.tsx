@@ -4,7 +4,9 @@ import { CONTACT } from "@/constants/home";
 import site from "@/styles/site.module.css";
 import styles from "@/styles/pages.module.css";
 
-type Status = "idle" | "sending" | "sent" | "error";
+// "offline": the server can't send email right now (not configured); the visitor
+// is told, and can send the same message from their own email app.
+type Status = "idle" | "sending" | "sent" | "error" | "offline";
 
 type Fields = {
   name: string;
@@ -59,9 +61,9 @@ export default function ContactForm() {
         return;
       }
       if (res.status === 501) {
-        // Email sending isn't configured on this deployment: hand off to the visitor's email app.
-        window.location.href = mailtoFallback(fields);
-        setStatus("idle");
+        // Email sending isn't configured on this deployment. Say so on the page and
+        // offer the visitor's email app, instead of switching apps without warning.
+        setStatus("offline");
         return;
       }
       const data = await res.json().catch(() => ({}));
@@ -145,6 +147,18 @@ export default function ContactForm() {
         <label htmlFor="website">Leave this empty</label>
         <input id="website" tabIndex={-1} autoComplete="off" value={fields.website} onChange={set("website")} />
       </div>
+
+      {status === "offline" && (
+        <div className={`${styles.status} ${styles.statusNotice}`} role="alert">
+          <p className={styles.statusText}>
+            Your message hasn’t been sent: our form can’t send email right now. Send it from your email app
+            instead; we’ve filled it in for you.
+          </p>
+          <a href={mailtoFallback(fields)} className={`${site.pill} ${site.pillSmall} ${site.pillInk}`}>
+            Open in email app
+          </a>
+        </div>
+      )}
 
       {status === "error" && (
         <p className={`${styles.status} ${styles.statusError}`} role="alert">
