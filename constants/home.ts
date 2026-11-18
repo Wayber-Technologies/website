@@ -105,3 +105,45 @@ export const CLIENTS = [
   { name: "TradeFi", logo: "/clients/tradefi.png", width: 141, height: 45, display: 32 },
   { name: "PostOff", logo: "/clients/postoff.png", width: 330, height: 92, display: 28 },
 ];
+
+/**
+ * How a project runs (the "From idea to launch" section): one photo card per
+ * step, with the step's text over the photo. `position` is the photo's
+ * object-position, to keep the people in frame in a tall crop.
+ *
+ * Photos (Unsplash License, public/home/process-*.jpg):
+ * - process-plan: Vitaly Gariev. unsplash.com/photos/ih8CXnU25UQ
+ * - process-build: NESA by Makers, Lagos. unsplash.com/photos/BVr3XaBiWLU
+ * - process-launch: Christina @ wocintechchat.com. unsplash.com/photos/L85a1k-XqH8
+ */
+export type ProcessStep = {
+  title: string;
+  body: string;
+  image: string;
+  alt: string;
+  position?: string;
+};
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    title: "Plan",
+    body: "Tell us what you're building and who it's for. We map the features, choose the stack and agree a timeline and a cost before any work starts.",
+    image: "/home/process-plan.jpg",
+    alt: "Two colleagues planning a project with sticky notes on a wall",
+    position: "5% center",
+  },
+  {
+    title: "Build",
+    body: "User flows and a clickable prototype first, then regular releases to a staging link, with automated tests and a review at each step.",
+    image: "/home/process-build.jpg",
+    alt: "An engineer writing code on a laptop",
+    position: "60% center",
+  },
+  {
+    title: "Launch",
+    body: "We ship to the web and the app stores, then stay on to monitor, fix and keep improving it.",
+    image: "/home/process-launch.jpg",
+    alt: "An engineer with a laptop checking the servers in a data centre",
+    position: "90% center",
+  },
+];

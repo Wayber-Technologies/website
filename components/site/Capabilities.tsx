@@ -53,7 +53,7 @@ export default function Capabilities() {
             );
 
             return (
-              <div key={item.title} className={rowClass} data-field-ring>
+              <div key={item.title} className={rowClass}>
                 {item.mediaFirst ? (
                   <>
                     {media}
