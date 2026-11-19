@@ -1,4 +1,5 @@
 import SiteLayout from "@/components/site/SiteLayout";
+import PageHero from "@/components/site/PageHero";
 import CaseCard from "@/components/site/case/CaseCard";
 import { Closing } from "@/components/site/Contact";
 import { CASES } from "@/constants/cases";
@@ -11,14 +12,14 @@ export default function WorkPage() {
       title="Work · Wayber Technologies"
       description="Case studies from Wayber Technologies: workflow tools, fintech wallets, investment platforms and mobile apps."
     >
-      <section className={styles.workHero}>
-        <div className={site.container}>
-          <span className={styles.eyebrow}>Case studies</span>
-          <h1 className={styles.title}>
-            Work<span className={site.dot}>.</span>
-          </h1>
-          <p className={styles.summary}>Products we’ve designed, built and kept running, for teams that can’t afford to rebuild.</p>
+      <PageHero
+        eyebrow="Case studies"
+        title="Work"
+        summary="Products we’ve designed, built and kept running, for teams that can’t afford to rebuild."
+      />
 
+      <section aria-label="Case studies">
+        <div className={site.container}>
           <div className={styles.workGrid}>
             {CASES.map((item) => (
               <CaseCard key={item.slug} item={item} />
