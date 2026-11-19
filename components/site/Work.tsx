@@ -8,7 +8,7 @@ import styles from "@/styles/site.module.css";
 export default function Work() {
   return (
     <>
-      <section id="work" className={styles.section}>
+      <section id="work" className={`${styles.section} ${styles.workSection} ${styles.gridBg}`}>
         <div className={styles.container}>
           <div className={styles.sectionHead} style={{ marginBottom: 48 }}>
             <h2 className={styles.sectionTitle}>Selected work</h2>

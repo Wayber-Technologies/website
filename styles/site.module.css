@@ -73,10 +73,6 @@
   padding: 0 24px;
 }
 
-.grey {
-  color: var(--soft);
-}
-
 .dot {
   color: var(--blue);
 }
@@ -124,14 +120,25 @@ a:hover .go {
 
 /* Buttons: fully rounded. A second colour rises from the bottom edge on
    hover, and the button gives a little on press. */
+/* Buttons. On hover a bright streak races once round the button's edge,
+   the fill darkens a step, and the arrow (.go) shoots out to the right and
+   slides back in. The button presses down on click. */
+
+/* The streak's position round the edge, as an angle. Registered so it can be
+   animated (browsers without @property just skip the run). */
+@property --pill-trace-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .pill {
   --pill-bg: var(--surface);
   --pill-fg: var(--ink);
-  --pill-hover-bg: var(--ink);
-  --pill-hover-fg: #fff;
+  --pill-hover-bg: #e3e8ef;
+  --pill-trace: var(--blue);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -143,30 +150,123 @@ a:hover .go {
   background: var(--pill-bg);
   color: var(--pill-fg) !important;
   transition:
-    color 0.3s var(--ease-out),
+    background-color 0.3s ease,
     transform 0.15s ease;
 }
 
-.pill::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--pill-hover-bg);
-  transform: translateY(101%);
-  transition: transform 0.45s var(--ease-out);
-}
-
 .pill:hover {
-  color: var(--pill-hover-fg) !important;
-}
-
-.pill:hover::before {
-  transform: translateY(0);
+  background: var(--pill-hover-bg);
 }
 
 .pill:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* The streak: a 2px ring (the mask cuts out the middle) painted with a
+   conic gradient, a long fading tail ending in a bright head. Hidden until
+   hover, then it runs once round and fades. */
+.pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--pill-trace-angle),
+    transparent 0deg 210deg,
+    color-mix(in srgb, var(--pill-trace) 35%, transparent) 290deg,
+    var(--pill-trace) 352deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  opacity: 0;
+}
+
+/* Its glow: the same streak on a wider, blurred ring that straddles the
+   button's edge, so it reads on every button colour and spills a little
+   light outside. */
+.pill::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  padding: 8px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--pill-trace-angle),
+    transparent 0deg 250deg,
+    color-mix(in srgb, var(--pill-trace) 30%, transparent) 310deg,
+    var(--pill-trace) 352deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  filter: blur(4px);
+  opacity: 0;
+}
+
+.pill:hover::before,
+.pill:hover::after {
+  animation: pillTrace 0.95s cubic-bezier(0.45, 0, 0.25, 1) both;
+}
+
+@keyframes pillTrace {
+  0% {
+    --pill-trace-angle: 0deg;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+  }
+  100% {
+    --pill-trace-angle: 360deg;
+    opacity: 0;
+  }
+}
+
+/* The arrow shoots out to the right and slides back in from the left. */
+.pill:hover .go {
+  transform: none;
+  animation: pillArrow 0.55s var(--ease-out);
+}
+
+@keyframes pillArrow {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(14px);
+    opacity: 0;
+  }
+  41% {
+    transform: translateX(-14px);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .pillSmall {
@@ -179,24 +279,45 @@ a:hover .go {
 .pillBlue {
   --pill-bg: var(--blue);
   --pill-fg: #fff;
-  --pill-hover-bg: var(--ink);
+  --pill-hover-bg: var(--blue-hover);
+  --pill-trace: var(--cyan);
 }
 
 .pillSoft {
   --pill-bg: #eef1f5;
-  --pill-hover-bg: var(--ink);
+  --pill-hover-bg: #e3e8ef;
+  --pill-trace: var(--blue);
 }
 
 .pillInk {
   --pill-bg: var(--ink);
   --pill-fg: #fff;
-  --pill-hover-bg: var(--blue);
+  --pill-hover-bg: #040e1f;
+  --pill-trace: var(--cyan);
 }
 
 .pillWhite {
   --pill-bg: #fff;
-  --pill-hover-bg: var(--cyan);
-  --pill-hover-fg: var(--ink);
+  --pill-hover-bg: #eef3fb;
+  --pill-trace: var(--blue);
+}
+
+/* Reduced motion: no run or arrow; the edge just shows, still. */
+@media (prefers-reduced-motion: reduce) {
+  .pill:active {
+    transform: none;
+  }
+  .pill:hover .go {
+    animation: none;
+  }
+  .pill:hover::after {
+    animation: none;
+    opacity: 1;
+    background: var(--pill-trace);
+  }
+  .pill:hover::before {
+    animation: none;
+  }
 }
 
 .textLink {
@@ -344,11 +465,48 @@ a:hover .go {
 .heroTitle {
   margin: 0;
   font-family: var(--font-aloevera), var(--font-figtree), system-ui, sans-serif;
-  font-size: clamp(48px, 6.2vw, 96px);
-  line-height: 1.2;
+  font-size: clamp(50px, 6.6vw, 96px);
+  /* Aloevera's capitals have a little space built into their left side; pull
+     the headline left by that much so it shares one edge with the paragraph
+     and buttons below. */
+  margin-left: -0.032em;
+  /* Set close, so the three lines read as one block. */
+  line-height: 1.02;
   font-weight: 600;
   /* Aloevera is already tightly set; Figtree-style negative tracking makes letters touch. */
   letter-spacing: -0.01em;
+}
+
+/* One line of the tagline. It clips its text, so each line rises up from
+   behind its own baseline rather than floating in. The padding keeps the
+   descenders (g, y) inside the clip. */
+.heroLine {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  white-space: nowrap;
+}
+
+.heroLineInner {
+  display: block;
+  animation: heroLineUp 0.9s var(--ease-out) both;
+  animation-delay: calc(0.1s + var(--i) * 0.11s);
+}
+
+@keyframes heroLineUp {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroLineInner {
+    animation: none;
+  }
 }
 
 .heroLead {
@@ -778,6 +936,72 @@ a:hover .go {
   font-size: 17px;
   line-height: 1.6;
   color: var(--muted);
+}
+
+/* "Selected work" on the homepage: the hero's faint grid behind it, with a
+   little room at the bottom for the grid to fade out. */
+.workSection {
+  --grid-focus: 50% 45%;
+  padding-bottom: 72px;
+}
+
+/* Small page hero (PageHero.tsx) on Services, Work, About and Contact: a
+   band with the hero's faint grid behind it, the title on the left and the
+   description on the right, closed off by a hairline. */
+.pageHero {
+  --grid-focus: 30% 60%;
+  padding: 72px 0 64px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(to bottom, #fff, var(--surface));
+}
+
+.pageHeroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 32px 64px;
+}
+
+.pageHeroEyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.pageHeroTitle {
+  margin: 0;
+  font-size: clamp(44px, 5.4vw, 80px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.pageHeroSummary {
+  margin: 0;
+  max-width: 520px;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Anything a page adds under its hero (the About photos). */
+.pageHeroAfter {
+  padding-top: 56px;
+}
+
+@media (max-width: 899px) {
+  .pageHero {
+    padding: 48px 0 40px;
+  }
+  .pageHeroInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .pageHeroAfter {
+    padding-top: 36px;
+  }
 }
 
 /* Capability rows */
@@ -1361,7 +1585,6 @@ a:hover .go {
   .carouselBtn,
   .go,
   .pill,
-  .pill::before,
   .workArrow,
   .workTitle,
   .closingEmail,
@@ -1375,10 +1598,22 @@ a:hover .go {
   }
 }
 
-.pill:disabled:hover {
-  color: var(--pill-fg) !important;
+/* A disabled button (the contact form while sending) doesn't react. */
+.pill:disabled,
+.pill:disabled:hover,
+.pill:disabled:active {
+  background: var(--pill-bg);
+  transform: none;
+  cursor: default;
 }
 
-.pill:disabled::before {
-  transform: translateY(101%);
+.pill:disabled .go {
+  transform: none;
+  animation: none;
+}
+
+.pill:disabled::before,
+.pill:disabled::after {
+  animation: none;
+  opacity: 0;
 }
