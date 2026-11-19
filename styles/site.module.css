@@ -283,6 +283,10 @@ a:hover .go {
    hero so the faint grid runs edge to edge. */
 .hero {
   position: relative;
+  /* The carets' canvas lives in here, and .gridBg makes the hero its own
+     layer: lift the whole hero so the canvas draws over the sections below
+     (the step card's background, the "What we build" cards). */
+  z-index: 3;
   overflow: hidden;
   min-height: clamp(620px, calc(100svh - 110px), 860px);
   padding: 72px 0 96px;
@@ -372,13 +376,17 @@ a:hover .go {
 }
 
 /* The dots: one canvas over the window, so they can leave the hero. It never
-   takes the pointer. */
+   takes the pointer. 100% (of the window, since it's fixed), not 100vw/100vh:
+   on phones 100vh is the height with the address bar hidden, which doesn't
+   match the window the script draws for, so the dots would stretch. A canvas
+   needs the explicit size; `inset: 0` alone doesn't stretch it. */
 .fieldLayer {
   position: fixed;
   inset: 0;
   z-index: 2;
-  width: 100vw;
-  height: 100vh;
+  display: block;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -416,7 +424,7 @@ a:hover .go {
 
 /* Statement + photos */
 .statement {
-  padding-top: 120px;
+  padding-top: 72px;
 }
 
 .statementText {
@@ -427,29 +435,151 @@ a:hover .go {
   letter-spacing: -0.025em;
 }
 
-/* Statement, and the Medium journal further down the page. */
-.studioHead {
+/* "From idea to launch": three photo cards, one per step, with the step's
+   text over the bottom of the photo (Studio.tsx).
+   Each card is three rows of a shared grid (subgrid): room for the photo to
+   show, the title, the description. Side by side, the cards share those rows,
+   so they line up and so do their titles, even when one description wraps to
+   fewer lines. */
+.steps {
+  --photo: clamp(240px, 26vw, 380px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 40px 64px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: var(--photo) auto auto;
+  column-gap: 16px;
+  row-gap: 0;
 }
 
-.studioHead .statementText {
-  max-width: 900px;
+.stepCard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  grid-row: span 3;
+  display: grid;
+  grid-template-rows: subgrid;
+  padding: 0 28px 28px;
+  border-radius: 28px;
+  background: var(--ink);
+  color: #fff;
 }
 
-/* An empty box the hero's dots fly into. */
-.fieldStage {
-  height: 340px;
+/* Dark Blue rising from the bottom so the text reads on any photo. It deepens
+   a little on hover. */
+.stepCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 24, 47, 0) 30%,
+    rgba(9, 24, 47, 0.55) 55%,
+    rgba(9, 24, 47, 0.92) 100%
+  );
+  opacity: 0.92;
+  transition: opacity 0.5s ease;
 }
 
+.stepCard:hover::after {
+  opacity: 1;
+}
+
+/* Rise in, one card after another (Studio.tsx sets these once JS knows the
+   list is below the fold). */
+.stepsWaiting .stepCard,
+.stepsShown .stepCard {
+  transition:
+    opacity 0.7s ease calc(var(--i) * 0.12s),
+    transform 0.9s var(--ease-out) calc(var(--i) * 0.12s);
+}
+
+.stepsWaiting .stepCard {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.stepTitle,
+.stepBody {
+  position: relative;
+  z-index: 2;
+}
+
+.stepTitle {
+  grid-row: 2;
+  margin: 0 0 12px;
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+/* The full stop: a Wayber Blue circle, drawn larger than a "." glyph so it
+   still reads on the dark gradient. Sits on the baseline like a full stop. */
+.stepStop {
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  margin-left: 0.08em;
+  border-radius: 50%;
+  background: var(--blue);
+  vertical-align: baseline;
+}
+
+.stepBody {
+  grid-row: 3;
+  margin: 0;
+  max-width: 360px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Smaller laptops: the cards get narrower, so less padding. */
+@media (max-width: 1099px) {
+  .stepCard {
+    padding: 0 22px 22px;
+  }
+  .stepBody {
+    font-size: 14.5px;
+  }
+}
+
+/* Tablets: one column of wide cards, each with its own rows. */
 @media (max-width: 899px) {
-  .studioHead {
+  .steps {
+    --photo: clamp(200px, 38vw, 320px);
     grid-template-columns: minmax(0, 1fr);
   }
-  .fieldStage {
-    height: 240px;
+  .stepCard {
+    padding: 0 28px 28px;
+  }
+  .stepCard + .stepCard {
+    margin-top: 12px;
+  }
+  .stepBody {
+    max-width: 440px;
+    font-size: 15.5px;
+  }
+}
+
+/* Phones: a taller photo so the card isn't a thin strip. */
+@media (max-width: 559px) {
+  .steps {
+    --photo: 64vw;
+  }
+  .stepCard {
+    padding: 0 20px 20px;
+    border-radius: 20px;
+  }
+  .stepTitle {
+    font-size: 32px;
+  }
+  .stepBody {
+    font-size: 15px;
   }
 }
 
@@ -651,7 +781,6 @@ a:hover .go {
 }
 
 /* Capability rows */
-/* Roomy gaps: the hero's dots ring each card as it scrolls past (lib/cubeField.ts). */
 .rows {
   display: flex;
   flex-direction: column;
@@ -1194,7 +1323,7 @@ a:hover .go {
     padding-top: 112px;
   }
   .statement {
-    padding-top: 88px;
+    padding-top: 56px;
   }
   .rowText,
   .startCard {

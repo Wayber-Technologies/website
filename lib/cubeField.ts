@@ -1,32 +1,27 @@
 /**
- * Draws the Wayber mark as a field of small carets (">" marks), and on the
- * homepage flies them through a series of scenes as you scroll: the mark, a
- * browser and phone by the statement, then a ring around each "What we build"
- * card in turn. The carets are called dots below.
+ * Draws the Wayber mark in the hero as a field of small carets (">" marks).
+ * The carets are called dots below.
  *
  * - The mark is three identical slabs, each one step down and to the right of
  *   the one before (a little closer together than in the logo). Each dot is a
  *   brand colour, mostly Wayber Blue. A slab in front hides the dots of the
  *   slab behind it.
- * - The canvas is fixed over the whole window. Each scene is laid out inside
- *   an element in the page: the hero's mark box, the [data-field-stage] box,
- *   and each [data-field-ring] card. The dots follow those elements as the
- *   page scrolls.
- * - Scrolling from one scene to the next moves each dot from its place in one
- *   to its place in the other. Dots leave in a stream and swing out on the
- *   way, so a shape breaks apart and then re-forms. Each scene needs fewer
- *   dots than the one before; the rest fade out on the way.
- * - Each caret points one of four ways. Carets on an outline or ring point
- *   along it, clockwise. In flight, they turn to face where they're going.
+ * - The canvas is fixed over the whole window, and the mark follows the
+ *   hero's mark box as the page scrolls.
+ * - The dots are laid out in "scenes", and the code can fly them from one
+ *   scene to the next as you scroll (each dot streams out on a swinging path
+ *   and turns to face where it's going). Today the mark is the only scene,
+ *   so no flight runs; add a scene in build() to use it.
+ * - Each caret points one of four ways.
  * - They're never quite still: each one wobbles a little, and now and then a
- *   caret turns to point another way (outline carets keep their direction).
+ *   caret turns to point another way.
  * - On load, the mark fades in while each dot settles from a few pixels away.
  * - Dots move away from the pointer.
  * - Drawing runs only while the dots are on screen.
  *
  * Users with "prefers-reduced-motion" see no entrance, no wobble and no
- * flight: the dots switch from one scene to the next halfway through the
- * scroll between them.
+ * flight: the dots would switch from one scene to the next halfway through
+ * the scroll between them.
  */
 
 // The front slab of the icon (public/logoBlackFull.svg), in the icon's own
@@ -63,7 +58,11 @@ const CONTAINER_MAX = 1320;
 // How much of its available area the mark fills (1 = as large as fits).
 const MARK_SCALE = 0.85;
 
-const REPEL_RADIUS = 140;
+// Pointer push: dots within REPEL_RADIUS px move up to REPEL_PUSH px away,
+// closing REPEL_EASE of the gap each frame (higher = snappier).
+const REPEL_RADIUS = 170;
+const REPEL_PUSH = 34;
+const REPEL_EASE = 0.24;
 // Entrance: each dot settles over INTRO_MS, starting up to INTRO_DRIFT px away;
 // the wave across the mark adds up to INTRO_WAVE_MS of delay.
 const INTRO_MS = 900;
@@ -76,19 +75,19 @@ const FLIGHT_STAGGER = 0.35;
 const SWING_MIN = 30;
 const SWING_MAX = 150;
 // Each flight runs over this part of the scroll between two scenes (0 = the
-// scene before is centred in the window, 1 = this one is). Into the shape it
-// ends right as the shape is centred; from card to card the ring rests a while
-// at each card.
-const FLIGHT_TO_SHAPE: [number, number] = [0.2, 1];
-const FLIGHT_TO_RING: [number, number] = [0.3, 0.85];
+// scene before is centred in the window, 1 = this one is), so a scene rests
+// a while at each card.
+const FLIGHT_SPAN: [number, number] = [0.3, 0.85];
 
-// Idle motion: how far (px) and how much (radians) a caret wobbles, how often
-// (ms, a range) a caret picks a new direction, and how long the turn takes.
-const WOBBLE_PX = 0.7;
-const WOBBLE_TURN = 0.18;
-const FLIP_EVERY_MIN = 7000;
-const FLIP_EVERY_MAX = 18000;
-const FLIP_MS = 380;
+// Idle motion: how far (px) and how much (radians) a caret wobbles, and how
+// fast; how often (ms, a range) a caret picks a new direction, and how long
+// the turn takes. Kept under the dot spacing so the mark still reads.
+const WOBBLE_PX = 1.8;
+const WOBBLE_TURN = 0.38;
+const WOBBLE_SPEED = 0.0042;
+const FLIP_EVERY_MIN = 1400;
+const FLIP_EVERY_MAX = 4200;
+const FLIP_MS = 240;
 
 type Area = { x: number; y: number; w: number; h: number };
 type Point = { x: number; y: number };
@@ -126,11 +125,16 @@ type Dot = {
 };
 
 /**
- * A place the dots gather: the hero mark, the shape by the statement, then a
- * ring around each "What we build" card. `from`/`to` are the page scroll
+ * A place the dots gather. Today only the hero mark. `from`/`to` are the page scroll
  * positions over which the dots fly here from the scene before.
  */
-type Scene = { el: HTMLElement; from: number; to: number };
+type Scene = {
+  el: HTMLElement;
+  from: number;
+  to: number;
+  /** How far dots swing out on the way here (1 = SWING_MIN..SWING_MAX). */
+  swing: number;
+};
 
 export type CubeField = { destroy: () => void };
 
@@ -246,164 +250,6 @@ function markPoints(w: number, h: number, gap: number): { points: Point[]; seeds
   return { points, seeds };
 }
 
-// The stage shape: a browser window with a phone in front of it (web platforms
-// and mobile apps), drawn in its own units and scaled to fit the stage.
-const SHAPE_BOX = { w: 560, h: 340 };
-type Rect = { x: number; y: number; w: number; h: number; r?: number };
-const BROWSER: Rect = { x: 0, y: 0, w: 440, h: 300, r: 14 };
-const PHONE: Rect = { x: 380, y: 60, w: 160, h: 280, r: 26 };
-// Filled blocks inside each, standing in for page content.
-const BROWSER_FILL: Rect[] = [
-  { x: 0, y: 0, w: 440, h: 30 }, // title bar
-  { x: 26, y: 56, w: 210, h: 84, r: 8 }, // headline block
-  { x: 26, y: 156, w: 190, h: 8 }, // lines of text
-  { x: 26, y: 174, w: 160, h: 8 },
-  { x: 26, y: 192, w: 110, h: 8 },
-  { x: 260, y: 56, w: 150, h: 144, r: 8 }, // image
-  { x: 26, y: 224, w: 96, h: 50, r: 8 }, // cards
-  { x: 136, y: 224, w: 96, h: 50, r: 8 },
-  { x: 246, y: 224, w: 96, h: 50, r: 8 },
-];
-const PHONE_FILL: Rect[] = [
-  { x: 435, y: 76, w: 50, h: 8, r: 4 }, // speaker notch
-  { x: 398, y: 104, w: 124, h: 76, r: 8 }, // header image
-  { x: 398, y: 196, w: 110, h: 8 },
-  { x: 398, y: 214, w: 80, h: 8 },
-  { x: 398, y: 286, w: 124, h: 28, r: 14 }, // button
-];
-
-/** True if (x, y) is in the rectangle, with rounded corners when it has `r`. */
-function inRect(rect: Rect, x: number, y: number, grow = 0) {
-  const left = rect.x - grow;
-  const top = rect.y - grow;
-  const right = rect.x + rect.w + grow;
-  const bottom = rect.y + rect.h + grow;
-  if (x < left || x > right || y < top || y > bottom) return false;
-  const r = (rect.r ?? 0) + grow;
-  if (r <= 0) return true;
-  const cx = Math.max(left + r, Math.min(x, right - r));
-  const cy = Math.max(top + r, Math.min(y, bottom - r));
-  return (x - cx) ** 2 + (y - cy) ** 2 <= r * r;
-}
-
-/** True if (x, y) is in the rectangle's outline of width `t`. */
-function onOutline(rect: Rect, x: number, y: number, t: number) {
-  if (!inRect(rect, x, y)) return false;
-  const inner = { x: rect.x + t, y: rect.y + t, w: rect.w - 2 * t, h: rect.h - 2 * t, r: Math.max(0, (rect.r ?? 0) - t) };
-  return !inRect(inner, x, y);
-}
-
-/** For a point on the rectangle's outline: the clockwise direction along its nearest edge. */
-function alongOutline(rect: Rect, x: number, y: number) {
-  const edges = [
-    { d: y - rect.y, angle: 0 }, // top: pointing right
-    { d: rect.x + rect.w - x, angle: Math.PI / 2 }, // right: pointing down
-    { d: rect.y + rect.h - y, angle: Math.PI }, // bottom: pointing left
-    { d: x - rect.x, angle: -Math.PI / 2 }, // left: pointing up
-  ];
-  return edges.reduce((a, b) => (b.d < a.d ? b : a)).angle;
-}
-
-/** The rectangle made at least `min` tall, so a thin line still catches a row of the grid. */
-const thick = (r: Rect, min: number): Rect => (r.h >= min ? r : { ...r, y: r.y + r.h / 2 - min / 2, h: min });
-
-/** The dot grid for the stage shape, relative to a box of size w x h. */
-function shapePoints(w: number, h: number, gap: number): Place[] {
-  const scale = Math.min(w / SHAPE_BOX.w, h / SHAPE_BOX.h);
-  const left = (w - SHAPE_BOX.w * scale) / 2;
-  const top = (h - SHAPE_BOX.h * scale) / 2;
-  // Outlines are two dots wide, whatever the scale.
-  const line = (gap * 1.9) / scale;
-  const minLine = (gap * 1.05) / scale;
-  const browserFill = BROWSER_FILL.map((r) => thick(r, minLine));
-  const phoneFill = PHONE_FILL.map((r) => thick(r, minLine));
-  const points: Place[] = [];
-  for (let y = top + gap / 2; y < top + SHAPE_BOX.h * scale; y += gap) {
-    for (let x = left + gap / 2; x < left + SHAPE_BOX.w * scale; x += gap) {
-      const u = (x - left) / scale;
-      const v = (y - top) / scale;
-      // Carets on an outline point along it; the rest point any of four ways.
-      const loose = quarterTurn(noise(x, y + 0.5));
-      if (inRect(PHONE, u, v)) {
-        if (onOutline(PHONE, u, v, line)) points.push({ x, y, angle: alongOutline(PHONE, u, v), along: true });
-        else if (phoneFill.some((r) => inRect(r, u, v))) points.push({ x, y, angle: loose, along: false });
-      } else if (!inRect(PHONE, u, v, line)) {
-        // The phone sits in front: the window doesn't show through it or right around it.
-        if (onOutline(BROWSER, u, v, line)) points.push({ x, y, angle: alongOutline(BROWSER, u, v), along: true });
-        else if (browserFill.some((r) => inRect(r, u, v))) points.push({ x, y, angle: loose, along: false });
-      }
-    }
-  }
-  return points;
-}
-
-/**
- * `count` places evenly around the outside of a box of size w x h with corner
- * radius `radius`, `offset` px out from its edge, relative to the box. Carets
- * point clockwise along the ring.
- */
-function ringPoints(w: number, h: number, radius: number, offset: number, count: number): Place[] {
-  const x0 = -offset;
-  const y0 = -offset;
-  const x1 = w + offset;
-  const y1 = h + offset;
-  const r = Math.min(radius + offset, (x1 - x0) / 2, (y1 - y0) / 2);
-  const straightW = x1 - x0 - 2 * r;
-  const straightH = y1 - y0 - 2 * r;
-  const corner = (Math.PI / 2) * r;
-  // Clockwise from the top-left, after its corner: four straight edges, each followed by a corner.
-  const edges = [
-    { len: straightW, x: x0 + r, y: y0, angle: 0, cx: x1 - r, cy: y0 + r, from: -Math.PI / 2 },
-    { len: straightH, x: x1, y: y0 + r, angle: Math.PI / 2, cx: x1 - r, cy: y1 - r, from: 0 },
-    { len: straightW, x: x1 - r, y: y1, angle: Math.PI, cx: x0 + r, cy: y1 - r, from: Math.PI / 2 },
-    { len: straightH, x: x0, y: y1 - r, angle: -Math.PI / 2, cx: x0 + r, cy: y0 + r, from: Math.PI },
-  ];
-  const total = 2 * straightW + 2 * straightH + 4 * corner;
-  const points: Place[] = [];
-  for (let i = 0; i < count; i++) {
-    let s = ((i + 0.5) / count) * total;
-    for (const e of edges) {
-      if (s <= e.len) {
-        points.push({
-          x: e.x + Math.cos(e.angle) * s,
-          y: e.y + Math.sin(e.angle) * s,
-          angle: e.angle,
-          along: true,
-        });
-        break;
-      }
-      s -= e.len;
-      if (s <= corner) {
-        const a = e.from + s / r;
-        points.push({ x: e.cx + Math.cos(a) * r, y: e.cy + Math.sin(a) * r, angle: a + Math.PI / 2, along: true });
-        break;
-      }
-      s -= corner;
-    }
-  }
-  return points;
-}
-
-/** How many ring places fit around a box at one per `gap` px. */
-function ringCount(w: number, h: number, radius: number, offset: number, gap: number) {
-  const r = radius + offset;
-  const total = 2 * (w + 2 * offset) + 2 * (h + 2 * offset) - (8 - 2 * Math.PI) * r;
-  return Math.max(0, Math.floor(total / gap));
-}
-
-/** Indices of `points` sorted by angle around their centre, so shapes map onto rings without crossing. */
-function byAngle(points: Point[]) {
-  let cx = 0;
-  let cy = 0;
-  for (const p of points) {
-    cx += p.x;
-    cy += p.y;
-  }
-  cx /= points.length || 1;
-  cy /= points.length || 1;
-  return points.map((_, i) => i).sort((a, b) => Math.atan2(points[a].y - cy, points[a].x - cx) - Math.atan2(points[b].y - cy, points[b].x - cx));
-}
-
 export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): CubeField {
   const ctx = canvas.getContext("2d");
   if (!ctx) return { destroy() {} };
@@ -425,8 +271,9 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
 
   /** Lays out the dots for the current sizes. `intro`: play the entrance. */
   function build(intro: boolean): boolean {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    // The canvas's own CSS size, so the drawing matches the box it's shown in.
+    width = canvas.clientWidth || window.innerWidth;
+    height = canvas.clientHeight || window.innerHeight;
     const markRect = mark.getBoundingClientRect();
     if (!width || !height || !markRect.width || !markRect.height) return false;
 
@@ -457,50 +304,7 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
     const places: (Place | null)[][] = points.map((p, i) => [
       { x: p.x, y: p.y, angle: quarterTurn(noise(seeds[i][0] + 0.3, seeds[i][1] + 0.7)), along: false },
     ]);
-    scenes = [{ el: mark, from: 0, to: 0 }];
-
-    // Scene 1: the browser and phone by the statement. Mark dots pair with
-    // shape dots in reading order, so the left of the mark becomes the left of
-    // the shape and paths don't all cross. When the shape needs fewer dots,
-    // every k-th mark dot gets a place and the rest fade out.
-    const stage = document.querySelector<HTMLElement>("[data-field-stage]");
-    const stageRect = stage?.getBoundingClientRect();
-    const shape = stage && stageRect?.width && stageRect.height ? shapePoints(stageRect.width, stageRect.height, gap) : [];
-    if (stage && shape.length) {
-      const order = (p: Point) => p.x + p.y * 0.35;
-      const markOrder = points.map((_, i) => i).sort((a, b) => order(points[a]) - order(points[b]));
-      const shapeOrder = [...shape].sort((a, b) => order(a) - order(b));
-      const pairs = Math.min(shapeOrder.length, markOrder.length);
-      for (const row of places) row.push(null);
-      for (let j = 0; j < pairs; j++) {
-        places[markOrder[Math.floor((j * markOrder.length) / pairs)]][1] = shapeOrder[Math.floor((j * shapeOrder.length) / pairs)];
-      }
-      scenes.push({ el: stage, from: 0, to: 0 });
-
-      // Scenes 2+: a ring around each card. Every ring has as many places as
-      // the first one, and the same dots, so the ring slides from card to card.
-      const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-field-ring]"));
-      const offset = narrow ? 9 : 14;
-      if (cards.length) {
-        const first = cards[0].getBoundingClientRect();
-        const radiusOf = (el: HTMLElement) => parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0;
-        const count = Math.min(pairs, ringCount(first.width, first.height, radiusOf(cards[0]), offset, gap));
-        // Which of the shape's dots go on to the rings: evenly around the shape.
-        const inShape = places.map((row, i) => (row[1] ? i : -1)).filter((i) => i >= 0);
-        const shapeAround = byAngle(inShape.map((i) => places[i][1]!));
-        const ringDots: number[] = [];
-        for (let j = 0; j < count; j++) ringDots.push(inShape[shapeAround[Math.floor((j * shapeAround.length) / count)]]);
-        for (const card of cards) {
-          const rect = card.getBoundingClientRect();
-          const ring = ringPoints(rect.width, rect.height, radiusOf(card), offset, count);
-          const around = byAngle(ring);
-          for (const row of places) row.push(null);
-          const scene = scenes.length;
-          for (let j = 0; j < count; j++) places[ringDots[j]][scene] = ring[around[j]];
-          scenes.push({ el: card, from: 0, to: 0 });
-        }
-      }
-    }
+    scenes = [{ el: mark, from: 0, to: 0, swing: 1 }];
 
     dots = points.map((p, i) => {
       const angle = noise(i, 7) * Math.PI * 2;
@@ -535,15 +339,18 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
     scenes.forEach((scene, k) => {
       if (k === 0) return;
       const rect = scene.el.getBoundingClientRect();
-      const centred = rect.top + window.scrollY + rect.height / 2 - height / 2;
-      const distance = Math.max(0, centred - previous);
-      const [start, end] = k === 1 ? FLIGHT_TO_SHAPE : FLIGHT_TO_RING;
+      const rests = rect.top + window.scrollY + rect.height / 2 - height / 2;
+      const distance = Math.max(0, rests - previous);
+      const [start, end] = FLIGHT_SPAN;
       scene.from = previous + distance * start;
       scene.to = previous + distance * end;
-      previous = centred;
+      previous = rests;
     });
 
-    startedAt = performance.now();
+    // Only the first layout starts the entrance. A re-layout (resize, images
+    // loading, the mobile address bar) must not restart the fade-in, or the
+    // whole mark blinks out and fades back.
+    if (intro) startedAt = performance.now();
     return true;
   }
 
@@ -572,6 +379,7 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
     const b = Math.min(a + 1, scenes.length - 1);
     const rectA = scenes[a].el.getBoundingClientRect();
     const rectB = scenes[b].el.getBoundingClientRect();
+    const swing = scenes[b].swing;
 
     // Resting at a scene that's off screen: clear once, then skip drawing.
     if (p === 0 && !near(rectA)) {
@@ -616,10 +424,12 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
 
       // Where it flies from and to. A dot missing from one end appears from,
       // or drifts off to, a little way out from its place at the other end.
-      const fromX = A ? rectA.left + A.x + settleX : rectB.left + B!.x + d.swingX * 1.5;
-      const fromY = A ? rectA.top + A.y + settleY : rectB.top + B!.y + d.swingY * 1.5;
-      const toX = B ? rectB.left + B.x : fromX + d.swingX * 1.5;
-      const toY = B ? rectB.top + B.y : fromY + d.swingY * 1.5;
+      const swingX = d.swingX * swing;
+      const swingY = d.swingY * swing;
+      const fromX = A ? rectA.left + A.x + settleX : rectB.left + B!.x + swingX * 1.5;
+      const fromY = A ? rectA.top + A.y + settleY : rectB.top + B!.y + swingY * 1.5;
+      const toX = B ? rectB.left + B.x : fromX + swingX * 1.5;
+      const toY = B ? rectB.top + B.y : fromY + swingY * 1.5;
       d.group = A && B ? 0 : A ? 1 : 2;
       if (!B && p === 0) d.group = 0;
 
@@ -630,18 +440,18 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
         // This dot's own progress, starting after its delay.
         const own = easeInOutCubic(clamp01((p - d.delay) / (1 - FLIGHT_STAGGER)));
         const arc = A && B ? Math.sin(own * Math.PI) : 0;
-        x = fromX + (toX - fromX) * own + d.swingX * arc;
-        y = fromY + (toY - fromY) * own + d.swingY * arc;
+        x = fromX + (toX - fromX) * own + swingX * arc;
+        y = fromY + (toY - fromY) * own + swingY * arc;
         // Turn from its direction at one end to the other, facing the way
         // it's heading while it's in the air.
         const wave = Math.cos(own * Math.PI) * Math.PI * (arc ? 1 : 0);
-        const heading = Math.atan2(toY - fromY + d.swingY * wave, toX - fromX + d.swingX * wave);
+        const heading = Math.atan2(toY - fromY + swingY * wave, toX - fromX + swingX * wave);
         const startAngle = A ? restAngle(A) : heading;
         const endAngle = B ? restAngle(B) : heading;
         angle = turn(turn(startAngle, endAngle, own), heading, A && B ? arc * 0.9 : 0);
       }
       if (idle) {
-        const wob = now * 0.0015 * d.speed + d.phase;
+        const wob = now * WOBBLE_SPEED * d.speed + d.phase;
         x += Math.sin(wob * 0.8) * WOBBLE_PX;
         y += Math.cos(wob * 0.9 + d.phase) * WOBBLE_PX;
         angle += Math.sin(wob) * WOBBLE_TURN;
@@ -653,12 +463,12 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
       const dy = y - pointer.y;
       const dist = Math.hypot(dx, dy);
       if (dist < REPEL_RADIUS && dist > 0.01) {
-        const push = (1 - dist / REPEL_RADIUS) * 24;
+        const push = (1 - dist / REPEL_RADIUS) * REPEL_PUSH;
         pushX = (dx / dist) * push;
         pushY = (dy / dist) * push;
       }
-      d.offX += (pushX - d.offX) * 0.15;
-      d.offY += (pushY - d.offY) * 0.15;
+      d.offX += (pushX - d.offX) * REPEL_EASE;
+      d.offY += (pushY - d.offY) * REPEL_EASE;
       if (Math.abs(pushX - d.offX) > 0.2 || Math.abs(pushY - d.offY) > 0.2) busy = true;
 
       d.drawX = x + d.offX;
@@ -729,7 +539,7 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
   document.documentElement.addEventListener("pointerleave", onLeave);
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Re-lay out (without the entrance) when the window, the mark, the stage or
+  // Re-lay out (without the entrance) when the window, the mark or
   // the page changes size. Waits for resizing to settle first.
   let resizeTimer: ReturnType<typeof setTimeout> | null = null;
   const relayout = () => {
@@ -752,10 +562,11 @@ export function createCubeField(canvas: HTMLCanvasElement, mark: HTMLElement): C
           }
         })
       : null;
-  // The body too: images loading above the stage move it down the page.
+  // The body too: images loading above a later scene would move it down the page.
   resizeObserver?.observe(mark);
+  // The canvas follows the window, including the mobile address bar.
+  resizeObserver?.observe(canvas);
   resizeObserver?.observe(document.body);
-  document.querySelectorAll("[data-field-stage], [data-field-ring]").forEach((el) => resizeObserver?.observe(el));
 
   // Browser zoom or moving to another screen changes the pixel ratio.
   let ratioQuery: MediaQueryList | null = null;
