@@ -48,7 +48,7 @@ export default function AboutPage() {
       description="Wayber Technologies is a software studio in Lagos building web platforms, mobile apps and fintech systems."
     >
       <PageHero
-        eyebrow="About"
+        seed={3}
         title="We are Wayber"
         summary="A software studio in Lagos, building for founders, banks and operators who need technology that keeps working as they grow."
       >

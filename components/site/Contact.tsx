@@ -2,6 +2,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { CONTACT } from "@/constants/home";
 import styles from "@/styles/site.module.css";
+import PillLabel from "@/components/site/PillLabel";
 
 const MARK_PATH =
   "M898.796 173.928L674.342 300.432V112.251L629.271 87.0405L404.817 213.545V25.3641L359.746 0.15332L0.0791016 203.19V494.015L45.6009 519.676L269.604 393.172V580.902L315.126 606.563L539.129 480.059V667.789L584.651 693L943.417 490.863V199.139L898.796 173.928Z";
@@ -21,7 +22,7 @@ export default function Contact() {
             </div>
             <div className={styles.startFoot}>
               <Link href="/contact" className={`${styles.pill} ${styles.pillBlue}`}>
-                Start a project <ArrowRightIcon className={styles.go} />
+                <PillLabel>Start a project</PillLabel> <ArrowRightIcon className={styles.go} />
               </Link>
               <span className={styles.startEmail}>{CONTACT.officeEmail}</span>
             </div>
@@ -37,7 +38,7 @@ export default function Contact() {
             </div>
             <div className={styles.startFoot}>
               <a href={`mailto:${CONTACT.technologyEmail}`} className={`${styles.pill} ${styles.pillWhite}`}>
-                Talk to engineering <ArrowRightIcon className={styles.go} />
+                <PillLabel>Talk to engineering</PillLabel> <ArrowRightIcon className={styles.go} />
               </a>
               <span className={styles.startEmail}>{CONTACT.technologyEmail}</span>
             </div>
