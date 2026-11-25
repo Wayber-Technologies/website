@@ -40,8 +40,16 @@
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: var(--grid-size) var(--grid-size);
   background-position: center center;
-  -webkit-mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
-  mask-image: radial-gradient(ellipse 75% 75% at var(--grid-focus, 50% 50%), #000 30%, transparent 82%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 75% at var(--grid-focus, 50% 50%),
+    #000 30%,
+    transparent 82%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 75% at var(--grid-focus, 50% 50%),
+    #000 30%,
+    transparent 82%
+  );
 }
 
 @media (max-width: 760px) {
@@ -99,10 +107,11 @@ a:hover .go {
 .textLink,
 .navLinks a,
 .navContact,
-.footerCol a,
+.footerLink,
 .workMore a,
 .announceCta {
-  background: linear-gradient(currentColor, currentColor) left 100% / 0 1.5px no-repeat;
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 1.5px
+    no-repeat;
   padding-bottom: 2px;
   transition:
     background-size 0.4s var(--ease-out),
@@ -112,33 +121,26 @@ a:hover .go {
 .textLink:hover,
 .navLinks a:hover,
 .navContact:hover,
-.footerCol a:hover,
+.footerLink:hover,
 .workMore a:hover,
 .announce:hover .announceCta {
   background-size: 100% 1.5px;
 }
 
-/* Buttons: fully rounded. A second colour rises from the bottom edge on
-   hover, and the button gives a little on press. */
-/* Buttons. On hover a bright streak races once round the button's edge,
-   the fill darkens a step, and the arrow (.go) shoots out to the right and
-   slides back in. The button presses down on click. */
-
-/* The streak's position round the edge, as an angle. Registered so it can be
-   animated (browsers without @property just skip the run). */
-@property --pill-trace-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
+/* Buttons. On hover a second colour wipes across from the left with a hard
+   edge, led by a thin scan line, and the label rolls over: it slides up and
+   out as a copy in the new colour slides in from below. The arrow (.go)
+   shoots out and comes back. The button gives a little on press. */
 .pill {
   --pill-bg: var(--surface);
   --pill-fg: var(--ink);
-  --pill-hover-bg: #e3e8ef;
-  --pill-trace: var(--blue);
+  --pill-hover-bg: var(--ink);
+  --pill-hover-fg: #fff;
+  --pill-scan: var(--cyan);
+  --pill-ease: cubic-bezier(0.7, 0, 0.2, 1);
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -150,12 +152,12 @@ a:hover .go {
   background: var(--pill-bg);
   color: var(--pill-fg) !important;
   transition:
-    background-color 0.3s ease,
+    color 0.35s var(--pill-ease),
     transform 0.15s ease;
 }
 
 .pill:hover {
-  background: var(--pill-hover-bg);
+  color: var(--pill-hover-fg) !important;
 }
 
 .pill:active {
@@ -167,81 +169,69 @@ a:hover .go {
   outline-offset: 3px;
 }
 
-/* The streak: a 2px ring (the mask cuts out the middle) painted with a
-   conic gradient, a long fading tail ending in a bright head. Hidden until
-   hover, then it runs once round and fades. */
-.pill::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 2px;
-  pointer-events: none;
-  background: conic-gradient(
-    from var(--pill-trace-angle),
-    transparent 0deg 210deg,
-    color-mix(in srgb, var(--pill-trace) 35%, transparent) 290deg,
-    var(--pill-trace) 352deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-  opacity: 0;
-}
-
-/* Its glow: the same streak on a wider, blurred ring that straddles the
-   button's edge, so it reads on every button colour and spills a little
-   light outside. */
+/* The wipe: the hover colour, clipped to nothing until hover. */
 .pill::before {
   content: "";
   position: absolute;
-  inset: -4px;
-  border-radius: inherit;
-  padding: 8px;
+  inset: 0;
+  z-index: -1;
+  background: var(--pill-hover-bg);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.5s var(--pill-ease);
   pointer-events: none;
-  background: conic-gradient(
-    from var(--pill-trace-angle),
-    transparent 0deg 250deg,
-    color-mix(in srgb, var(--pill-trace) 30%, transparent) 310deg,
-    var(--pill-trace) 352deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-  filter: blur(4px);
+}
+
+.pill:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+/* The scan line riding the wipe's edge. It runs once and is gone. */
+.pill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--pill-scan);
   opacity: 0;
+  pointer-events: none;
 }
 
-.pill:hover::before,
 .pill:hover::after {
-  animation: pillTrace 0.95s cubic-bezier(0.45, 0, 0.25, 1) both;
+  animation: pillScan 0.5s var(--pill-ease);
 }
 
-@keyframes pillTrace {
+@keyframes pillScan {
   0% {
-    --pill-trace-angle: 0deg;
-    opacity: 0;
-  }
-  8% {
+    left: 0;
     opacity: 1;
   }
-  78% {
+  85% {
     opacity: 1;
   }
   100% {
-    --pill-trace-angle: 360deg;
+    left: calc(100% - 2px);
     opacity: 0;
   }
+}
+
+/* The label and its copy, stacked; the window shows one line at a time. */
+.pillText {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.25em;
+  line-height: 1.25;
+}
+
+.pillRoll {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s var(--pill-ease);
+}
+
+.pill:hover .pillRoll {
+  transform: translateY(-50%);
 }
 
 /* The arrow shoots out to the right and slides back in from the left. */
@@ -279,44 +269,40 @@ a:hover .go {
 .pillBlue {
   --pill-bg: var(--blue);
   --pill-fg: #fff;
-  --pill-hover-bg: var(--blue-hover);
-  --pill-trace: var(--cyan);
+  --pill-hover-bg: var(--ink);
 }
 
 .pillSoft {
   --pill-bg: #eef1f5;
-  --pill-hover-bg: #e3e8ef;
-  --pill-trace: var(--blue);
+  --pill-hover-bg: var(--ink);
 }
 
 .pillInk {
   --pill-bg: var(--ink);
   --pill-fg: #fff;
-  --pill-hover-bg: #040e1f;
-  --pill-trace: var(--cyan);
+  --pill-hover-bg: var(--blue);
 }
 
 .pillWhite {
   --pill-bg: #fff;
-  --pill-hover-bg: #eef3fb;
-  --pill-trace: var(--blue);
+  --pill-hover-bg: var(--blue);
 }
 
-/* Reduced motion: no run or arrow; the edge just shows, still. */
+/* Reduced motion: the colour changes, nothing moves. */
 @media (prefers-reduced-motion: reduce) {
   .pill:active {
     transform: none;
   }
+  .pill::before,
+  .pillRoll {
+    transition: none;
+  }
+  .pill:hover::after,
   .pill:hover .go {
     animation: none;
   }
-  .pill:hover::after {
-    animation: none;
-    opacity: 1;
-    background: var(--pill-trace);
-  }
-  .pill:hover::before {
-    animation: none;
+  .pill:hover .pillRoll {
+    transform: none;
   }
 }
 
@@ -362,8 +348,7 @@ a:hover .go {
 }
 
 .siteHeader .nav {
-  transition:
-    padding 0.3s var(--ease-out);
+  transition: padding 0.3s var(--ease-out);
 }
 
 .siteHeaderScrolled .nav {
@@ -388,7 +373,6 @@ a:hover .go {
   font-weight: 500;
 }
 
-
 .navRight {
   display: flex;
   align-items: center;
@@ -398,6 +382,151 @@ a:hover .go {
 .navContact {
   font-size: 15px;
   font-weight: 500;
+}
+
+/* Phone menu: a button with two bars that cross into an X, and a panel that
+   drops below the header with the pages listed large. Hidden on desktop. */
+.menuButton {
+  display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -6px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.menuBars {
+  position: relative;
+  width: 22px;
+  height: 10px;
+}
+
+.menuBars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    transform 0.35s var(--ease-out),
+    top 0.35s var(--ease-out);
+}
+
+.menuBars span:first-child {
+  top: 0;
+}
+
+.menuBars span:last-child {
+  top: 8px;
+}
+
+.menuBarsOpen span:first-child {
+  top: 4px;
+  transform: rotate(45deg);
+}
+
+.menuBarsOpen span:last-child {
+  top: 4px;
+  transform: rotate(-45deg);
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100dvh - 100%);
+  overflow-y: auto;
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menuLinks {
+  margin: 0;
+  padding: 8px 0 0;
+  list-style: none;
+}
+
+.menuLinks li {
+  border-bottom: 1px solid var(--line);
+  animation: menuIn 0.45s calc(var(--i) * 45ms) var(--ease-out) both;
+}
+
+.menuLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.menuLinks a[aria-current="page"] {
+  color: var(--blue);
+}
+
+.menuLinks svg {
+  width: 22px;
+  height: 22px;
+  color: var(--soft);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menuFoot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 0 40px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .menuButton {
+    display: grid;
+  }
+  .nav {
+    flex-wrap: nowrap;
+  }
+  .nav > a:first-child img {
+    width: 118px;
+    height: auto;
+  }
+  .navRight {
+    gap: 6px;
+  }
+  .navRight .pillSmall {
+    min-height: 40px;
+    padding: 0 16px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuLinks li {
+    animation: none;
+  }
 }
 
 /* Hero: copy on the left, the mark on the right. The canvas fills the whole
@@ -434,8 +563,20 @@ a:hover .go {
   /* Grain strength: raise for more texture, lower for less. */
   opacity: 0.85;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.09 0 0 0 0 0.18 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 25%,
+    #000 70%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 25%,
+    #000 70%,
+    transparent
+  );
 }
 
 .heroGrid {
@@ -949,59 +1090,100 @@ a:hover .go {
    band with the hero's faint grid behind it, the title on the left and the
    description on the right, closed off by a hairline. */
 .pageHero {
-  --grid-focus: 30% 60%;
-  padding: 72px 0 64px;
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(to bottom, #fff, var(--surface));
+  --grid-focus: 70% 20%;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 9vw, 136px) 0 clamp(64px, 8vw, 120px);
+}
+
+/* The caret field fills the band and fades out toward the text on the left. */
+.pageHeroCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: radial-gradient(ellipse 42% 56% at 76% 52%, #000 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 42% 56% at 76% 52%, #000 45%, transparent 100%);
 }
 
 .pageHeroInner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  align-items: end;
-  gap: 32px 64px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.pageHeroEyebrow {
-  display: block;
-  margin-bottom: 14px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--blue);
-}
-
+/* The home hero's headline type, one size down. The title rises in from
+   behind its baseline, as the home tagline does. */
 .pageHeroTitle {
-  margin: 0;
-  font-size: clamp(44px, 5.4vw, 80px);
+  margin: 0 0 0 -0.032em;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  font-family: var(--font-aloevera), var(--font-figtree), system-ui, sans-serif;
+  font-size: clamp(48px, 7.4vw, 112px);
   line-height: 1;
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
+}
+
+.pageHeroTitleInner {
+  display: inline-block;
+  animation: pageHeroRise 0.9s var(--ease-out) both;
+}
+
+@keyframes pageHeroRise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: none;
+  }
 }
 
 .pageHeroSummary {
-  margin: 0;
-  max-width: 520px;
-  font-size: clamp(17px, 1.5vw, 20px);
-  line-height: 1.55;
+  margin: 24px 0 0;
+  max-width: 620px;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
   color: var(--muted);
+  animation: pageHeroFade 0.8s 0.2s var(--ease-out) both;
+}
+
+@keyframes pageHeroFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pageHeroTitleInner,
+  .pageHeroSummary {
+    animation: none;
+  }
+}
+
+/* Phones: the copy on top, the field showing beneath it. */
+@media (max-width: 760px) {
+  .pageHero {
+    padding-bottom: 200px;
+  }
+  .pageHeroCanvas {
+    -webkit-mask-image: radial-gradient(ellipse 70% 22% at 50% 82%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 22% at 50% 82%, #000 35%, transparent 100%);
+  }
 }
 
 /* Anything a page adds under its hero (the About photos). */
 .pageHeroAfter {
-  padding-top: 56px;
-}
-
-@media (max-width: 899px) {
-  .pageHero {
-    padding: 48px 0 40px;
-  }
-  .pageHeroInner {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
-  }
-  .pageHeroAfter {
-    padding-top: 36px;
-  }
+  padding-top: 8px;
 }
 
 /* Capability rows */
@@ -1141,7 +1323,8 @@ a:hover .go {
 
 .workTitle {
   width: fit-content;
-  background: linear-gradient(currentColor, currentColor) left 100% / 0 2px no-repeat;
+  background: linear-gradient(currentColor, currentColor) left 100% / 0 2px
+    no-repeat;
   transition: background-size 0.4s var(--ease-out);
 }
 
@@ -1181,7 +1364,11 @@ a:hover .go {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(9, 24, 47, 0) 55%, rgba(9, 24, 47, 0.38) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 24, 47, 0) 55%,
+    rgba(9, 24, 47, 0.38) 100%
+  );
   transition: opacity 0.4s ease;
 }
 
@@ -1226,7 +1413,6 @@ a:hover .go {
   color: var(--ink);
 }
 
-
 /* Clients */
 .clients {
   padding-top: 140px;
@@ -1258,8 +1444,20 @@ a:hover .go {
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
 }
 
 .marqueeTrack {
@@ -1435,7 +1633,8 @@ a:hover .go {
   font-weight: 600;
   letter-spacing: -0.02em;
   padding: 2px 8px 6px;
-  background: linear-gradient(var(--blue), var(--blue)) left 100% / 100% 3px no-repeat;
+  background: linear-gradient(var(--blue), var(--blue)) left 100% / 100% 3px
+    no-repeat;
   transition:
     background-size 0.45s var(--ease-out),
     color 0.3s var(--ease-out);
@@ -1456,80 +1655,198 @@ a:hover .go {
   color: var(--ink);
 }
 
-/* Footer */
+/* Footer: dark, with the blueprint grid. Brand line and back-to-top, a row
+   of link cells divided by hairlines, then the sign-off set very large and
+   cut by the bottom bar. */
 .footer {
-  padding: 80px 0 36px;
+  --grid-focus: 50% 0%;
+  padding: 72px 0 32px;
   border-radius: 40px 40px 0 0;
   background: var(--ink);
-  color: #c9d3e3;
+  color: #a9b6cc;
+  overflow: hidden;
 }
 
-.footerTop {
+.footer.gridBg::before {
+  --grid-line: rgba(255, 255, 255, 0.05);
+}
+
+.footerHead {
   display: flex;
   flex-wrap: wrap;
-  gap: 48px;
-  padding-bottom: 72px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 48px;
 }
 
 .footerBrand {
-  flex: 2 1 320px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  font-size: 15px;
-  line-height: 1.6;
+  gap: 18px;
 }
 
-.footerCol {
-  flex: 1 1 150px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-size: 15px;
-}
-
-.footerColWide {
-  flex-basis: 220px;
-}
-
-.footerCol a {
+.footerBrand p {
+  margin: 0;
+  max-width: 340px;
+  font-size: 17px;
+  line-height: 1.5;
   color: #fff;
 }
 
-.footerCol a {
-  width: fit-content;
+.footerToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid #2a3d61;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.footerCol a:hover {
+.footerToTop svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.footerToTop:hover {
+  border-color: var(--cyan);
   color: var(--cyan);
 }
 
+.footerToTop:hover svg {
+  transform: translateY(-3px);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #23365a;
+  border-bottom: 1px solid #23365a;
+}
+
+.footerCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px 28px 36px;
+  font-size: 15px;
+}
+
+.footerCell:first-child {
+  padding-left: 0;
+}
+
+.footerCell + .footerCell {
+  border-left: 1px solid #23365a;
+}
+
 .footerHeading {
+  margin-bottom: 4px;
   font-size: 13px;
-  color: #8796b0;
+  font-weight: 500;
+  color: #6f7f9c;
+}
+
+.footerLink {
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.footerLink:hover {
+  color: var(--cyan);
+}
+
+.footerNote {
+  margin: 0;
+  max-width: 240px;
+  line-height: 1.55;
+}
+
+.footerWord {
+  margin: 56px 0 0;
+  font-family: var(--font-aloevera), var(--font-figtree), sans-serif;
+  font-size: clamp(64px, 15.5vw, 236px);
+  font-weight: 600;
+  line-height: 0.78;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: #13284a;
+  user-select: none;
+}
+
+.footerWord .dot {
+  color: color-mix(in srgb, var(--blue) 70%, var(--ink));
 }
 
 .footerBottom {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
-  padding-top: 32px;
+  gap: 12px 24px;
+  padding-top: 22px;
   border-top: 1px solid #23365a;
-}
-
-.footerTagline {
-  font-size: clamp(30px, 4vw, 56px);
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  color: #fff;
-}
-
-.copyright {
+  background: var(--ink);
   font-size: 13px;
-  color: #8796b0;
+  color: #6f7f9c;
+}
+
+@media (max-width: 900px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footerCell:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .footerCell:nth-child(n + 3) {
+    border-top: 1px solid #23365a;
+  }
+}
+
+/* Phones: Studio and Elsewhere side by side, contact and the note full width. */
+@media (max-width: 520px) {
+  .footerGrid {
+    grid-template-areas:
+      "studio elsewhere"
+      "talk talk"
+      "how how";
+  }
+  .footerCell:nth-child(1) {
+    grid-area: studio;
+  }
+  .footerCell:nth-child(2) {
+    grid-area: talk;
+  }
+  .footerCell:nth-child(3) {
+    grid-area: elsewhere;
+  }
+  .footerCell:nth-child(4) {
+    grid-area: how;
+  }
+  .footerCell {
+    padding: 28px 0;
+  }
+  .footerCell + .footerCell {
+    border-left: 0;
+    border-top: 1px solid #23365a;
+  }
+  .footerCell:nth-child(3) {
+    padding-left: 20px;
+    border-top: 0;
+    border-left: 1px solid #23365a;
+  }
 }
 
 /* Focus states */
@@ -1591,7 +1908,7 @@ a:hover .go {
   .textLink,
   .navLinks a,
   .navContact,
-  .footerCol a,
+  .footerLink,
   .workMore a,
   .announceCta {
     transition: none;
@@ -1602,18 +1919,20 @@ a:hover .go {
 .pill:disabled,
 .pill:disabled:hover,
 .pill:disabled:active {
-  background: var(--pill-bg);
+  color: var(--pill-fg) !important;
   transform: none;
   cursor: default;
 }
 
-.pill:disabled .go {
-  transform: none;
-  animation: none;
+.pill:disabled::before {
+  clip-path: inset(0 100% 0 0);
 }
 
-.pill:disabled::before,
+.pill:disabled .pillRoll {
+  transform: none;
+}
+
+.pill:disabled .go,
 .pill:disabled::after {
   animation: none;
-  opacity: 0;
 }

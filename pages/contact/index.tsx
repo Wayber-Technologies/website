@@ -13,7 +13,7 @@ export default function ContactPage() {
       description="Tell Wayber Technologies what you are building. Email office@waybertechnologies.com or call +234 808 061 2291."
     >
       <PageHero
-        eyebrow="Contact"
+        seed={4}
         title="Let’s talk"
         summary="Tell us what you’re building, even if it’s only an idea. We read every message ourselves."
       />
@@ -40,10 +40,6 @@ export default function ContactPage() {
               <a className={styles.detailValue} href={CONTACT.phoneHref}>
                 {CONTACT.phoneDisplay}
               </a>
-            </div>
-            <div className={styles.detail}>
-              <span className={styles.detailLabel}>Office</span>
-              <span className={styles.detailValue}>{CONTACT.address}</span>
             </div>
             <div className={styles.detail}>
               <span className={styles.detailLabel}>Elsewhere</span>

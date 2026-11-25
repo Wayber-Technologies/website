@@ -3,6 +3,7 @@ import { BUDGETS, INTERESTS } from "@/constants/pages";
 import { CONTACT } from "@/constants/home";
 import site from "@/styles/site.module.css";
 import styles from "@/styles/pages.module.css";
+import PillLabel from "@/components/site/PillLabel";
 
 // "offline": the server can't send email right now (not configured); the visitor
 // is told, and can send the same message from their own email app.
@@ -155,7 +156,7 @@ export default function ContactForm() {
             instead; we’ve filled it in for you.
           </p>
           <a href={mailtoFallback(fields)} className={`${site.pill} ${site.pillSmall} ${site.pillInk}`}>
-            Open in email app
+            <PillLabel>Open in email app</PillLabel>
           </a>
         </div>
       )}
@@ -168,7 +169,7 @@ export default function ContactForm() {
 
       <div className={styles.formFoot}>
         <button type="submit" className={`${site.pill} ${site.pillBlue} ${styles.submit}`} disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : "Send message"}
+          <PillLabel>{status === "sending" ? "Sending…" : "Send message"}</PillLabel>
         </button>
         <span className={styles.formNote}>Goes straight to {CONTACT.officeEmail}</span>
       </div>

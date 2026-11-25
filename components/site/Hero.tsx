@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import CubeField from "./CubeField";
 import styles from "@/styles/site.module.css";
+import PillLabel from "@/components/site/PillLabel";
 
 export default function Hero() {
   return (
@@ -29,10 +30,10 @@ export default function Hero() {
           </p>
           <div className={styles.actions}>
             <Link href="/contact" className={`${styles.pill} ${styles.pillBlue}`}>
-              Start a project <ArrowRightIcon className={styles.go} />
+              <PillLabel>Start a project</PillLabel> <ArrowRightIcon className={styles.go} />
             </Link>
             <a href="#work" className={`${styles.pill} ${styles.pillSoft}`}>
-              See the work
+              <PillLabel>See the work</PillLabel>
             </a>
           </div>
         </div>

@@ -14,7 +14,7 @@ export default function ServicesPage() {
       description="Web platforms, mobile apps, fintech systems, product design, consultancy and audits, analytics, and brand and growth, from one Lagos studio."
     >
       <PageHero
-        eyebrow="What we do"
+        seed={1}
         title="Services"
         summary="Strategy, design and engineering in one team. Bring us one piece, or the whole problem."
       />

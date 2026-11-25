@@ -6,7 +6,6 @@ export const CONTACT = {
   technologyEmail: "technology@waybertechnologies.com",
   phoneDisplay: "+234 808 061 2291",
   phoneHref: "tel:+2348080612291",
-  address: "39b Ondo Street, Lagos, Nigeria",
 };
 
 export const SOCIAL = [

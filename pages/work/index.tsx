@@ -13,7 +13,7 @@ export default function WorkPage() {
       description="Case studies from Wayber Technologies: workflow tools, fintech wallets, investment platforms and mobile apps."
     >
       <PageHero
-        eyebrow="Case studies"
+        seed={2}
         title="Work"
         summary="Products we’ve designed, built and kept running, for teams that can’t afford to rebuild."
       />
