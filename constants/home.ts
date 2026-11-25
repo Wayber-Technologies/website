@@ -110,10 +110,11 @@ export const CLIENTS = [
  * step, with the step's text over the photo. `position` is the photo's
  * object-position, to keep the people in frame in a tall crop.
  *
- * Photos (Unsplash License, public/home/process-*.jpg):
- * - process-plan: Vitaly Gariev. unsplash.com/photos/ih8CXnU25UQ
- * - process-build: NESA by Makers, Lagos. unsplash.com/photos/BVr3XaBiWLU
- * - process-launch: Christina @ wocintechchat.com. unsplash.com/photos/L85a1k-XqH8
+ * Photos (Unsplash License, public/home/process-*-lagos.jpg):
+ * - process-plan: Ninthgrid, Lagos. unsplash.com/photos/AekHsx1SxXQ
+ * - process-build: a coding event in Lagos. unsplash.com/photos/kwzWjTnDPLk
+ *   (the photographer's name shows only as "x" on Unsplash)
+ * - process-launch: Francis Odeyemi, Lagos. unsplash.com/photos/O8SpYxOFnK8
  */
 export type ProcessStep = {
   title: string;
@@ -127,22 +128,22 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     title: "Plan",
     body: "Tell us what you're building and who it's for. We map the features, choose the stack and agree a timeline and a cost before any work starts.",
-    image: "/home/process-plan.jpg",
-    alt: "Two colleagues planning a project with sticky notes on a wall",
-    position: "5% center",
+    image: "/home/process-plan-lagos.jpg",
+    alt: "A team around a meeting table in a bright office, planning a project",
+    position: "55% center",
   },
   {
     title: "Build",
     body: "User flows and a clickable prototype first, then regular releases to a staging link, with automated tests and a review at each step.",
-    image: "/home/process-build.jpg",
-    alt: "An engineer writing code on a laptop",
-    position: "60% center",
+    image: "/home/process-build-lagos.jpg",
+    alt: "Two developers working through code together on a laptop",
+    position: "90% center",
   },
   {
     title: "Launch",
     body: "We ship to the web and the app stores, then stay on to monitor, fix and keep improving it.",
-    image: "/home/process-launch.jpg",
-    alt: "An engineer with a laptop checking the servers in a data centre",
-    position: "90% center",
+    image: "/home/process-launch-lagos.jpg",
+    alt: "Two people outdoors using an app on their phones",
+    position: "52% center",
   },
 ];

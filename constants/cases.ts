@@ -48,6 +48,28 @@ export type CaseStudy = {
 
 export const CASES: CaseStudy[] = [
   {
+    // Facts from the live product (app.cpcompass.ng, cpcompass.ng) and its codebases
+    // (cp-customer, cp-mobile, cp-admin, cp-api). Images are the team's own public marketing assets.
+    slug: "cpcompass",
+    title: "CPCompass",
+    client: "Comercio Partners Asset Management",
+    sector: "Investment",
+    platform: "Web, iOS & Android",
+    services: ["Product design", "Web app", "Flutter mobile app", "Admin & APIs"],
+    summary: "Goal-based saving and investing: set a goal, pick a plan, and watch your money work toward it.",
+    overview:
+      "CPCompass helps everyday Nigerians save and invest toward the things they care about: an emergency fund, a home, school fees, travel or retirement. Users fund a wallet, choose a plan, and track every naira in one portfolio.",
+    challenge:
+      "Make professional asset management feel personal and approachable, while meeting the identity checks, security and record-keeping a regulated asset manager needs.",
+    approach:
+      "We built the whole platform: the web app at app.cpcompass.ng and a Flutter app for iOS and Android, on our own API. Users verify their identity (with OTP, and manual review as a fallback), take a risk-profile questionnaire, fund their wallet through Paystack, and invest from a marketplace of three products: Snappy Investments for two-click flexible-term saving, Aspire Goals for custom targets, and Flash Deals for time-limited offers like commercial papers and bonds. An admin dashboard, audit logging and SMS alerts run the operation behind it.",
+    outcome:
+      "CPCompass is live on the web, the App Store and Google Play, with a portfolio view, an investment calculator, personal finance insights and in-app support.",
+    card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
+    cover: { src: cpcompassPhones, alt: "CPCompass home screen and app store listing on two phones", fit: "contain", background: "#EEF0F7" },
+    gallery: [],
+  },
+  {
     slug: "sise",
     title: "Sise",
     sector: "Workflow & CRM",
@@ -141,28 +163,6 @@ export const CASES: CaseStudy[] = [
       { src: burnout4, alt: "Burnout points leaderboard", fit: "contain", background: "#F3F5F8", span: "half" },
       { src: burnout5, alt: "Burnout employee directory", fit: "contain", background: "#F3F5F8", span: "full" },
     ],
-  },
-  {
-    // Facts from the live product (app.cpcompass.ng, cpcompass.ng) and its codebases
-    // (cp-customer, cp-mobile, cp-admin, cp-api). Images are the team's own public marketing assets.
-    slug: "cpcompass",
-    title: "CPCompass",
-    client: "Comercio Partners Asset Management",
-    sector: "Investment",
-    platform: "Web, iOS & Android",
-    services: ["Product design", "Web app", "Flutter mobile app", "Admin & APIs"],
-    summary: "Goal-based saving and investing: set a goal, pick a plan, and watch your money work toward it.",
-    overview:
-      "CPCompass helps everyday Nigerians save and invest toward the things they care about: an emergency fund, a home, school fees, travel or retirement. Users fund a wallet, choose a plan, and track every naira in one portfolio.",
-    challenge:
-      "Make professional asset management feel personal and approachable, while meeting the identity checks, security and record-keeping a regulated asset manager needs.",
-    approach:
-      "We built the whole platform: the web app at app.cpcompass.ng and a Flutter app for iOS and Android, on our own API. Users verify their identity (with OTP, and manual review as a fallback), take a risk-profile questionnaire, fund their wallet through Paystack, and invest from a marketplace of three products: Snappy Investments for two-click flexible-term saving, Aspire Goals for custom targets, and Flash Deals for time-limited offers like commercial papers and bonds. An admin dashboard, audit logging and SMS alerts run the operation behind it.",
-    outcome:
-      "CPCompass is live on the web, the App Store and Google Play, with a portfolio view, an investment calculator, personal finance insights and in-app support.",
-    card: { src: cpcompassAspire, alt: "CPCompass Aspire Goals", fit: "cover", background: "#3B4180" },
-    cover: { src: cpcompassPhones, alt: "CPCompass home screen and app store listing on two phones", fit: "contain", background: "#EEF0F7" },
-    gallery: [],
   },
   {
     // Facts from the product page at devsolutely.com/projects/wesleep (copy rewritten).
