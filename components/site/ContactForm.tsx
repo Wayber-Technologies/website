@@ -168,7 +168,7 @@ export default function ContactForm() {
       )}
 
       <div className={styles.formFoot}>
-        <button type="submit" className={`${site.pill} ${site.pillBlue} ${styles.submit}`} disabled={status === "sending"}>
+        <button type="submit" className={`${site.pill} ${site.pillBlue} ${styles.submit}`} disabled={status === "sending"} aria-busy={status === "sending"}>
           <PillLabel>{status === "sending" ? "Sending…" : "Send message"}</PillLabel>
         </button>
         <span className={styles.formNote}>Goes straight to {CONTACT.officeEmail}</span>

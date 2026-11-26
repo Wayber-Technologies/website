@@ -127,16 +127,18 @@ a:hover .go {
   background-size: 100% 1.5px;
 }
 
-/* Buttons. On hover a second colour wipes across from the left with a hard
-   edge, led by a thin scan line, and the label rolls over: it slides up and
-   out as a copy in the new colour slides in from below. The arrow (.go)
-   shoots out and comes back. The button gives a little on press. */
+/* Buttons. On hover Wayber carets in the hover colour rush in from the left
+   and pack into a solid fill (a canvas, see lib/pillDots.ts; it sets
+   data-filled while the fill is on). The label changes colour as the fill
+   reaches it and rolls over: it slides up and out as a copy slides in from
+   below. The arrow (.go) shoots out and comes back. The button gives a
+   little on press. --pill-dots is the colour of the "sending" stream. */
 .pill {
   --pill-bg: var(--surface);
   --pill-fg: var(--ink);
   --pill-hover-bg: var(--ink);
   --pill-hover-fg: #fff;
-  --pill-scan: var(--cyan);
+  --pill-dots: #bffdff;
   --pill-ease: cubic-bezier(0.7, 0, 0.2, 1);
   position: relative;
   isolation: isolate;
@@ -152,12 +154,13 @@ a:hover .go {
   background: var(--pill-bg);
   color: var(--pill-fg) !important;
   transition:
-    color 0.35s var(--pill-ease),
+    color 0.25s ease,
     transform 0.15s ease;
 }
 
-.pill:hover {
+.pill[data-filled] {
   color: var(--pill-hover-fg) !important;
+  transition-delay: 0.18s, 0s;
 }
 
 .pill:active {
@@ -169,51 +172,14 @@ a:hover .go {
   outline-offset: 3px;
 }
 
-/* The wipe: the hover colour, clipped to nothing until hover. */
-.pill::before {
-  content: "";
+/* The caret layer, under the label. */
+.pillDots {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--pill-hover-bg);
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.5s var(--pill-ease);
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-}
-
-.pill:hover::before {
-  clip-path: inset(0 0 0 0);
-}
-
-/* The scan line riding the wipe's edge. It runs once and is gone. */
-.pill::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 2px;
-  background: var(--pill-scan);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.pill:hover::after {
-  animation: pillScan 0.5s var(--pill-ease);
-}
-
-@keyframes pillScan {
-  0% {
-    left: 0;
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    left: calc(100% - 2px);
-    opacity: 0;
-  }
 }
 
 /* The label and its copy, stacked; the window shows one line at a time. */
@@ -269,35 +235,39 @@ a:hover .go {
 .pillBlue {
   --pill-bg: var(--blue);
   --pill-fg: #fff;
-  --pill-hover-bg: var(--ink);
 }
 
 .pillSoft {
   --pill-bg: #eef1f5;
-  --pill-hover-bg: var(--ink);
 }
 
 .pillInk {
   --pill-bg: var(--ink);
   --pill-fg: #fff;
   --pill-hover-bg: var(--blue);
+  --pill-dots: #fff;
 }
 
 .pillWhite {
   --pill-bg: #fff;
   --pill-hover-bg: var(--blue);
+  --pill-dots: #fff;
 }
 
-/* Reduced motion: the colour changes, nothing moves. */
+/* Reduced motion: no carets (lib/pillDots.ts skips them); the colours just
+   swap, and nothing moves. */
 @media (prefers-reduced-motion: reduce) {
+  .pill:hover,
+  .pill:focus-visible {
+    background: var(--pill-hover-bg);
+    color: var(--pill-hover-fg) !important;
+  }
   .pill:active {
     transform: none;
   }
-  .pill::before,
   .pillRoll {
     transition: none;
   }
-  .pill:hover::after,
   .pill:hover .go {
     animation: none;
   }
@@ -1774,24 +1744,6 @@ a:hover .go {
   color: var(--ink);
 }
 
-/* A small pulsing dot: the team is on. */
-.footerLive {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: #1fbf75;
-  vertical-align: 1px;
-  box-shadow: 0 0 0 0 rgba(31, 191, 117, 0.5);
-  animation: footerPulse 2.4s ease-out infinite;
-}
-
-@keyframes footerPulse {
-  70% { box-shadow: 0 0 0 8px rgba(31, 191, 117, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(31, 191, 117, 0); }
-}
-
 /* The ticker: outline type, filled blue where the cursor passes. */
 .footerTicker {
   margin-top: 72px;
@@ -1840,8 +1792,7 @@ a:hover .go {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .footerTrack,
-  .footerLive {
+  .footerTrack {
     animation: none;
   }
 }
