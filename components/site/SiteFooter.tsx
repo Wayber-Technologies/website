@@ -64,10 +64,7 @@ export default function SiteFooter() {
           </nav>
           <div className={styles.footerCell}>
             <span className={styles.footerHeading}>How we work</span>
-            <p className={styles.footerNote}>
-              <span className={styles.footerLive} aria-hidden />
-              Remote, with clients wherever they are.
-            </p>
+            <p className={styles.footerNote}>Remote, with clients wherever they are.</p>
           </div>
         </div>
       </div>
@@ -91,7 +88,6 @@ export default function SiteFooter() {
       <div className={styles.container}>
         <div className={styles.footerBottom}>
           <span>© {new Date().getFullYear()} Wayber Technologies</span>
-          <span>Think big. Build broad. Be Wayber.</span>
         </div>
       </div>
     </footer>
