@@ -1655,61 +1655,36 @@ a:hover .go {
   color: var(--ink);
 }
 
-/* Footer: dark, with the blueprint grid. Brand line and back-to-top, a row
-   of link cells divided by hairlines, then the sign-off set very large and
-   cut by the bottom bar. */
+/* Footer: light and editorial. Pages set large in one line, small info
+   columns, then the tagline running slowly across in outline type. */
 .footer {
-  --grid-focus: 50% 0%;
-  padding: 72px 0 32px;
-  border-radius: 40px 40px 0 0;
-  background: var(--ink);
-  color: #a9b6cc;
+  --line: #dde3ec;
+  padding: 64px 0 28px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
   overflow: hidden;
-}
-
-.footer.gridBg::before {
-  --grid-line: rgba(255, 255, 255, 0.05);
 }
 
 .footerHead {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 48px;
-}
-
-.footerBrand {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.footerBrand p {
-  margin: 0;
-  max-width: 340px;
-  font-size: 17px;
-  line-height: 1.5;
-  color: #fff;
 }
 
 .footerToTop {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid #2a3d61;
-  border-radius: 999px;
-  background: transparent;
-  color: #fff;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
   font: inherit;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease;
 }
 
 .footerToTop svg {
@@ -1719,133 +1694,192 @@ a:hover .go {
 }
 
 .footerToTop:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
+  color: var(--blue);
 }
 
 .footerToTop:hover svg {
   transform: translateY(-3px);
 }
 
-.footerGrid {
+/* The pages, large. Hovering one dims the rest. */
+.footerPages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.3em;
+  margin: 56px 0 64px;
+  font-size: clamp(40px, 5.6vw, 88px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footer .footerPage {
+  color: var(--ink);
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.footerPage:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.3em;
+  font-weight: 300;
+  color: #c3ccda;
+}
+
+.footerPages:hover .footerPage {
+  opacity: 0.35;
+}
+
+.footer .footerPages .footerPage:hover {
+  opacity: 1;
+  color: var(--blue);
+}
+
+.footerInfo {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #23365a;
-  border-bottom: 1px solid #23365a;
+  grid-template-columns: 1.3fr 1.3fr 1fr 1fr;
+  gap: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
 }
 
 .footerCell {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  padding: 32px 28px 36px;
+  gap: 10px;
   font-size: 15px;
 }
 
-.footerCell:first-child {
-  padding-left: 0;
-}
-
-.footerCell + .footerCell {
-  border-left: 1px solid #23365a;
-}
-
 .footerHeading {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   font-size: 13px;
-  font-weight: 500;
-  color: #6f7f9c;
+  color: var(--muted);
 }
 
-.footerLink {
-  color: #fff;
+.footer .footerLink {
+  color: var(--ink);
   overflow-wrap: anywhere;
 }
 
-.footerLink:hover {
-  color: var(--cyan);
+.footer .footerLink:hover {
+  color: var(--blue);
 }
 
 .footerNote {
   margin: 0;
-  max-width: 240px;
-  line-height: 1.55;
+  max-width: 220px;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
-.footerWord {
-  margin: 56px 0 0;
-  font-family: var(--font-aloevera), var(--font-figtree), sans-serif;
-  font-size: clamp(64px, 15.5vw, 236px);
-  font-weight: 600;
-  line-height: 0.78;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  color: #13284a;
+/* A small pulsing dot: the team is on. */
+.footerLive {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #1fbf75;
+  vertical-align: 1px;
+  box-shadow: 0 0 0 0 rgba(31, 191, 117, 0.5);
+  animation: footerPulse 2.4s ease-out infinite;
+}
+
+@keyframes footerPulse {
+  70% { box-shadow: 0 0 0 8px rgba(31, 191, 117, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(31, 191, 117, 0); }
+}
+
+/* The ticker: outline type, filled blue where the cursor passes. */
+.footerTicker {
+  margin-top: 72px;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   user-select: none;
 }
 
-.footerWord .dot {
-  color: color-mix(in srgb, var(--blue) 70%, var(--ink));
+.footerTrack {
+  display: flex;
+  width: max-content;
+  padding: 18px 0 10px;
+  animation: footerScroll 60s linear infinite;
+}
+
+.footerTicker:hover .footerTrack {
+  animation-play-state: paused;
+}
+
+.footerTick {
+  margin-right: 0.6em;
+  font-family: var(--font-aloevera), var(--font-figtree), sans-serif;
+  font-size: clamp(56px, 9vw, 140px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #b7c2d4;
+  transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease;
+}
+
+.footerTick:hover {
+  color: var(--ink);
+  -webkit-text-stroke-color: var(--ink);
+}
+
+.footerTick .dot {
+  color: var(--blue);
+  -webkit-text-stroke: 0;
+}
+
+@keyframes footerScroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerTrack,
+  .footerLive {
+    animation: none;
+  }
 }
 
 .footerBottom {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px 24px;
-  padding-top: 22px;
-  border-top: 1px solid #23365a;
-  background: var(--ink);
+  padding-top: 24px;
   font-size: 13px;
-  color: #6f7f9c;
 }
 
 @media (max-width: 900px) {
-  .footerGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .footerCell:nth-child(3) {
-    padding-left: 0;
-    border-left: 0;
-  }
-  .footerCell:nth-child(n + 3) {
-    border-top: 1px solid #23365a;
+  .footerInfo {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-/* Phones: Studio and Elsewhere side by side, contact and the note full width. */
 @media (max-width: 520px) {
-  .footerGrid {
-    grid-template-areas:
-      "studio elsewhere"
-      "talk talk"
-      "how how";
+  .footer {
+    padding-top: 48px;
   }
-  .footerCell:nth-child(1) {
-    grid-area: studio;
+  .footerPages {
+    flex-direction: column;
+    gap: 6px;
+    margin: 40px 0 44px;
+    font-size: 44px;
   }
-  .footerCell:nth-child(2) {
-    grid-area: talk;
+  .footerPage::after {
+    display: none;
   }
-  .footerCell:nth-child(3) {
-    grid-area: elsewhere;
+  .footerInfo {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .footerCell:nth-child(4) {
-    grid-area: how;
-  }
-  .footerCell {
-    padding: 28px 0;
-  }
-  .footerCell + .footerCell {
-    border-left: 0;
-    border-top: 1px solid #23365a;
-  }
-  .footerCell:nth-child(3) {
-    padding-left: 20px;
-    border-top: 0;
-    border-left: 1px solid #23365a;
+  .footerTicker {
+    margin-top: 48px;
   }
 }
 

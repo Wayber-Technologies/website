@@ -96,19 +96,20 @@ export const ALONGSIDE = [
   },
 ];
 
-export const STACK = [
-  "Figma",
-  "Laravel",
-  "PHP",
-  "Python",
-  "Vue.js",
-  "Flutter",
-  "Dart",
-  "Swift",
-  "Kotlin",
-  "Java",
-  "Objective-C",
-  "Webflow",
+// Logos are Devicon's (MIT, devicon.dev), copied into public/tools.
+export const STACK: { name: string; logo: string }[] = [
+  { name: "Figma", logo: "/tools/figma.svg" },
+  { name: "Laravel", logo: "/tools/laravel.svg" },
+  { name: "PHP", logo: "/tools/php.svg" },
+  { name: "Python", logo: "/tools/python.svg" },
+  { name: "Vue.js", logo: "/tools/vuejs.svg" },
+  { name: "Flutter", logo: "/tools/flutter.svg" },
+  { name: "Dart", logo: "/tools/dart.svg" },
+  { name: "Swift", logo: "/tools/swift.svg" },
+  { name: "Kotlin", logo: "/tools/kotlin.svg" },
+  { name: "Java", logo: "/tools/java.svg" },
+  { name: "Objective-C", logo: "/tools/objectivec.svg" },
+  { name: "Webflow", logo: "/tools/webflow.svg" },
 ];
 
 // From the Figma brand guide: the icon is W (Way) + B (Better) + layers of technology.

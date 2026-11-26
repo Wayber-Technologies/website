@@ -657,3 +657,17 @@ a.detailValue:hover {
     padding-right: 0;
   }
 }
+
+/* Tools we build with: the tool chips, each with its logo before the name. */
+.toolChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-left: 12px;
+}
+
+.toolLogo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

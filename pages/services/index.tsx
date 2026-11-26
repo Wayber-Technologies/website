@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import SiteLayout from "@/components/site/SiteLayout";
@@ -102,8 +103,9 @@ export default function ServicesPage() {
           </div>
           <div className={site.chips} style={{ marginTop: 0 }}>
             {STACK.map((t) => (
-              <span key={t} className={site.chip}>
-                {t}
+              <span key={t.name} className={`${site.chip} ${styles.toolChip}`}>
+                <Image src={t.logo} alt="" width={20} height={20} unoptimized className={styles.toolLogo} />
+                {t.name}
               </span>
             ))}
           </div>

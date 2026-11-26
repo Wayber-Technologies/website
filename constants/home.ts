@@ -110,10 +110,11 @@ export const CLIENTS = [
  * step, with the step's text over the photo. `position` is the photo's
  * object-position, to keep the people in frame in a tall crop.
  *
- * Photos (Unsplash License, public/home/process-*.jpg):
- * - process-plan: Vitaly Gariev. unsplash.com/photos/ih8CXnU25UQ
- * - process-build: NESA by Makers, Lagos. unsplash.com/photos/BVr3XaBiWLU
- * - process-launch: Christina @ wocintechchat.com. unsplash.com/photos/L85a1k-XqH8
+ * Photos (Unsplash License, public/home/process-*-v3.jpg), all from
+ * Christina @ wocintechchat.com:
+ * - process-plan: unsplash.com/photos/Q8IgAlmHAUA
+ * - process-build: unsplash.com/photos/bVya-9G7iDg
+ * - process-launch: unsplash.com/photos/dFCOgR91H5M
  */
 export type ProcessStep = {
   title: string;
@@ -127,22 +128,22 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     title: "Plan",
     body: "Tell us what you're building and who it's for. We map the features, choose the stack and agree a timeline and a cost before any work starts.",
-    image: "/home/process-plan.jpg",
-    alt: "Two colleagues planning a project with sticky notes on a wall",
-    position: "5% center",
+    image: "/home/process-plan-v3.jpg",
+    alt: "A woman mapping out a product plan on a glass wall of notes",
+    position: "28% center",
   },
   {
     title: "Build",
     body: "User flows and a clickable prototype first, then regular releases to a staging link, with automated tests and a review at each step.",
-    image: "/home/process-build.jpg",
-    alt: "An engineer writing code on a laptop",
-    position: "60% center",
+    image: "/home/process-build-v3.jpg",
+    alt: "A developer in a red hoodie working on a laptop in a dark room",
+    position: "50% center",
   },
   {
     title: "Launch",
     body: "We ship to the web and the app stores, then stay on to monitor, fix and keep improving it.",
-    image: "/home/process-launch.jpg",
-    alt: "An engineer with a laptop checking the servers in a data centre",
-    position: "90% center",
+    image: "/home/process-launch-v3.jpg",
+    alt: "A woman with her laptop by a high window over the city",
+    position: "68% center",
   },
 ];
