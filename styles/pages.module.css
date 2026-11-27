@@ -147,29 +147,106 @@
   color: var(--muted);
 }
 
-/* About: the mark */
-.mark {
+/* About: photo bento. One large photo and two stacked, each with its
+   caption set over a dark fade at the bottom. */
+.photoBento {
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 48px 72px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  grid-template-rows: 300px 300px;
+  gap: 16px;
+}
+
+.bentoPhoto {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #e9edf2;
+}
+
+.bentoPhoto:first-child {
+  grid-row: span 2;
+}
+
+.bentoPhoto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 24, 47, 0) 40%, rgba(9, 24, 47, 0.82) 100%);
+  pointer-events: none;
+}
+
+.bentoCaption {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px;
+  color: #fff;
+}
+
+.bentoNum {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bentoTitle {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.bentoPhoto:first-child .bentoTitle {
+  font-size: clamp(26px, 3vw, 40px);
+}
+
+.bentoBody {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* About: the mark. The caret-filled mark beside the equation and the three
+   layers; picking a layer pulls the mark apart to show that slab. */
+.markPanel {
+  --grid-focus: 28% 50%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: center;
-  padding: 64px;
-  border-radius: 32px;
-  background: var(--surface);
+  gap: 40px 72px;
+  padding: 24px 0;
+  color: var(--ink);
+}
+
+.markStage {
+  display: grid;
+  place-items: center;
 }
 
 .markArt {
   width: 100%;
+  max-width: 680px;
   height: auto;
-  max-width: 620px;
-  justify-self: center;
   overflow: visible;
 }
 
 /* Exploded stack: slabs pulled apart along the stacking diagonal (SPREAD in
-   MarkExploded.tsx). Hovering the card slides them into the finished mark. */
+   MarkExploded.tsx). .markAssembled slides them into the finished mark. */
 .explode {
-  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.4s ease;
 }
 
 .explode1 {
@@ -180,37 +257,156 @@
   transform: translate(323.4px, 104.2px);
 }
 
+.slabDim {
+  opacity: 0.35;
+}
+
 .markGhost,
 .markGuide,
 .slabLabel {
   transition: opacity 0.4s ease;
 }
 
-/* The solid mark appears only after the slabs have slid into place. */
-.markSolid {
+.slabEdge {
+  transition: stroke-opacity 0.4s ease;
+}
+
+.markAssembled .explode1,
+.markAssembled .explode2 {
+  transform: none;
+}
+
+.markAssembled .markGhost,
+.markAssembled .markGuide,
+.markAssembled .slabLabel {
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
-/* Keep the blueprint grid on the illustration side, away from the text. */
-.mark {
-  --grid-focus: 26% 50%;
+/* Put together: the edges between slabs fade, so it reads as one mark. */
+.markAssembled .slabEdge {
+  stroke-opacity: 0;
+  transition-delay: 0.5s;
 }
 
-@media (hover: hover) {
-  .mark:hover .explode1,
-  .mark:hover .explode2 {
-    transform: none;
-  }
-  .mark:hover .markGhost,
-  .mark:hover .markGuide,
-  .mark:hover .slabLabel {
-    opacity: 0;
-  }
-  .mark:hover .markSolid {
-    opacity: 1;
-    transition-delay: 0.55s;
-  }
+/* The copy: title, step bars, then one step's text at a time. */
+.markCopy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.markTitle {
+  margin: 0;
+  font-size: clamp(32px, 3.6vw, 52px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.markTitle span {
+  display: block;
+  color: var(--soft);
+}
+
+/* W + B + layers = the mark, set large. */
+.equation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 40px;
+  margin: 6px 0 4px;
+}
+
+.eqTerm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.eqTerm + .eqTerm::before {
+  content: "+";
+  position: absolute;
+  left: -28px;
+  top: 12px;
+  font-size: 22px;
+  color: var(--soft);
+}
+
+.eqSum::before {
+  content: "=" !important;
+}
+
+.eqGlyph {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.eqSum .eqGlyph {
+  color: var(--blue);
+}
+
+.eqWord {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* The three layers. Picking one lights its slab in the drawing. */
+.layerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.layerList li {
+  border-bottom: 1px solid var(--line);
+}
+
+.layerRow {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.layerRow:hover .layerName,
+.layerRow[aria-pressed="true"] .layerName {
+  color: var(--blue);
+}
+
+.layerRow:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.layerName {
+  font-size: 17px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.layerBody {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -218,109 +414,45 @@
   .markGhost,
   .markGuide,
   .slabLabel,
-  .markSolid {
+  .slabEdge {
     transition: none;
   }
 }
 
-/* "The mark, decoded": W + B + layers, after the brand guide. */
-.decode {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.decodeLabel {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--blue);
-}
-
-.formula {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: start;
-  gap: 12px;
-}
-
-.term {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.termGlyph {
-  display: flex;
-  align-items: center;
-  height: 72px;
-  font-size: 68px;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-
-.termWord {
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.termBody {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--muted);
-}
-
-.formulaPlus {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--soft);
-}
-
-.decodeSum {
-  margin: 0;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-@media (max-width: 560px) {
-  .formula {
+@media (max-width: 900px) {
+  .markPanel {
     grid-template-columns: minmax(0, 1fr);
-    gap: 4px;
+    gap: 32px;
+    padding: 0;
   }
-  .formulaPlus {
-    height: auto;
-    font-size: 24px;
+  .markArt {
+    max-width: 420px;
   }
-  .termGlyph {
-    height: 56px;
-    font-size: 52px;
+  .layerRow {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2px;
+  }
+  .eqGlyph {
+    height: 40px;
+    font-size: 40px;
+  }
+  .photoBento {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .bentoPhoto {
+    height: 320px;
+  }
+  .bentoPhoto:first-child {
+    grid-row: auto;
+    height: 400px;
   }
 }
 
-/* About: photo strip */
-.photoStrip {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 16px;
-}
-
-.stripPhoto {
-  position: relative;
-  height: 420px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: #e9edf2;
+@media (max-width: 760px) {
+  .bentoCaption {
+    padding: 22px;
+  }
 }
 
 /* About: leadership */
@@ -615,13 +747,8 @@ a.detailValue:hover {
 }
 
 @media (max-width: 900px) {
-  .contactGrid,
-  .mark {
+  .contactGrid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  /* Stacked: keep the grid on the drawing at the top, not behind the text. */
-  .mark {
-    --grid-focus: 50% 14%;
   }
   .serviceRow {
     grid-template-columns: minmax(0, 1fr);
@@ -631,16 +758,9 @@ a.detailValue:hover {
   .serviceNumber {
     padding-top: 0;
   }
-  .photoStrip {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .stripPhoto {
-    height: 300px;
-  }
 }
 
 @media (max-width: 760px) {
-  .mark,
   .form,
   .sent {
     padding: 28px;
