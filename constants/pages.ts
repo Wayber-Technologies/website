@@ -127,6 +127,31 @@ export const MARK_LAYERS = [
   { name: "Infrastructure", body: "Cloud, security and monitoring that keep it all running." },
 ];
 
+// The About photo strip: what working with us looks like.
+export const ABOUT_PHOTOS = [
+  {
+    src: "/home/photo-meeting.jpg",
+    alt: "A team around a table, planning with laptops open",
+    position: "center",
+    title: "You’re in the room",
+    body: "Decisions are made with you, from the first workshop to the release plan.",
+  },
+  {
+    src: "/home/photo-whiteboard.jpg",
+    alt: "People mapping a system together at a whiteboard",
+    position: "center",
+    title: "We map it before we build it",
+    body: "Users, data and what could break go on the wall before anyone writes code.",
+  },
+  {
+    src: "/home/photo-dev.jpg",
+    alt: "An engineer focused on his laptop",
+    position: "65% center",
+    title: "We stay after launch",
+    body: "The people who built it keep it running, fixed and growing.",
+  },
+];
+
 // From the brand guide letterhead: "competence, strong relationships, and futuristic thinking".
 export const VALUES = [
   {

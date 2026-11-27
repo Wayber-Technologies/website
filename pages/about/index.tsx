@@ -5,15 +5,9 @@ import PageHero from "@/components/site/PageHero";
 import MarkExploded from "@/components/site/MarkExploded";
 import { Clients } from "@/components/site/Work";
 import { Closing } from "@/components/site/Contact";
-import { LEADERSHIP, MARK_LAYERS, MARK_MEANING, VALUES } from "@/constants/pages";
+import { ABOUT_PHOTOS, LEADERSHIP, MARK_LAYERS, MARK_MEANING, VALUES } from "@/constants/pages";
 import site from "@/styles/site.module.css";
 import styles from "@/styles/pages.module.css";
-
-const PHOTOS = [
-  { src: "/home/photo-meeting.jpg", alt: "The team in a planning meeting", position: "center" },
-  { src: "/home/photo-whiteboard.jpg", alt: "Mapping a system on the whiteboard", position: "center" },
-  { src: "/home/photo-dev.jpg", alt: "An engineer at work", position: "65% center" },
-];
 
 const initials = (name: string) =>
   name
@@ -59,27 +53,32 @@ export default function AboutPage() {
   return (
     <SiteLayout
       title="About · Wayber Technologies"
-      description="Wayber Technologies is a software studio in Lagos building web platforms, mobile apps and fintech systems."
+      description="Wayber Technologies is a remote software studio building web platforms, mobile apps and fintech systems."
     >
       <PageHero
         seed={3}
         title="We are Wayber"
-        summary="A software studio in Lagos, building for founders, banks and operators who need technology that keeps working as they grow."
+        summary="A remote software studio, building for founders, banks and operators who need technology that keeps working as they grow."
       >
-        <div className={styles.photoStrip}>
-          {PHOTOS.map((p, i) => (
-            <div key={p.src} className={`${styles.stripPhoto} ${site.zoom}`}>
+        <ol className={styles.photoBento}>
+          {ABOUT_PHOTOS.map((p, i) => (
+            <li key={p.src} className={`${styles.bentoPhoto} ${site.zoom}`}>
               <Image
                 src={p.src}
                 alt={p.alt}
                 fill
                 priority={i === 0}
-                sizes="(max-width: 900px) 100vw, 40vw"
+                sizes={i === 0 ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 40vw"}
                 style={{ objectFit: "cover", objectPosition: p.position }}
               />
-            </div>
+              <div className={styles.bentoCaption}>
+                <span className={styles.bentoNum}>0{i + 1}</span>
+                <h3 className={styles.bentoTitle}>{p.title}</h3>
+                <p className={styles.bentoBody}>{p.body}</p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </PageHero>
 
       <section className={site.section} aria-labelledby="name-title">

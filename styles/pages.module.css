@@ -147,6 +147,76 @@
   color: var(--muted);
 }
 
+/* About: photo bento. One large photo and two stacked, each with its
+   caption set over a dark fade at the bottom. */
+.photoBento {
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  grid-template-rows: 300px 300px;
+  gap: 16px;
+}
+
+.bentoPhoto {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #e9edf2;
+}
+
+.bentoPhoto:first-child {
+  grid-row: span 2;
+}
+
+.bentoPhoto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(9, 24, 47, 0) 40%, rgba(9, 24, 47, 0.82) 100%);
+  pointer-events: none;
+}
+
+.bentoCaption {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px;
+  color: #fff;
+}
+
+.bentoNum {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.bentoTitle {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.bentoPhoto:first-child .bentoTitle {
+  font-size: clamp(26px, 3vw, 40px);
+}
+
+.bentoBody {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+
 /* About: the mark. The caret-filled mark beside the equation and the three
    layers; picking a layer pulls the mark apart to show that slab. */
 .markPanel {
@@ -366,22 +436,23 @@
     height: 40px;
     font-size: 40px;
   }
+  .photoBento {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .bentoPhoto {
+    height: 320px;
+  }
+  .bentoPhoto:first-child {
+    grid-row: auto;
+    height: 400px;
+  }
 }
 
-/* About: photo strip */
-.photoStrip {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 16px;
-}
-
-.stripPhoto {
-  position: relative;
-  height: 420px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: #e9edf2;
+@media (max-width: 760px) {
+  .bentoCaption {
+    padding: 22px;
+  }
 }
 
 /* About: leadership */
@@ -686,12 +757,6 @@ a.detailValue:hover {
   }
   .serviceNumber {
     padding-top: 0;
-  }
-  .photoStrip {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .stripPhoto {
-    height: 300px;
   }
 }
 
