@@ -120,6 +120,13 @@ export const MARK_MEANING: { glyph: "W" | "B" | "layers"; word: string; body: st
   { glyph: "layers", word: "Layers", body: "Technology built to stack and hold." },
 ];
 
+// The three slabs of the mark, as the layers we build.
+export const MARK_LAYERS = [
+  { name: "Interface", body: "The web and mobile apps your customers and staff use every day." },
+  { name: "Data", body: "The APIs, databases and reports underneath, so the numbers agree." },
+  { name: "Infrastructure", body: "Cloud, security and monitoring that keep it all running." },
+];
+
 // From the brand guide letterhead: "competence, strong relationships, and futuristic thinking".
 export const VALUES = [
   {
